@@ -1811,7 +1811,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   <div class="body-text">
     <p><strong>(1)</strong> If $s^*$ is an equilibrium in strictly dominant strategies, then $s^*$ is the <strong>unique</strong> Nash equilibrium of $\Gamma$.</p>
     <p><strong>(2)</strong> For any IESDS sequence $(\Gamma^k)$: $NE(\Gamma^k) = NE(\Gamma)$ for all $k$. IESDS never eliminates any Nash equilibrium.</p>
-    <p><strong>(3)</strong> If $\Gamma$ is solvable by IESDS with surviving profile $\bar{s}$, then $\bar{s}$ is the unique Nash equilibrium of $\Gamma$.</p>
+    <p><strong>(3)</strong> If $\Gamma$ can be solved by iterated elimination of strictly dominated strategies, then the strategy profile obtained at the end of the procedure is the unique Nash equilibrium of the game.</p>
   </div>
   <button class="toggle-btn" onclick="toggle(this,'prop1-proof')">▶ Show Proofs <span class="arrow">▼</span></button>
   <div class="collapsible" id="prop1-proof">
@@ -1867,14 +1867,29 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
     <div class="demo-step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <strong>Proof of (3):</strong> By proposition (2), IESDS does not eliminate Nash equilibria:
-        $$NE(\Gamma^k) = NE(\Gamma)$$
-        If $\Gamma$ is solvable by IESDS, the terminal game $\Gamma^k$ leaves exactly one strategy for each player. Therefore there is only one possible surviving strategy profile, denoted by $\bar{s}$.<br>
-        Hence:
-        $$NE(\Gamma^k) = \{\bar{s}\}$$
-        Since the Nash equilibria are preserved during IESDS:
-        $$NE(\Gamma) = NE(\Gamma^k) = \{\bar{s}\}$$
-        Therefore $\bar{s}$ is the unique Nash equilibrium of the original game $\Gamma$. $\blacksquare$
+        <strong>Proof of (3) — Solvability by IESDS:</strong><br><br>
+        We want to prove: <em>If $\Gamma$ can be solved by IESDS, then the surviving strategy profile $s$ is the unique Nash equilibrium of $\Gamma$.</em><br><br>
+
+        <strong>Step 1 — Use statement (2):</strong><br>
+        From statement (2), eliminating strictly dominated strategies does not eliminate Nash equilibria. Therefore, after each elimination, every Nash equilibrium of the original game must still be present in the reduced game. In particular, for the final reduced game $\Gamma^k$:
+        <div class="math-display boxed-blue">$$NE(\Gamma) \subseteq NE(\Gamma^k)$$</div>
+        <em>What does this inclusion mean?</em> It means: <em>"If a strategy profile is a Nash equilibrium of the original game $\Gamma$, then it must still be a Nash equilibrium of the reduced game $\Gamma^k$."</em> So IESDS may remove strategies and strategy profiles, but it cannot remove a Nash equilibrium.<br><br>
+
+        <strong>Step 2 — Use the fact that $\Gamma$ is solvable by IESDS:</strong><br>
+        By assumption, $\Gamma$ can be solved by IESDS. "Solvable by IESDS" means that after repeatedly eliminating strictly dominated strategies, only <strong>one</strong> strategy remains for each player. Therefore, in the final reduced game $\Gamma^k$, there is only one possible strategy profile. Call this profile <strong>$s$</strong>.<br><br>
+
+        <strong>Step 3 — Combine the two ideas:</strong><br>
+        From Step 1, $NE(\Gamma) \subseteq NE(\Gamma^k)$. Every Nash equilibrium of the original game $\Gamma$ must be found among the Nash equilibria of the final reduced game $\Gamma^k$. But from Step 2, $\Gamma^k$ contains only one possible strategy profile: $s$. There is therefore no other profile available in $\Gamma^k$ that could be a Nash equilibrium. Hence, if $\Gamma$ has a Nash equilibrium, the only possible candidate is $s$.<br><br>
+
+        <strong>Step 4 — Why is $s$ actually a Nash equilibrium?</strong><br>
+        At the end of IESDS, each player has only one remaining strategy in $\Gamma^k$. Therefore, no player has another remaining strategy $t_i$ to deviate to, so no player has a profitable unilateral deviation in $\Gamma^k$. Hence:
+        $$s \in NE(\Gamma^k)$$
+        And because statement (2) tells us that Nash equilibria are preserved through the successive eliminations ($NE(\Gamma^k) = NE(\Gamma)$), $s$ is a Nash equilibrium of the original game $\Gamma$.<br><br>
+
+        <strong>Conclusion:</strong><br>
+        There is only one surviving strategy profile $s$, and this profile is the Nash equilibrium. Therefore:
+        <div class="math-display boxed">$$\mathbf{NE(\Gamma) = \{s\}}$$</div>
+        Hence, $s$ is the <strong>unique</strong> Nash equilibrium of $\Gamma$. $\blacksquare$
         <div class="key-note blue" style="margin-top:8px;">
           <strong>Takeaway:</strong> IESDS preserves Nash equilibria. If only one profile survives, that profile must therefore be the unique Nash equilibrium.
         </div>
