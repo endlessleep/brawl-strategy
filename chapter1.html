@@ -1815,9 +1815,71 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
   <button class="toggle-btn" onclick="toggle(this,'prop1-proof')">▶ Show Proofs <span class="arrow">▼</span></button>
   <div class="collapsible" id="prop1-proof">
-    <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Proof of (1) — Existence:</strong> Since $s_i^*$ is strictly dominant for all $i$, $g_i(s_i^*, s_{-i}) > g_i(t_i, s_{-i})$ for all $t_i \neq s_i^*$ and all $s_{-i}$. In particular, at $s_{-i} = s_{-i}^*$, $g_i(s_i^*, s_{-i}^*) > g_i(t_i, s_{-i}^*)$ for all $t_i \neq s_i^*$. Thus $s^*$ satisfies the Nash equilibrium condition.</div></div>
-    <div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Proof of (1) — Uniqueness:</strong> Suppose $\hat{s} \neq s^*$ is also a Nash equilibrium. Then there exists at least one player $j$ such that $\hat{s}_j \neq s_j^*$. Since $s_j^*$ strictly dominates $\hat{s}_j$, we have $g_j(s_j^*, \hat{s}_{-j}) > g_j(\hat{s}_j, \hat{s}_{-j})$. But this means player $j$ can strictly improve her payoff by deviating to $s_j^*$ against $\hat{s}_{-j}$, contradicting the assumption that $\hat{s}$ is a Nash equilibrium. Thus, no other Nash equilibrium can exist. $\blacksquare$</div></div>
-    <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Proof of (3):</strong> By (2), $NE(\Gamma) = NE(\Gamma^k)$. When the terminal game $\Gamma^k$ has only one strategy per player $\bar{s}$, the only possible profile in $\Gamma^k$ is $\bar{s}$, so $NE(\Gamma^k) = \{\bar{s}\}$. Hence $NE(\Gamma) = \{\bar{s}\}$. $\blacksquare$</div></div>
+    <div class="demo-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Proof of (1) — Existence:</strong> We first show that $s^*$ is a Nash equilibrium.<br><br>
+        Because $s_i^*$ is strictly dominant for player $i$, it gives player $i$ a strictly higher payoff than any other strategy $t_i$, whatever the other players choose:
+        <div class="math-display boxed-blue">$$g_i(s_i^*, s_{-i}) > g_i(t_i, s_{-i}) \qquad \text{for every } t_i \neq s_i^* \text{ and every } s_{-i}$$</div>
+        <div style="font-size:0.88rem;color:var(--text-2);margin:8px 0 10px;line-height:1.6;">
+          • <strong>$s_i^*$</strong> = player $i$’s strictly dominant strategy<br>
+          • <strong>$t_i \neq s_i^*$</strong> = any other strategy player $i$ could deviate to (a possible unilateral deviation)<br>
+          • <strong>$s_{-i}$</strong> = strategies chosen by all the other players
+        </div>
+        Now consider the particular situation in which the other players also play their strictly dominant strategies, so $s_{-i} = s_{-i}^*$. Therefore:
+        $$g_i(s_i^*, s_{-i}^*) > g_i(t_i, s_{-i}^*) \qquad \text{for every } t_i \neq s_i^*$$
+        <div class="matrix-wrap" style="margin:10px 0 8px;">
+          <table class="comparison-table" style="max-width:440px;">
+            <tr><th>Option</th><th>Payoff</th><th>Comparison</th></tr>
+            <tr><td><strong>STAY</strong> with $s_i^*$</td><td>$g_i(s_i^*, s_{-i}^*)$</td><td style="color:var(--cyan-bright);font-weight:700;">Strictly optimal</td></tr>
+            <tr><td><strong>DEVIATE</strong> to $t_i \neq s_i^*$</td><td>$g_i(t_i, s_{-i}^*)$</td><td style="color:var(--rose);font-weight:700;">Strictly worse ($<$)</td></tr>
+          </table>
+        </div>
+        Since $\text{STAY} > \text{DEVIATE}$ for every possible deviation $t_i$, player $i$ has no profitable unilateral deviation. This holds for every player $i$. Therefore, <strong>$s^*$ is a Nash equilibrium</strong>.
+        <div class="key-note blue" style="margin-top:8px;">
+          <strong>Nash condition:</strong> No player can improve their payoff by changing strategy alone.<br>
+          Here, strict dominance gives an even stronger result: every deviation $t_i$ gives a strictly lower payoff.
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Proof of (1) — Uniqueness:</strong> Now we show that $s^*$ is not only a Nash equilibrium, but the <em>only</em> Nash equilibrium.<br><br>
+        Suppose, for contradiction, that there is another Nash equilibrium $\hat{s} \neq s^*$.<br>
+        If the two profiles are different, then at least one player $j$ must be playing a different strategy:
+        $$\hat{s}_j \neq s_j^*$$
+        But $s_j^*$ is player $j$’s strictly dominant strategy. Therefore, whatever the other players are doing — including when they play $\hat{s}_{-j}$ — player $j$ strictly prefers $s_j^*$:
+        $$g_j(s_j^*, \hat{s}_{-j}) > g_j(\hat{s}_j, \hat{s}_{-j})$$
+        <p style="margin:8px 0 6px;">
+          At $\hat{s}$, player $j$ is currently playing $\hat{s}_j$. But player $j$ can switch alone from $\hat{s}_j$ to $s_j^*$ and obtain a strictly higher payoff. So player $j$ has a profitable unilateral deviation.
+        </p>
+        Therefore $\hat{s}$ cannot be a Nash equilibrium, which contradicts our assumption.<br>
+        Hence no other Nash equilibrium can exist:
+        $$\mathbf{NE(\Gamma) = \{s^*\}}$$
+        <div class="key-note blue" style="margin-top:8px;">
+          <strong>Why unique?</strong> Any profile different from $s^*$ contains at least one player who is not playing their strictly dominant strategy. That player would want to deviate to their strictly dominant strategy. So any other profile cannot be Nash.
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Proof of (3):</strong> By proposition (2), IESDS does not eliminate Nash equilibria:
+        $$NE(\Gamma^k) = NE(\Gamma)$$
+        If $\Gamma$ is solvable by IESDS, the terminal game $\Gamma^k$ leaves exactly one strategy for each player. Therefore there is only one possible surviving strategy profile, denoted by $\bar{s}$.<br>
+        Hence:
+        $$NE(\Gamma^k) = \{\bar{s}\}$$
+        Since the Nash equilibria are preserved during IESDS:
+        $$NE(\Gamma) = NE(\Gamma^k) = \{\bar{s}\}$$
+        Therefore $\bar{s}$ is the unique Nash equilibrium of the original game $\Gamma$. $\blacksquare$
+        <div class="key-note blue" style="margin-top:8px;">
+          <strong>Takeaway:</strong> IESDS preserves Nash equilibria. If only one profile survives, that profile must therefore be the unique Nash equilibrium.
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1829,7 +1891,12 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
   <button class="toggle-btn" onclick="toggle(this,'prop2-proof')">▶ Show Proof of (1) <span class="arrow">▼</span></button>
   <div class="collapsible" id="prop2-proof">
-    <div class="demo-step"><div class="step-num">1</div><div class="step-body">Let $s^*$ be a weakly dominant strategy equilibrium. Then for all $i \in N$, for all $t_i \in S_i$, and for all $s_{-i} \in S_{-i}$, $g_i(s_i^*, s_{-i}) \geq g_i(t_i, s_{-i})$. Evaluating at $s_{-i} = s_{-i}^*$ gives $g_i(s_i^*, s_{-i}^*) \geq g_i(t_i, s_{-i}^*)$ for all $t_i$, which is precisely the definition of a Nash equilibrium. $\blacksquare$</div></div>
+    <div class="demo-step"><div class="step-num">1</div><div class="step-body">Let $s^*$ be an equilibrium in weakly dominant strategies. By definition, for every player $i \in N$ and every alternative strategy $t_i \in S_i$ (a possible unilateral deviation), strategy $s_i^*$ yields at least as high a payoff as $t_i$ against all opponent profiles $s_{-i}$:
+      $$g_i(s_i^*, s_{-i}) \geq g_i(t_i, s_{-i}) \qquad \forall\, t_i \in S_i,\; \forall\, s_{-i} \in S_{-i}$$
+      In particular, when all other players also play their equilibrium strategies $s_{-i} = s_{-i}^*$:
+      $$g_i(s_i^*, s_{-i}^*) \geq g_i(t_i, s_{-i}^*) \qquad \forall\, t_i \in S_i$$
+      Comparing <strong>STAY</strong> ($g_i(s_i^*, s_{-i}^*)$) with <strong>DEVIATE</strong> to $t_i$ ($g_i(t_i, s_{-i}^*)$), no player has a profitable unilateral deviation. This is precisely the definition of a Nash equilibrium. $\blacksquare$
+    </div></div>
   </div>
   <button class="toggle-btn" onclick="toggle(this,'prop2-proof-part2')" style="margin-top:8px;">▶ Show Proof of (2) <span class="arrow">▼</span></button>
   <div class="collapsible" id="prop2-proof-part2">
