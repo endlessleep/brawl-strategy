@@ -1706,36 +1706,66 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
     <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Graph of reaction curves (assuming $a > c$):</strong><br>
       The Nash equilibrium is the intersection of $BR_1$ and $BR_2$.
       <div style="display:flex;justify-content:center;margin:16px 0 8px;">
-        <svg width="300" height="280" viewBox="0 0 300 280" style="background:rgba(9,14,23,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:8px;">
+        <svg width="320" height="290" viewBox="0 0 320 290" style="background:rgba(9,14,23,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:8px;">
+          <!-- Coordinate system:
+               q1 in [0, a-c]  →  x in [40, 260]  (220px = a-c units)
+               q2 in [0, a-c]  →  y in [250, 20]   (230px = a-c units, y-inverted)
+               BR1: q2 = (a-c) - 2q1   from (q1=0,q2=a-c) to (q1=(a-c)/2, q2=0)
+                    SVG: (40,20) → (155,250)
+               BR2: q2 = (a-c-q1)/2    from (q1=0,q2=(a-c)/2) to (q1=a-c, q2=0)
+                    SVG: (40,135) → (260,250)
+               Nash: q1*=q2*=(a-c)/3
+                    x = 40 + 220*(1/3) = 113,  y = 250 - 230*(1/3) = 173 -->
+
           <!-- Axes -->
-          <line x1="40" y1="240" x2="275" y2="240" stroke="#475569" stroke-width="1.5"/>
-          <line x1="40" y1="240" x2="40" y2="15" stroke="#475569" stroke-width="1.5"/>
+          <line x1="40" y1="250" x2="280" y2="250" stroke="#475569" stroke-width="1.5"/>
+          <line x1="40" y1="250" x2="40" y2="12" stroke="#475569" stroke-width="1.5"/>
+          <!-- Arrow tips -->
+          <polygon points="280,245 288,250 280,255" fill="#475569"/>
+          <polygon points="35,12 40,4 45,12" fill="#475569"/>
+
           <!-- Axis labels -->
-          <text x="270" y="255" fill="#94a3b8" font-size="11" font-family="Outfit,sans-serif">q₁</text>
-          <text x="12" y="20" fill="#94a3b8" font-size="11" font-family="Outfit,sans-serif">q₂</text>
-          <!-- BR1: q2 = a-c - 2q1, i.e. from (0, a-c) to (a-c)/2, 0) -->
-          <!-- Mapped: q1 in [0,(a-c)/2] → x in [40,240]; q2 in [0,a-c] → y in [240,20] -->
-          <!-- BR1 line: from (40,20) to (240,240) -->
-          <line x1="40" y1="20" x2="240" y2="240" stroke="#06b6d4" stroke-width="2.5"/>
-          <!-- BR2: q2 = (a-c-q1)/2, from (0,(a-c)/2) to (a-c,0) -->
-          <!-- BR2 line: from (40,130) to (240,240) -->
-          <line x1="40" y1="130" x2="240" y2="240" stroke="#fb7185" stroke-width="2.5"/>
-          <!-- Nash equilibrium point at ((a-c)/3, (a-c)/3) → x≈147, y≈130 -->
-          <!-- BR1 at q1=(a-c)/3: q2=a-c-2(a-c)/3=(a-c)/3 ✓ -->
-          <!-- Mapped: q1=(a-c)/3 → x=40+200*(1/3)=40+66.7≈107; q2=(a-c)/3 → y=240-220*(1/3)=240-73.3≈167 -->
-          <circle cx="107" cy="167" r="5" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
-          <!-- Labels -->
-          <text x="55" y="35" fill="#06b6d4" font-size="10.5" font-family="Outfit,sans-serif" font-weight="700">BR₁(q₂)</text>
-          <text x="180" y="165" fill="#fb7185" font-size="10.5" font-family="Outfit,sans-serif" font-weight="700">BR₂(q₁)</text>
-          <text x="112" y="162" fill="#c084fc" font-size="10" font-family="Outfit,sans-serif" font-weight="700">Nash</text>
-          <!-- Dotted reference lines to NE -->
-          <line x1="107" y1="167" x2="107" y2="240" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,3"/>
-          <line x1="107" y1="167" x2="40" y2="167" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="283" y="254" fill="#94a3b8" font-size="11" font-family="Outfit,sans-serif" font-style="italic">q₁</text>
+          <text x="18" y="12" fill="#94a3b8" font-size="11" font-family="Outfit,sans-serif" font-style="italic">q₂</text>
+
+          <!-- BR1: q2 = (a-c) - 2q1  →  from (40,20) to (150,250) -->
+          <line x1="40" y1="20" x2="150" y2="250" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- BR2: q2 = (a-c-q1)/2   →  from (40,135) to (260,250) -->
+          <line x1="40" y1="135" x2="260" y2="250" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Nash equilibrium point: q1*=q2*=(a-c)/3 → (113, 173) -->
+          <!-- Verify: BR1 at q1=(a-c)/3: q2=(a-c)-2(a-c)/3=(a-c)/3 ✓
+                      BR2 at q1=(a-c)/3: q2=(a-c-(a-c)/3)/2=(2(a-c)/3)/2=(a-c)/3 ✓ -->
+          <circle cx="113" cy="173" r="5" fill="#c084fc" stroke="#fff" stroke-width="1.5"/>
+
+          <!-- Dashed reference lines to axes -->
+          <line x1="113" y1="173" x2="113" y2="250" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,3"/>
+          <line x1="113" y1="173" x2="40" y2="173" stroke="#c084fc" stroke-width="1" stroke-dasharray="4,3"/>
+
+          <!-- Curve labels -->
+          <text x="44" y="38" fill="#06b6d4" font-size="10.5" font-family="Outfit,sans-serif" font-weight="700">BR₁(q₂)</text>
+          <text x="192" y="214" fill="#fb7185" font-size="10.5" font-family="Outfit,sans-serif" font-weight="700">BR₂(q₁)</text>
+          <text x="117" y="168" fill="#c084fc" font-size="10" font-family="Outfit,sans-serif" font-weight="700">Nash</text>
+
           <!-- Axis tick labels -->
-          <text x="97" y="255" fill="#94a3b8" font-size="10" font-family="Outfit,sans-serif">(a-c)/3</text>
-          <text x="4" y="171" fill="#94a3b8" font-size="10" font-family="Outfit,sans-serif">(a-c)/3</text>
-          <text x="225" y="255" fill="#94a3b8" font-size="10" font-family="Outfit,sans-serif">(a-c)/2</text>
-          <text x="2" y="134" fill="#94a3b8" font-size="10" font-family="Outfit,sans-serif">(a-c)/2</text>
+          <text x="98" y="265" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">(a-c)/3</text>
+          <text x="2" y="177" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">(a-c)/3</text>
+          <text x="133" y="265" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">(a-c)/2</text>
+
+          <text x="2" y="139" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">(a-c)/2</text>
+          <text x="244" y="265" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">a-c</text>
+          <text x="20" y="24" fill="#94a3b8" font-size="9.5" font-family="Outfit,sans-serif">a-c</text>
+
+          <!-- Small tick marks on axes -->
+          <line x1="113" y1="248" x2="113" y2="252" stroke="#475569" stroke-width="1.5"/>
+          <!-- BR1 tick at (a-c)/2 on x-axis -->
+          <line x1="150" y1="248" x2="150" y2="252" stroke="#475569" stroke-width="1.5"/>
+
+          <line x1="260" y1="248" x2="260" y2="252" stroke="#475569" stroke-width="1.5"/>
+          <line x1="38" y1="173" x2="42" y2="173" stroke="#475569" stroke-width="1.5"/>
+          <line x1="38" y1="135" x2="42" y2="135" stroke="#475569" stroke-width="1.5"/>
+          <line x1="38" y1="20" x2="42" y2="20" stroke="#475569" stroke-width="1.5"/>
         </svg>
       </div>
       <div style="font-size:0.82rem;color:var(--text-3);text-align:center;margin-top:4px;">Reaction curves in the $(q_1, q_2)$ plane. Nash equilibrium = intersection (purple dot).</div>
@@ -2033,6 +2063,331 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       <td>Unique Nash equilibrium. Completely independent of elimination order.</td>
     </tr>
   </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  SECTION 4 — MIXED EXTENSION                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section-header" id="sec-4">
+  <span class="section-label purple">Section 4</span>
+  <h2>Mixed Extension</h2>
+</div>
+
+<!-- MOTIVATION -->
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">A. Motivation</div>
+  <div class="body-text">
+    <p>The Nash equilibrium concept suffers from two caveats:</p>
+    <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;margin-top:8px;">
+      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
+      <div class="step-body">Some games do not have any NE in pure strategies. In this case, we miss a prediction on players' behaviors. For example, this happens in games with much conflict of interest (such as zero-sum games). In zero-sum games, the best response defines a circular path between all the strategy profiles. Each player would like to conceal her strategy and become unpredictable. Requiring each of the two players to do their best given the other player's strategy is too strong a condition.</div>
+    </div>
+    <div class="demo-step" style="padding:10px 0;">
+      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
+      <div class="step-body">Some games have multiple Nash equilibria. Players therefore need to coordinate on a specific equilibrium. In particular, in symmetric games, there may be no symmetric Nash equilibrium, but several asymmetric Nash equilibria. In asymmetric NE, players must share roles between the various equilibrium actions. This may be unfeasible given that players cannot communicate. Implicitly, in symmetric games, players come from the same population, and cannot be identified to one specific role.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIVATION EXAMPLES -->
+<div class="example-box">
+  <div class="example-badge">Example · Find the NE of the following games</div>
+  <div class="example-context">
+    <div style="font-weight:800;color:var(--example);margin-bottom:6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 1</div>
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="3">Player 2</th></tr>
+      <tr><th></th><th></th><th>$P$</th><th>$F$</th><th>$C$</th></tr>
+      <tr><td rowspan="3" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$P$</td><td>$(0,0)$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr>
+      <tr><td class="row-label">$F$</td><td>$(1,-1)$</td><td>$(0,0)$</td><td>$(-1,1)$</td></tr>
+      <tr><td class="row-label">$C$</td><td>$(-1,1)$</td><td>$(1,-1)$</td><td>$(0,0)$</td></tr>
+    </table></div>
+    <div style="font-weight:800;color:var(--example);margin:16px 0 6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 2</div>
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
+      <tr><th></th><th></th><th>$F$</th><th>$0$</th></tr>
+      <tr><td rowspan="2" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$F$</td><td>$(0,0)$</td><td>$(1,1)$</td></tr>
+      <tr><td class="row-label">$0$</td><td>$(1,1)$</td><td>$(0,0)$</td></tr>
+    </table></div>
+  </div>
+  <div class="example-task">
+    <strong>Task:</strong> For each game, find all pure strategy Nash equilibria and comment on what these games illustrate about the caveats of the pure-strategy Nash equilibrium concept.
+  </div>
+  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-motiv-sol')">▶ Show Solution <span class="arrow">▼</span></button>
+  <div class="collapsible" id="mix-motiv-sol">
+
+    <div style="font-weight:800;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:12px;font-size:0.95rem;">Game 1</div>
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
+      Against $P$: $\max\{0,1,-1\}=1 \implies BR_1(P)=\{F\}$.<br>
+      Against $F$: $\max\{-1,0,1\}=1 \implies BR_1(F)=\{C\}$.<br>
+      Against $C$: $\max\{1,-1,0\}=1 \implies BR_1(C)=\{P\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
+      Against $P$: $\max\{0,-1,1\}=1 \implies BR_2(P)=\{C\}$.<br>
+      Against $F$: $\max\{1,0,-1\}=1 \implies BR_2(F)=\{P\}$.<br>
+      Against $C$: $\max\{-1,1,0\}=1 \implies BR_2(C)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
+      Check mutual best responses: $(P,P)$: P1 deviates to $F$. $(F,F)$: P1 deviates to $C$. $(C,C)$: P1 deviates to $P$. Checking all 9 cells — no profile satisfies the mutual best-response condition.<br>
+      <strong>$NE(\Gamma) = \emptyset$ in pure strategies.</strong><br><br>
+      This is a zero-sum game (payoffs always sum to 0) with a circular best-response path: $P \to F \to C \to P \to \ldots$. No pure-strategy NE exists — this illustrates caveat 1.
+    </div></div>
+
+    <div style="font-weight:800;color:var(--text);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 0 6px;margin:16px 0 12px;font-size:0.95rem;">Game 2</div>
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
+      Against $F$: $\max\{0,1\}=1 \implies BR_1(F)=\{0\}$.<br>
+      Against $0$: $\max\{1,0\}=1 \implies BR_1(0)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
+      Against $F$: $\max\{0,1\}=1 \implies BR_2(F)=\{0\}$.<br>
+      Against $0$: $\max\{1,0\}=1 \implies BR_2(0)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
+      • $(F,0)$: $F \in BR_1(0)$ ✓ and $0 \in BR_2(F)$ ✓ $\implies$ <strong>NE</strong>.<br>
+      • $(0,F)$: $0 \in BR_1(F)$ ✓ and $F \in BR_2(0)$ ✓ $\implies$ <strong>NE</strong>.<br><br>
+      <strong>$NE(\Gamma) = \{(F,0),\,(0,F)\}$.</strong> Two asymmetric pure-strategy equilibria exist, but this is a symmetric game — players cannot be assigned different roles without prior coordination. This illustrates caveat 2.
+    </div></div>
+  </div>
+</div>
+
+<!-- § 4.1 -->
+<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-1" data-subsection="§ 4.1">
+  <span class="section-label purple">§ 4.1</span>
+  <h2>Mixed Strategies and Expected Payoff</h2>
+</div>
+
+<!-- FORMAL SETUP -->
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">B. Setting Up the Mixed Extension</div>
+  <div class="body-text">
+    <p>Let $\Gamma=(N,S,g)$ be a game in normal form. Throughout the rest of this chapter, we assume that for every $i\in\{1,\ldots,N\}$, $S_i$ is a finite set.</p>
+    <p style="margin-top:8px;">Mixed, or randomized, strategies make it possible to represent opportunities to bluff or to play randomly. We enrich the set of strategies and the set of payoffs of a normal form game to allow for this.</p>
+  </div>
+</div>
+
+<!-- DEFINITION -->
+<div class="concept-card blue-top">
+  <div class="card-title blue">Definition — Mixed Extension</div>
+  <div class="card-heading">The Mixed Extension $(N, \Sigma, \bar{g})$</div>
+  <div class="body-text">
+    <p>The <strong>mixed extension</strong> of the game in normal form $(N,S,g)$ is the game in normal form $(N,\Sigma,\bar g)$, where:</p>
+  </div>
+
+  <div class="body-text" style="margin-top:4px;"><strong>Pure-strategy space:</strong></div>
+  <div class="math-display boxed">$$S = \prod_{i=1}^{n} S_i$$</div>
+
+  <div class="body-text" style="margin-top:8px;"><strong>Mixed-strategy set for player $i$:</strong></div>
+  <div class="math-display boxed-blue">$$\Sigma_i = \Delta(S_i) := \left\{ p \in \mathbb{R}^{|S_i|} : \forall k,\; p_k \geq 0,\; \sum_{k=1}^{|S_i|} p_k = 1 \right\}$$</div>
+
+  <div class="body-text" style="margin-top:8px;"><strong>Expected payoff function for player $i$:</strong></div>
+  <div class="math-display boxed-blue">$$\bar{g}_i : \prod_{j=1}^{N} \Delta(S_j) \to \mathbb{R}$$</div>
+  <div class="math-display boxed-purple">$$\sigma \mapsto \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
+
+  <div class="key-note blue" style="margin-top:10px;">
+    <strong>A mixed strategy is a probability distribution over the set of pure strategies.</strong>
+  </div>
+</div>
+
+<!-- CORE INTUITION -->
+<div class="memory-box">
+  <div class="memory-box-title">🎲 Core Intuition</div>
+  <div class="memory-row">
+    <div class="memory-item">
+      <div class="mi-label">Pure strategy</div>
+      <div class="mi-text">Choose one action with probability 1.<br>Example: always play $L$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">Mixed strategy</div>
+      <div class="mi-text">Choose a probability distribution over pure actions.<br>Example: if $S_i = \{L, R\}$, then $\sigma_i = \left(\tfrac{1}{4}, \tfrac{3}{4}\right)$ means $P(L)=\tfrac{1}{4}$, $P(R)=\tfrac{3}{4}$.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REMARK 1 -->
+<div class="prop-box" style="margin-top:8px;">
+  <div class="prop-title">Remark — Independence and Profile Probability</div>
+  <div class="body-text">
+    <p>Players choose their mixed strategies <strong>independently</strong> of each other. Hence the product</p>
+  </div>
+  <div class="math-display boxed-blue">$$\prod_{j=1}^{N} \sigma_j(s_j)$$</div>
+  <div class="body-text">
+    <p>is the probability that players play the pure strategy profile $s = (s_1, \ldots, s_N)$.</p>
+    <p style="margin-top:8px;">The payoff associated to a mixed strategy profile is the <strong>expected payoff</strong>. One immediate consequence is <strong>multi-linearity</strong>.</p>
+  </div>
+</div>
+
+<!-- EXPECTED PAYOFF INTUITION -->
+<div class="concept-card cyan-top" style="margin-top:4px;">
+  <div class="card-title cyan">How to Compute the Expected Payoff</div>
+  <div class="body-text">
+    <p>For every possible pure strategy profile $s \in S$:</p>
+    <ol style="margin-left:20px;line-height:2;margin-top:6px;">
+      <li>Compute the probability that this profile occurs: $\displaystyle\prod_{j=1}^{N} \sigma_j(s_j)$.</li>
+      <li>Multiply this probability by the payoff generated by the profile: $g_i(s)$.</li>
+      <li>Sum over all possible profiles $s \in S$.</li>
+    </ol>
+  </div>
+  <div class="math-display boxed">$$\bar{g}_i(\sigma) = \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
+</div>
+
+<!-- PROPOSITION: MULTI-LINEARITY -->
+<div class="prop-box">
+  <div class="prop-title">Proposition — Multi-linearity of the Expected Payoff</div>
+  <div class="body-text">
+    <p>The expected payoff function is <strong>multi-linear</strong>. In particular:</p>
+  </div>
+  <div class="math-display boxed-blue">$$\bar{g}_i(\sigma_i, \sigma_{-i}) = \sum_{s_i \in S_i} \sigma_i(s_i)\, g_i(s_i, \sigma_{-i})$$</div>
+  <div class="body-text" style="margin-top:6px;">
+    <p>This says: the expected payoff to player $i$ equals the weighted average of her payoffs across pure strategies, where the weights are the probabilities $\sigma_i(s_i)$ she assigns to each pure strategy $s_i$.</p>
+  </div>
+</div>
+
+<!-- NOTATION LIST -->
+<div class="concept-card blue-top">
+  <div class="card-title blue">C. Notation</div>
+  <div class="body-text"><p>We use the following notations:</p></div>
+  <table class="notation-table">
+    <tr><td>$\sigma_j(s_j)$</td><td>Probability that player $j$ plays pure strategy $s_j$.</td></tr>
+    <tr><td>$\sigma_i \in \Sigma_i$</td><td>Strategy of player $i$ (a mixed strategy).</td></tr>
+    <tr><td>$\sigma_i = \sigma_i(s_i)\cdot s_i + \ldots + \sigma_i(s_i') \cdot s_i'$</td><td>Explicit representation of $\sigma_i$ as a weighted combination of pure strategies.</td></tr>
+    <tr><td>$\sigma_i = \bigl(\sigma_i(s_i), \ldots, \sigma_i(s_i')\bigr)$</td><td>Vector representation of $\sigma_i$. When unambiguous, the last weight $\sigma_i(s_i')$ can be omitted (all weights sum to 1).</td></tr>
+    <tr><td>$\sigma \in \Sigma$</td><td>Mixed strategy profile — actions (distributions) for all players.</td></tr>
+    <tr><td>$\Sigma = \displaystyle\prod_{j=1}^{N} \Sigma_j$</td><td>Set of all mixed strategy profiles.</td></tr>
+    <tr><td>$\sigma_{-i} \in \Sigma_{-i}$</td><td>Mixed strategy profile and set of strategy profiles for all players except $i$.</td></tr>
+    <tr><td>$\bar{g} = (\bar{g}_j)_{j \in \{1,\ldots,n\}}$</td><td>Payoff function profile. We often write $g$ for $\bar{g}$.</td></tr>
+  </table>
+</div>
+
+<!-- NOTATION DECODER -->
+<div class="memory-box">
+  <div class="memory-box-title">🔤 Notation Decoder — Pure vs. Mixed</div>
+  <div class="memory-row">
+    <div class="memory-item">
+      <div class="mi-label">$S_i$</div>
+      <div class="mi-text">Pure-strategy <em>set</em> of player $i$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$\Sigma_i = \Delta(S_i)$</div>
+      <div class="mi-text">Set of all probability distributions over $S_i$ — mixed strategies available to player $i$.</div>
+    </div>
+  </div>
+  <div class="memory-row" style="margin-top:8px;">
+    <div class="memory-item">
+      <div class="mi-label">$s_i \in S_i$</div>
+      <div class="mi-text">One <em>pure</em> strategy.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$\sigma_i \in \Sigma_i$</div>
+      <div class="mi-text">One <em>mixed</em> strategy (a probability distribution).</div>
+    </div>
+  </div>
+  <div class="memory-row" style="margin-top:8px;">
+    <div class="memory-item">
+      <div class="mi-label">$\sigma_i(s_i)$</div>
+      <div class="mi-text">Probability assigned by player $i$ to pure strategy $s_i$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$g_i$ vs $\bar{g}_i$</div>
+      <div class="mi-text">$g_i$ = payoff on pure profiles. $\bar{g}_i$ = expected payoff on mixed profiles.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REMARK 2 — PURE AS SPECIAL CASE -->
+<div class="prop-box" style="margin-top:4px;">
+  <div class="prop-title">Remark — Pure Strategy as a Special Case of Mixed</div>
+  <div class="body-text">
+    <p>A pure strategy is a specific case of a mixed strategy. The pure strategy $s_i$ corresponds to the degenerate distribution:</p>
+  </div>
+  <div class="math-display boxed-blue">$$\delta_{s_i} \qquad (S_i \subset \Delta(S_i))$$</div>
+  <div class="body-text" style="margin-top:4px;">
+    <p>i.e., all probability is placed on the single pure strategy $s_i$ and zero elsewhere. The set of pure strategies $S_i$ is therefore a subset of the set of mixed strategies $\Delta(S_i)$.</p>
+  </div>
+</div>
+
+<!-- EXAMPLE: EXPECTED PAYOFF COMPUTATION -->
+<div class="example-box">
+  <div class="example-badge">Example · Mixed Strategy — Expected Payoff Computation</div>
+  <div class="example-context">
+    Consider the following game:
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
+      <tr><th></th><th></th><th>$R$</th><th>$L$</th></tr>
+      <tr><td rowspan="2" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$R$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr>
+      <tr><td class="row-label">$L$</td><td>$(1,-1)$</td><td>$(-1,1)$</td></tr>
+    </table></div>
+    <div style="margin-top:12px;">Consider the mixed strategy profile:</div>
+    <div class="math-display boxed-purple" style="margin-top:8px;">$$\left(\frac{1}{4}L + \frac{3}{4}R,\quad \frac{1}{3}L + \frac{2}{3}R\right)$$</div>
+    i.e., Player 1 plays $L$ with probability $\frac{1}{4}$ and $R$ with probability $\frac{3}{4}$; Player 2 plays $L$ with probability $\frac{1}{3}$ and $R$ with probability $\frac{2}{3}$.
+  </div>
+  <div class="example-task">
+    <strong>Task:</strong> Write the set of mixed strategies $\Sigma_1, \Sigma_2$ and compute the expected payoffs $\bar{g}_1$ and $\bar{g}_2$ for the strategy profile $\sigma = \left(\frac{1}{4}L + \frac{3}{4}R,\; \frac{1}{3}L + \frac{2}{3}R\right)$.
+  </div>
+  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-expay-sol')">▶ Show Solution <span class="arrow">▼</span></button>
+  <div class="collapsible" id="mix-expay-sol">
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Sets of mixed strategies:</strong><br>
+      $S_1 = \{R, L\}$ and $S_2 = \{R, L\}$, so:
+      $$\Sigma_1 = \Delta(S_1) = \left\{(p, 1-p) : p \in [0,1]\right\}$$
+      $$\Sigma_2 = \Delta(S_2) = \left\{(q, 1-q) : q \in [0,1]\right\}$$
+      where $p = \sigma_1(R)$ is the probability P1 plays $R$, and $q = \sigma_2(R)$ is the probability P2 plays $R$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Identify the probabilities from the given profile:</strong><br>
+      Player 1: $\sigma_1 = \frac{1}{4}L + \frac{3}{4}R$, so $\sigma_1(R) = \frac{3}{4}$, $\sigma_1(L) = \frac{1}{4}$.<br>
+      Player 2: $\sigma_2 = \frac{1}{3}L + \frac{2}{3}R$, so $\sigma_2(R) = \frac{2}{3}$, $\sigma_2(L) = \frac{1}{3}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Probability of each pure profile (by independence):</strong><br>
+      $$P(R,R) = \sigma_1(R)\cdot\sigma_2(R) = \frac{3}{4}\cdot\frac{2}{3} = \frac{1}{2}$$
+      $$P(R,L) = \sigma_1(R)\cdot\sigma_2(L) = \frac{3}{4}\cdot\frac{1}{3} = \frac{1}{4}$$
+      $$P(L,R) = \sigma_1(L)\cdot\sigma_2(R) = \frac{1}{4}\cdot\frac{2}{3} = \frac{1}{6}$$
+      $$P(L,L) = \sigma_1(L)\cdot\sigma_2(L) = \frac{1}{4}\cdot\frac{1}{3} = \frac{1}{12}$$
+      Check: $\frac{1}{2}+\frac{1}{4}+\frac{1}{6}+\frac{1}{12} = \frac{6+3+2+1}{12} = 1$ ✓
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Expected payoff for Player 1:</strong>
+      $$\bar{g}_1(\sigma) = P(R,R)\cdot g_1(R,R) + P(R,L)\cdot g_1(R,L) + P(L,R)\cdot g_1(L,R) + P(L,L)\cdot g_1(L,L)$$
+      $$= \frac{1}{2}\cdot(-1) + \frac{1}{4}\cdot(1) + \frac{1}{6}\cdot(1) + \frac{1}{12}\cdot(-1)$$
+      $$= -\frac{1}{2} + \frac{1}{4} + \frac{1}{6} - \frac{1}{12}$$
+      $$= \frac{-6 + 3 + 2 - 1}{12} = \frac{-2}{12} = -\frac{1}{6}$$
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Expected payoff for Player 2:</strong>
+      $$\bar{g}_2(\sigma) = P(R,R)\cdot g_2(R,R) + P(R,L)\cdot g_2(R,L) + P(L,R)\cdot g_2(L,R) + P(L,L)\cdot g_2(L,L)$$
+      $$= \frac{1}{2}\cdot(1) + \frac{1}{4}\cdot(-1) + \frac{1}{6}\cdot(-1) + \frac{1}{12}\cdot(1)$$
+      $$= \frac{1}{2} - \frac{1}{4} - \frac{1}{6} + \frac{1}{12}$$
+      $$= \frac{6 - 3 - 2 + 1}{12} = \frac{2}{12} = \frac{1}{6}$$
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong>
+      $$\bar{g}_1\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = -\frac{1}{6}$$
+      $$\bar{g}_2\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = +\frac{1}{6}$$
+      Note: $\bar{g}_1 + \bar{g}_2 = 0$ — consistent with the fact that this is a zero-sum game.
+    </div></div>
+  </div>
+</div>
+
+<!-- § 4.2 -->
+<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-2" data-subsection="§ 4.2">
+  <span class="section-label purple">§ 4.2</span>
+  <h2>Interpretation</h2>
+</div>
+
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">D. Four Interpretations of Mixed Strategies</div>
+  <div class="body-text"><p>The most common interpretations of mixed strategies are:</p></div>
+
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Randomization.</strong> Each player independently chooses their pure strategy at random because they want to create uncertainty for the other players.</div>
+  </div>
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Random beliefs.</strong> Players do not actually randomize their play, but the other players believe that they do.</div>
+  </div>
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">3</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Population.</strong> Each player individually plays a pure strategy; the mixed strategy represents the proportions of the population playing each pure strategy.</div>
+  </div>
+  <div class="demo-step" style="padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">4</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Unknown preferences.</strong> Each player chooses their pure strategy based on the known payoffs, plus a small preference that is unknown to the other players.</div>
+  </div>
 </div>
 
 </div><!-- end main-content -->
