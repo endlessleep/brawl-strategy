@@ -2048,26 +2048,118 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
   <button class="toggle-btn example-toggle" onclick="toggle(this,'cournot-c1-sol')">▶ Show Solution <span class="arrow">▼</span></button>
   <div class="collapsible" id="cournot-c1-sol">
-    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Profit function:</strong><br>
-      $$g_i(q_i, q_j) = q_i(P - c) = q_i(13 - q_i - q_j - 1) = q_i(12 - q_i - q_j)$$
+
+    <!-- STEP 1: Profit function -->
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body">
+      <strong>Profit function of firm $i$:</strong><br>
+      The price is $P = 13 - q_1 - q_2$ and the marginal cost is $c = 1$. Firm $i$ maximises its profit:
+      $$g_i(q_i, q_j) = (P - c)\,q_i = (13 - q_i - q_j - 1)\,q_i = (12 - q_i - q_j)\,q_i$$
+      <div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;">
+        Here $q_j$ is the quantity produced by the rival firm. Firm $i$ only controls $q_i$.
+      </div>
     </div></div>
-    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Best-response functions (FOC):</strong>
-      $$\frac{\partial g_i}{\partial q_i} = 12 - 2q_i - q_j = 0 \implies BR_i(q_j) = \max\!\left\{\frac{12 - q_j}{2},\; 0\right\}$$
-      By symmetry:
-      $$BR_1(q_2) = \frac{12 - q_2}{2}, \qquad BR_2(q_1) = \frac{12 - q_1}{2}$$
+
+    <!-- STEP 2: BR via FOC, with monopoly intuition -->
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body">
+      <strong>Best-response function $BR_i(q_j)$:</strong><br><br>
+
+      <strong>Intuition — start with the monopoly case $q_j = 0$:</strong><br>
+      Suppose producer $i$ is a monopolist (the rival produces nothing: $q_j = 0$). Then firm $i$ solves:
+      $$\max_{q_i}\; q_i(12 - q_i)$$
+      Taking the first-order condition: $12 - 2q_i = 0 \implies q_i = 6$.<br>
+      So $BR_i(q_j = 0) = 6$: if the rival produces nothing, the best response is $q_i = 6$.<br><br>
+
+      <strong>General case — FOC for any $q_j \geq 0$:</strong><br>
+      Firm $i$ maximises $g_i = q_i(12 - q_i - q_j)$ with respect to $q_i$:
+      $$\frac{\partial g_i}{\partial q_i} = 12 - 2q_i - q_j = 0 \implies q_i = \frac{12 - q_j}{2}$$
+      The best-response function is therefore:
+      <div class="math-display boxed-blue">$$BR_i(q_j) = \frac{12 - q_j}{2} = 6 - \frac{q_j}{2}$$</div>
+      <div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;line-height:1.7;">
+        Reading this formula: firm $i$'s optimal quantity <em>decreases</em> by $\tfrac{1}{2}$ for each unit the rival produces. When $q_j = 0$: $BR_i = 6$. When $q_j = 12$: $BR_i = 0$ (firm $i$ produces nothing).<br>
+        The two reaction curves are symmetric: $BR_1(q_2) = 6 - q_2/2$ and $BR_2(q_1) = 6 - q_1/2$.
+      </div>
     </div></div>
-    <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Symmetric Nash equilibrium:</strong><br>
-      Setting $q_1^* = q_2^* \equiv q^*$:
-      $$q^* = \frac{12 - q^*}{2} \implies 2q^* = 12 - q^* \implies 3q^* = 12 \implies q^* = 4$$
-      $$\boxed{q_1^* = q_2^* = 4}$$
+
+    <!-- STEP 3: IESDS - Round 1 -->
+    <div class="demo-step"><div class="step-num coral">3</div><div class="step-body">
+      <strong>Step-by-step method — IESDS Round 1:</strong><br><br>
+
+      <em>Question: which quantities can we rule out immediately?</em><br><br>
+
+      The maximum possible best response is $BR_i(q_j = 0) = 6$, achieved when the rival produces nothing. For any $q_j \geq 0$, the best response satisfies $BR_i(q_j) \leq 6$.<br><br>
+
+      Therefore, <strong>any quantity $q_i > 6$ is strictly dominated by $q_i = 6$</strong>:<br>
+      for every $q_j \geq 0$, producing more than 6 is always worse than producing exactly 6 (the profit function is concave and peaks at $BR_i(q_j) \leq 6$).<br><br>
+
+      <div class="key-note blue" style="margin-top:0;">
+        <strong>Round 1 of IESDS:</strong><br>
+        $S^1 = \mathbb{R}_+$ → after eliminating all $q_i > 6$: $\;\mathbf{S^2 = [0,\, 6]}$<br>
+        The interval $]6, +\infty[$ is <strong>strictly dominated</strong> by $q_i = 6$.
+      </div>
     </div></div>
-    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Equilibrium values:</strong><br>
-      Total quantity: $Q^* = q_1^* + q_2^* = 8$.<br>
-      Market price: $P^* = 13 - 8 = 5$.<br>
-      Profit of each firm:
-      $$g_i^* = q_i^*(P^* - c) = 4 \times (5 - 1) = 16$$
-      $$\boxed{(q_1^*, q_2^*) = (4,4), \quad P^* = 5, \quad g_1^* = g_2^* = 16}$$
+
+    <!-- STEP 4: IESDS - Round 2 -->
+    <div class="demo-step"><div class="step-num coral">4</div><div class="step-body">
+      <strong>IESDS Round 2 — restricting to $q_j \in [0, 6]$:</strong><br><br>
+
+      After Round 1, we know that the rival will never produce more than 6: $q_j \in [0, 6]$.<br><br>
+
+      What is the <em>minimum</em> best response when $q_j \in [0, 6]$?
+      $$BR_i(q_j) = 6 - \frac{q_j}{2} \geq 6 - \frac{6}{2} = 6 - 3 = 3$$
+      So if the rival plays at most 6, firm $i$ will always want to produce <em>at least</em> 3.<br><br>
+
+      Therefore, <strong>any quantity $q_i < 3$ is strictly dominated by $q_i = 3$</strong>:<br>
+      whatever $q_j \in [0, 6]$, producing less than 3 is always worse than producing 3 (since the best response is always $\geq 3$, and the profit function is concave).<br><br>
+
+      More formally, for all $q_j \in [0, 6]$ and all $q_i \in [0, 3)$:
+      $$g_i(q_i,\, q_j) < g_i(3,\, q_j)$$
+      So $[0, 3)$ is strictly dominated by $3$.
+
+      <div class="key-note blue" style="margin-top:8px;">
+        <strong>Round 2 of IESDS:</strong><br>
+        $S^2 = [0, 6]$ → after eliminating all $q_i < 3$: $\;\mathbf{S^3 = [3,\, 6]}$
+      </div>
+
+      <div style="font-size:0.88rem;color:var(--text-2);margin-top:8px;line-height:1.7;">
+        <strong>Conclusion of IESDS:</strong> The surviving set of strategies for each firm is $[3, 6]$. The Nash equilibrium must lie within this interval.
+      </div>
     </div></div>
+
+    <!-- STEP 5: Nash equilibrium -->
+    <div class="demo-step"><div class="step-num coral">5</div><div class="step-body">
+      <strong>Nash equilibrium — symmetric fixed point:</strong><br><br>
+
+      A Nash equilibrium requires each firm to be on its best-response curve simultaneously:
+      $$q_1^* = BR_1(q_2^*) = 6 - \frac{q_2^*}{2}$$
+      $$q_2^* = BR_2(q_1^*) = 6 - \frac{q_1^*}{2}$$
+      By symmetry ($q_1^* = q_2^* \equiv q^*$), substitute into the first equation:
+      $$q^* = 6 - \frac{q^*}{2} \implies q^* + \frac{q^*}{2} = 6 \implies \frac{3q^*}{2} = 6 \implies q^* = 4$$
+      <div class="math-display boxed">$$\boxed{q_1^* = q_2^* = 4}$$</div>
+      <div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;">
+        Check: $4 \in [3, 6]$ ✓ — consistent with the IESDS result.
+      </div>
+    </div></div>
+
+    <!-- STEP 6: Equilibrium price and profits -->
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body">
+      <strong>Equilibrium price and profits:</strong><br><br>
+
+      <strong>Total quantity:</strong> $Q^* = q_1^* + q_2^* = 4 + 4 = 8$.<br><br>
+      <strong>Equilibrium price:</strong> $P^* = 13 - Q^* = 13 - 8 = 5$.<br><br>
+      <strong>Profit of each firm:</strong>
+      $$g_i^* = (P^* - c)\,q_i^* = (5 - 1) \times 4 = 4 \times 4 = 16$$
+
+      <div class="math-display boxed-blue">$$\boxed{(q_1^*, q_2^*) = (4,4), \quad P^* = 5, \quad g_1^* = g_2^* = 16}$$</div>
+
+      <div class="key-note blue" style="margin-top:8px;">
+        <strong>Summary of the logic:</strong><br>
+        1. Best-response: $BR_i(q_j) = 6 - q_j/2$ (each firm produces less as the rival produces more).<br>
+        2. IESDS eliminates $q_i > 6$ (Round 1), then $q_i < 3$ (Round 2): surviving set = $[3, 6]$.<br>
+        3. Nash equilibrium = fixed point of mutual best responses: $q^* = 4$.<br>
+        4. Equilibrium: $P^* = 5$, profits $= 16$ per firm.
+      </div>
+    </div></div>
+
   </div>
 </div>
 
