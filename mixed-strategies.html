@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMETHEORY — 03 · Mixed Strategies</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+:root {
+  --sidebar-bg: #070d18;
+  --sidebar-width: 280px;
+  --bg: #090e17;
+  --bg-card: #0f1726;
+  --bg-deep: #060a10;
+
+  /* ── THEORY IDENTITY (CYAN / BLUE) ── */
+  --cyan: #06b6d4;
+  --cyan-bright: #38bdf8;
+  --cyan-muted: rgba(6,182,212,0.1);
+  --cyan-border: rgba(6,182,212,0.3);
+  --cyan-gradient: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+  --blue-bright: #60a5fa;
+  --blue-muted: rgba(59,130,246,0.1);
+  --blue-border: rgba(59,130,246,0.3);
+  --purple-bright: #c084fc;
+  --purple-muted: rgba(168,85,247,0.1);
+  --purple-border: rgba(168,85,247,0.3);
+  --amber-bright: #fbbf24;
+  --amber-muted: rgba(245,158,11,0.08);
+  --amber-border: rgba(245,158,11,0.3);
+  --green-bright: #34d399;
+  --green-muted: rgba(16,185,129,0.1);
+  --green-border: rgba(16,185,129,0.3);
+
+  /* ── EXAMPLES / EXERCISES IDENTITY (RED / CORAL) ── */
+  --example: #fb7185;
+  --example-muted: rgba(251,113,133,0.08);
+  --example-border: rgba(251,113,133,0.35);
+  --example-deep: rgba(251,113,133,0.15);
+
+  --text: #f8fafc;
+  --text-2: #cbd5e1;
+  --text-3: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255,255,255,0.07);
+  --radius: 10px;
+  --radius-lg: 16px;
+  --font: 'Outfit', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); display:flex; min-height:100vh; -webkit-font-smoothing:antialiased; }
+
+/* ── SIDEBAR ── */
+.sidebar { width:var(--sidebar-width); background:var(--sidebar-bg); border-right:1px solid var(--border); display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; z-index:200; transition:transform .3s ease; overflow:hidden; }
+.sidebar:not(.open) { transform:translateX(-100%); }
+.sidebar-brand { padding:22px 20px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.sidebar-brand h1 { font-size:1.25rem; font-weight:800; letter-spacing:1px; }
+.sidebar-brand h1 span { color:var(--cyan); }
+.sidebar-close { background:none; border:none; color:var(--text-3); font-size:1.4rem; cursor:pointer; }
+.sidebar-close:hover { color:var(--cyan); }
+.sidebar-nav { flex:1; overflow-y:auto; padding:12px 0; }
+.sidebar-group { display:flex; flex-direction:column; gap:2px; margin-top:6px; }
+.sidebar-group-title { padding:10px 22px 4px; font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; color:var(--text-3); }
+.sidebar-sublink { display:flex; align-items:center; gap:10px; padding:9px 22px 9px 36px; color:var(--text-3); text-decoration:none; font-size:0.85rem; font-weight:600; transition:all .2s; border-left:3px solid transparent; }
+.sidebar-sublink:hover { color:var(--text); background:rgba(255,255,255,0.04); }
+.sidebar-sublink.active { color:var(--cyan-bright); border-left-color:var(--cyan); background:var(--cyan-muted); }
+.sidebar-footer { padding:14px 16px; border-top:1px solid var(--border); }
+.sidebar-user { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:var(--radius); padding:10px 12px; }
+.user-avatar { width: 44px; height: 44px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+.user-dot { width:8px; height:8px; background:var(--cyan); border-radius:50%; border:2px solid var(--sidebar-bg); position:absolute; bottom:-2px; right:-2px; box-shadow:0 0 6px var(--cyan); }
+.user-info { overflow:hidden; }
+.user-name { font-size:0.82rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.user-role { font-size:0.7rem; color:var(--text-muted); }
+
+/* ── TOPBAR ── */
+.topbar { height:64px; background:rgba(9,14,23,0.9); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); position:sticky; top:0; z-index:100; display:flex; align-items:center; padding:0 28px; gap:16px; }
+.topbar-toggle { background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; flex-shrink:0; transition:.2s; }
+.topbar-toggle:hover { border-color:var(--cyan-border); color:var(--cyan); }
+.topbar-breadcrumb { color:var(--text-3); font-size:0.86rem; display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.topbar-breadcrumb .sep { opacity:.4; }
+.topbar-breadcrumb strong { color:var(--text); font-weight:700; }
+
+/* ── SEGMENTED CHAPTER PROGRESS BAR ── */
+.chapter-progress-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  margin-left: 20px;
+  padding: 0 2px;
+}
+.progress-segment {
+  flex: 1;
+  height: 7px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.progress-segment:hover {
+  transform: scaleY(1.35);
+  filter: brightness(1.25);
+}
+.progress-segment.completed {
+  background: linear-gradient(90deg, #0284c7, #06b6d4);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.35);
+}
+.progress-segment.active {
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  border-color: rgba(167, 139, 250, 0.9);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 4px rgba(167, 139, 250, 0.4);
+}
+
+/* ── LAYOUT ── */
+.main-wrap { margin-left:var(--sidebar-width); flex:1; display:flex; flex-direction:column; transition:margin-left .3s; min-width:0; }
+.main-wrap.expanded { margin-left:0; }
+.main-content { padding:40px 44px 70px; max-width:920px; width:100%; margin:0 auto; display:flex; flex-direction:column; gap:32px; }
+
+/* ── PAGE TITLE ── */
+.page-title-block { border-bottom:1px solid var(--border); padding-bottom:24px; }
+.page-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--cyan); margin-bottom:8px; }
+.page-title-block h1 { font-size:2rem; font-weight:800; letter-spacing:-0.5px; line-height:1.15; }
+.page-title-block p { color:var(--text-3); font-size:0.95rem; margin-top:7px; }
+
+/* ── SECTION HEADER ── */
+.section-header { display:flex; align-items:center; gap:14px; padding-bottom:14px; border-bottom:1px solid var(--border); margin-top:8px; scroll-margin-top:76px; }
+.section-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; padding:4px 12px; border-radius:999px; }
+.section-label.cyan { background:var(--cyan-muted); color:var(--cyan-bright); border:1px solid var(--cyan-border); }
+.section-label.blue { background:var(--blue-muted); color:var(--blue-bright); border:1px solid var(--blue-border); }
+.section-label.purple { background:var(--purple-muted); color:var(--purple-bright); border:1px solid var(--purple-border); }
+.section-label.green { background:var(--green-muted); color:var(--green-bright); border:1px solid var(--green-border); }
+.section-label.example { background:var(--example-muted); color:var(--example); border:1px solid var(--example-border); }
+.section-header h2 { font-size:1.3rem; font-weight:800; }
+
+/* ── THEORY CARDS ── */
+.concept-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .2s ease, border-color .2s ease; }
+.concept-card:hover { transform:translateY(-2px); border-color:var(--cyan-border); }
+.concept-card.cyan-top { border-top:3px solid var(--cyan); }
+.concept-card.blue-top { border-top:3px solid var(--blue-bright); }
+.concept-card.amber-top { border-top:3px solid var(--amber-bright); }
+.concept-card.purple-top { border-top:3px solid var(--purple-bright); }
+.concept-card.green-top { border-top:3px solid var(--green-bright); }
+
+.card-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; }
+.card-title.cyan { color:var(--cyan-bright); }
+.card-title.blue { color:var(--blue-bright); }
+.card-title.amber { color:var(--amber-bright); }
+.card-title.purple { color:var(--purple-bright); }
+.card-title.green { color:var(--green-bright); }
+.card-heading { font-size:1.05rem; font-weight:800; color:var(--text); }
+
+.body-text { font-size:0.92rem; color:var(--text-2); line-height:1.72; }
+.body-text p + p { margin-top:9px; }
+.body-text ul { margin-left:20px; margin-top:6px; display:flex; flex-direction:column; gap:4px; }
+.body-text li { line-height:1.6; }
+
+/* ── KEY NOTES ── */
+.key-note { font-size:0.9rem; color:var(--text-2); line-height:1.65; border-left:3px solid var(--cyan); padding:12px 18px; background:var(--cyan-muted); border-radius:0 var(--radius) var(--radius) 0; }
+.key-note.blue { border-left-color:var(--blue-bright); background:var(--blue-muted); }
+.key-note.amber { border-left-color:var(--amber-bright); background:var(--amber-muted); }
+.key-note.purple { border-left-color:var(--purple-bright); background:var(--purple-muted); }
+.key-note.green { border-left-color:var(--green-bright); background:var(--green-muted); }
+.key-note.red { border-left-color:var(--example); background:var(--example-muted); }
+.key-note strong { color:var(--text); font-weight:800; }
+
+/* ── MATH DISPLAYS ── */
+.math-display { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:var(--radius); padding:14px 20px; text-align:center; margin:4px 0; overflow-x:auto; }
+.math-display.boxed { border-color:var(--cyan-border); background:var(--cyan-muted); }
+.math-display.boxed-blue { border-color:var(--blue-border); background:var(--blue-muted); }
+.math-display.boxed-purple { border-color:var(--purple-border); background:var(--purple-muted); }
+.math-display.boxed-amber { border-color:var(--amber-border); background:var(--amber-muted); }
+
+/* ── MEMORY BOX ── */
+.memory-box { background:rgba(6,182,212,0.06); border:1px solid var(--cyan-border); border-radius:var(--radius); padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+.memory-box-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--cyan-bright); }
+.memory-row { display:flex; gap:16px; flex-wrap:wrap; }
+.memory-item { flex:1; min-width:140px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:10px 14px; }
+.memory-item .mi-label { font-size:0.78rem; font-weight:800; color:var(--cyan-bright); margin-bottom:4px; }
+.memory-item .mi-text { font-size:0.85rem; color:var(--text-2); line-height:1.5; }
+
+/* ── PRACTICAL BOX ── */
+.practical-box { background:rgba(16,185,129,0.05); border:1px solid var(--green-border); border-radius:var(--radius); padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+.practical-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--green-bright); }
+
+/* ── EXAMPLE BOXES (RED / CORAL) ── */
+.example-box { background:var(--example-muted); border:1px solid var(--example-border); border-left:4px solid var(--example); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; gap:14px; }
+.example-badge { display:inline-flex; align-items:center; gap:6px; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; padding:4px 12px; border-radius:999px; background:var(--example-deep); color:var(--example); border:1px solid var(--example-border); width:fit-content; }
+.example-context { font-size:0.92rem; color:var(--text-2); line-height:1.7; }
+.example-task { background:rgba(251,113,133,0.06); border:1px dashed var(--example-border); border-radius:8px; padding:11px 16px; font-size:0.88rem; color:var(--text); line-height:1.6; }
+.example-task strong { color:var(--example); text-transform:uppercase; font-size:0.75rem; letter-spacing:0.6px; margin-right:6px; }
+
+/* ── GAME TYPE TAGS ── */
+.tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+.game-tag { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.4px; padding:3px 10px; border-radius:999px; }
+.game-tag.cyan { background:var(--cyan-muted); color:var(--cyan-bright); border:1px solid var(--cyan-border); }
+.game-tag.amber { background:var(--amber-muted); color:var(--amber-bright); border:1px solid var(--amber-border); }
+.game-tag.red { background:var(--example-muted); color:var(--example); border:1px solid var(--example-border); }
+.game-tag.purple { background:var(--purple-muted); color:var(--purple-bright); border:1px solid var(--purple-border); }
+.game-tag.green { background:var(--green-muted); color:var(--green-bright); border:1px solid var(--green-border); }
+.game-tag.blue { background:var(--blue-muted); color:var(--blue-bright); border:1px solid var(--blue-border); }
+
+/* ── PAYOFF MATRIX ── */
+.matrix-wrap { overflow-x:auto; margin:4px 0; }
+.payoff-matrix { border-collapse:collapse; font-family:var(--font); font-size:0.9rem; min-width:280px; margin:0 auto; }
+.payoff-matrix th,.payoff-matrix td { padding:10px 18px; border:1px solid rgba(255,255,255,0.1); text-align:center; }
+.payoff-matrix th { background:rgba(255,255,255,0.03); color:var(--text-3); font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.4px; }
+.payoff-matrix td { background:rgba(9,14,23,0.6); color:var(--text-2); font-weight:600; }
+.payoff-matrix .row-label { color:var(--text); font-weight:700; background:rgba(255,255,255,0.02); }
+.payoff-matrix .ne-cell { background:var(--cyan-muted) !important; color:var(--cyan-bright) !important; font-weight:800; border-color:var(--cyan-border) !important; }
+
+/* ── TOGGLE & COLLAPSIBLE ── */
+.toggle-btn { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.03); border:1px solid var(--border); color:var(--text-2); font-family:var(--font); font-size:0.82rem; font-weight:700; padding:8px 16px; border-radius:999px; cursor:pointer; transition:all .2s ease; width:fit-content; }
+.toggle-btn:hover { border-color:var(--cyan-border); color:var(--cyan-bright); background:var(--cyan-muted); }
+.toggle-btn.example-toggle { border-color:var(--example-border); color:var(--example); background:var(--example-muted); }
+.toggle-btn.example-toggle:hover { border-color:var(--example); color:#fff; background:var(--example-deep); }
+.toggle-btn .arrow { font-size:0.65rem; transition:transform .25s ease; display:inline-block; }
+.toggle-btn.open .arrow { transform:rotate(180deg); }
+.collapsible { display:none; margin-top:10px; background:rgba(6,10,16,0.85); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; font-size:0.9rem; color:var(--text-2); line-height:1.7; }
+.collapsible.open { display:block; animation:fadeDown .2s ease; }
+.collapsible strong { color:var(--text); font-weight:700; }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);} }
+
+/* ── DEMO STEPS ── */
+.demo-step { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); }
+.demo-step:last-child { border-bottom:none; padding-bottom:0; }
+.step-num { min-width:26px; height:26px; background:var(--cyan-muted); border:1px solid var(--cyan-border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:800; color:var(--cyan-bright); flex-shrink:0; margin-top:2px; }
+.step-num.coral { background:var(--example-deep); border-color:var(--example-border); color:var(--example); }
+.step-body { flex:1; }
+
+/* ── PROPOSITION BOX ── */
+.prop-box { background:var(--blue-muted); border:1px solid var(--blue-border); border-left:4px solid var(--blue-bright); border-radius:var(--radius-lg); padding:22px 24px; display:flex; flex-direction:column; gap:12px; }
+.prop-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--blue-bright); }
+
+/* ── COMPARISON TABLE ── */
+.comparison-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+.comparison-table th { background:rgba(255,255,255,0.04); color:var(--text-3); font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.5px; padding:10px 16px; border-bottom:1px solid var(--border); text-align:left; }
+.comparison-table td { padding:10px 16px; border-bottom:1px solid var(--border); color:var(--text-2); line-height:1.5; vertical-align:top; }
+.comparison-table tr:last-child td { border-bottom:none; }
+.comparison-table td:first-child { font-weight:700; color:var(--text); width:24%; }
+.comparison-table td:nth-child(2) { color:var(--cyan-bright); font-weight:600; }
+.comparison-table td:nth-child(3) { color:var(--example); font-weight:600; }
+
+/* ── IMPLICATION MAP ── */
+.impl-map { display:flex; flex-direction:column; align-items:center; gap:6px; padding:8px 0; }
+.impl-node { padding:12px 24px; border-radius:var(--radius); font-weight:700; font-size:0.9rem; text-align:center; width:100%; max-width:420px; }
+.impl-node.blue { background:var(--blue-muted); border:1px solid var(--blue-border); color:var(--blue-bright); }
+.impl-node.cyan { background:var(--cyan-muted); border:1px solid var(--cyan-border); color:var(--cyan-bright); }
+.impl-node.amber { background:var(--amber-muted); border:1px solid var(--amber-border); color:var(--amber-bright); }
+.impl-node.purple { background:var(--purple-muted); border:1px solid var(--purple-border); color:var(--purple-bright); }
+.impl-arrow { color:var(--text-muted); font-size:1.4rem; line-height:1; }
+.impl-label { font-size:0.75rem; color:var(--text-muted); font-style:italic; }
+
+/* ── NOTATION TABLE ── */
+.notation-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+.notation-table td { padding:8px 14px; border-bottom:1px solid var(--border); color:var(--text-2); line-height:1.5; }
+.notation-table td:first-child { font-weight:700; color:var(--cyan-bright); white-space:nowrap; padding-right:20px; width:38%; }
+.notation-table tr:last-child td { border-bottom:none; }
+
+/* ── REVISION MAP ── */
+.revision-step { display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+.revision-step:last-child { border-bottom:none; }
+.revision-num { min-width:38px; height:38px; background:var(--cyan-gradient); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:800; color:#fff; flex-shrink:0; }
+.revision-body { flex:1; padding-top:4px; }
+.revision-body strong { color:var(--text); font-weight:800; }
+.revision-body p { color:var(--text-2); font-size:0.9rem; margin-top:4px; line-height:1.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main-wrap { margin-left:0 !important; }
+  .main-content { padding:24px 20px 40px; }
+  .topbar { padding:0 16px; gap:12px; }
+  .topbar-breadcrumb { font-size:0.8rem; max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .chapter-progress-bar { margin-left:12px; gap:4px; }
+  .progress-segment { height:5px; }
+}
+@media (max-width:600px) {
+  .topbar-breadcrumb { display:none; }
+  .chapter-progress-bar { margin-left:4px; }
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar open" id="sidebar">
+  <div class="sidebar-brand">
+    <h1>GAMETHEORY<span>.</span></h1>
+    <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+  </div>
+  <nav class="sidebar-nav" aria-label="Course sections">
+    <div class="sidebar-group-title">📂 Static Games</div>
+    <div class="sidebar-group">
+      <a href="chapter1.html" class="sidebar-sublink">01 — Normal Form Games &amp; Dominance</a>
+    </div>
+    <div class="sidebar-group">
+      <a href="nash-equilibrium.html" class="sidebar-sublink">02 — Nash Equilibrium in Pure Strategies</a>
+    </div>
+    <div class="sidebar-group">
+      <a href="mixed-strategies.html" class="sidebar-sublink active" aria-current="page">03 — Mixed Strategies</a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="user-avatar" style="background:transparent;">
+        <img src="images/avatar.png" alt="STAR NOVA" style="width:100%;height:100%;border-radius:8px;object-fit:cover;">
+        <span class="user-dot"></span>
+      </div>
+      <div class="user-info">
+        <div class="user-name">STAR NOVA</div>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main-wrap" id="main-wrap">
+<div class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()">☰</button>
+  <div class="topbar-breadcrumb">GAMETHEORY <span class="sep">›</span> <strong>Chapter 1 — Static Games with Perfect Information</strong></div>
+  <div class="chapter-progress-bar" id="chapterProgressBar" role="progressbar" aria-label="Chapter progress">
+    <div class="progress-segment active" data-index="0" aria-label="Subsection 1"></div>
+    <div class="progress-segment" data-index="1" aria-label="Subsection 2"></div>
+    <div class="progress-segment" data-index="2" aria-label="Subsection 3"></div>
+    <div class="progress-segment" data-index="3" aria-label="Subsection 4"></div>
+    <div class="progress-segment" data-index="4" aria-label="Subsection 5"></div>
+    <div class="progress-segment" data-index="5" aria-label="Subsection 6"></div>
+    <div class="progress-segment" data-index="6" aria-label="Subsection 7"></div>
+    <div class="progress-segment" data-index="7" aria-label="Subsection 8"></div>
+  </div>
+</div>
+
+<div class="main-content">
+
+<!-- PAGE TITLE -->
+<div class="page-title-block">
+  <div class="page-label">Chapter 1</div>
+  <h1>Static Games with Perfect Information</h1>
+  <p>Modelling simultaneous strategic interactions — and finding rational predictions for play.</p>
+</div>
+
+<div class="page-label">03 — Mixed Strategies</div>
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  SECTION 4 — MIXED EXTENSION                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section-header" id="sec-4">
+  <span class="section-label purple">Section 4</span>
+  <h2>Mixed Extension</h2>
+</div>
+
+<!-- MOTIVATION -->
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">A. Motivation</div>
+  <div class="body-text">
+    <p>The Nash equilibrium concept suffers from two caveats:</p>
+    <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;margin-top:8px;">
+      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
+      <div class="step-body">Some games do not have any NE in pure strategies. In this case, we miss a prediction on players' behaviors. For example, this happens in games with much conflict of interest (such as zero-sum games). In zero-sum games, the best response defines a circular path between all the strategy profiles. Each player would like to conceal her strategy and become unpredictable. Requiring each of the two players to do their best given the other player's strategy is too strong a condition.</div>
+    </div>
+    <div class="demo-step" style="padding:10px 0;">
+      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
+      <div class="step-body">Some games have multiple Nash equilibria. Players therefore need to coordinate on a specific equilibrium. In particular, in symmetric games, there may be no symmetric Nash equilibrium, but several asymmetric Nash equilibria. In asymmetric NE, players must share roles between the various equilibrium actions. This may be unfeasible given that players cannot communicate. Implicitly, in symmetric games, players come from the same population, and cannot be identified to one specific role.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIVATION EXAMPLES -->
+<div class="example-box">
+  <div class="example-badge">Example · Find the NE of the following games</div>
+  <div class="example-context">
+    <div style="font-weight:800;color:var(--example);margin-bottom:6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 1</div>
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="3">Player 2</th></tr>
+      <tr><th></th><th></th><th>$P$</th><th>$F$</th><th>$C$</th></tr>
+      <tr><td rowspan="3" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$P$</td><td>$(0,0)$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr>
+      <tr><td class="row-label">$F$</td><td>$(1,-1)$</td><td>$(0,0)$</td><td>$(-1,1)$</td></tr>
+      <tr><td class="row-label">$C$</td><td>$(-1,1)$</td><td>$(1,-1)$</td><td>$(0,0)$</td></tr>
+    </table></div>
+    <div style="font-weight:800;color:var(--example);margin:16px 0 6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 2</div>
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
+      <tr><th></th><th></th><th>$F$</th><th>$0$</th></tr>
+      <tr><td rowspan="2" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$F$</td><td>$(0,0)$</td><td>$(1,1)$</td></tr>
+      <tr><td class="row-label">$0$</td><td>$(1,1)$</td><td>$(0,0)$</td></tr>
+    </table></div>
+  </div>
+  <div class="example-task">
+    <strong>Task:</strong> For each game, find all pure strategy Nash equilibria and comment on what these games illustrate about the caveats of the pure-strategy Nash equilibrium concept.
+  </div>
+  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-motiv-sol')">▶ Show Solution <span class="arrow">▼</span></button>
+  <div class="collapsible" id="mix-motiv-sol">
+
+    <div style="font-weight:800;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:12px;font-size:0.95rem;">Game 1</div>
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
+      Against $P$: $\max\{0,1,-1\}=1 \implies BR_1(P)=\{F\}$.<br>
+      Against $F$: $\max\{-1,0,1\}=1 \implies BR_1(F)=\{C\}$.<br>
+      Against $C$: $\max\{1,-1,0\}=1 \implies BR_1(C)=\{P\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
+      Against $P$: $\max\{0,-1,1\}=1 \implies BR_2(P)=\{C\}$.<br>
+      Against $F$: $\max\{1,0,-1\}=1 \implies BR_2(F)=\{P\}$.<br>
+      Against $C$: $\max\{-1,1,0\}=1 \implies BR_2(C)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
+      Check mutual best responses: $(P,P)$: P1 deviates to $F$. $(F,F)$: P1 deviates to $C$. $(C,C)$: P1 deviates to $P$. Checking all 9 cells — no profile satisfies the mutual best-response condition.<br>
+      <strong>$NE(\Gamma) = \emptyset$ in pure strategies.</strong><br><br>
+      This is a zero-sum game (payoffs always sum to 0) with a circular best-response path: $P \to F \to C \to P \to \ldots$. No pure-strategy NE exists — this illustrates caveat 1.
+    </div></div>
+
+    <div style="font-weight:800;color:var(--text);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 0 6px;margin:16px 0 12px;font-size:0.95rem;">Game 2</div>
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
+      Against $F$: $\max\{0,1\}=1 \implies BR_1(F)=\{0\}$.<br>
+      Against $0$: $\max\{1,0\}=1 \implies BR_1(0)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
+      Against $F$: $\max\{0,1\}=1 \implies BR_2(F)=\{0\}$.<br>
+      Against $0$: $\max\{1,0\}=1 \implies BR_2(0)=\{F\}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
+      • $(F,0)$: $F \in BR_1(0)$ ✓ and $0 \in BR_2(F)$ ✓ $\implies$ <strong>NE</strong>.<br>
+      • $(0,F)$: $0 \in BR_1(F)$ ✓ and $F \in BR_2(0)$ ✓ $\implies$ <strong>NE</strong>.<br><br>
+      <strong>$NE(\Gamma) = \{(F,0),\,(0,F)\}$.</strong> Two asymmetric pure-strategy equilibria exist, but this is a symmetric game — players cannot be assigned different roles without prior coordination. This illustrates caveat 2.
+    </div></div>
+  </div>
+</div>
+
+<!-- § 4.1 -->
+<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-1" data-subsection="§ 4.1">
+  <span class="section-label purple">§ 4.1</span>
+  <h2>Mixed Strategies and Expected Payoff</h2>
+</div>
+
+<!-- FORMAL SETUP -->
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">B. Setting Up the Mixed Extension</div>
+  <div class="body-text">
+    <p>Let $\Gamma=(N,S,g)$ be a game in normal form. Throughout the rest of this chapter, we assume that for every $i\in\{1,\ldots,N\}$, $S_i$ is a finite set.</p>
+    <p style="margin-top:8px;">Mixed, or randomized, strategies make it possible to represent opportunities to bluff or to play randomly. We enrich the set of strategies and the set of payoffs of a normal form game to allow for this.</p>
+  </div>
+</div>
+
+<!-- DEFINITION -->
+<div class="concept-card blue-top">
+  <div class="card-title blue">Definition — Mixed Extension</div>
+  <div class="card-heading">The Mixed Extension $(N, \Sigma, \bar{g})$</div>
+  <div class="body-text">
+    <p>The <strong>mixed extension</strong> of the game in normal form $(N,S,g)$ is the game in normal form $(N,\Sigma,\bar g)$, where:</p>
+  </div>
+
+  <div class="body-text" style="margin-top:4px;"><strong>Pure-strategy space:</strong></div>
+  <div class="math-display boxed">$$S = \prod_{i=1}^{n} S_i$$</div>
+
+  <div class="body-text" style="margin-top:8px;"><strong>Mixed-strategy set for player $i$:</strong></div>
+  <div class="math-display boxed-blue">$$\Sigma_i = \Delta(S_i) := \left\{ p \in \mathbb{R}^{|S_i|} : \forall k,\; p_k \geq 0,\; \sum_{k=1}^{|S_i|} p_k = 1 \right\}$$</div>
+
+  <div class="body-text" style="margin-top:8px;"><strong>Expected payoff function for player $i$:</strong></div>
+  <div class="math-display boxed-blue">$$\bar{g}_i : \prod_{j=1}^{N} \Delta(S_j) \to \mathbb{R}$$</div>
+  <div class="math-display boxed-purple">$$\sigma \mapsto \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
+
+  <div class="key-note blue" style="margin-top:10px;">
+    <strong>A mixed strategy is a probability distribution over the set of pure strategies.</strong>
+  </div>
+</div>
+
+<!-- CORE INTUITION -->
+<div class="memory-box">
+  <div class="memory-box-title">🎲 Core Intuition</div>
+  <div class="memory-row">
+    <div class="memory-item">
+      <div class="mi-label">Pure strategy</div>
+      <div class="mi-text">Choose one action with probability 1.<br>Example: always play $L$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">Mixed strategy</div>
+      <div class="mi-text">Choose a probability distribution over pure actions.<br>Example: if $S_i = \{L, R\}$, then $\sigma_i = \left(\tfrac{1}{4}, \tfrac{3}{4}\right)$ means $P(L)=\tfrac{1}{4}$, $P(R)=\tfrac{3}{4}$.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REMARK 1 -->
+<div class="prop-box" style="margin-top:8px;">
+  <div class="prop-title">Remark — Independence and Profile Probability</div>
+  <div class="body-text">
+    <p>Players choose their mixed strategies <strong>independently</strong> of each other. Hence the product</p>
+  </div>
+  <div class="math-display boxed-blue">$$\prod_{j=1}^{N} \sigma_j(s_j)$$</div>
+  <div class="body-text">
+    <p>is the probability that players play the pure strategy profile $s = (s_1, \ldots, s_N)$.</p>
+    <p style="margin-top:8px;">The payoff associated to a mixed strategy profile is the <strong>expected payoff</strong>. One immediate consequence is <strong>multi-linearity</strong>.</p>
+  </div>
+</div>
+
+<!-- EXPECTED PAYOFF INTUITION -->
+<div class="concept-card cyan-top" style="margin-top:4px;">
+  <div class="card-title cyan">How to Compute the Expected Payoff</div>
+  <div class="body-text">
+    <p>For every possible pure strategy profile $s \in S$:</p>
+    <ol style="margin-left:20px;line-height:2;margin-top:6px;">
+      <li>Compute the probability that this profile occurs: $\displaystyle\prod_{j=1}^{N} \sigma_j(s_j)$.</li>
+      <li>Multiply this probability by the payoff generated by the profile: $g_i(s)$.</li>
+      <li>Sum over all possible profiles $s \in S$.</li>
+    </ol>
+  </div>
+  <div class="math-display boxed">$$\bar{g}_i(\sigma) = \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
+</div>
+
+<!-- PROPOSITION: MULTI-LINEARITY -->
+<div class="prop-box">
+  <div class="prop-title">Proposition — Multi-linearity of the Expected Payoff</div>
+  <div class="body-text">
+    <p>The expected payoff function is <strong>multi-linear</strong>. In particular:</p>
+  </div>
+  <div class="math-display boxed-blue">$$\bar{g}_i(\sigma_i, \sigma_{-i}) = \sum_{s_i \in S_i} \sigma_i(s_i)\, g_i(s_i, \sigma_{-i})$$</div>
+  <div class="body-text" style="margin-top:6px;">
+    <p>This says: the expected payoff to player $i$ equals the weighted average of her payoffs across pure strategies, where the weights are the probabilities $\sigma_i(s_i)$ she assigns to each pure strategy $s_i$.</p>
+  </div>
+</div>
+
+<!-- NOTATION LIST -->
+<div class="concept-card blue-top">
+  <div class="card-title blue">C. Notation</div>
+  <div class="body-text"><p>We use the following notations:</p></div>
+  <table class="notation-table">
+    <tr><td>$\sigma_j(s_j)$</td><td>Probability that player $j$ plays pure strategy $s_j$.</td></tr>
+    <tr><td>$\sigma_i \in \Sigma_i$</td><td>Strategy of player $i$ (a mixed strategy).</td></tr>
+    <tr><td>$\sigma_i = \sigma_i(s_i)\cdot s_i + \ldots + \sigma_i(s_i') \cdot s_i'$</td><td>Explicit representation of $\sigma_i$ as a weighted combination of pure strategies.</td></tr>
+    <tr><td>$\sigma_i = \bigl(\sigma_i(s_i), \ldots, \sigma_i(s_i')\bigr)$</td><td>Vector representation of $\sigma_i$. When unambiguous, the last weight $\sigma_i(s_i')$ can be omitted (all weights sum to 1).</td></tr>
+    <tr><td>$\sigma \in \Sigma$</td><td>Mixed strategy profile — actions (distributions) for all players.</td></tr>
+    <tr><td>$\Sigma = \displaystyle\prod_{j=1}^{N} \Sigma_j$</td><td>Set of all mixed strategy profiles.</td></tr>
+    <tr><td>$\sigma_{-i} \in \Sigma_{-i}$</td><td>Mixed strategy profile and set of strategy profiles for all players except $i$.</td></tr>
+    <tr><td>$\bar{g} = (\bar{g}_j)_{j \in \{1,\ldots,n\}}$</td><td>Payoff function profile. We often write $g$ for $\bar{g}$.</td></tr>
+  </table>
+</div>
+
+<!-- NOTATION DECODER -->
+<div class="memory-box">
+  <div class="memory-box-title">🔤 Notation Decoder — Pure vs. Mixed</div>
+  <div class="memory-row">
+    <div class="memory-item">
+      <div class="mi-label">$S_i$</div>
+      <div class="mi-text">Pure-strategy <em>set</em> of player $i$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$\Sigma_i = \Delta(S_i)$</div>
+      <div class="mi-text">Set of all probability distributions over $S_i$ — mixed strategies available to player $i$.</div>
+    </div>
+  </div>
+  <div class="memory-row" style="margin-top:8px;">
+    <div class="memory-item">
+      <div class="mi-label">$s_i \in S_i$</div>
+      <div class="mi-text">One <em>pure</em> strategy.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$\sigma_i \in \Sigma_i$</div>
+      <div class="mi-text">One <em>mixed</em> strategy (a probability distribution).</div>
+    </div>
+  </div>
+  <div class="memory-row" style="margin-top:8px;">
+    <div class="memory-item">
+      <div class="mi-label">$\sigma_i(s_i)$</div>
+      <div class="mi-text">Probability assigned by player $i$ to pure strategy $s_i$.</div>
+    </div>
+    <div class="memory-item">
+      <div class="mi-label">$g_i$ vs $\bar{g}_i$</div>
+      <div class="mi-text">$g_i$ = payoff on pure profiles. $\bar{g}_i$ = expected payoff on mixed profiles.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REMARK 2 — PURE AS SPECIAL CASE -->
+<div class="prop-box" style="margin-top:4px;">
+  <div class="prop-title">Remark — Pure Strategy as a Special Case of Mixed</div>
+  <div class="body-text">
+    <p>A pure strategy is a specific case of a mixed strategy. The pure strategy $s_i$ corresponds to the degenerate distribution:</p>
+  </div>
+  <div class="math-display boxed-blue">$$\delta_{s_i} \qquad (S_i \subset \Delta(S_i))$$</div>
+  <div class="body-text" style="margin-top:4px;">
+    <p>i.e., all probability is placed on the single pure strategy $s_i$ and zero elsewhere. The set of pure strategies $S_i$ is therefore a subset of the set of mixed strategies $\Delta(S_i)$.</p>
+  </div>
+</div>
+
+<!-- EXAMPLE: EXPECTED PAYOFF COMPUTATION -->
+<div class="example-box">
+  <div class="example-badge">Example · Mixed Strategy — Expected Payoff Computation</div>
+  <div class="example-context">
+    Consider the following game:
+    <div class="matrix-wrap"><table class="payoff-matrix">
+      <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
+      <tr><th></th><th></th><th>$R$</th><th>$L$</th></tr>
+      <tr><td rowspan="2" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$R$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr>
+      <tr><td class="row-label">$L$</td><td>$(1,-1)$</td><td>$(-1,1)$</td></tr>
+    </table></div>
+    <div style="margin-top:12px;">Consider the mixed strategy profile:</div>
+    <div class="math-display boxed-purple" style="margin-top:8px;">$$\left(\frac{1}{4}L + \frac{3}{4}R,\quad \frac{1}{3}L + \frac{2}{3}R\right)$$</div>
+    i.e., Player 1 plays $L$ with probability $\frac{1}{4}$ and $R$ with probability $\frac{3}{4}$; Player 2 plays $L$ with probability $\frac{1}{3}$ and $R$ with probability $\frac{2}{3}$.
+  </div>
+  <div class="example-task">
+    <strong>Task:</strong> Write the set of mixed strategies $\Sigma_1, \Sigma_2$ and compute the expected payoffs $\bar{g}_1$ and $\bar{g}_2$ for the strategy profile $\sigma = \left(\frac{1}{4}L + \frac{3}{4}R,\; \frac{1}{3}L + \frac{2}{3}R\right)$.
+  </div>
+  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-expay-sol')">▶ Show Solution <span class="arrow">▼</span></button>
+  <div class="collapsible" id="mix-expay-sol">
+    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Sets of mixed strategies:</strong><br>
+      $S_1 = \{R, L\}$ and $S_2 = \{R, L\}$, so:
+      $$\Sigma_1 = \Delta(S_1) = \left\{(p, 1-p) : p \in [0,1]\right\}$$
+      $$\Sigma_2 = \Delta(S_2) = \left\{(q, 1-q) : q \in [0,1]\right\}$$
+      where $p = \sigma_1(R)$ is the probability P1 plays $R$, and $q = \sigma_2(R)$ is the probability P2 plays $R$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Identify the probabilities from the given profile:</strong><br>
+      Player 1: $\sigma_1 = \frac{1}{4}L + \frac{3}{4}R$, so $\sigma_1(R) = \frac{3}{4}$, $\sigma_1(L) = \frac{1}{4}$.<br>
+      Player 2: $\sigma_2 = \frac{1}{3}L + \frac{2}{3}R$, so $\sigma_2(R) = \frac{2}{3}$, $\sigma_2(L) = \frac{1}{3}$.
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Probability of each pure profile (by independence):</strong><br>
+      $$P(R,R) = \sigma_1(R)\cdot\sigma_2(R) = \frac{3}{4}\cdot\frac{2}{3} = \frac{1}{2}$$
+      $$P(R,L) = \sigma_1(R)\cdot\sigma_2(L) = \frac{3}{4}\cdot\frac{1}{3} = \frac{1}{4}$$
+      $$P(L,R) = \sigma_1(L)\cdot\sigma_2(R) = \frac{1}{4}\cdot\frac{2}{3} = \frac{1}{6}$$
+      $$P(L,L) = \sigma_1(L)\cdot\sigma_2(L) = \frac{1}{4}\cdot\frac{1}{3} = \frac{1}{12}$$
+      Check: $\frac{1}{2}+\frac{1}{4}+\frac{1}{6}+\frac{1}{12} = \frac{6+3+2+1}{12} = 1$ ✓
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Expected payoff for Player 1:</strong>
+      $$\bar{g}_1(\sigma) = P(R,R)\cdot g_1(R,R) + P(R,L)\cdot g_1(R,L) + P(L,R)\cdot g_1(L,R) + P(L,L)\cdot g_1(L,L)$$
+      $$= \frac{1}{2}\cdot(-1) + \frac{1}{4}\cdot(1) + \frac{1}{6}\cdot(1) + \frac{1}{12}\cdot(-1)$$
+      $$= -\frac{1}{2} + \frac{1}{4} + \frac{1}{6} - \frac{1}{12}$$
+      $$= \frac{-6 + 3 + 2 - 1}{12} = \frac{-2}{12} = -\frac{1}{6}$$
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Expected payoff for Player 2:</strong>
+      $$\bar{g}_2(\sigma) = P(R,R)\cdot g_2(R,R) + P(R,L)\cdot g_2(R,L) + P(L,R)\cdot g_2(L,R) + P(L,L)\cdot g_2(L,L)$$
+      $$= \frac{1}{2}\cdot(1) + \frac{1}{4}\cdot(-1) + \frac{1}{6}\cdot(-1) + \frac{1}{12}\cdot(1)$$
+      $$= \frac{1}{2} - \frac{1}{4} - \frac{1}{6} + \frac{1}{12}$$
+      $$= \frac{6 - 3 - 2 + 1}{12} = \frac{2}{12} = \frac{1}{6}$$
+    </div></div>
+    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong>
+      $$\bar{g}_1\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = -\frac{1}{6}$$
+      $$\bar{g}_2\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = +\frac{1}{6}$$
+      Note: $\bar{g}_1 + \bar{g}_2 = 0$ — consistent with the fact that this is a zero-sum game.
+    </div></div>
+  </div>
+</div>
+
+<!-- § 4.2 -->
+<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-2" data-subsection="§ 4.2">
+  <span class="section-label purple">§ 4.2</span>
+  <h2>Interpretation</h2>
+</div>
+
+<div class="concept-card cyan-top">
+  <div class="card-title cyan">D. Four Interpretations of Mixed Strategies</div>
+  <div class="body-text"><p>The most common interpretations of mixed strategies are:</p></div>
+
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Randomization.</strong> Each player independently chooses their pure strategy at random because they want to create uncertainty for the other players.</div>
+  </div>
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Random beliefs.</strong> Players do not actually randomize their play, but the other players believe that they do.</div>
+  </div>
+  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">3</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Population.</strong> Each player individually plays a pure strategy; the mixed strategy represents the proportions of the population playing each pure strategy.</div>
+  </div>
+  <div class="demo-step" style="padding:10px 0;">
+    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">4</div>
+    <div class="step-body"><strong style="color:var(--cyan-bright);">Unknown preferences.</strong> Each player chooses their pure strategy based on the known payoffs, plus a small preference that is unknown to the other players.</div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
+<a class="sidebar-sublink" href="nash-equilibrium.html">← Nash Equilibrium in Pure Strategies</a>
+</nav>
+</div><!-- end main-content -->
+</div><!-- end main-wrap -->
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('main-wrap').classList.toggle('expanded');
+}
+function toggle(btn,id){
+  const box=document.getElementById(id);
+  const isOpen=box.classList.contains('open');
+  box.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+  if(!isOpen&&window.MathJax){MathJax.typesetPromise([box]);}
+}
+
+/* ── CHAPTER PROGRESS BAR LOGIC ── */
+function initChapterProgress(){
+  const container = document.getElementById('chapterProgressBar');
+  if(!container) return;
+
+  const subsections = Array.from(document.querySelectorAll('.subsection-target'));
+  const revHeader = document.getElementById('sec-revision');
+  if(subsections.length === 0) return;
+
+  container.innerHTML = '';
+  const segments = subsections.map((sec, idx) => {
+    const seg = document.createElement('div');
+    seg.className = 'progress-segment' + (idx === 0 ? ' active' : '');
+    seg.setAttribute('role', 'button');
+    seg.setAttribute('tabindex', '0');
+    seg.setAttribute('aria-label', `Go to subsection ${idx + 1}`);
+    const jump = () => { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    seg.addEventListener('click', jump);
+    seg.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
+    container.appendChild(seg);
+    return seg;
+  });
+
+  function updateProgress(){
+    const scrollY = window.scrollY || window.pageYOffset;
+    const windowH = window.innerHeight;
+    const totalH = document.documentElement.scrollHeight;
+    const isAtBottom = (windowH + scrollY) >= (totalH - 60);
+
+    let inRevision = false;
+    if(revHeader){
+      const r = revHeader.getBoundingClientRect();
+      if(r.top <= 140) inRevision = true;
+    }
+
+    if(isAtBottom || inRevision){
+      segments.forEach(seg => { seg.className = 'progress-segment completed'; });
+      return;
+    }
+
+    let activeIdx = 0;
+    for(let i = 0; i < subsections.length; i++){
+      const rect = subsections[i].getBoundingClientRect();
+      if(rect.top <= 140){
+        activeIdx = i;
+      }
+    }
+
+    segments.forEach((seg, idx) => {
+      if(idx < activeIdx){
+        seg.className = 'progress-segment completed';
+      } else if(idx === activeIdx){
+        seg.className = 'progress-segment active';
+      } else {
+        seg.className = 'progress-segment';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initChapterProgress);
+} else {
+  initChapterProgress();
+}
+</script>
+</body>
+</html>
