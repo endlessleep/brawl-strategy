@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMETHEORY — 03 · Mixed Strategies</title>
+<title>GAMETHEORY — 03 — Mixed Strategies</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
   MathJax = {
@@ -291,6 +291,29 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   .topbar-breadcrumb { display:none; }
   .chapter-progress-bar { margin-left:4px; }
 }
+
+/* Continuation: retain the existing course cards, matrices and disclosures. */
+.payoff-matrix caption { font-size:.75rem; color:var(--text-3); line-height:1.5; padding:0 0 10px; caption-side:top; }
+.step-body { min-width:0; }
+.body-text, .step-body, .example-context, .key-note { overflow-wrap:break-word; }
+.notation-table { table-layout:fixed; }
+.notation-table td:first-child { white-space:normal; width:38%; }
+.notation-table td { overflow-wrap:anywhere; }
+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
+.br-figure { margin:18px 0 8px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; }
+.br-figure svg { display:block; width:100%; max-width:430px; height:auto; margin:auto; }
+.br-figure figcaption { color:var(--text-3); font-size:.83rem; line-height:1.6; margin-top:10px; }
+.br-legend { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; font-size:.8rem; margin-top:8px; }
+.br-one { color:var(--cyan-bright); } .br-two { color:var(--example); } .br-ne { color:var(--amber-bright); }
+button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2px solid var(--cyan-bright); outline-offset:4px; }
+@media(max-width:600px) {
+  .concept-card, .example-box, .prop-box { padding:18px 16px; }
+  .collapsible { padding:16px 12px; }
+  .section-header { align-items:flex-start; flex-wrap:wrap; gap:10px; }
+  .section-header h2 { font-size:1.2rem; }
+  .math-display { padding:12px 8px; }
+  .notation-table td { padding:8px 6px; }
+}
 </style>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
@@ -300,20 +323,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <aside class="sidebar open" id="sidebar">
   <div class="sidebar-brand">
     <h1>GAMETHEORY<span>.</span></h1>
-    <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+    <button class="sidebar-close" aria-label="Close course menu" onclick="toggleSidebar()">✕</button>
   </div>
   <nav class="sidebar-nav" aria-label="Course sections">
-    <div class="sidebar-group-title">📂 Static Games</div>
-    <div class="sidebar-group">
-      <a href="chapter1.html" class="sidebar-sublink">01 — Normal Form Games &amp; Dominance</a>
-    </div>
-    <div class="sidebar-group">
-      <a href="nash-equilibrium.html" class="sidebar-sublink">02 — Nash Equilibrium in Pure Strategies</a>
-    </div>
-    <div class="sidebar-group">
-      <a href="mixed-strategies.html" class="sidebar-sublink active" aria-current="page">03 — Mixed Strategies</a>
-    </div>
-  </nav>
+<div class="sidebar-group-title">📂 Static Games</div>
+<div class="sidebar-group"><a href="chapter1.html" class="sidebar-sublink">01 — Normal Form Games &amp; Dominance</a></div>
+<div class="sidebar-group"><a href="nash-equilibrium.html" class="sidebar-sublink">02 — Nash Equilibrium in Pure Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-strategies.html" class="sidebar-sublink active" aria-current="page">03 — Mixed Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-dominance.html" class="sidebar-sublink">04 — Dominance in Mixed Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-nash-equilibrium.html" class="sidebar-sublink">05 — Nash Equilibrium in Mixed Strategies</a></div>
+</nav>
   <div class="sidebar-footer">
     <div class="sidebar-user">
       <div class="user-avatar" style="background:transparent;">
@@ -331,7 +350,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <!-- ═══ MAIN ═══ -->
 <div class="main-wrap" id="main-wrap">
 <div class="topbar">
-  <button class="topbar-toggle" onclick="toggleSidebar()">☰</button>
+  <button class="topbar-toggle" aria-label="Toggle course menu" onclick="toggleSidebar()">☰</button>
   <div class="topbar-breadcrumb">GAMETHEORY <span class="sep">›</span> <strong>Chapter 1 — Static Games with Perfect Information</strong></div>
   <div class="chapter-progress-bar" id="chapterProgressBar" role="progressbar" aria-label="Chapter progress">
     <div class="progress-segment active" data-index="0" aria-label="Subsection 1"></div>
@@ -355,243 +374,108 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 </div>
 
 <div class="page-label">03 — Mixed Strategies</div>
-<!-- ═══════════════════════════════════════════════════ -->
-<!--  SECTION 4 — MIXED EXTENSION                       -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="section-header" id="sec-4">
-  <span class="section-label purple">Section 4</span>
-  <h2>Mixed Extension</h2>
-</div>
+<div class="section-header" id="sec-4" data-subsection="Section 4"><span class="section-label purple">Section 4</span><h2>Mixed Extension</h2></div>
 
-<!-- MOTIVATION -->
 <div class="concept-card cyan-top">
-  <div class="card-title cyan">A. Motivation</div>
-  <div class="body-text">
-    <p>The Nash equilibrium concept suffers from two caveats:</p>
-    <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;margin-top:8px;">
-      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
-      <div class="step-body">Some games do not have any NE in pure strategies. In this case, we miss a prediction on players' behaviors. For example, this happens in games with much conflict of interest (such as zero-sum games). In zero-sum games, the best response defines a circular path between all the strategy profiles. Each player would like to conceal her strategy and become unpredictable. Requiring each of the two players to do their best given the other player's strategy is too strong a condition.</div>
-    </div>
-    <div class="demo-step" style="padding:10px 0;">
-      <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
-      <div class="step-body">Some games have multiple Nash equilibria. Players therefore need to coordinate on a specific equilibrium. In particular, in symmetric games, there may be no symmetric Nash equilibrium, but several asymmetric Nash equilibria. In asymmetric NE, players must share roles between the various equilibrium actions. This may be unfeasible given that players cannot communicate. Implicitly, in symmetric games, players come from the same population, and cannot be identified to one specific role.</div>
-    </div>
-  </div>
+<div class="card-title cyan">A. Motivation</div>
+<div class="body-text"><p>Pure strategies do not always give a satisfactory prediction of play. The professor identifies two difficulties with the Nash equilibrium concept when we restrict attention to pure strategies.</p></div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Some games have no pure-strategy Nash equilibrium.</strong><div>In games with strong conflicts of interest, a player may always want to change her action after learning the opponent’s action. Best responses can then form a cycle: each adjustment creates an incentive for another adjustment. The rock–paper–scissors game below illustrates this difficulty. Each player wants to conceal her action and remain unpredictable.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Some games have several equilibria, but no symmetric pure equilibrium.</strong><div>A symmetric game may have only asymmetric pure equilibria. Such an equilibrium assigns different actions to players who face the same situation. If players come from the same population and cannot communicate, it may be difficult to decide who takes which role. A symmetric prediction would describe their situation more naturally.</div></div></div>
+<div class="key-note blue">Mixed strategies allow us to represent random play and bluffing, and to look for symmetric predictions in symmetric games.</div>
+<div class="key-note amber"><strong>Reading the motivation carefully:</strong> the cycling argument concerns games such as the example below. It does not mean that every zero-sum game lacks a pure-strategy equilibrium.</div>
+
 </div>
 
-<!-- MOTIVATION EXAMPLES -->
 <div class="example-box">
-  <div class="example-badge">Example · Find the NE of the following games</div>
-  <div class="example-context">
-    <div style="font-weight:800;color:var(--example);margin-bottom:6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 1</div>
-    <div class="matrix-wrap"><table class="payoff-matrix">
-      <tr><th></th><th></th><th colspan="3">Player 2</th></tr>
-      <tr><th></th><th></th><th>$P$</th><th>$F$</th><th>$C$</th></tr>
-      <tr><td rowspan="3" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$P$</td><td>$(0,0)$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr>
-      <tr><td class="row-label">$F$</td><td>$(1,-1)$</td><td>$(0,0)$</td><td>$(-1,1)$</td></tr>
-      <tr><td class="row-label">$C$</td><td>$(-1,1)$</td><td>$(1,-1)$</td><td>$(0,0)$</td></tr>
-    </table></div>
-    <div style="font-weight:800;color:var(--example);margin:16px 0 6px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.5px;">Game 2</div>
-    <div class="matrix-wrap"><table class="payoff-matrix">
-      <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
-      <tr><th></th><th></th><th>$F$</th><th>$0$</th></tr>
-      <tr><td rowspan="2" class="row-label" style="color:var(--example)">Player 1</td><td class="row-label">$F$</td><td>$(0,0)$</td><td>$(1,1)$</td></tr>
-      <tr><td class="row-label">$0$</td><td>$(1,1)$</td><td>$(0,0)$</td></tr>
-    </table></div>
-  </div>
-  <div class="example-task">
-    <strong>Task:</strong> For each game, find all pure strategy Nash equilibria and comment on what these games illustrate about the caveats of the pure-strategy Nash equilibrium concept.
-  </div>
-  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-motiv-sol')">▶ Show Solution <span class="arrow">▼</span></button>
-  <div class="collapsible" id="mix-motiv-sol">
-
-    <div style="font-weight:800;color:var(--text);border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:12px;font-size:0.95rem;">Game 1</div>
-    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
-      Against $P$: $\max\{0,1,-1\}=1 \implies BR_1(P)=\{F\}$.<br>
-      Against $F$: $\max\{-1,0,1\}=1 \implies BR_1(F)=\{C\}$.<br>
-      Against $C$: $\max\{1,-1,0\}=1 \implies BR_1(C)=\{P\}$.
-    </div></div>
-    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
-      Against $P$: $\max\{0,-1,1\}=1 \implies BR_2(P)=\{C\}$.<br>
-      Against $F$: $\max\{1,0,-1\}=1 \implies BR_2(F)=\{P\}$.<br>
-      Against $C$: $\max\{-1,1,0\}=1 \implies BR_2(C)=\{F\}$.
-    </div></div>
-    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
-      Check mutual best responses: $(P,P)$: P1 deviates to $F$. $(F,F)$: P1 deviates to $C$. $(C,C)$: P1 deviates to $P$. Checking all 9 cells — no profile satisfies the mutual best-response condition.<br>
-      <strong>$NE(\Gamma) = \emptyset$ in pure strategies.</strong><br><br>
-      This is a zero-sum game (payoffs always sum to 0) with a circular best-response path: $P \to F \to C \to P \to \ldots$. No pure-strategy NE exists — this illustrates caveat 1.
-    </div></div>
-
-    <div style="font-weight:800;color:var(--text);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 0 6px;margin:16px 0 12px;font-size:0.95rem;">Game 2</div>
-    <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 best responses:</strong><br>
-      Against $F$: $\max\{0,1\}=1 \implies BR_1(F)=\{0\}$.<br>
-      Against $0$: $\max\{1,0\}=1 \implies BR_1(0)=\{F\}$.
-    </div></div>
-    <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 best responses:</strong><br>
-      Against $F$: $\max\{0,1\}=1 \implies BR_2(F)=\{0\}$.<br>
-      Against $0$: $\max\{1,0\}=1 \implies BR_2(0)=\{F\}$.
-    </div></div>
-    <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong><br>
-      • $(F,0)$: $F \in BR_1(0)$ ✓ and $0 \in BR_2(F)$ ✓ $\implies$ <strong>NE</strong>.<br>
-      • $(0,F)$: $0 \in BR_1(F)$ ✓ and $F \in BR_2(0)$ ✓ $\implies$ <strong>NE</strong>.<br><br>
-      <strong>$NE(\Gamma) = \{(F,0),\,(0,F)\}$.</strong> Two asymmetric pure-strategy equilibria exist, but this is a symmetric game — players cannot be assigned different roles without prior coordination. This illustrates caveat 2.
-    </div></div>
-  </div>
+<div class="example-badge">Example · Why introduce mixed strategies?</div>
+<div class="example-context"><p><strong>Game 1 — Rock–paper–scissors.</strong> $R$: rock, $P$: paper, $S$: scissors.</p><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$R$</th><th scope="col">$P$</th><th scope="col">$S$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$R$</th><td>$(0,0)$</td><td>$(-1,1)$</td><td>$(1,-1)$</td></tr><tr><th scope="row" class="row-label">$P$</th><td>$(1,-1)$</td><td>$(0,0)$</td><td>$(-1,1)$</td></tr><tr><th scope="row" class="row-label">$S$</th><td>$(-1,1)$</td><td>$(1,-1)$</td><td>$(0,0)$</td></tr></tbody></table></div>
+<p><strong>Game 2 — Different actions are rewarded.</strong></p><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$F$</th><th scope="col">$O$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$F$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr><tr><th scope="row" class="row-label">$O$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr></tbody></table></div>
+</div>
+<div class="example-task"><strong>Task:</strong> Find the pure-strategy Nash equilibria of both games. Intuitively, how would you expect players to play?</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mix-motiv-sol" data-label="Solution" onclick="toggle(this,'mix-motiv-sol')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mix-motiv-sol"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Rock–paper–scissors: read each player’s own payoff.</strong><div>For player 1, compare the first payoffs down each column:
+$$BR_1(R)=\{P\},\qquad BR_1(P)=\{S\},\qquad BR_1(S)=\{R\}.$$
+For player 2, compare the second payoffs across each row:
+$$BR_2(R)=\{P\},\qquad BR_2(P)=\{S\},\qquad BR_2(S)=\{R\}.$$
+For instance, when player 1 chooses $R$, player 2 obtains $0$ from $R$, $1$ from $P$, and $-1$ from $S$. Her best response is therefore $P$.</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>No cell is a pair of mutual best responses.</strong><div>On the diagonal, both players receive $0$ and can obtain $1$ by switching to the action that wins. Off the diagonal, the losing player receives $-1$ and can switch to an action that wins. Thus every pure profile admits a profitable unilateral deviation:
+$$NE_{\mathrm{pure}}=\varnothing.$$
+Intuitively, a predictable action is vulnerable. Random play is a natural candidate for avoiding this predictability; treating the three actions symmetrically suggests giving them equal probabilities.</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>The second game rewards different actions.</strong><div>For either player, the best response to $F$ is $O$, and the best response to $O$ is $F$. At $(F,F)$ or $(O,O)$, changing action raises the deviating player’s payoff from $0$ to $1$. At $(F,O)$ or $(O,F)$, changing action lowers it from $1$ to $0$. Therefore:
+$$NE_{\mathrm{pure}}=\{(F,O),(O,F)\}.$$
+Both equilibria give payoffs $(1,1)$. They are asymmetric even though the players face the same game. Without a way to assign roles, symmetric random play is a natural possibility to investigate.</div></div></div>
+</div>
 </div>
 
-<!-- § 4.1 -->
-<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-1" data-subsection="§ 4.1">
-  <span class="section-label purple">§ 4.1</span>
-  <h2>Mixed Strategies and Expected Payoff</h2>
-</div>
+<div class="section-header subsection-target" id="sec-4-1" data-subsection="§ 4.1"><span class="section-label purple">§ 4.1</span><h2>Mixed Strategies and Expected Payoff</h2></div>
 
-<!-- FORMAL SETUP -->
-<div class="concept-card cyan-top">
-  <div class="card-title cyan">B. Setting Up the Mixed Extension</div>
-  <div class="body-text">
-    <p>Let $\Gamma=(N,S,g)$ be a game in normal form. Throughout the rest of this chapter, we assume that for every $i\in\{1,\ldots,N\}$, $S_i$ is a finite set.</p>
-    <p style="margin-top:8px;">Mixed, or randomized, strategies make it possible to represent opportunities to bluff or to play randomly. We enrich the set of strategies and the set of payoffs of a normal form game to allow for this.</p>
-  </div>
-</div>
-
-<!-- DEFINITION -->
 <div class="concept-card blue-top">
-  <div class="card-title blue">Definition — Mixed Extension</div>
-  <div class="card-heading">The Mixed Extension $(N, \Sigma, \bar{g})$</div>
-  <div class="body-text">
-    <p>The <strong>mixed extension</strong> of the game in normal form $(N,S,g)$ is the game in normal form $(N,\Sigma,\bar g)$, where:</p>
-  </div>
+<div class="card-title blue">B. Definition — The Mixed Extension</div>
+<div class="body-text"><p>Let $\Gamma=(N,S,g)$ be a normal-form game. From now on, the number of players is finite and each player has a finite set of pure actions $S_i$. The mixed extension keeps the players and the original payoff numbers. It changes what a player chooses: she can now choose a probability distribution over her pure actions.</p></div>
+<div class="math-display boxed-blue">$$\Sigma_i=\Delta(S_i)=\left\{p\in\mathbb R^{|S_i|}:p_k\geq0\ \text{for every }k,\quad \sum_{k=1}^{|S_i|}p_k=1\right\}$$</div>
+<div class="body-text"><p>The vector $p$ has one entry for each action. Every entry must be non-negative, and the entries must sum to $1$ because one action will be played. The symbol $\Delta(S_i)$ denotes this set of probability distributions.</p></div>
+<div class="math-display boxed-blue">$$\Sigma=\prod_{i=1}^{N}\Sigma_i,\qquad\bar\Gamma=(N,\Sigma,\bar g)$$</div>
+<div class="body-text"><p>A profile $\sigma\in\Sigma$ specifies one distribution for every player. Payoffs in this extended game are <strong>expected payoffs</strong>:</p></div>
+<div class="math-display boxed-purple">$$\bar g_i:\Sigma\longrightarrow\mathbb R,\qquad\bar g_i(\sigma)=\sum_{s\in S}\left[\prod_{j=1}^{N}\sigma_j(s_j)\right]g_i(s)$$</div>
+<div class="body-text"><p>For each pure profile $s$, multiply its probability by player $i$’s payoff at that profile. Then add these contributions over all pure profiles. This gives the average payoff evaluated before the actions are drawn.</p></div>
 
-  <div class="body-text" style="margin-top:4px;"><strong>Pure-strategy space:</strong></div>
-  <div class="math-display boxed">$$S = \prod_{i=1}^{n} S_i$$</div>
-
-  <div class="body-text" style="margin-top:8px;"><strong>Mixed-strategy set for player $i$:</strong></div>
-  <div class="math-display boxed-blue">$$\Sigma_i = \Delta(S_i) := \left\{ p \in \mathbb{R}^{|S_i|} : \forall k,\; p_k \geq 0,\; \sum_{k=1}^{|S_i|} p_k = 1 \right\}$$</div>
-
-  <div class="body-text" style="margin-top:8px;"><strong>Expected payoff function for player $i$:</strong></div>
-  <div class="math-display boxed-blue">$$\bar{g}_i : \prod_{j=1}^{N} \Delta(S_j) \to \mathbb{R}$$</div>
-  <div class="math-display boxed-purple">$$\sigma \mapsto \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
-
-  <div class="key-note blue" style="margin-top:10px;">
-    <strong>A mixed strategy is a probability distribution over the set of pure strategies.</strong>
-  </div>
 </div>
 
-<!-- CORE INTUITION -->
-<div class="memory-box">
-  <div class="memory-box-title">🎲 Core Intuition</div>
-  <div class="memory-row">
-    <div class="memory-item">
-      <div class="mi-label">Pure strategy</div>
-      <div class="mi-text">Choose one action with probability 1.<br>Example: always play $L$.</div>
-    </div>
-    <div class="memory-item">
-      <div class="mi-label">Mixed strategy</div>
-      <div class="mi-text">Choose a probability distribution over pure actions.<br>Example: if $S_i = \{L, R\}$, then $\sigma_i = \left(\tfrac{1}{4}, \tfrac{3}{4}\right)$ means $P(L)=\tfrac{1}{4}$, $P(R)=\tfrac{3}{4}$.</div>
-    </div>
-  </div>
+<div class="concept-card blue-top">
+<div class="card-title blue">C. Notation and Support</div>
+<div class="body-text"><p>The notation distinguishes an action, the probability assigned to that action, and the entire probability distribution.</p></div>
+
+<table class="notation-table">
+<tr><td>$\sigma_i\in\Sigma_i$</td><td>Player $i$’s mixed strategy: a complete distribution over $S_i$.</td></tr>
+<tr><td>$\sigma_i(s_i)$</td><td>The probability that player $i$ chooses the particular pure action $s_i$.</td></tr>
+<tr><td>$\sigma_i=\sum_{s_i\in S_i}\sigma_i(s_i)\,s_i$</td><td>A weighted-action notation. It lists the actions together with their probabilities.</td></tr>
+<tr><td>$\sigma_i=(\sigma_i(s_i^1),\ldots,\sigma_i(s_i^{|S_i|}))$</td><td>A vector of probabilities, in a specified action order. The last entry can be omitted when it is understood to equal one minus the sum of the other entries.</td></tr>
+<tr><td>$\sigma\in\Sigma$</td><td>The profile containing every player’s mixed strategy.</td></tr>
+<tr><td>$\sigma_{-i}\in\Sigma_{-i}$</td><td>The strategies of everyone except player $i$, and the set of such profiles.</td></tr>
+<tr><td>$\bar g=(\bar g_j)_{j=1}^{N}$</td><td>The profile of expected-payoff functions. The course often writes $g_i$ for $\bar g_i$ when a mixed strategy appears as an argument.</td></tr>
+</table><div class="math-display boxed-blue">$$\operatorname{supp}(\sigma_i)=\{s_i\in S_i:\sigma_i(s_i)>0\}$$</div>
+<div class="body-text"><p>The <strong>support</strong> is the set of actions that receive strictly positive probability. An action with probability zero is available in the game, but is not used by this particular mixed strategy.</p></div>
+
 </div>
 
-<!-- REMARK 1 -->
-<div class="prop-box" style="margin-top:8px;">
-  <div class="prop-title">Remark — Independence and Profile Probability</div>
-  <div class="body-text">
-    <p>Players choose their mixed strategies <strong>independently</strong> of each other. Hence the product</p>
-  </div>
-  <div class="math-display boxed-blue">$$\prod_{j=1}^{N} \sigma_j(s_j)$$</div>
-  <div class="body-text">
-    <p>is the probability that players play the pure strategy profile $s = (s_1, \ldots, s_N)$.</p>
-    <p style="margin-top:8px;">The payoff associated to a mixed strategy profile is the <strong>expected payoff</strong>. One immediate consequence is <strong>multi-linearity</strong>.</p>
-  </div>
-</div>
-
-<!-- EXPECTED PAYOFF INTUITION -->
-<div class="concept-card cyan-top" style="margin-top:4px;">
-  <div class="card-title cyan">How to Compute the Expected Payoff</div>
-  <div class="body-text">
-    <p>For every possible pure strategy profile $s \in S$:</p>
-    <ol style="margin-left:20px;line-height:2;margin-top:6px;">
-      <li>Compute the probability that this profile occurs: $\displaystyle\prod_{j=1}^{N} \sigma_j(s_j)$.</li>
-      <li>Multiply this probability by the payoff generated by the profile: $g_i(s)$.</li>
-      <li>Sum over all possible profiles $s \in S$.</li>
-    </ol>
-  </div>
-  <div class="math-display boxed">$$\bar{g}_i(\sigma) = \sum_{s \in S} \left[ \prod_{j=1}^{N} \sigma_j(s_j) \right] g_i(s)$$</div>
-</div>
-
-<!-- PROPOSITION: MULTI-LINEARITY -->
 <div class="prop-box">
-  <div class="prop-title">Proposition — Multi-linearity of the Expected Payoff</div>
-  <div class="body-text">
-    <p>The expected payoff function is <strong>multi-linear</strong>. In particular:</p>
-  </div>
-  <div class="math-display boxed-blue">$$\bar{g}_i(\sigma_i, \sigma_{-i}) = \sum_{s_i \in S_i} \sigma_i(s_i)\, g_i(s_i, \sigma_{-i})$$</div>
-  <div class="body-text" style="margin-top:6px;">
-    <p>This says: the expected payoff to player $i$ equals the weighted average of her payoffs across pure strategies, where the weights are the probabilities $\sigma_i(s_i)$ she assigns to each pure strategy $s_i$.</p>
-  </div>
+<div class="prop-title">Remark — Independent Choices</div>
+<div class="body-text"><p>Players randomize <strong>independently</strong>. To obtain the probability of a pure profile $s=(s_1,\ldots,s_N)$, we therefore multiply the probability of each player’s action:</p></div>
+<div class="math-display boxed-blue">$$\Pr(s)=\prod_{j=1}^{N}\sigma_j(s_j)$$</div>
+<div class="body-text"><p>This is the probability factor in the expected-payoff formula. Each player chooses her own distribution; the resulting action draws are independent across players.</p></div>
+
 </div>
 
-<!-- NOTATION LIST -->
-<div class="concept-card blue-top">
-  <div class="card-title blue">C. Notation</div>
-  <div class="body-text"><p>We use the following notations:</p></div>
-  <table class="notation-table">
-    <tr><td>$\sigma_j(s_j)$</td><td>Probability that player $j$ plays pure strategy $s_j$.</td></tr>
-    <tr><td>$\sigma_i \in \Sigma_i$</td><td>Strategy of player $i$ (a mixed strategy).</td></tr>
-    <tr><td>$\sigma_i = \sigma_i(s_i)\cdot s_i + \ldots + \sigma_i(s_i') \cdot s_i'$</td><td>Explicit representation of $\sigma_i$ as a weighted combination of pure strategies.</td></tr>
-    <tr><td>$\sigma_i = \bigl(\sigma_i(s_i), \ldots, \sigma_i(s_i')\bigr)$</td><td>Vector representation of $\sigma_i$. When unambiguous, the last weight $\sigma_i(s_i')$ can be omitted (all weights sum to 1).</td></tr>
-    <tr><td>$\sigma \in \Sigma$</td><td>Mixed strategy profile — actions (distributions) for all players.</td></tr>
-    <tr><td>$\Sigma = \displaystyle\prod_{j=1}^{N} \Sigma_j$</td><td>Set of all mixed strategy profiles.</td></tr>
-    <tr><td>$\sigma_{-i} \in \Sigma_{-i}$</td><td>Mixed strategy profile and set of strategy profiles for all players except $i$.</td></tr>
-    <tr><td>$\bar{g} = (\bar{g}_j)_{j \in \{1,\ldots,n\}}$</td><td>Payoff function profile. We often write $g$ for $\bar{g}$.</td></tr>
-  </table>
+<div class="prop-box">
+<div class="prop-title">Remark — Pure Strategies Are Included</div>
+<div class="body-text"><p>A pure strategy is represented by a distribution that puts probability $1$ on a single action. The notation $\delta_{s_i}$ denotes this distribution:</p></div>
+<div class="math-display boxed-blue">$$\delta_{s_i}(s_i)=1,\qquad\delta_{s_i}(t_i)=0\quad(t_i\neq s_i),\qquad\operatorname{supp}(\delta_{s_i})=\{s_i\}$$</div>
+<div class="body-text"><p>Thus we can identify each pure action with its corresponding distribution and write $S_i\subseteq\Delta(S_i)$. “Mixed strategy” is the general term and includes these pure strategies.</p></div>
+
 </div>
 
-<!-- NOTATION DECODER -->
-<div class="memory-box">
-  <div class="memory-box-title">🔤 Notation Decoder — Pure vs. Mixed</div>
-  <div class="memory-row">
-    <div class="memory-item">
-      <div class="mi-label">$S_i$</div>
-      <div class="mi-text">Pure-strategy <em>set</em> of player $i$.</div>
-    </div>
-    <div class="memory-item">
-      <div class="mi-label">$\Sigma_i = \Delta(S_i)$</div>
-      <div class="mi-text">Set of all probability distributions over $S_i$ — mixed strategies available to player $i$.</div>
-    </div>
-  </div>
-  <div class="memory-row" style="margin-top:8px;">
-    <div class="memory-item">
-      <div class="mi-label">$s_i \in S_i$</div>
-      <div class="mi-text">One <em>pure</em> strategy.</div>
-    </div>
-    <div class="memory-item">
-      <div class="mi-label">$\sigma_i \in \Sigma_i$</div>
-      <div class="mi-text">One <em>mixed</em> strategy (a probability distribution).</div>
-    </div>
-  </div>
-  <div class="memory-row" style="margin-top:8px;">
-    <div class="memory-item">
-      <div class="mi-label">$\sigma_i(s_i)$</div>
-      <div class="mi-text">Probability assigned by player $i$ to pure strategy $s_i$.</div>
-    </div>
-    <div class="memory-item">
-      <div class="mi-label">$g_i$ vs $\bar{g}_i$</div>
-      <div class="mi-text">$g_i$ = payoff on pure profiles. $\bar{g}_i$ = expected payoff on mixed profiles.</div>
-    </div>
-  </div>
+<div class="concept-card cyan-top">
+<div class="card-title cyan">Vocabulary — Which Actions Receive Positive Probability?</div>
+
+<div class="matrix-wrap"><table class="comparison-table">
+<tr><th>Term in the notes</th><th>Support</th><th>Meaning</th></tr>
+<tr><td>Pure</td><td>$|\operatorname{supp}(\sigma_i)|=1$</td><td>One action is chosen with probability $1$.</td></tr>
+<tr><td>“Interior”</td><td>$|\operatorname{supp}(\sigma_i)|\geq2$</td><td>The professor uses this term for a strategy that randomizes over at least two actions.</td></tr>
+<tr><td>Completely mixed</td><td>$\operatorname{supp}(\sigma_i)=S_i$</td><td>Every available action receives strictly positive probability.</td></tr>
+<tr><td>Mixed</td><td>Any nonempty support</td><td>Any distribution in $\Sigma_i$, including pure strategies.</td></tr>
+</table></div><div class="key-note amber"><strong>Terminology in this support:</strong> “interior” is used here to mean non-pure. In the usual geometric terminology, being in the relative interior of the probability simplex means being completely mixed. We keep the professor’s distinction visible.</div>
+<div class="body-text"><p>From this point onward, “strategy” means a mixed strategy unless the course explicitly says “pure strategy”.</p></div>
+
 </div>
 
-<!-- REMARK 2 — PURE AS SPECIAL CASE -->
-<div class="prop-box" style="margin-top:4px;">
-  <div class="prop-title">Remark — Pure Strategy as a Special Case of Mixed</div>
-  <div class="body-text">
-    <p>A pure strategy is a specific case of a mixed strategy. The pure strategy $s_i$ corresponds to the degenerate distribution:</p>
-  </div>
-  <div class="math-display boxed-blue">$$\delta_{s_i} \qquad (S_i \subset \Delta(S_i))$$</div>
-  <div class="body-text" style="margin-top:4px;">
-    <p>i.e., all probability is placed on the single pure strategy $s_i$ and zero elsewhere. The set of pure strategies $S_i$ is therefore a subset of the set of mixed strategies $\Delta(S_i)$.</p>
-  </div>
+<div class="prop-box">
+<div class="prop-title">Proposition — Multi-linearity of Expected Payoffs</div>
+<div class="body-text"><p>The expected payoff is linear in each player’s distribution when the other players’ distributions are held fixed. This is what <strong>multi-linearity</strong> means here.</p></div>
+<div class="math-display boxed-blue">$$g_i(\sigma_i,\sigma_{-i})=\sum_{s_i\in S_i}\sigma_i(s_i)\,g_i(s_i,\sigma_{-i})$$</div>
+<div class="body-text"><p>First hold the opponents’ profile $\sigma_{-i}$ fixed. Compute what player $i$ would obtain from each pure action, then take the weighted average using her own probabilities $\sigma_i(s_i)$.</p></div>
+<div class="math-display boxed-blue">$$g_i(s_i,\sigma_{-i})=\sum_{s_{-i}\in S_{-i}}\left[\prod_{j\neq i}\sigma_j(s_j)\right]g_i(s_i,s_{-i})$$</div>
+<div class="body-text"><p>The second formula explains the payoff from a fixed pure action $s_i$ against mixed opponents. Here only the opponents’ actions are random, so the product includes players $j\neq i$. Both expressions use the same rule: a payoff multiplied by its probability, summed over the relevant possibilities.</p></div>
+
 </div>
 
 <!-- EXAMPLE: EXPECTED PAYOFF COMPUTATION -->
@@ -612,7 +496,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   <div class="example-task">
     <strong>Task:</strong> Write the set of mixed strategies $\Sigma_1, \Sigma_2$ and compute the expected payoffs $\bar{g}_1$ and $\bar{g}_2$ for the strategy profile $\sigma = \left(\frac{1}{4}L + \frac{3}{4}R,\; \frac{1}{3}L + \frac{2}{3}R\right)$.
   </div>
-  <button class="toggle-btn example-toggle" onclick="toggle(this,'mix-expay-sol')">▶ Show Solution <span class="arrow">▼</span></button>
+  <button class="toggle-btn example-toggle" type="button" aria-expanded="false" aria-controls="mix-expay-sol" data-label="Solution" onclick="toggle(this,'mix-expay-sol')"><span class="toggle-label">Show Solution</span> <span class="arrow">▼</span></button>
   <div class="collapsible" id="mix-expay-sol">
     <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Sets of mixed strategies:</strong><br>
       $S_1 = \{R, L\}$ and $S_2 = \{R, L\}$, so:
@@ -651,36 +535,21 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 </div>
 
-<!-- § 4.2 -->
-<div class="section-header subsection-target" style="margin-top:4px;" id="sec-4-2" data-subsection="§ 4.2">
-  <span class="section-label purple">§ 4.2</span>
-  <h2>Interpretation</h2>
-</div>
+<div class="section-header subsection-target" id="sec-4-2" data-subsection="§ 4.2"><span class="section-label purple">§ 4.2</span><h2>Interpretation</h2></div>
 
 <div class="concept-card cyan-top">
-  <div class="card-title cyan">D. Four Interpretations of Mixed Strategies</div>
-  <div class="body-text"><p>The most common interpretations of mixed strategies are:</p></div>
+<div class="card-title cyan">D. Four Interpretations of Mixed Strategies</div>
+<div class="body-text"><p>The same probability distribution can be read in different ways. The professor presents four interpretations; they differ in what generates the uncertainty about the action that will be played.</p></div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Randomization.</strong><div>The player deliberately draws her action at random using the probabilities in her mixed strategy. Each player randomizes independently because she wants the other players to remain uncertain about her action.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Random beliefs.</strong><div>The player may actually choose a definite action. The probabilities describe what the other players believe she will do: the uncertainty is in their beliefs about her choice, rather than necessarily in a random device used by that player.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Population.</strong><div>Each individual plays a pure action. The mixed strategy describes the proportion of individuals in the population who play each action. The probabilities therefore describe the composition of the population.</div></div></div>
+<div class="demo-step"><div class="step-num">4</div><div class="step-body"><strong>Unknown preferences.</strong><div>Players choose pure actions using the displayed payoffs together with a small additional preference that the others do not observe. Because those preferences are unknown, the others face uncertainty about which action will be chosen.</div></div></div>
 
-  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
-    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">1</div>
-    <div class="step-body"><strong style="color:var(--cyan-bright);">Randomization.</strong> Each player independently chooses their pure strategy at random because they want to create uncertainty for the other players.</div>
-  </div>
-  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
-    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">2</div>
-    <div class="step-body"><strong style="color:var(--cyan-bright);">Random beliefs.</strong> Players do not actually randomize their play, but the other players believe that they do.</div>
-  </div>
-  <div class="demo-step" style="border-bottom:1px solid var(--border);padding:10px 0;">
-    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">3</div>
-    <div class="step-body"><strong style="color:var(--cyan-bright);">Population.</strong> Each player individually plays a pure strategy; the mixed strategy represents the proportions of the population playing each pure strategy.</div>
-  </div>
-  <div class="demo-step" style="padding:10px 0;">
-    <div class="step-num" style="background:var(--cyan-muted);border-color:var(--cyan-border);color:var(--cyan-bright);">4</div>
-    <div class="step-body"><strong style="color:var(--cyan-bright);">Unknown preferences.</strong> Each player chooses their pure strategy based on the known payoffs, plus a small preference that is unknown to the other players.</div>
-  </div>
 </div>
 
 <nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
 <a class="sidebar-sublink" href="nash-equilibrium.html">← Nash Equilibrium in Pure Strategies</a>
+<a class="sidebar-sublink" href="mixed-dominance.html">Dominance in Mixed Strategies →</a>
 </nav>
 </div><!-- end main-content -->
 </div><!-- end main-wrap -->
@@ -692,10 +561,20 @@ function toggleSidebar(){
 }
 function toggle(btn,id){
   const box=document.getElementById(id);
-  const isOpen=box.classList.contains('open');
-  box.classList.toggle('open',!isOpen);
-  btn.classList.toggle('open',!isOpen);
-  if(!isOpen&&window.MathJax){MathJax.typesetPromise([box]);}
+  if(!box) return;
+  const open=!box.classList.contains('open');
+  box.classList.toggle('open',open);
+  btn.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',String(open));
+  const label=btn.querySelector('.toggle-label');
+  if(label) label.textContent=(open?'Hide ':'Show ')+(btn.dataset.label||'Solution');
+  if(open && window.MathJax && MathJax.startup && MathJax.startup.promise){
+    MathJax.startup.promise.then(() => MathJax.typesetPromise([box])).catch(console.error);
+  }
+}
+if(window.matchMedia('(max-width:900px)').matches){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('main-wrap').classList.add('expanded');
 }
 
 /* ── CHAPTER PROGRESS BAR LOGIC ── */
@@ -713,7 +592,7 @@ function initChapterProgress(){
     seg.className = 'progress-segment' + (idx === 0 ? ' active' : '');
     seg.setAttribute('role', 'button');
     seg.setAttribute('tabindex', '0');
-    seg.setAttribute('aria-label', `Go to subsection ${idx + 1}`);
+    seg.setAttribute('aria-label', `${sec.dataset.subsection}: ${sec.querySelector('h2').textContent}`);
     const jump = () => { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
     seg.addEventListener('click', jump);
     seg.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });

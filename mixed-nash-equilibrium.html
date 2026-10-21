@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAMETHEORY — 05 — Nash Equilibrium in Mixed Strategies</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+:root {
+  --sidebar-bg: #070d18;
+  --sidebar-width: 280px;
+  --bg: #090e17;
+  --bg-card: #0f1726;
+  --bg-deep: #060a10;
+
+  /* ── THEORY IDENTITY (CYAN / BLUE) ── */
+  --cyan: #06b6d4;
+  --cyan-bright: #38bdf8;
+  --cyan-muted: rgba(6,182,212,0.1);
+  --cyan-border: rgba(6,182,212,0.3);
+  --cyan-gradient: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+  --blue-bright: #60a5fa;
+  --blue-muted: rgba(59,130,246,0.1);
+  --blue-border: rgba(59,130,246,0.3);
+  --purple-bright: #c084fc;
+  --purple-muted: rgba(168,85,247,0.1);
+  --purple-border: rgba(168,85,247,0.3);
+  --amber-bright: #fbbf24;
+  --amber-muted: rgba(245,158,11,0.08);
+  --amber-border: rgba(245,158,11,0.3);
+  --green-bright: #34d399;
+  --green-muted: rgba(16,185,129,0.1);
+  --green-border: rgba(16,185,129,0.3);
+
+  /* ── EXAMPLES / EXERCISES IDENTITY (RED / CORAL) ── */
+  --example: #fb7185;
+  --example-muted: rgba(251,113,133,0.08);
+  --example-border: rgba(251,113,133,0.35);
+  --example-deep: rgba(251,113,133,0.15);
+
+  --text: #f8fafc;
+  --text-2: #cbd5e1;
+  --text-3: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255,255,255,0.07);
+  --radius: 10px;
+  --radius-lg: 16px;
+  --font: 'Outfit', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); display:flex; min-height:100vh; -webkit-font-smoothing:antialiased; }
+
+/* ── SIDEBAR ── */
+.sidebar { width:var(--sidebar-width); background:var(--sidebar-bg); border-right:1px solid var(--border); display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; z-index:200; transition:transform .3s ease; overflow:hidden; }
+.sidebar:not(.open) { transform:translateX(-100%); }
+.sidebar-brand { padding:22px 20px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.sidebar-brand h1 { font-size:1.25rem; font-weight:800; letter-spacing:1px; }
+.sidebar-brand h1 span { color:var(--cyan); }
+.sidebar-close { background:none; border:none; color:var(--text-3); font-size:1.4rem; cursor:pointer; }
+.sidebar-close:hover { color:var(--cyan); }
+.sidebar-nav { flex:1; overflow-y:auto; padding:12px 0; }
+.sidebar-group { display:flex; flex-direction:column; gap:2px; margin-top:6px; }
+.sidebar-group-title { padding:10px 22px 4px; font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; color:var(--text-3); }
+.sidebar-sublink { display:flex; align-items:center; gap:10px; padding:9px 22px 9px 36px; color:var(--text-3); text-decoration:none; font-size:0.85rem; font-weight:600; transition:all .2s; border-left:3px solid transparent; }
+.sidebar-sublink:hover { color:var(--text); background:rgba(255,255,255,0.04); }
+.sidebar-sublink.active { color:var(--cyan-bright); border-left-color:var(--cyan); background:var(--cyan-muted); }
+.sidebar-footer { padding:14px 16px; border-top:1px solid var(--border); }
+.sidebar-user { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:var(--radius); padding:10px 12px; }
+.user-avatar { width: 44px; height: 44px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+.user-dot { width:8px; height:8px; background:var(--cyan); border-radius:50%; border:2px solid var(--sidebar-bg); position:absolute; bottom:-2px; right:-2px; box-shadow:0 0 6px var(--cyan); }
+.user-info { overflow:hidden; }
+.user-name { font-size:0.82rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.user-role { font-size:0.7rem; color:var(--text-muted); }
+
+/* ── TOPBAR ── */
+.topbar { height:64px; background:rgba(9,14,23,0.9); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); position:sticky; top:0; z-index:100; display:flex; align-items:center; padding:0 28px; gap:16px; }
+.topbar-toggle { background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; flex-shrink:0; transition:.2s; }
+.topbar-toggle:hover { border-color:var(--cyan-border); color:var(--cyan); }
+.topbar-breadcrumb { color:var(--text-3); font-size:0.86rem; display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.topbar-breadcrumb .sep { opacity:.4; }
+.topbar-breadcrumb strong { color:var(--text); font-weight:700; }
+
+/* ── SEGMENTED CHAPTER PROGRESS BAR ── */
+.chapter-progress-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  margin-left: 20px;
+  padding: 0 2px;
+}
+.progress-segment {
+  flex: 1;
+  height: 7px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.progress-segment:hover {
+  transform: scaleY(1.35);
+  filter: brightness(1.25);
+}
+.progress-segment.completed {
+  background: linear-gradient(90deg, #0284c7, #06b6d4);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.35);
+}
+.progress-segment.active {
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  border-color: rgba(167, 139, 250, 0.9);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 4px rgba(167, 139, 250, 0.4);
+}
+
+/* ── LAYOUT ── */
+.main-wrap { margin-left:var(--sidebar-width); flex:1; display:flex; flex-direction:column; transition:margin-left .3s; min-width:0; }
+.main-wrap.expanded { margin-left:0; }
+.main-content { padding:40px 44px 70px; max-width:920px; width:100%; margin:0 auto; display:flex; flex-direction:column; gap:32px; }
+
+/* ── PAGE TITLE ── */
+.page-title-block { border-bottom:1px solid var(--border); padding-bottom:24px; }
+.page-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--cyan); margin-bottom:8px; }
+.page-title-block h1 { font-size:2rem; font-weight:800; letter-spacing:-0.5px; line-height:1.15; }
+.page-title-block p { color:var(--text-3); font-size:0.95rem; margin-top:7px; }
+
+/* ── SECTION HEADER ── */
+.section-header { display:flex; align-items:center; gap:14px; padding-bottom:14px; border-bottom:1px solid var(--border); margin-top:8px; scroll-margin-top:76px; }
+.section-label { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; padding:4px 12px; border-radius:999px; }
+.section-label.cyan { background:var(--cyan-muted); color:var(--cyan-bright); border:1px solid var(--cyan-border); }
+.section-label.blue { background:var(--blue-muted); color:var(--blue-bright); border:1px solid var(--blue-border); }
+.section-label.purple { background:var(--purple-muted); color:var(--purple-bright); border:1px solid var(--purple-border); }
+.section-label.green { background:var(--green-muted); color:var(--green-bright); border:1px solid var(--green-border); }
+.section-label.example { background:var(--example-muted); color:var(--example); border:1px solid var(--example-border); }
+.section-header h2 { font-size:1.3rem; font-weight:800; }
+
+/* ── THEORY CARDS ── */
+.concept-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .2s ease, border-color .2s ease; }
+.concept-card:hover { transform:translateY(-2px); border-color:var(--cyan-border); }
+.concept-card.cyan-top { border-top:3px solid var(--cyan); }
+.concept-card.blue-top { border-top:3px solid var(--blue-bright); }
+.concept-card.amber-top { border-top:3px solid var(--amber-bright); }
+.concept-card.purple-top { border-top:3px solid var(--purple-bright); }
+.concept-card.green-top { border-top:3px solid var(--green-bright); }
+
+.card-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; }
+.card-title.cyan { color:var(--cyan-bright); }
+.card-title.blue { color:var(--blue-bright); }
+.card-title.amber { color:var(--amber-bright); }
+.card-title.purple { color:var(--purple-bright); }
+.card-title.green { color:var(--green-bright); }
+.card-heading { font-size:1.05rem; font-weight:800; color:var(--text); }
+
+.body-text { font-size:0.92rem; color:var(--text-2); line-height:1.72; }
+.body-text p + p { margin-top:9px; }
+.body-text ul { margin-left:20px; margin-top:6px; display:flex; flex-direction:column; gap:4px; }
+.body-text li { line-height:1.6; }
+
+/* ── KEY NOTES ── */
+.key-note { font-size:0.9rem; color:var(--text-2); line-height:1.65; border-left:3px solid var(--cyan); padding:12px 18px; background:var(--cyan-muted); border-radius:0 var(--radius) var(--radius) 0; }
+.key-note.blue { border-left-color:var(--blue-bright); background:var(--blue-muted); }
+.key-note.amber { border-left-color:var(--amber-bright); background:var(--amber-muted); }
+.key-note.purple { border-left-color:var(--purple-bright); background:var(--purple-muted); }
+.key-note.green { border-left-color:var(--green-bright); background:var(--green-muted); }
+.key-note.red { border-left-color:var(--example); background:var(--example-muted); }
+.key-note strong { color:var(--text); font-weight:800; }
+
+/* ── MATH DISPLAYS ── */
+.math-display { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:var(--radius); padding:14px 20px; text-align:center; margin:4px 0; overflow-x:auto; }
+.math-display.boxed { border-color:var(--cyan-border); background:var(--cyan-muted); }
+.math-display.boxed-blue { border-color:var(--blue-border); background:var(--blue-muted); }
+.math-display.boxed-purple { border-color:var(--purple-border); background:var(--purple-muted); }
+.math-display.boxed-amber { border-color:var(--amber-border); background:var(--amber-muted); }
+
+/* ── MEMORY BOX ── */
+.memory-box { background:rgba(6,182,212,0.06); border:1px solid var(--cyan-border); border-radius:var(--radius); padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+.memory-box-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--cyan-bright); }
+.memory-row { display:flex; gap:16px; flex-wrap:wrap; }
+.memory-item { flex:1; min-width:140px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:10px 14px; }
+.memory-item .mi-label { font-size:0.78rem; font-weight:800; color:var(--cyan-bright); margin-bottom:4px; }
+.memory-item .mi-text { font-size:0.85rem; color:var(--text-2); line-height:1.5; }
+
+/* ── PRACTICAL BOX ── */
+.practical-box { background:rgba(16,185,129,0.05); border:1px solid var(--green-border); border-radius:var(--radius); padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+.practical-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--green-bright); }
+
+/* ── EXAMPLE BOXES (RED / CORAL) ── */
+.example-box { background:var(--example-muted); border:1px solid var(--example-border); border-left:4px solid var(--example); border-radius:var(--radius-lg); padding:24px; display:flex; flex-direction:column; gap:14px; }
+.example-badge { display:inline-flex; align-items:center; gap:6px; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; padding:4px 12px; border-radius:999px; background:var(--example-deep); color:var(--example); border:1px solid var(--example-border); width:fit-content; }
+.example-context { font-size:0.92rem; color:var(--text-2); line-height:1.7; }
+.example-task { background:rgba(251,113,133,0.06); border:1px dashed var(--example-border); border-radius:8px; padding:11px 16px; font-size:0.88rem; color:var(--text); line-height:1.6; }
+.example-task strong { color:var(--example); text-transform:uppercase; font-size:0.75rem; letter-spacing:0.6px; margin-right:6px; }
+
+/* ── GAME TYPE TAGS ── */
+.tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
+.game-tag { display:inline-flex; align-items:center; gap:5px; font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.4px; padding:3px 10px; border-radius:999px; }
+.game-tag.cyan { background:var(--cyan-muted); color:var(--cyan-bright); border:1px solid var(--cyan-border); }
+.game-tag.amber { background:var(--amber-muted); color:var(--amber-bright); border:1px solid var(--amber-border); }
+.game-tag.red { background:var(--example-muted); color:var(--example); border:1px solid var(--example-border); }
+.game-tag.purple { background:var(--purple-muted); color:var(--purple-bright); border:1px solid var(--purple-border); }
+.game-tag.green { background:var(--green-muted); color:var(--green-bright); border:1px solid var(--green-border); }
+.game-tag.blue { background:var(--blue-muted); color:var(--blue-bright); border:1px solid var(--blue-border); }
+
+/* ── PAYOFF MATRIX ── */
+.matrix-wrap { overflow-x:auto; margin:4px 0; }
+.payoff-matrix { border-collapse:collapse; font-family:var(--font); font-size:0.9rem; min-width:280px; margin:0 auto; }
+.payoff-matrix th,.payoff-matrix td { padding:10px 18px; border:1px solid rgba(255,255,255,0.1); text-align:center; }
+.payoff-matrix th { background:rgba(255,255,255,0.03); color:var(--text-3); font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.4px; }
+.payoff-matrix td { background:rgba(9,14,23,0.6); color:var(--text-2); font-weight:600; }
+.payoff-matrix .row-label { color:var(--text); font-weight:700; background:rgba(255,255,255,0.02); }
+.payoff-matrix .ne-cell { background:var(--cyan-muted) !important; color:var(--cyan-bright) !important; font-weight:800; border-color:var(--cyan-border) !important; }
+
+/* ── TOGGLE & COLLAPSIBLE ── */
+.toggle-btn { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.03); border:1px solid var(--border); color:var(--text-2); font-family:var(--font); font-size:0.82rem; font-weight:700; padding:8px 16px; border-radius:999px; cursor:pointer; transition:all .2s ease; width:fit-content; }
+.toggle-btn:hover { border-color:var(--cyan-border); color:var(--cyan-bright); background:var(--cyan-muted); }
+.toggle-btn.example-toggle { border-color:var(--example-border); color:var(--example); background:var(--example-muted); }
+.toggle-btn.example-toggle:hover { border-color:var(--example); color:#fff; background:var(--example-deep); }
+.toggle-btn .arrow { font-size:0.65rem; transition:transform .25s ease; display:inline-block; }
+.toggle-btn.open .arrow { transform:rotate(180deg); }
+.collapsible { display:none; margin-top:10px; background:rgba(6,10,16,0.85); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px; font-size:0.9rem; color:var(--text-2); line-height:1.7; }
+.collapsible.open { display:block; animation:fadeDown .2s ease; }
+.collapsible strong { color:var(--text); font-weight:700; }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);} }
+
+/* ── DEMO STEPS ── */
+.demo-step { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); }
+.demo-step:last-child { border-bottom:none; padding-bottom:0; }
+.step-num { min-width:26px; height:26px; background:var(--cyan-muted); border:1px solid var(--cyan-border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:800; color:var(--cyan-bright); flex-shrink:0; margin-top:2px; }
+.step-num.coral { background:var(--example-deep); border-color:var(--example-border); color:var(--example); }
+.step-body { flex:1; }
+
+/* ── PROPOSITION BOX ── */
+.prop-box { background:var(--blue-muted); border:1px solid var(--blue-border); border-left:4px solid var(--blue-bright); border-radius:var(--radius-lg); padding:22px 24px; display:flex; flex-direction:column; gap:12px; }
+.prop-title { font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:var(--blue-bright); }
+
+/* ── COMPARISON TABLE ── */
+.comparison-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+.comparison-table th { background:rgba(255,255,255,0.04); color:var(--text-3); font-weight:800; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.5px; padding:10px 16px; border-bottom:1px solid var(--border); text-align:left; }
+.comparison-table td { padding:10px 16px; border-bottom:1px solid var(--border); color:var(--text-2); line-height:1.5; vertical-align:top; }
+.comparison-table tr:last-child td { border-bottom:none; }
+.comparison-table td:first-child { font-weight:700; color:var(--text); width:24%; }
+.comparison-table td:nth-child(2) { color:var(--cyan-bright); font-weight:600; }
+.comparison-table td:nth-child(3) { color:var(--example); font-weight:600; }
+
+/* ── IMPLICATION MAP ── */
+.impl-map { display:flex; flex-direction:column; align-items:center; gap:6px; padding:8px 0; }
+.impl-node { padding:12px 24px; border-radius:var(--radius); font-weight:700; font-size:0.9rem; text-align:center; width:100%; max-width:420px; }
+.impl-node.blue { background:var(--blue-muted); border:1px solid var(--blue-border); color:var(--blue-bright); }
+.impl-node.cyan { background:var(--cyan-muted); border:1px solid var(--cyan-border); color:var(--cyan-bright); }
+.impl-node.amber { background:var(--amber-muted); border:1px solid var(--amber-border); color:var(--amber-bright); }
+.impl-node.purple { background:var(--purple-muted); border:1px solid var(--purple-border); color:var(--purple-bright); }
+.impl-arrow { color:var(--text-muted); font-size:1.4rem; line-height:1; }
+.impl-label { font-size:0.75rem; color:var(--text-muted); font-style:italic; }
+
+/* ── NOTATION TABLE ── */
+.notation-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+.notation-table td { padding:8px 14px; border-bottom:1px solid var(--border); color:var(--text-2); line-height:1.5; }
+.notation-table td:first-child { font-weight:700; color:var(--cyan-bright); white-space:nowrap; padding-right:20px; width:38%; }
+.notation-table tr:last-child td { border-bottom:none; }
+
+/* ── REVISION MAP ── */
+.revision-step { display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+.revision-step:last-child { border-bottom:none; }
+.revision-num { min-width:38px; height:38px; background:var(--cyan-gradient); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; font-weight:800; color:#fff; flex-shrink:0; }
+.revision-body { flex:1; padding-top:4px; }
+.revision-body strong { color:var(--text); font-weight:800; }
+.revision-body p { color:var(--text-2); font-size:0.9rem; margin-top:4px; line-height:1.6; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  .sidebar { transform:translateX(-100%); }
+  .sidebar.open { transform:translateX(0); }
+  .main-wrap { margin-left:0 !important; }
+  .main-content { padding:24px 20px 40px; }
+  .topbar { padding:0 16px; gap:12px; }
+  .topbar-breadcrumb { font-size:0.8rem; max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .chapter-progress-bar { margin-left:12px; gap:4px; }
+  .progress-segment { height:5px; }
+}
+@media (max-width:600px) {
+  .topbar-breadcrumb { display:none; }
+  .chapter-progress-bar { margin-left:4px; }
+}
+
+/* Continuation: retain the existing course cards, matrices and disclosures. */
+.payoff-matrix caption { font-size:.75rem; color:var(--text-3); line-height:1.5; padding:0 0 10px; caption-side:top; }
+.step-body { min-width:0; }
+.body-text, .step-body, .example-context, .key-note { overflow-wrap:break-word; }
+.notation-table { table-layout:fixed; }
+.notation-table td:first-child { white-space:normal; width:38%; }
+.notation-table td { overflow-wrap:anywhere; }
+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
+.br-figure { margin:18px 0 8px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; }
+.br-figure svg { display:block; width:100%; max-width:430px; height:auto; margin:auto; }
+.br-figure figcaption { color:var(--text-3); font-size:.83rem; line-height:1.6; margin-top:10px; }
+.br-legend { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; font-size:.8rem; margin-top:8px; }
+.br-one { color:var(--cyan-bright); } .br-two { color:var(--example); } .br-ne { color:var(--amber-bright); }
+button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2px solid var(--cyan-bright); outline-offset:4px; }
+@media(max-width:600px) {
+  .concept-card, .example-box, .prop-box { padding:18px 16px; }
+  .collapsible { padding:16px 12px; }
+  .section-header { align-items:flex-start; flex-wrap:wrap; gap:10px; }
+  .section-header h2 { font-size:1.2rem; }
+  .math-display { padding:12px 8px; }
+  .notation-table td { padding:8px 6px; }
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar open" id="sidebar">
+  <div class="sidebar-brand">
+    <h1>GAMETHEORY<span>.</span></h1>
+    <button class="sidebar-close" aria-label="Close course menu" onclick="toggleSidebar()">✕</button>
+  </div>
+  <nav class="sidebar-nav" aria-label="Course sections">
+<div class="sidebar-group-title">📂 Static Games</div>
+<div class="sidebar-group"><a href="chapter1.html" class="sidebar-sublink">01 — Normal Form Games &amp; Dominance</a></div>
+<div class="sidebar-group"><a href="nash-equilibrium.html" class="sidebar-sublink">02 — Nash Equilibrium in Pure Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-strategies.html" class="sidebar-sublink">03 — Mixed Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-dominance.html" class="sidebar-sublink">04 — Dominance in Mixed Strategies</a></div>
+<div class="sidebar-group"><a href="mixed-nash-equilibrium.html" class="sidebar-sublink active" aria-current="page">05 — Nash Equilibrium in Mixed Strategies</a></div>
+</nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="user-avatar" style="background:transparent;">
+        <img src="images/avatar.png" alt="STAR NOVA" style="width:100%;height:100%;border-radius:8px;object-fit:cover;">
+        <span class="user-dot"></span>
+      </div>
+      <div class="user-info">
+        <div class="user-name">STAR NOVA</div>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main-wrap" id="main-wrap">
+<div class="topbar">
+  <button class="topbar-toggle" aria-label="Toggle course menu" onclick="toggleSidebar()">☰</button>
+  <div class="topbar-breadcrumb">GAMETHEORY <span class="sep">›</span> <strong>Chapter 1 — Static Games with Perfect Information</strong></div>
+  <div class="chapter-progress-bar" id="chapterProgressBar" role="progressbar" aria-label="Chapter progress">
+    <div class="progress-segment active" data-index="0" aria-label="Subsection 1"></div>
+    <div class="progress-segment" data-index="1" aria-label="Subsection 2"></div>
+    <div class="progress-segment" data-index="2" aria-label="Subsection 3"></div>
+    <div class="progress-segment" data-index="3" aria-label="Subsection 4"></div>
+    <div class="progress-segment" data-index="4" aria-label="Subsection 5"></div>
+    <div class="progress-segment" data-index="5" aria-label="Subsection 6"></div>
+    <div class="progress-segment" data-index="6" aria-label="Subsection 7"></div>
+    <div class="progress-segment" data-index="7" aria-label="Subsection 8"></div>
+  </div>
+</div>
+
+<div class="main-content">
+
+<!-- PAGE TITLE -->
+<div class="page-title-block">
+  <div class="page-label">Chapter 1</div>
+  <h1>Static Games with Perfect Information</h1>
+  <p>Modelling simultaneous strategic interactions — and finding rational predictions for play.</p>
+</div>
+
+<div class="page-label">05 — Nash Equilibrium in Mixed Strategies</div>
+<div class="section-header" id="sec-6" data-subsection="Section 6"><span class="section-label blue">Section 6</span><h2>Nash Equilibrium in Mixed Strategies</h2></div>
+
+<div class="concept-card cyan-top">
+<div class="card-title cyan">A. Motivation</div>
+<div class="body-text"><p>The mixed extension lets us analyze random behavior using the same equilibrium idea as before. Each player chooses a distribution, and we ask whether anyone can obtain a higher expected payoff by changing her own distribution while the others keep theirs fixed.</p></div>
+
+</div>
+
+<div class="section-header subsection-target" id="sec-6-1" data-subsection="§ 6.1"><span class="section-label blue">§ 6.1</span><h2>Definitions and the Indifference Principle</h2></div>
+
+<div class="concept-card blue-top">
+<div class="card-title blue">Definition — No Profitable Unilateral Deviation</div>
+<div class="body-text"><p>A mixed profile $\sigma\in\Sigma$ is a <strong>Nash equilibrium</strong> if, for every player $i$, her chosen distribution performs at least as well as every alternative distribution against $\sigma_{-i}$:</p></div>
+<div class="math-display boxed-blue">$$\forall i\in\{1,\ldots,N\},\quad\forall\tau_i\in\Sigma_i,\qquad g_i(\sigma_i,\sigma_{-i})\geq g_i(\tau_i,\sigma_{-i})$$</div>
+<div class="body-text"><p>On the left, player $i$ keeps her proposed strategy $\sigma_i$. On the right, she changes it to $\tau_i$. The opponents’ profile is the same on both sides. Equilibrium requires that this unilateral change never raises her expected payoff.</p><p>The comparison is made <strong>ex ante</strong>: after the mixed strategy has been specified, but before the random action is drawn. The player evaluates the expected payoff of her distribution.</p></div>
+
+</div>
+
+<div class="prop-box">
+<div class="prop-title">Proposition — Checking Pure Deviations Is Sufficient</div>
+<div class="body-text"><p>It is enough to check deviations to pure actions:</p></div>
+<div class="math-display boxed-blue">$$\forall i,\quad\forall t_i\in S_i,\qquad g_i(\sigma_i,\sigma_{-i})\geq g_i(t_i,\sigma_{-i})$$</div>
+<div class="body-text"><p>This is equivalent to the definition with all mixed deviations. The reason is multi-linearity: the payoff from a mixed deviation is a weighted average of the payoffs from its pure actions. If none of those actions improves on the proposed payoff, their weighted average cannot improve on it either.</p></div>
+
+</div>
+
+<div class="prop-box">
+<div class="prop-title">Best Responses — The Same Equilibrium Condition</div>
+<div class="body-text"><p>The best-response set $BR_i(\sigma_{-i})$ contains all mixed strategies that maximize player $i$’s expected payoff against the opponents’ given profile.</p></div>
+<div class="math-display boxed-blue">$$BR_i(\sigma_{-i})=\operatorname*{arg\,max}_{\tau_i\in\Sigma_i}g_i(\tau_i,\sigma_{-i})$$</div>
+<div class="math-display boxed-blue">$$\sigma\text{ is a Nash equilibrium}\quad\Longleftrightarrow\quad\sigma_i\in BR_i(\sigma_{-i})\ \text{for every }i$$</div>
+<div class="body-text"><p>As in pure strategies, an equilibrium is a profile of mutual best responses. Here a best response may itself be a distribution.</p></div>
+
+</div>
+
+<div class="prop-box">
+<div class="prop-title">Proposition — The Strong Indifference Principle</div>
+<div class="body-text"><p>A profile $\sigma$ is a Nash equilibrium if and only if both conditions below hold for every player.</p></div>
+<div class="demo-step"><div class="step-num">i</div><div class="step-body"><strong>All actions used with positive probability give the same payoff.</strong><div><div class="math-display boxed-blue">$$\forall s_i,t_i\in\operatorname{supp}(\sigma_i),\qquad g_i(s_i,\sigma_{-i})=g_i(t_i,\sigma_{-i})$$</div>
+The equality is evaluated against the opponents’ equilibrium distributions. If the player uses several actions, each must give the same expected payoff.</div></div></div>
+<div class="demo-step"><div class="step-num">ii</div><div class="step-body"><strong>An unused action cannot give a higher payoff.</strong><div><div class="math-display boxed-blue">$$\begin{gathered}\forall s_i\in\operatorname{supp}(\sigma_i),\quad\forall t_i\notin\operatorname{supp}(\sigma_i),\\g_i(t_i,\sigma_{-i})\leq g_i(s_i,\sigma_{-i}).\end{gathered}$$</div>
+An action outside the support may tie with the actions in the support, but it must not do better. Equality among the used actions alone is therefore not a complete equilibrium check.</div></div></div>
+
+</div>
+
+<div class="example-box">
+<div class="example-badge">Proof Exercise · Strong Indifference Principle</div>
+<div class="example-context"><p>The support explicitly asks you to prove the strong indifference principle.</p></div>
+<div class="example-task"><strong>Task:</strong> Prove both directions: an equilibrium satisfies conditions (i)–(ii), and those conditions rule out every profitable deviation.</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-indifference-proof" data-label="Proof Solution" onclick="toggle(this,'mixed-indifference-proof')"><span class="toggle-label">Show Proof Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-indifference-proof"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Necessity: a used action cannot be worse than another action.</strong><div>Assume that $\sigma$ is an equilibrium. Suppose a player uses $s_i$ with $\sigma_i(s_i)&gt;0$, but some action $t_i$ gives a strictly higher payoff against $\sigma_{-i}$. Move the probability on $s_i$ to $t_i$, leaving all other probabilities unchanged. The expected-payoff increase is
+$$\sigma_i(s_i)\bigl[g_i(t_i,\sigma_{-i})-g_i(s_i,\sigma_{-i})\bigr]>0.$$
+This would be a profitable unilateral deviation, contradicting equilibrium. Hence each used action must give a maximal payoff. All used actions therefore tie, and no unused action can give more. These are conditions (i) and (ii).</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Sufficiency: any deviation is an average of payoffs no larger than the common payoff.</strong><div>Now assume (i) and (ii). For player $i$, denote the common payoff of the supported actions by $v_i$. Because all probability is assigned to these actions,
+$$g_i(\sigma_i,\sigma_{-i})=\sum_{s_i\in\operatorname{supp}(\sigma_i)}\sigma_i(s_i)v_i=v_i.$$
+Every pure action gives at most $v_i$: the supported ones give exactly $v_i$, and (ii) bounds the others. For any mixed deviation $\tau_i$,
+$$g_i(\tau_i,\sigma_{-i})=\sum_{t_i\in S_i}\tau_i(t_i)g_i(t_i,\sigma_{-i})\leq\sum_{t_i\in S_i}\tau_i(t_i)v_i=v_i.$$
+Thus no player can profitably deviate. Since this argument holds for every player, $\sigma$ is a Nash equilibrium.</div></div></div>
+</div>
+</div>
+
+<div class="concept-card cyan-top">
+<div class="card-title cyan">Method — Search over Supports</div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Choose a possible support for each player.</strong><div>Specify which actions receive positive probability. Include singleton supports: one or more players may play pure strategies at equilibrium.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Impose indifference within each support.</strong><div>Equate each player’s expected payoffs from the actions she uses. Add the probability restrictions: probabilities in the proposed support must be positive and must sum to $1$.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Check all unused actions.</strong><div>Against the candidate opponents’ distributions, each action outside the support must give no more than the common supported payoff. Reject a candidate that fails this comparison.</div></div></div>
+<div class="body-text"><p>Repeat for the other possible supports. The number of possibilities grows with the number of actions, which is why the professor describes the full search as potentially tedious.</p></div>
+<div class="key-note blue"><strong>Reading the indifference equations:</strong> player 1’s pure-action payoffs depend on player 2’s probabilities, and conversely. In a two-player game, making player 1 indifferent determines player 2’s mixing probability.</div>
+
+</div>
+
+<div class="section-header subsection-target" id="mixed-ne-examples" data-subsection="Examples"><span class="section-label purple">Examples</span><h2>Equilibria, Payoffs and Best-Response Graphs</h2></div>
+
+<div class="body-text"><p>In each example, let $p$ be the probability that player 1 chooses the first row and $q$ the probability that player 2 chooses the first column. The graphs use $p$ on the horizontal axis and $q$ on the vertical axis. A best-response set can contain an entire interval at an indifference point.</p></div>
+<div class="example-box">
+<div class="example-badge">Example 6.1.A · Coordination</div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$L$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
+</div>
+<div class="example-task"><strong>Task:</strong> Find all Nash equilibria, calculate their payoffs, and plot both best-response correspondences.</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-coordination" data-label="Solution" onclick="toggle(this,'mixed-ne-coordination')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-ne-coordination"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Compute payoffs from each pure action.</strong><div>Write $p=\sigma_1(L)$ and $q=\sigma_2(L)$. For player 1,
+$$g_1(L,q)=q\cdot1+(1-q)\cdot0=q,$$
+$$g_1(C,q)=q\cdot0+(1-q)\cdot1=1-q.$$
+For player 2, the same calculation gives $g_2(p,L)=p$ and $g_2(p,C)=1-p$.</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Write the best-response correspondences.</strong><div>Player 1 prefers $L$ when $q&gt;1/2$, prefers $C$ when $q&lt;1/2$, and is indifferent when $q=1/2$. In probability notation,
+$$BR_1(q)=\begin{cases}\{0\}&q<1/2,\\{[0,1]}&q=1/2,\\\{1\}&q>1/2.\end{cases}$$
+Similarly,
+$$BR_2(p)=\begin{cases}\{0\}&p<1/2,\\{[0,1]}&p=1/2,\\\{1\}&p>1/2.\end{cases}$$
+Here $BR_1$ returns the admissible values of $p$, and $BR_2$ returns those of $q$.</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find every intersection.</strong><div>The two pure intersections are $(p,q)=(1,1)$ and $(0,0)$, corresponding to $(L,L)$ and $(C,C)$. For both players to randomize, both must be indifferent:
+$$q=1-q\Longrightarrow q=\frac12,\qquad p=1-p\Longrightarrow p=\frac12.$$
+If one player is pure, the other has a unique pure best response, so there are no additional equilibria with only one player randomizing. Hence
+$$NE=\left\{(L,L),(C,C),\left(\tfrac12L+\tfrac12C,\tfrac12L+\tfrac12C\right)\right\}.$$</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Compute equilibrium payoffs.</strong><div>The pure equilibria give $(1,1)$. At the mixed equilibrium, the two matching profiles each occur with probability $1/4$, and the mismatching profiles give zero:
+$$g_1=g_2=\frac14\cdot1+\frac14\cdot1=\frac12.$$
+The mixed equilibrium therefore gives $(1/2,1/2)$.</div></div></div>
+<figure class="br-figure"><img src="images/mixed-br-coordination.svg" alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
+<figcaption>The cyan set shows $p\in BR_1(q)$; the dashed coral set shows $q\in BR_2(p)$. Their three intersections are the two pure equilibria and the completely mixed equilibrium. The horizontal and vertical middle segments represent indifference, not additional equilibria by themselves.</figcaption></figure></div>
+</div>
+
+<div class="example-box">
+<div class="example-badge">Example 6.1.B · Different Preferences over Coordination</div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$F$</th><th scope="col">$O$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$F$</th><td>$(2,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$O$</th><td>$(0,0)$</td><td>$(1,2)$</td></tr></tbody></table></div>
+</div>
+<div class="example-task"><strong>Task:</strong> Find all Nash equilibria and their payoffs, then plot the best responses.</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-battle" data-label="Solution" onclick="toggle(this,'mixed-ne-battle')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-ne-battle"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Calculate the two players’ pure-action payoffs.</strong><div>Let $p=\sigma_1(F)$ and $q=\sigma_2(F)$. Player 1’s payoffs are
+$$g_1(F,q)=2q,\qquad g_1(O,q)=1-q.$$
+Player 2’s payoffs are
+$$g_2(p,F)=p,\qquad g_2(p,O)=2(1-p).$$
+Both players benefit from choosing the same action, but player 1 prefers $(F,F)$ and player 2 prefers $(O,O)$.</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Find the indifference thresholds and best responses.</strong><div>Player 1 is indifferent when $2q=1-q$, so $3q=1$ and $q=1/3$. Player 2 is indifferent when $p=2(1-p)$, so $3p=2$ and $p=2/3$.
+$$BR_1(q)=\begin{cases}\{0\}&q<1/3,\\{[0,1]}&q=1/3,\\\{1\}&q>1/3,\end{cases}$$
+$$BR_2(p)=\begin{cases}\{0\}&p<2/3,\\{[0,1]}&p=2/3,\\\{1\}&p>2/3.\end{cases}$$</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>List all equilibria.</strong><div>The pure mutual best responses are $(F,F)$ and $(O,O)$. The completely mixed equilibrium is $(p,q)=(2/3,1/3)$. Against a pure opponent, each player has a unique pure best response, so a profile with just one mixing player adds no equilibrium. Thus
+$$NE=\left\{(F,F),(O,O),\left(\tfrac23F+\tfrac13O,\tfrac13F+\tfrac23O\right)\right\}.$$</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate the equilibrium payoffs.</strong><div>At $(F,F)$ the payoffs are $(2,1)$; at $(O,O)$ they are $(1,2)$. At the mixed equilibrium,
+$$g_1=2q=2\cdot\frac13=\frac23,\qquad g_2=p=\frac23.$$
+Equivalently, each matching cell occurs with probability $2/9$:
+$$g_1=\frac29\cdot2+\frac29\cdot1=\frac23,\qquad g_2=\frac29\cdot1+\frac29\cdot2=\frac23.$$
+The mixed equilibrium payoffs are therefore $(2/3,2/3)$.</div></div></div>
+<figure class="br-figure"><img src="images/mixed-br-battle.svg" alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
+<figcaption>Player 1’s indifference creates the horizontal segment at $q=1/3$. Player 2’s indifference creates the vertical segment at $p=2/3$. Their intersection gives the mixed equilibrium; the other intersections are $(0,0)$ and $(1,1)$.</figcaption></figure></div>
+</div>
+
+<div class="example-box">
+<div class="example-badge">Example 6.1.C · A Game with No Pure Equilibrium</div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$T$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$W$</th><td>$(1,3)$</td><td>$(1,2)$</td></tr><tr><th scope="row" class="row-label">$S$</th><td>$(2,-2)$</td><td>$(0,-1)$</td></tr></tbody></table></div>
+</div>
+<div class="example-task"><strong>Task:</strong> Find all Nash equilibria, their payoffs, and the best-response graphs.</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-conflict" data-label="Solution" onclick="toggle(this,'mixed-ne-conflict')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-ne-conflict"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Check the pure profiles.</strong><div>Player 1 prefers $S$ against $T$ ($2&gt;1$) and $W$ against $C$ ($1&gt;0$). Player 2 prefers $T$ against $W$ ($3&gt;2$) and $C$ against $S$ ($-1&gt;-2$).
+<br><br>Thus $(W,T)$ invites player 1 to switch to $S$; $(S,T)$ invites player 2 to switch to $C$; $(S,C)$ invites player 1 to switch to $W$; and $(W,C)$ invites player 2 to switch to $T$. There is no pure-strategy equilibrium.</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Compute expected payoffs and indifference conditions.</strong><div>Let $p=\sigma_1(W)$ and $q=\sigma_2(T)$. Player 1 receives
+$$g_1(W,q)=q+(1-q)=1,\qquad g_1(S,q)=2q.$$
+Her indifference condition is $1=2q$, hence $q=1/2$. Player 2 receives
+$$g_2(p,T)=3p-2(1-p)=5p-2,$$
+$$g_2(p,C)=2p-(1-p)=3p-1.$$
+Her indifference condition is $5p-2=3p-1$, hence $2p=1$ and $p=1/2$.</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write the best responses and identify the equilibrium.</strong><div>Player 1 prefers $W$ for small $q$ and $S$ for large $q$:
+$$BR_1(q)=\begin{cases}\{1\}&q<1/2,\\{[0,1]}&q=1/2,\\\{0\}&q>1/2.\end{cases}$$
+For player 2, the payoff difference between $T$ and $C$ is $(5p-2)-(3p-1)=2p-1$, so
+$$BR_2(p)=\begin{cases}\{0\}&p<1/2,\\{[0,1]}&p=1/2,\\\{1\}&p>1/2.\end{cases}$$
+These correspondences have only one intersection. Pure opponent actions induce unique pure best responses, so there is no equilibrium with exactly one player mixing. Therefore
+$$NE=\left\{\left(\tfrac12W+\tfrac12S,\tfrac12T+\tfrac12C\right)\right\}.$$</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate the equilibrium payoffs.</strong><div>Player 1 receives $1$ from either pure action against $q=1/2$, so her equilibrium payoff is $1$. Player 2 receives
+$$5\cdot\frac12-2=\frac12\qquad\text{and}\qquad3\cdot\frac12-1=\frac12.$$
+The equilibrium payoff pair is $(1,1/2)$.</div></div></div>
+<figure class="br-figure"><img src="images/mixed-br-conflict.svg" alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
+<figcaption>The cyan correspondence switches from $p=1$ below $q=1/2$ to $p=0$ above it. The coral correspondence switches from $q=0$ to $q=1$ at $p=1/2$. Only the middle intersection satisfies both best-response conditions.</figcaption></figure></div>
+</div>
+
+<div class="section-header subsection-target" id="sec-6-2" data-subsection="§ 6.2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
+
+<div class="prop-box">
+<div class="prop-title">Theorem — Nash (1950)</div>
+<div class="body-text"><p>Every normal-form game with a finite number of players and a finite, nonempty action set for each player has at least one Nash equilibrium <strong>in its mixed extension</strong>.</p></div>
+<div class="math-display boxed-blue">$$NE_{\mathrm{mix}}(\Gamma)\neq\varnothing$$</div>
+<div class="body-text"><p>The existence statement allows pure equilibria as well as equilibria involving randomization. It does not require a pure equilibrium to exist, and it does not say the equilibrium is unique. Once mixed strategies are allowed, the finite games considered here always have at least one equilibrium prediction.</p><p>The support states this theorem without a proof.</p></div>
+
+</div>
+
+<div class="section-header subsection-target" id="sec-7" data-subsection="Section 7"><span class="section-label green">Section 7</span><h2>Nash Equilibrium and Dominance</h2></div>
+
+<div class="concept-card cyan-top">
+<div class="card-title cyan">B. Motivation — Can We Simplify Before Solving?</div>
+<div class="body-text"><p>The connection between dominance and equilibrium remains the same as in pure strategies. We can first remove dominated pure actions, allowing a mixed strategy to establish the domination, and then search for equilibria in the smaller game. The distinction between strict and weak elimination determines whether all original equilibria are preserved.</p></div>
+
+</div>
+
+<div class="prop-box">
+<div class="prop-title">Proposition — Strict Dominance Preserves Every Equilibrium</div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>A strictly dominant-strategy equilibrium is the unique Nash equilibrium.</strong><div>If every player has a strictly dominant strategy, the profile formed by these strategies is the game’s only Nash equilibrium, even when all mixed strategies are allowed.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>IESDS preserves the entire equilibrium set.</strong><div>Let $(\Gamma^k)_{k\geq1}$ be a sequence obtained by deleting strictly dominated pure actions, possibly dominated by mixtures. Then
+$$NE_{\mathrm{mix}}(\Gamma^k)=NE_{\mathrm{mix}}(\Gamma^1)\qquad\text{for every }k\geq1.$$
+An equilibrium of the reduced game is viewed as a profile in the original game by assigning probability zero to deleted actions. With this identification, the equilibrium sets are equal: no pure or mixed equilibrium is lost.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>If strict elimination leaves a single profile, it solves the game.</strong><div>When the game is dominance solvable by IESDS, the surviving profile is its unique Nash equilibrium in mixed strategies. No further support search is needed.</div></div></div>
+
+</div>
+
+<div class="prop-box">
+<div class="prop-title">Proposition — Weak Dominance May Remove Equilibria</div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>A dominant-strategy equilibrium is a Nash equilibrium.</strong><div>If every player chooses a weakly dominant strategy, each is choosing a best response to the others. The resulting profile is a Nash equilibrium; the statement does not assert uniqueness.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Weak elimination gives inclusion, not equality.</strong><div>For a sequence of games obtained by deleting weakly dominated pure actions, possibly dominated by mixtures,
+$$NE_{\mathrm{mix}}(\Gamma^k)\subseteq NE_{\mathrm{mix}}(\Gamma^1).$$
+Again, extend the surviving strategies by zero on deleted actions. Every equilibrium found in the reduced game is an original equilibrium, but the elimination may have removed other original equilibria.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>A unique surviving profile is an equilibrium of the original game.</strong><div>If IEWDS leaves only one profile, that profile is a Nash equilibrium. The original game may still have other equilibria that were deleted along the way.</div></div></div>
+
+</div>
+
+<div class="concept-card cyan-top">
+<div class="card-title cyan">Method — Dominance First, Indifference Second</div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Look for strictly dominant strategies.</strong><div>If every player has one, stop: their profile is the unique Nash equilibrium.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Otherwise, run IESDS.</strong><div>Search for pure actions strictly dominated by either pure strategies or mixtures. Continue in each reduced game. If one profile remains, stop: the game is dominance solvable.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>If several actions survive, search their possible supports.</strong><div>Apply the strong indifference principle in the reduced game: impose equality within each support, check the probability restrictions, and verify that unused actions do not give higher payoffs. Include singleton supports.</div></div></div>
+<div class="demo-step"><div class="step-num">4</div><div class="step-body"><strong>Return to the original game.</strong><div>Assign zero probability to the deleted actions. Because the eliminations were strict, the equilibria of the reduced game give exactly the original game’s full equilibrium set.</div></div></div>
+
+</div>
+
+<div class="example-box">
+<div class="example-badge">Example · The Full Step-by-Step Method</div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th scope="row" class="row-label">$B$</th><td>$(-1,4)$</td><td>$(0,4)$</td><td>$(4,5)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
+</div>
+<div class="example-task"><strong>Task:</strong> Find every Nash equilibrium using dominance first and the strong indifference principle in the reduced game.</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-full-method" data-label="Solution" onclick="toggle(this,'mixed-ne-full-method')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-ne-full-method"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete player 1’s strictly dominated row B.</strong><div>Compare the first payoffs of rows $C$ and $B$ across columns $(A,B,C)$:
+$$C:(0,1,5),\qquad B:(-1,0,4).$$
+Every comparison is strict: $0&gt;-1$, $1&gt;0$, and $5&gt;4$. Thus $C$ strictly dominates $B$ for player 1. Delete row $B$.<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
+</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete player 2’s strictly dominated column C in the reduced game.</strong><div>Using the second payoffs and row order $(A,C)$:
+$$B:(0,1),\qquad C:(-1,0).$$
+Column $B$ strictly dominates column $C$, since $0&gt;-1$ and $1&gt;0$. This comparison uses the reduced game; in the original game, row $B$ gave player 2 a payoff of $5$ in column $C$ and $4$ in column $B$. After the deletion we obtain:<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
+</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find the pure equilibria of the surviving game.</strong><div>At $(A,A)$, each player obtains $1$ and would obtain $0$ by switching. The same is true at $(C,B)$. The two off-diagonal profiles give $(0,0)$, so they are not equilibria.
+<br><br>No further strict deletion is possible: each remaining action is a strict best response to one of the opponent’s actions.</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Find the completely mixed equilibrium.</strong><div>Let $p$ be player 1’s probability of $A$ (with $1-p$ on $C$), and let $q$ be player 2’s probability of $A$ (with $1-q$ on $B$). Player 1 is indifferent when
+$$g_1(A,q)=q=1-q=g_1(C,q)\quad\Longrightarrow\quad q=\frac12.$$
+Player 2 is indifferent when
+$$g_2(p,A)=p=1-p=g_2(p,B)\quad\Longrightarrow\quad p=\frac12.$$
+Against a pure opponent, the best response is unique, so no equilibrium has exactly one mixing player. These three profiles exhaust the reduced game’s equilibria.</div></div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Restore the original action sets and check the unused actions.</strong><div>At the mixed candidate, the supported actions give $1/2$ to each player. The deleted row $B$ gives player 1
+$$g_1\left(B,\tfrac12A+\tfrac12B\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12<\frac12.$$
+The deleted column $C$ gives player 2
+$$g_2\left(\tfrac12A+\tfrac12C,C\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12<\frac12.$$
+Thus the outside-support condition is satisfied. Strict elimination also ensures that both pure equilibria of the reduced game remain equilibria of the original game.</div></div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>State the complete answer.</strong><div>The original game’s equilibria are
+$$NE=\left\{(A,A),(C,B),\left(\tfrac12A+\tfrac12C,\tfrac12A+\tfrac12B\right)\right\}.$$
+The pure equilibria yield $(1,1)$ and the mixed equilibrium yields $(1/2,1/2)$. In vector form, using the original order $(A,B,C)$ for both players, the mixed equilibrium is
+$$\sigma_1=\left(\frac12,0,\frac12\right),\qquad\sigma_2=\left(\frac12,\frac12,0\right).$$</div></div></div>
+</div>
+</div>
+
+<div class="concept-card purple-top">
+<div class="card-title purple">Exercise Session 2 — Mixed Strategies</div>
+<div class="body-text"><p>The support refers to <em>Exercise session 2: Static games with perfect information — Mixed strategies</em>. Its exercise statements are not included in the supplied pages. This reference is retained here; the missing exercise sheet has not been reconstructed.</p></div>
+
+</div>
+
+<div class="example-box">
+<div class="example-badge">Debate · Interpreting Mixed Strategies</div>
+<div class="example-context"><p>Return to the four interpretations in § 4.2: randomization, random beliefs, population, and unknown preferences.</p></div>
+<div class="example-task"><strong>Task:</strong> What is your preferred interpretation of mixed strategies?</div>
+<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-interpretation-debate" data-label="Discussion Guide" onclick="toggle(this,'mixed-interpretation-debate')"><span class="toggle-label">Show Discussion Guide</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<div class="collapsible" id="mixed-interpretation-debate"><p>There is no single numerical correction to this discussion question. State the interpretation you prefer, explain what the probabilities represent in it, and explain why that reading seems convincing to you.</p><p>You can refer to the distinction already made in the course: an actual random draw, beliefs about someone’s action, proportions in a population, or uncertainty about small private preferences. The choice of interpretation is yours.</p></div>
+</div>
+
+<nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
+<a class="sidebar-sublink" href="mixed-dominance.html">← Dominance in Mixed Strategies</a>
+</nav>
+</div><!-- end main-content -->
+</div><!-- end main-wrap -->
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('main-wrap').classList.toggle('expanded');
+}
+function toggle(btn,id){
+  const box=document.getElementById(id);
+  if(!box) return;
+  const open=!box.classList.contains('open');
+  box.classList.toggle('open',open);
+  btn.classList.toggle('open',open);
+  btn.setAttribute('aria-expanded',String(open));
+  const label=btn.querySelector('.toggle-label');
+  if(label) label.textContent=(open?'Hide ':'Show ')+(btn.dataset.label||'Solution');
+  if(open && window.MathJax && MathJax.startup && MathJax.startup.promise){
+    MathJax.startup.promise.then(() => MathJax.typesetPromise([box])).catch(console.error);
+  }
+}
+if(window.matchMedia('(max-width:900px)').matches){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('main-wrap').classList.add('expanded');
+}
+
+/* ── CHAPTER PROGRESS BAR LOGIC ── */
+function initChapterProgress(){
+  const container = document.getElementById('chapterProgressBar');
+  if(!container) return;
+
+  const subsections = Array.from(document.querySelectorAll('.subsection-target'));
+  const revHeader = document.getElementById('sec-revision');
+  if(subsections.length === 0) return;
+
+  container.innerHTML = '';
+  const segments = subsections.map((sec, idx) => {
+    const seg = document.createElement('div');
+    seg.className = 'progress-segment' + (idx === 0 ? ' active' : '');
+    seg.setAttribute('role', 'button');
+    seg.setAttribute('tabindex', '0');
+    seg.setAttribute('aria-label', `${sec.dataset.subsection}: ${sec.querySelector('h2').textContent}`);
+    const jump = () => { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    seg.addEventListener('click', jump);
+    seg.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); } });
+    container.appendChild(seg);
+    return seg;
+  });
+
+  function updateProgress(){
+    const scrollY = window.scrollY || window.pageYOffset;
+    const windowH = window.innerHeight;
+    const totalH = document.documentElement.scrollHeight;
+    const isAtBottom = (windowH + scrollY) >= (totalH - 60);
+
+    let inRevision = false;
+    if(revHeader){
+      const r = revHeader.getBoundingClientRect();
+      if(r.top <= 140) inRevision = true;
+    }
+
+    if(isAtBottom || inRevision){
+      segments.forEach(seg => { seg.className = 'progress-segment completed'; });
+      return;
+    }
+
+    let activeIdx = 0;
+    for(let i = 0; i < subsections.length; i++){
+      const rect = subsections[i].getBoundingClientRect();
+      if(rect.top <= 140){
+        activeIdx = i;
+      }
+    }
+
+    segments.forEach((seg, idx) => {
+      if(idx < activeIdx){
+        seg.className = 'progress-segment completed';
+      } else if(idx === activeIdx){
+        seg.className = 'progress-segment active';
+      } else {
+        seg.className = 'progress-segment';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+  updateProgress();
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initChapterProgress);
+} else {
+  initChapterProgress();
+}
+</script>
+</body>
+</html>

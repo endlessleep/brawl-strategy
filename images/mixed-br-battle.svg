@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="345.6pt" height="309.6pt" viewBox="0 0 345.6 309.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Game Theory course — best-response correspondences</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 309.6 
+L 345.6 309.6 
+L 345.6 0 
+L 0 0 
+z
+" style="fill: #0f1726"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 65.858 257.8 
+L 310.458 257.8 
+L 310.458 13.2 
+L 65.858 13.2 
+z
+" style="fill: #0f1726"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 77.97782 257.8 
+L 77.97782 13.2 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #cbd5e1" x="77.97782" y="273.158281" transform="rotate(-0 77.97782 273.158281)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 224.884727 257.8 
+L 224.884727 13.2 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #cbd5e1" x="224.884727" y="273.158281" transform="rotate(-0 224.884727 273.158281)">2/3</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 298.33818 257.8 
+L 298.33818 13.2 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #cbd5e1" x="298.33818" y="273.158281" transform="rotate(-0 298.33818 273.158281)">1</text>
+     </g>
+    </g>
+    <g id="text_4">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #cbd5e1" x="188.158" y="293.804219" transform="rotate(-0 188.158 293.804219)">p · Probability of the first row</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 65.858 245.68018 
+L 310.458 245.68018 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_5">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #cbd5e1" x="58.858" y="249.859321" transform="rotate(-0 58.858 249.859321)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 65.858 172.226727 
+L 310.458 172.226727 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_6">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #cbd5e1" x="58.858" y="176.405867" transform="rotate(-0 58.858 176.405867)">1/3</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 65.858 25.31982 
+L 310.458 25.31982 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 0.7,1.155; stroke-dashoffset: 0; stroke: #334155; stroke-width: 0.7"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_7">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #cbd5e1" x="58.858" y="29.49896" transform="rotate(-0 58.858 29.49896)">1</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #cbd5e1" x="28.867219" y="135.5" transform="rotate(-90 28.867219 135.5)">q · Probability of the first column</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 65.858 257.8 
+L 65.858 13.2 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 310.458 257.8 
+L 310.458 13.2 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 65.858 257.8 
+L 310.458 257.8 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 65.858 13.2 
+L 310.458 13.2 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_13">
+    <path d="M 77.97782 245.68018 
+L 77.97782 172.226727 
+L 298.33818 172.226727 
+L 298.33818 25.31982 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke: #38bdf8; stroke-width: 3.5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_14">
+    <path d="M 77.97782 245.68018 
+L 224.884727 245.68018 
+L 224.884727 25.31982 
+L 298.33818 25.31982 
+" clip-path="url(#pdda2154646)" style="fill: none; stroke-dasharray: 10.8,5.4; stroke-dashoffset: 0; stroke: #fb7185; stroke-width: 2.7"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m4e0defe2e7" d="M 0 4.472136 
+C 1.186024 4.472136 2.323632 4.000923 3.162278 3.162278 
+C 4.000923 2.323632 4.472136 1.186024 4.472136 0 
+C 4.472136 -1.186024 4.000923 -2.323632 3.162278 -3.162278 
+C 2.323632 -4.000923 1.186024 -4.472136 0 -4.472136 
+C -1.186024 -4.472136 -2.323632 -4.000923 -3.162278 -3.162278 
+C -4.000923 -2.323632 -4.472136 -1.186024 -4.472136 0 
+C -4.472136 1.186024 -4.000923 2.323632 -3.162278 3.162278 
+C -2.323632 4.000923 -1.186024 4.472136 0 4.472136 
+z
+" style="stroke: #0f1726; stroke-width: 1.4"/>
+    </defs>
+    <g clip-path="url(#pdda2154646)">
+     <use xlink:href="#m4e0defe2e7" x="77.97782" y="245.68018" style="fill: #fbbf24; stroke: #0f1726; stroke-width: 1.4"/>
+     <use xlink:href="#m4e0defe2e7" x="224.884727" y="172.226727" style="fill: #fbbf24; stroke: #0f1726; stroke-width: 1.4"/>
+     <use xlink:href="#m4e0defe2e7" x="298.33818" y="25.31982" style="fill: #fbbf24; stroke: #0f1726; stroke-width: 1.4"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdda2154646">
+   <rect x="65.858" y="13.2" width="244.6" height="244.6"/>
+  </clipPath>
+ </defs>
+</svg>
