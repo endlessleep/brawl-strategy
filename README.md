@@ -42,10 +42,10 @@ are unchanged; responsive containment keeps wide formulas and tables scrollable.
 
 - Exact rational support enumeration for all three 2×2 games and the 2×3 game.
 - Dominance comparisons, equilibrium payoffs and the six Cournot elimination rounds.
-- All 41 collapsible corrections, formulas, images, four-page navigation and old links.
+- All 40 collapsible corrections, formulas, images, four-page navigation and old links.
 - Chromium and WebKit browser checks on desktop and emulated iPad portrait/landscape
   layouts. These are browser/emulation checks, not a physical-iPad test.
-- No original content anchor was lost. The duplicated dominance example was consolidated.
+- Exercise and section anchors are preserved. The duplicated dominance example was consolidated.
 
-The full Exercise Session 2 sheet is not in the supplied revision; only the provided
-classroom exercise is included. No missing exercise statements have been invented.
+Course text uses direct explanations, with concise introductions. The opinion
+discussion and editorial comments about source documents have been removed.

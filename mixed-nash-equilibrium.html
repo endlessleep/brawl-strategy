@@ -385,7 +385,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
 <div class="section-header" data-subsection="Section 6" id="sec-6"><span class="section-label blue">Section 6</span><h2>Nash Equilibrium in Mixed Strategies</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">A. Motivation</div>
-<div class="body-text"><p>The mixed extension lets us analyze random behavior using the same equilibrium idea as before. Each player chooses a distribution, and we ask whether anyone can obtain a higher expected payoff by changing her own distribution while the others keep theirs fixed.</p></div>
+<div class="body-text"><p>At equilibrium, no player can increase her expected payoff by changing her distribution while the others keep theirs fixed.</p></div>
 </div>
 <div class="section-header subsection-target" data-subsection="§ 6.1" id="sec-6-1"><span class="section-label blue">§ 6.1</span><h2>Definitions and the Indifference Principle</h2></div>
 <div class="concept-card blue-top">
@@ -417,7 +417,6 @@ An action outside the support may tie with the actions in the support, but it mu
 </div>
 <div class="example-box">
 <div class="example-badge">Proof Exercise · Strong Indifference Principle</div>
-<div class="example-context"><p>The support explicitly asks you to prove the strong indifference principle.</p></div>
 <div class="example-task"><strong>Task:</strong> Prove both directions: an equilibrium satisfies conditions (i)–(ii), and those conditions rule out every profitable deviation.</div>
 <button aria-controls="mixed-indifference-proof" aria-expanded="false" class="toggle-btn example-toggle" data-label="Proof Solution" onclick="toggle(this,'mixed-indifference-proof')" type="button"><span class="toggle-label">Show Proof Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 <div class="collapsible" id="mixed-indifference-proof"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Necessity: a used action cannot be worse than another action.</strong><div>Assume that $\sigma$ is an equilibrium. Suppose a player uses $s_i$ with $\sigma_i(s_i)&gt;0$, but some action $t_i$ gives a strictly higher payoff against $\sigma_{-i}$. Move the probability on $s_i$ to $t_i$, leaving all other probabilities unchanged. The expected-payoff increase is
@@ -431,13 +430,12 @@ Thus no player can profitably deviate. Since this argument holds for every playe
 </div>
 </div>
 <div class="concept-card cyan-top">
-<div class="card-title cyan">Method — Search over Supports (Professor's Order)</div>
+<div class="card-title cyan">Method — Search over Supports</div>
 <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Choose a possible support for each player.</strong><div>Specify which actions receive positive probability. Include singleton supports: one or more players may play pure strategies at equilibrium.</div></div></div>
 <div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Impose indifference within each support.</strong><div>Equate each player’s expected payoffs from the actions she uses. Add the probability restrictions: probabilities in the proposed support must be positive and must sum to $1$.</div></div></div>
 <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Check all unused actions.</strong><div>Against the candidate opponents’ distributions, each action outside the support must give no more than the common supported payoff. Reject a candidate that fails this comparison.</div></div></div>
-<div class="body-text"><p>Repeat for the other possible supports. The number of possibilities grows with the number of actions, which is why the professor describes the full search as potentially tedious.</p></div>
-<div class="key-note blue"><strong>Reading the indifference equations:</strong> player 1’s pure-action payoffs depend on player 2’s probabilities, and conversely. In a two-player game, making player 1 indifferent determines player 2’s mixing probability.</div>
-<div class="key-note amber"><strong>How to read the equations:</strong> $p$ is Player 1's probability; $q$ is Player 2's probability. A <em>positive-probability</em> support forces its owner to be indifferent among those actions. Therefore, the equations making Player 2 indifferent determine $p$; those making Player 1 indifferent determine $q$. After solving, compare against every action not in the support.</div></div>
+<div class="body-text"><p>Repeat for every possible combination of supports.</p></div>
+<div class="key-note blue"><strong>Which probability are we solving for?</strong> $p$ is Player 1’s probability and $q$ is Player 2’s. Making Player 2 indifferent determines $p$; making Player 1 indifferent determines $q$.</div></div>
 <div class="section-header subsection-target" data-subsection="Examples" id="mixed-ne-examples"><span class="section-label purple">Examples</span><h2>Equilibria, Payoffs and Best-Response Graphs</h2></div>
 <div class="body-text"><p>In the three $2\times2$ examples below, let $p$ be the probability that player 1 chooses the first row and $q$ the probability that player 2 chooses the first column. The graphs use $p$ on the horizontal axis and $q$ on the vertical axis. A best-response set can contain an entire interval at an indifference point.</p></div>
 <div class="example-box">
@@ -500,12 +498,12 @@ Both players put positive probability on every action, so there is no unused act
 <div>$$\boxed{NE=\{(1,1),(0,0),(\tfrac23,\tfrac13)\}.}$$
 The mixed profile is $\sigma_1=\tfrac23F+\tfrac13O$ and $\sigma_2=\tfrac13F+\tfrac23O$. At each pure equilibrium, changing action gives $0$ instead of a strictly positive payoff, so the unused actions are not profitable. The support enumeration has exhausted all possibilities for Player 2; the indifference condition in the mixed-support case also rules out a pure strategy for Player 1.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>NE payoffs — the professor's next step.</strong>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate equilibrium payoffs.</strong>
 <div>Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed NE, choose either supported action for each player:
 $$g_1(F,\sigma_2)=2\cdot\tfrac13+0\cdot\tfrac23=\tfrac23,$$
 $$g_2(\sigma_1,F)=1\cdot\tfrac23+0\cdot\tfrac13=\tfrac23.$$
 $$\boxed{\text{NE payoffs: }(2,1),\ (1,2),\ (\tfrac23,\tfrac23).}$$
-The professor also shows the <em>joint probabilities</em> (multiply Player 1's row probability by Player 2's column probability):
+The <em>joint probabilities</em> are the products of Player 1's row probabilities and Player 2's column probabilities:
 <table class="notation-table"><thead><tr><th></th><th>Player 2: F ($1/3$)</th><th>Player 2: O ($2/3$)</th></tr></thead><tbody>
 <tr><td>Player 1: F ($2/3$)</td><td>$2/9$</td><td>$4/9$</td></tr>
 <tr><td>Player 1: O ($1/3$)</td><td>$1/9$</td><td>$2/9$</td></tr>
@@ -551,10 +549,10 @@ The sole intersection is at $(p,q)=(1/2,1/2)$.</div>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>The cyan correspondence switches from $p=1$ below $q=1/2$ to $p=0$ above it. The coral correspondence switches from $q=0$ to $q=1$ at $p=1/2$. Only the middle intersection satisfies both best-response conditions.</figcaption></figure></div>
 </div>
-<div class="section-header subsection-target" data-subsection="2×3 Exercise" id="mixed-ne-2x3"><span class="section-label example">Exercise</span><h2>Professor's Exercise — Nash with Three Actions</h2></div>
+<div class="section-header subsection-target" data-subsection="2×3 Exercise" id="mixed-ne-2x3"><span class="section-label example">Exercise</span><h2>Nash Equilibria with Three Actions</h2></div>
 <div class="example-box">
 <div class="example-badge">Exercise 1 · Find the Set of NE — Two Rows, Three Columns</div>
-<div class="example-context"><p>This is the $T/B$ versus $L/M/R$ game from the professor's whiteboard. Work by the support of Player 2, then check any unused column.</p><p>Throughout this exercise, $p=\sigma_1(T)$ and $\sigma_1=pT+(1-p)B$. For each two-column support, $q$ is the probability of the <em>first named column in that support</em>; the other receives $1-q$, and the unused column receives zero. Thus $q$ refers to $L$ in $\{L,M\}$ and $\{L,R\}$, but to $M$ in $\{M,R\}$.</p>
+<div class="example-context"><p>Enumerate Player 2’s supports, then check any unused column.</p><p>Throughout this exercise, $p=\sigma_1(T)$ and $\sigma_1=pT+(1-p)B$. For each two-column support, $q$ is the probability of the <em>first named column in that support</em>; the other receives $1-q$, and the unused column receives zero. Thus $q$ refers to $L$ in $\{L,M\}$ and $\{L,R\}$, but to $M$ in $\{M,R\}$.</p>
 <div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption><thead><tr><th></th><th>$L$</th><th>$M$</th><th>$R$</th></tr></thead><tbody>
 <tr><th class="row-label">$T$</th><td>$(7,2)$</td><td>$(2,7)$</td><td>$(3,6)$</td></tr>
 <tr><th class="row-label">$B$</th><td>$(2,7)$</td><td>$(7,2)$</td><td>$(4,5)$</td></tr>
@@ -571,7 +569,7 @@ $\operatorname{supp}(\sigma_2)=\{M\}$: $BR_1(M)=\{B\}$, but $M\notin BR_2(B)=\{L
 $\operatorname{supp}(\sigma_2)=\{R\}$: $BR_1(R)=\{B\}$, but $R\notin BR_2(B)=\{L\}$. <strong>Reject.</strong><br/>
 Therefore there are no pure NE and no equilibrium with Player 2 pure. Player 1 cannot be pure either: if she plays $T$, Player 2 uniquely prefers $M$, against which she prefers $B$; if she plays $B$, Player 2 uniquely prefers $L$, against which she prefers $T$. Thus Player 1 must mix for any surviving support. The remaining possibilities for Player 2 are the three two-column supports and the full three-column support.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M\}$ — professor's board calculation.</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M\}$ — reject.</strong>
 <div>Write $\sigma_1=pT+(1-p)B$ and $\sigma_2=qL+(1-q)M$, with $q\in(0,1)$. Since Player 2 mixes:
 $$g_2(\sigma_1,L)=g_2(\sigma_1,M)$$
 $$2p+7(1-p)=7p+2(1-p)\iff\boxed{p=\tfrac12\in(0,1).}$$
@@ -612,7 +610,7 @@ Since Player 1 is indifferent, calculate from T; since Player 2 is indifferent, 
 $$g_1=7\cdot\tfrac16+3\cdot\tfrac56=\boxed{\tfrac{11}{3}},$$
 $$g_2=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}}.$$
 <div class="math-display boxed-blue">$$\boxed{NE=\left\{\left(\tfrac13T+\tfrac23B,\,\tfrac16L+\tfrac56R\right)\right\},\quad\text{NE payoffs}=\left(\tfrac{11}{3},\tfrac{16}{3}\right).}$$</div>
-<div class="key-note blue"><strong>Exam method:</strong> list possible supports → make every supported action indifferent → ensure probabilities are positive → reject if an unused action pays more → state NE <em>and</em> NE payoffs. Here the professor explicitly rejects the $\{L,M\}$ candidate because R pays more.</div>
+<div class="key-note blue"><strong>Exam method:</strong> list supports → impose indifference → check probabilities → check unused actions → state NE <em>and</em> NE payoffs.</div>
 </div></div>
 </div>
 </div></div><div class="section-header subsection-target" data-subsection="§ 6.2" id="sec-6-2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
@@ -620,12 +618,12 @@ $$g_2=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}}.$$
 <div class="prop-title">Theorem — Nash (1950)</div>
 <div class="body-text"><p>Every normal-form game with a finite number of players and a finite, nonempty action set for each player has at least one Nash equilibrium <strong>in its mixed extension</strong>.</p></div>
 <div class="math-display boxed-blue">$$NE_{\mathrm{mix}}(\Gamma)\neq\varnothing$$</div>
-<div class="body-text"><p>The existence statement allows pure equilibria as well as equilibria involving randomization. It does not require a pure equilibrium to exist, and it does not say the equilibrium is unique. Once mixed strategies are allowed, the finite games considered here always have at least one equilibrium prediction.</p><p>The support states this theorem without a proof.</p></div>
+<div class="body-text"><p>The equilibrium may be pure or involve randomization. The theorem guarantees existence, not uniqueness.</p></div>
 </div>
 <div class="section-header subsection-target" data-subsection="Section 7" id="sec-7"><span class="section-label green">Section 7</span><h2>Nash Equilibrium and Dominance</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">B. Motivation — Can We Simplify Before Solving?</div>
-<div class="body-text"><p>The connection between dominance and equilibrium remains the same as in pure strategies. We can first remove dominated pure actions, allowing a mixed strategy to establish the domination, and then search for equilibria in the smaller game. The distinction between strict and weak elimination determines whether all original equilibria are preserved.</p></div>
+<div class="body-text"><p>Eliminate strictly dominated actions before searching for equilibria. This preserves every Nash equilibrium; weak elimination may remove some.</p></div>
 </div>
 <div class="prop-box">
 <div class="prop-title">Proposition — Strict Dominance Preserves Every Equilibrium</div>
@@ -682,18 +680,6 @@ The pure equilibria yield $(1,1)$ and the mixed equilibrium yields $(1/2,1/2)$. 
 $$\sigma_1=\left(\frac12,0,\frac12\right),\qquad\sigma_2=\left(\frac12,\frac12,0\right).$$</div></div></div>
 </div>
 </div>
-<div class="concept-card purple-top">
-<div class="card-title purple">Exercise Session 2 — Mixed Strategies</div>
-<div class="body-text"><p>The support refers to <em>Exercise session 2: Static games with perfect information — Mixed strategies</em>. The classroom $2\times3$ exercise supplied with this revision is developed above. The full exercise-session sheet is not included, so no additional exercise statements have been reconstructed.</p></div>
-</div>
-<div class="example-box">
-<div class="example-badge">Debate · Interpreting Mixed Strategies</div>
-<div class="example-context"><p>Return to the four interpretations in § 4.2: randomization, random beliefs, population, and unknown preferences.</p></div>
-<div class="example-task"><strong>Task:</strong> What is your preferred interpretation of mixed strategies?</div>
-<button aria-controls="mixed-interpretation-debate" aria-expanded="false" class="toggle-btn example-toggle" data-label="Discussion Guide" onclick="toggle(this,'mixed-interpretation-debate')" type="button"><span class="toggle-label">Show Discussion Guide</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-interpretation-debate"><p>There is no single numerical correction to this discussion question. State the interpretation you prefer, explain what the probabilities represent in it, and explain why that reading seems convincing to you.</p><p>You can refer to the distinction already made in the course: an actual random draw, beliefs about someone’s action, proportions in a population, or uncertainty about small private preferences. The choice of interpretation is yours.</p></div>
-</div>
-
 <nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;"><a class="sidebar-sublink" href="mixed-strategies.html">← Mixed Strategies &amp; Dominance</a></nav></div><!-- end main-content -->
 </div><!-- end main-wrap -->
 <script>

@@ -385,11 +385,9 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
 <div class="section-header" data-subsection="Section 4" id="sec-4"><span class="section-label purple">Section 4</span><h2>Mixed Extension</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">A. Motivation</div>
-<div class="body-text"><p>Pure strategies do not always give a satisfactory prediction of play. The professor identifies two difficulties with the Nash equilibrium concept when we restrict attention to pure strategies.</p></div>
-<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Some games have no pure-strategy Nash equilibrium.</strong><div>In games with strong conflicts of interest, a player may always want to change her action after learning the opponent’s action. Best responses can then form a cycle: each adjustment creates an incentive for another adjustment. The rock–paper–scissors game below illustrates this difficulty. Each player wants to conceal her action and remain unpredictable.</div></div></div>
-<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Some games have several equilibria, but no symmetric pure equilibrium.</strong><div>A symmetric game may have only asymmetric pure equilibria. Such an equilibrium assigns different actions to players who face the same situation. If players come from the same population and cannot communicate, it may be difficult to decide who takes which role. A symmetric prediction would describe their situation more naturally.</div></div></div>
-<div class="key-note blue">Mixed strategies allow us to represent random play and bluffing, and to look for symmetric predictions in symmetric games.</div>
-<div class="key-note amber"><strong>Reading the motivation carefully:</strong> the cycling argument concerns games such as the example below. It does not mean that every zero-sum game lacks a pure-strategy equilibrium.</div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>No pure equilibrium.</strong><div>In rock–paper–scissors, every pure profile allows a profitable deviation. Randomizing makes play less predictable.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>No symmetric pure equilibrium.</strong><div>A symmetric game may require players to take different roles at every pure equilibrium. Without coordination, choosing those roles can be difficult.</div></div></div>
+<div class="key-note blue">Mixed strategies introduce random play and allow symmetric equilibrium predictions.</div>
 </div>
 <div class="example-box">
 <div class="example-badge">Example · Why introduce mixed strategies?</div>
@@ -432,7 +430,7 @@ Both equilibria give payoffs $(1,1)$. They are asymmetric even though the player
 <tr><td>$\sigma_i=(\sigma_i(s_i^1),\ldots,\sigma_i(s_i^{|S_i|}))$</td><td>A vector of probabilities, in a specified action order. The last entry can be omitted when it is understood to equal one minus the sum of the other entries.</td></tr>
 <tr><td>$\sigma\in\Sigma$</td><td>The profile containing every player’s mixed strategy.</td></tr>
 <tr><td>$\sigma_{-i}\in\Sigma_{-i}$</td><td>The strategies of everyone except player $i$, and the set of such profiles.</td></tr>
-<tr><td>$\bar g=(\bar g_j)_{j=1}^{N}$</td><td>The profile of expected-payoff functions. The course often writes $g_i$ for $\bar g_i$ when a mixed strategy appears as an argument.</td></tr>
+<tr><td>$\bar g=(\bar g_j)_{j=1}^{N}$</td><td>The profile of expected-payoff functions. We also write $g_i$ for $\bar g_i$ when a mixed strategy appears as an argument.</td></tr>
 </table><div class="math-display boxed-blue">$$\operatorname{supp}(\sigma_i)=\{s_i\in S_i:\sigma_i(s_i)&gt;0\}$$</div>
 <div class="body-text"><p>The <strong>support</strong> is the set of actions that receive strictly positive probability. An action with probability zero is available in the game, but is not used by this particular mixed strategy.</p></div>
 </div>
@@ -451,13 +449,13 @@ Both equilibria give payoffs $(1,1)$. They are asymmetric even though the player
 <div class="concept-card cyan-top">
 <div class="card-title cyan">Vocabulary — Which Actions Receive Positive Probability?</div>
 <div class="matrix-wrap"><table class="comparison-table">
-<tr><th>Term in the notes</th><th>Support</th><th>Meaning</th></tr>
+<tr><th>Term</th><th>Support</th><th>Meaning</th></tr>
 <tr><td>Pure</td><td>$|\operatorname{supp}(\sigma_i)|=1$</td><td>One action is chosen with probability $1$.</td></tr>
-<tr><td>“Interior”</td><td>$|\operatorname{supp}(\sigma_i)|\geq2$</td><td>The professor uses this term for a strategy that randomizes over at least two actions.</td></tr>
+<tr><td>Non-pure (“interior”)</td><td>$|\operatorname{supp}(\sigma_i)|\geq2$</td><td>Randomizes over at least two actions.</td></tr>
 <tr><td>Completely mixed</td><td>$\operatorname{supp}(\sigma_i)=S_i$</td><td>Every available action receives strictly positive probability.</td></tr>
 <tr><td>Mixed</td><td>Any nonempty support</td><td>Any distribution in $\Sigma_i$, including pure strategies.</td></tr>
-</table></div><div class="key-note amber"><strong>Terminology in this support:</strong> “interior” is used here to mean non-pure. In the usual geometric terminology, being in the relative interior of the probability simplex means being completely mixed. We keep the professor’s distinction visible.</div>
-<div class="body-text"><p>From this point onward, “strategy” means a mixed strategy unless the course explicitly says “pure strategy”.</p></div>
+</table></div><div class="key-note amber">“Interior” here means non-pure. Geometrically, the relative interior of the probability simplex consists of <strong>completely mixed</strong> strategies.</div>
+<div class="body-text"><p>From now on, “strategy” includes mixed strategies unless specified otherwise.</p></div>
 </div>
 <div class="prop-box">
 <div class="prop-title">Proposition — Multi-linearity of Expected Payoffs</div>
@@ -526,11 +524,11 @@ Both equilibria give payoffs $(1,1)$. They are asymmetric even though the player
 <div class="section-header subsection-target" data-subsection="§ 4.2" id="sec-4-2"><span class="section-label purple">§ 4.2</span><h2>Interpretation</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">D. Four Interpretations of Mixed Strategies</div>
-<div class="body-text"><p>The same probability distribution can be read in different ways. The professor presents four interpretations; they differ in what generates the uncertainty about the action that will be played.</p></div>
-<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Randomization.</strong><div>The player deliberately draws her action at random using the probabilities in her mixed strategy. Each player randomizes independently because she wants the other players to remain uncertain about her action.</div></div></div>
-<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Random beliefs.</strong><div>The player may actually choose a definite action. The probabilities describe what the other players believe she will do: the uncertainty is in their beliefs about her choice, rather than necessarily in a random device used by that player.</div></div></div>
-<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Population.</strong><div>Each individual plays a pure action. The mixed strategy describes the proportion of individuals in the population who play each action. The probabilities therefore describe the composition of the population.</div></div></div>
-<div class="demo-step"><div class="step-num">4</div><div class="step-body"><strong>Unknown preferences.</strong><div>Players choose pure actions using the displayed payoffs together with a small additional preference that the others do not observe. Because those preferences are unknown, the others face uncertainty about which action will be chosen.</div></div></div>
+<div class="body-text"><p>The probabilities can describe four different sources of uncertainty:</p></div>
+<div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Randomization.</strong><div>Each player independently draws an action at random to remain unpredictable.</div></div></div>
+<div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Random beliefs.</strong><div>A player chooses a pure action; the probabilities describe the opponents’ beliefs about that choice.</div></div></div>
+<div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Population.</strong><div>Each individual plays a pure action; the probabilities are the proportions playing each action.</div></div></div>
+<div class="demo-step"><div class="step-num">4</div><div class="step-body"><strong>Unknown preferences.</strong><div>Players choose pure actions based on payoffs and small private preferences. Others cannot observe these preferences, so they cannot predict the action with certainty.</div></div></div>
 </div>
 
 <div class="concept-card blue-top">
@@ -540,23 +538,22 @@ Both equilibria give payoffs $(1,1)$. They are asymmetric even though the player
 <div class="key-note blue"><strong>Never confuse probabilities with payoffs:</strong> $p,q$ describe how players randomize; $g_1,g_2$ are their payoffs. To find Player 1's mixing probability, make <em>Player 2</em> indifferent — and conversely.</div>
 </div>
 <div class="section-header" data-subsection="Section 5" id="sec-5"><span class="section-label cyan">Section 5</span><h2>Dominance in Mixed Strategies</h2></div><div class="concept-card cyan-top">
-<div class="card-title cyan">A. Motivation — Extending the Same Comparison</div>
-<div class="body-text"><p>We now allow random behavior when comparing strategies. A pure action may fail to be dominated by any single pure action, yet still be worse than a suitable mixture of other actions.</p><p>The mixed extension is itself a normal-form game. Dominance therefore keeps the same meaning as before: compare one strategy with another while holding the opponents’ behavior fixed. The change is that the strategies being compared can now belong to $\Sigma_i$.</p></div>
+<div class="card-title cyan">A. Motivation</div>
+<div class="body-text"><p>A pure action can be dominated by a mixture even when no single pure action dominates it. As before, compare expected payoffs against each possible profile of the opponents.</p></div>
 </div><div class="section-header subsection-target" data-subsection="Definition" id="mixed-dom-definition"><span class="section-label blue">Definition</span><h2>Dominance and the Pure-Profile Test</h2></div><div class="concept-card blue-top">
 <div class="card-title blue">Definition — Strict and Weak Dominance</div>
 <div class="body-text"><p>A strategy $\sigma_i\in\Sigma_i$ is <strong>strictly dominated</strong> if another strategy $\tau_i\in\Sigma_i$ gives a strictly higher expected payoff against every possible mixed profile of the opponents:</p></div>
 <div class="math-display boxed-blue">$$\exists\tau_i\in\Sigma_i,\quad\forall\sigma_{-i}\in\Sigma_{-i},\qquad g_i(\tau_i,\sigma_{-i})&gt;g_i(\sigma_i,\sigma_{-i})$$</div>
 <div class="body-text"><p>The same alternative $\tau_i$ must work against <em>all</em> opponents’ profiles. We cannot choose a different dominating strategy after seeing what the opponents do.</p><p>For <strong>weak dominance</strong>, replace $&gt;$ by $\geq$ for every profile, with a strict improvement for at least one profile. The alternative must never be worse and must sometimes be better.</p></div>
-<div class="key-note amber"><strong>Notation clarification:</strong> the displayed weak-dominance formula in the support only shows the weak inequality. We retain the “strict somewhere” condition already used in the earlier part of this course; otherwise two payoff-equivalent strategies would count as weakly dominating one another.</div>
 </div><div class="prop-box">
 <div class="prop-title">Proposition — Only Pure Opponent Profiles Need to Be Checked</div>
 <div class="body-text"><p>To verify that $\tau_i$ strictly dominates $\sigma_i$, it is enough to check every pure profile of the opponents:</p></div>
 <div class="math-display boxed-blue">$$\forall s_{-i}\in S_{-i},\qquad g_i(\tau_i,s_{-i})&gt;g_i(\sigma_i,s_{-i})$$</div>
-<div class="body-text"><p>The analogous test for weak dominance uses $\geq$ everywhere and $&gt;$ for at least one pure opponent profile. The compared strategies $\sigma_i$ and $\tau_i$ may still be mixed: only the opponents’ profiles are restricted to pure profiles for this test.</p><p>The reason given in the notes is multi-linearity. Against mixed opponents, the payoff comparison averages the comparisons at pure opponent profiles using non-negative probabilities. A strict improvement at every pure profile remains a strict improvement in that average.</p></div>
+<div class="body-text"><p>The analogous test for weak dominance uses $\geq$ everywhere and $&gt;$ for at least one pure opponent profile. The compared strategies $\sigma_i$ and $\tau_i$ may still be mixed: only the opponents’ profiles are restricted to pure profiles for this test.</p><p>This follows from multi-linearity: payoffs against mixed opponents are weighted averages of payoffs against pure profiles. A strict improvement at every pure profile remains strict in the average.</p></div>
 </div><div class="concept-card cyan-top">
 <div class="card-title cyan">Practical Remarks — What Do We Eliminate?</div>
-<div class="body-text"><p>In practice, we search for <strong>pure actions dominated by a pure or mixed strategy</strong>. There are infinitely many mixed strategies as soon as a player has at least two actions, so listing and deleting distributions one by one would not simplify the description of the game very much.</p><p>Deleting pure actions directly shrinks the available action set. If $s_i$ and $t_i$ are deleted, every mixed strategy supported only on $\{s_i,t_i\}$ is also removed from the reduced game, as the notes emphasize.</p><p>For dominant-strategy equilibria, the course continues to use the pure-strategy definitions already introduced.</p></div>
-<div class="key-note amber"><strong>Qualification to the support’s remark:</strong> a strictly dominant strategy must be pure. The blanket statement “dominant strategies are always pure” needs this qualification when weak dominance and payoff ties are allowed.</div>
+<div class="body-text"><p>We eliminate <strong>pure actions dominated by a pure or mixed strategy</strong>. Deleting an action also removes every mixture that assigns it positive probability, so there is no need to eliminate distributions one by one.</p></div>
+<div class="key-note amber">A <strong>strictly dominant</strong> strategy must be pure. With payoff ties, a mixture can also be a best response against every profile of the opponents.</div>
 </div><div class="section-header subsection-target" data-subsection="Procedure" id="mixed-iesds"><span class="section-label cyan">Procedure</span><h2>Iterated Elimination with Mixed Strategies</h2></div><div class="concept-card cyan-top">
 <div class="card-title cyan">Definition — IESDS and IEWDS</div>
 <div class="body-text"><p>Start from $\Gamma^1=\Gamma$. At each stage, the current game contains only the actions not yet deleted. Both the comparisons against the opponents and the possible dominating mixtures must use this current game.</p></div>
@@ -570,7 +567,7 @@ Keep the same payoff numbers on the remaining profiles. Then repeat the comparis
 <div class="body-text"><p>A procedure restricted to domination by pure strategies may stop even though domination by mixtures still allows another deletion. Allowing mixed dominating strategies therefore enlarges the comparisons available at each stage.</p><p>The order properties stated earlier remain unchanged: <strong>IESDS is order-independent</strong>, while <strong>IEWDS can depend on the order</strong>. For IESDS, this concerns the final reduced game after the elimination procedure has been continued until it stops.</p></div>
 </div><div class="example-box">
 <span id="mixed-dom-example" aria-hidden="true"></span>
-<div class="example-badge">Professor's Exercise · Full IESDS with Mixed Strategies</div>
+<div class="example-badge">Exercise · IESDS with Mixed Strategies</div>
 <div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$M$</th><th scope="col">$R$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$u$</th><td>$(1,1)$</td><td>$(0,2)$</td><td>$(0,4)$</td></tr><tr><th class="row-label" scope="row">$m$</th><td>$(0,2)$</td><td>$(5,0)$</td><td>$(1,6)$</td></tr><tr><th class="row-label" scope="row">$b$</th><td>$(0,2)$</td><td>$(1,1)$</td><td>$(2,1)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Identify strictly dominated actions (including by mixtures). Eliminate them step by step and show where IESDS stops.</div>
@@ -609,7 +606,7 @@ Hence $\boxed{0&lt;\alpha&lt;\tfrac12}$. Choose $\alpha=1/4$: the mixture gives 
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Check that elimination stops.</strong>
 <div>$u$ is the unique best response to $L$, and $b$ is the unique best response to $R$. For Player 2, $R$ is optimal against $u$ and $L$ is optimal against $b$. Each surviving pure action is a best response to some remaining pure action, so none can be strictly dominated even by a mixture.</div>
 <div class="math-display boxed-blue">$$\boxed{\text{IESDS deletes }M\text{, then }m;\quad S_1'=\{u,b\},\ S_2'=\{L,R\}.}$$</div>
-<div>The game does not reduce to a single profile. The professor's IESDS version labels the final row $b$ (another occurrence uses $d$); the payoffs are the same.</div>
+<div>The game does not reduce to a single profile.</div>
 </div></div>
 </div></div><nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
 <a class="sidebar-sublink" href="nash-equilibrium.html">← Nash Equilibrium in Pure Strategies</a>
