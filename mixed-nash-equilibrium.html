@@ -7,6 +7,11 @@
 <title>GAMETHEORY — 04 — Nash Equilibrium in Mixed Strategies</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script>
+if (['#mixed-ne-2x3', '#mixed-ne-2x3-solution'].includes(location.hash)) {
+  location.replace('exercise-session-2.html' + location.hash);
+}
+</script>
+<script>
   MathJax = {
     tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
     options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
@@ -352,6 +357,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
 <div class="sidebar-exercises">
 <div class="sidebar-group-title">✎ Exercises</div>
 <div class="sidebar-group"><a class="sidebar-sublink" href="exercise-session-1.html">Session 1 — Pure Strategies</a></div>
+<div class="sidebar-group"><a class="sidebar-sublink" href="exercise-session-2.html">Session 2 — Mixed Strategies</a></div>
 </div>
 </nav>
 <div class="sidebar-footer">
@@ -557,76 +563,7 @@ The sole intersection is at $(p,q)=(1/2,1/2)$.</div>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>The cyan correspondence switches from $p=1$ below $q=1/2$ to $p=0$ above it. The coral correspondence switches from $q=0$ to $q=1$ at $p=1/2$. Only the middle intersection satisfies both best-response conditions.</figcaption></figure></div>
 </div>
-<div class="section-header subsection-target" data-subsection="2×3 Exercise" id="mixed-ne-2x3"><span class="section-label example">Exercise</span><h2>Nash Equilibria with Three Actions</h2></div>
-<div class="example-box">
-<div class="example-badge">Exercise 1 · Find the Set of NE — Two Rows, Three Columns</div>
-<div class="example-context"><p>Player 1 chooses $T$ with probability $p$ and $B$ with probability $1-p$: $\sigma_1=pT+(1-p)B$. Player 2 has three actions, so we must also decide <strong>which columns receive positive probability</strong>.</p><p>For a two-column support, $q$ is the probability of the first named column and $1-q$ that of the second; the unused column receives zero. Thus $q$ refers to $L$ in $\{L,M\}$ and $\{L,R\}$, but to $M$ in $\{M,R\}$.</p>
-<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption><thead><tr><th></th><th>$L$</th><th>$M$</th><th>$R$</th></tr></thead><tbody>
-<tr><th class="row-label">$T$</th><td>$(7,2)$</td><td>$(2,7)$</td><td>$(3,6)$</td></tr>
-<tr><th class="row-label">$B$</th><td>$(2,7)$</td><td>$(7,2)$</td><td>$(4,5)$</td></tr>
-</tbody></table></div></div>
-<div class="example-task"><strong>Task:</strong> Find the complete set of Nash equilibria and their payoffs, including every possible support of Player 2.</div>
-<button aria-controls="mixed-ne-2x3-solution" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-2x3-solution')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-ne-2x3-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>First: why we cannot simply eliminate a column.</strong>
-<div>Player 1's best responses: $BR_1(L)=\{T\}$, $BR_1(M)=\{B\}$, $BR_1(R)=\{B\}$. Player 2's: $BR_2(T)=\{M\}$ and $BR_2(B)=\{L\}$.<br/><br/>
-Column $R$ is never best against a <em>pure</em> row, but could be best against a <em>mixture</em>. To test whether we can eliminate it, try $\tau_2=aL+(1-a)M$:
-<div class="body-text"><ul><li>Against $T$: $7-5a&gt;6$, so $a&lt;1/5$.</li><li>Against $B$: $2+5a&gt;5$, so $a&gt;3/5$.</li></ul></div>
-No probability satisfies both conditions. No mixture of $L$ and $M$ strictly dominates $R$, so we keep it and check every support.</div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Singleton supports for Player 2: $\{L\},\{M\},\{R\}$.</strong>
-<div>$\operatorname{supp}(\sigma_2)=\{L\}$: $BR_1(L)=\{T\}$, but $L\notin BR_2(T)=\{M\}$. <strong>Reject.</strong><br/>
-$\operatorname{supp}(\sigma_2)=\{M\}$: $BR_1(M)=\{B\}$, but $M\notin BR_2(B)=\{L\}$. <strong>Reject.</strong><br/>
-$\operatorname{supp}(\sigma_2)=\{R\}$: $BR_1(R)=\{B\}$, but $R\notin BR_2(B)=\{L\}$. <strong>Reject.</strong><br/>
-Therefore no equilibrium has Player 2 playing a pure strategy.<br/><br/>
-<strong>Could Player 1 be pure while Player 2 mixes?</strong> If Player 1 plays $T$, Player 2 uniquely prefers $M$, against which Player 1 prefers $B$. If Player 1 plays $B$, Player 2 uniquely prefers $L$, against which Player 1 prefers $T$. Both cases fail.<br/><br/>
-Player 1 must therefore mix between $T$ and $B$. For Player 2, we still need to test $\{L,M\}$, $\{L,R\}$, $\{M,R\}$ and $\{L,M,R\}$.</div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M\}$ — reject.</strong>
-<div>Write $\sigma_1=pT+(1-p)B$ and $\sigma_2=qL+(1-q)M$, with $q\in(0,1)$. Since Player 2 mixes:
-$$g_2(\sigma_1,L)=g_2(\sigma_1,M)$$
-$$2p+7(1-p)=7p+2(1-p)\iff\boxed{p=\tfrac12\in(0,1).}$$
-Since Player 1 also mixes, impose:
-$$g_1(T,\sigma_2)=g_1(B,\sigma_2)$$
-$$7q+2(1-q)=2q+7(1-q)\iff\boxed{q=\tfrac12\in(0,1).}$$
-This gives a <em>candidate</em> $(\sigma_1,\sigma_2)=(\tfrac12T+\tfrac12B,\tfrac12L+\tfrac12M)$, but <strong>check the unused column R</strong>:
-$$g_2(\sigma_1,L)=g_2(\sigma_1,M)=\tfrac92\quad&lt;\quad g_2(\sigma_1,R)=\tfrac{11}{2}.$$
-Player 2 would deviate to R. <strong>Reject $\{L,M\}$.</strong></div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,R\}$ — valid equilibrium.</strong>
-<div>Let $\sigma_2=qL+(1-q)R$, $q\in(0,1)$. Player 2 is indifferent when:
-$$g_2(\sigma_1,L)=g_2(\sigma_1,R)$$
-$$2p+7(1-p)=6p+5(1-p)\iff7-5p=5+p\iff\boxed{p=\tfrac13.}$$
-Check unused M: $g_2(\sigma_1,M)=\tfrac{11}{3}&lt;\tfrac{16}{3}=g_2(\sigma_1,L)=g_2(\sigma_1,R)$, so M is <em>not</em> a profitable deviation.
-<br/><br/>Player 1 must also be indifferent:
-$$g_1(T,\sigma_2)=g_1(B,\sigma_2)$$
-$$7q+3(1-q)=2q+4(1-q)\iff\boxed{q=\tfrac16.}$$
-Both probabilities are strictly between 0 and 1. This support gives a Nash equilibrium.</div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{M,R\}$ — reject.</strong>
-<div>Set $\sigma_2=qM+(1-q)R$, with $0&lt;q&lt;1$. Indifference for Player 2 requires
-$$g_2(\sigma_1,M)=g_2(\sigma_1,R)$$
-$$7p+2(1-p)=6p+5(1-p)$$
-$$2+5p=5+p\iff\boxed{p=\tfrac34\in(0,1).}$$
-Player 1 would therefore have to mix. But her payoffs against this support are
-$$g_1(T,\sigma_2)=2q+3(1-q)=3-q,$$
-$$g_1(B,\sigma_2)=7q+4(1-q)=4+3q.$$
-For every $q\in(0,1)$, $g_1(B,\sigma_2)-g_1(T,\sigma_2)=1+4q&gt;0$. Equating the two payoffs would give $q=-1/4$, which is not an admissible probability. Player 1 cannot mix as required by $p=3/4$. <strong>Reject.</strong></div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">6</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M,R\}$ — reject.</strong>
-<div>All three columns would have to give Player 2 the same payoff. Equality between L and M forces $p=1/2$, but at that probability $g_2(L)=g_2(M)=9/2&lt;11/2=g_2(R)$. <strong>Reject.</strong></div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Complete answer and NE payoffs.</strong>
-<div>Exactly one support works: $\{L,R\}$, with
-$$\boxed{\sigma_1=\tfrac13T+\tfrac23B,\qquad\sigma_2=\tfrac16L+0M+\tfrac56R.}$$
-Since Player 1 is indifferent, calculate from T; since Player 2 is indifferent, calculate from L:
-$$g_1=7\cdot\tfrac16+3\cdot\tfrac56=\boxed{\tfrac{11}{3}},$$
-$$g_2=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}}.$$
-<div class="math-display boxed-blue">$$\boxed{NE=\left\{\left(\tfrac13T+\tfrac23B,\,\tfrac16L+\tfrac56R\right)\right\},\quad\text{NE payoffs}=\left(\tfrac{11}{3},\tfrac{16}{3}\right).}$$</div>
-<div class="key-note blue"><strong>Exam method:</strong> list supports → impose indifference → check probabilities → check unused actions → state NE <em>and</em> NE payoffs.</div>
-</div></div>
-</div>
-</div></div><div class="section-header subsection-target" data-subsection="§ 6.2" id="sec-6-2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
+<div class="section-header subsection-target" data-subsection="§ 6.2" id="sec-6-2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
 <div class="prop-box">
 <div class="prop-title">Theorem — Nash (1950)</div>
 <div class="body-text"><p>Every normal-form game with a finite number of players and a finite, nonempty action set for each player has at least one Nash equilibrium <strong>in its mixed extension</strong>.</p></div>
@@ -722,6 +659,10 @@ function toggle(btn, id) {
 function revealCourseAnchor() {
   let id;
   try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+  if (id === 'mixed-ne-2x3' || id === 'mixed-ne-2x3-solution') {
+    location.replace('exercise-session-2.html#' + encodeURIComponent(id));
+    return;
+  }
   if (id === 'mixed-dom-example') id = 'mixed-iesds-example';
   const target = document.getElementById(id);
   if (!target) return;

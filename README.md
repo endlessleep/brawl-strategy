@@ -29,6 +29,16 @@ truthful median equal to the preferred score separately. War-of-attrition costs
 stop at the first concession, and the equilibrium thresholds are `v_i / c`,
 including equality. The free-riding welfare result specifies `N >= 2`.
 
+**Session 2 — Mixed Strategies** is at `exercise-session-2.html`. Its four
+exercises have eight independently expandable corrections: the 2×3 Nash game,
+inspection, the volunteer’s dilemma, and two teamwork technologies. The volunteer
+correction includes every mixing subset, not only the symmetric equilibrium.
+
+The 2×3 exercise and its complete support enumeration have moved out of the course
+into Session 2. Old course bookmarks ending in `#mixed-ne-2x3` or
+`#mixed-ne-2x3-solution` redirect to the corresponding exercise or correction.
+Session 1 and Session 2 have separate links at the bottom of every sidebar.
+
 ## Professor revision integration
 
 The supplied `gametheory_professor_revision.zip` is the content baseline. The
@@ -36,7 +46,7 @@ three 2×2 mixed Nash corrections enumerate supports before imposing indifferenc
 checking unused actions, and distinguishing equilibrium probabilities from payoffs.
 Their three existing best-response graphs are retained.
 
-The added T/B versus L/M/R exercise checks all seven nonempty supports of Player 2.
+The T/B versus L/M/R exercise, now in Session 2, checks all seven nonempty supports of Player 2.
 The {L,M} candidate is rejected because R gives a higher payoff; {M,R} requires an
 inadmissible mixing probability for Player 2. Only {L,R} survives, giving strategies
 (1/3, 2/3) and (1/6, 0, 5/6), with payoffs (11/3, 16/3).
@@ -56,7 +66,7 @@ are unchanged; responsive containment keeps wide formulas and tables scrollable.
 
 - Exact rational support enumeration for all three 2×2 games and the 2×3 game.
 - Dominance comparisons, equilibrium payoffs and the six Cournot elimination rounds.
-- All 53 collapsible corrections, formulas, images, course/exercise navigation and old links.
+- All 60 collapsible corrections, formulas, images, course/exercise navigation and old links.
 - Chromium and WebKit browser checks on desktop and emulated iPad portrait/landscape
   layouts. These are browser/emulation checks, not a physical-iPad test.
 - Exercise and section anchors are preserved. The duplicated dominance example was consolidated.
@@ -64,6 +74,11 @@ are unchanged; responsive containment keeps wide formulas and tables scrollable.
   all five sidebars on desktop and emulated iPad in Chromium and WebKit.
 - Independent exact-arithmetic checks of the exercise results, including the
   median proof cases and war-of-attrition boundary conditions.
+- Session 2: all eight corrections and the moved exercise redirects, six-page
+  navigation, desktop and emulated iPad layouts in Chromium and WebKit.
+- Inspection and teamwork probabilities/payoffs checked independently; volunteer
+  best responses and rescue probabilities checked for every active subset for
+  two through seven witnesses at several costs.
 
 Course text uses direct explanations, with concise introductions. The opinion
 discussion and editorial comments about source documents have been removed.
