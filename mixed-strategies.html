@@ -579,31 +579,31 @@ Keep the same payoff numbers on the remaining profiles. Then repeat the comparis
 </div><div class="example-box">
 <span id="mixed-dom-example" aria-hidden="true"></span>
 <div class="example-badge">Exercise · IESDS with Mixed Strategies</div>
-<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$M$</th><th scope="col">$R$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$u$</th><td>$(1,1)$</td><td>$(0,2)$</td><td>$(0,4)$</td></tr><tr><th class="row-label" scope="row">$m$</th><td>$(0,2)$</td><td>$(5,0)$</td><td>$(1,6)$</td></tr><tr><th class="row-label" scope="row">$b$</th><td>$(0,2)$</td><td>$(1,1)$</td><td>$(2,1)$</td></tr></tbody></table></div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$M$</th><th scope="col">$R$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$u$</th><td>$(1,1)$</td><td>$(0,2)$</td><td>$(0,4)$</td></tr><tr><th class="row-label" scope="row">$m$</th><td>$(0,2)$</td><td>$(5,0)$</td><td>$(1,6)$</td></tr><tr><th class="row-label" scope="row">$d$</th><td>$(0,2)$</td><td>$(1,1)$</td><td>$(2,1)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Identify strictly dominated actions (including by mixtures). Eliminate them step by step and show where IESDS stops.</div>
 <button aria-controls="mixed-iesds-example" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-iesds-example')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 
 <div class="collapsible" id="mixed-iesds-example">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Start with best responses and find a candidate to eliminate.</strong>
-<div>Player 1 has a pure best response in every column: $BR_1(L)=\{u\}$, $BR_1(M)=\{m\}$ and $BR_1(R)=\{b\}$. For Player 2: $BR_2(u)=\{R\}$, $BR_2(m)=\{R\}$ and $BR_2(b)=\{L\}$. Thus $M$ is never a best response to a <em>pure</em> row, suggesting that we test whether it is strictly dominated. <strong>This observation alone is not a proof of dominance.</strong></div>
+<div>Player 1 has a pure best response in every column: $BR_1(L)=\{u\}$, $BR_1(M)=\{m\}$ and $BR_1(R)=\{d\}$. For Player 2: $BR_2(u)=\{R\}$, $BR_2(m)=\{R\}$ and $BR_2(d)=\{L\}$. Thus $M$ is never a best response to a <em>pure</em> row, suggesting that we test whether it is strictly dominated. <strong>This observation alone is not a proof of dominance.</strong></div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Show that a mixed strategy strictly dominates column M.</strong>
 <div>Using Player 2's (second) payoffs, write $\tau_2=\lambda L+(1-\lambda)R$. To strictly dominate $M$, the following must hold against <em>every</em> row:
 $$\begin{aligned}
  u:&amp;\quad \lambda(1)+(1-\lambda)(4)&gt;2 &amp;\iff \lambda&lt;\tfrac23,\\
  m:&amp;\quad \lambda(2)+(1-\lambda)(6)&gt;0 &amp;\iff \lambda&lt;\tfrac32,\\
- b:&amp;\quad \lambda(2)+(1-\lambda)(1)&gt;1 &amp;\iff \lambda&gt;0.
+ d:&amp;\quad \lambda(2)+(1-\lambda)(1)&gt;1 &amp;\iff \lambda&gt;0.
 \end{aligned}$$
 Together with $0\le\lambda\le1$, we obtain $\boxed{0&lt;\lambda&lt;\tfrac23}$. For example, $\lambda=1/2$ gives payoffs $(5/2,4,3/2)&gt;(2,0,1)$, component by component. <strong>Delete M.</strong></div>
 <div class="matrix-wrap"><table class="payoff-matrix"><caption>After deleting M</caption><thead><tr><th></th><th>$L$</th><th>$R$</th></tr></thead><tbody>
 <tr><th class="row-label">$u$</th><td>$(1,1)$</td><td>$(0,4)$</td></tr>
 <tr><th class="row-label">$m$</th><td>$(0,2)$</td><td>$(1,6)$</td></tr>
-<tr><th class="row-label">$b$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
+<tr><th class="row-label">$d$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
 </tbody></table></div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Recheck Player 1: row m is now strictly dominated by a mixture.</strong>
-<div>Let $\tau_1=\alpha u+(1-\alpha)b$. Using the first payoffs in the reduced game:
+<div>Let $\tau_1=\alpha u+(1-\alpha)d$. Using the first payoffs in the reduced game:
 $$\begin{aligned}
 L:&amp;\quad \alpha(1)+(1-\alpha)(0)&gt;0 &amp;\iff \alpha&gt;0,\\
 R:&amp;\quad \alpha(0)+(1-\alpha)(2)&gt;1 &amp;\iff \alpha&lt;\tfrac12.
@@ -611,12 +611,12 @@ R:&amp;\quad \alpha(0)+(1-\alpha)(2)&gt;1 &amp;\iff \alpha&lt;\tfrac12.
 Hence $\boxed{0&lt;\alpha&lt;\tfrac12}$. Choose $\alpha=1/4$: the mixture gives $(1/4,3/2)&gt;(0,1)$ in both columns. <strong>Delete m.</strong></div>
 <div class="matrix-wrap"><table class="payoff-matrix"><caption>After deleting M, then m</caption><thead><tr><th></th><th>$L$</th><th>$R$</th></tr></thead><tbody>
 <tr><th class="row-label">$u$</th><td>$(1,1)$</td><td>$(0,4)$</td></tr>
-<tr><th class="row-label">$b$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
+<tr><th class="row-label">$d$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
 </tbody></table></div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Check that elimination stops.</strong>
-<div>$u$ is the unique best response to $L$, and $b$ is the unique best response to $R$. For Player 2, $R$ is optimal against $u$ and $L$ is optimal against $b$. Each surviving pure action is a best response to some remaining pure action, so none can be strictly dominated even by a mixture.</div>
-<div class="math-display boxed-blue">$$\boxed{\text{IESDS deletes }M\text{, then }m;\quad S_1'=\{u,b\},\ S_2'=\{L,R\}.}$$</div>
+<div>$u$ is the unique best response to $L$, and $d$ is the unique best response to $R$. For Player 2, $R$ is optimal against $u$ and $L$ is optimal against $d$. Each surviving pure action is a best response to some remaining pure action, so none can be strictly dominated even by a mixture.</div>
+<div class="math-display boxed-blue">$$\boxed{\text{IESDS deletes }M\text{, then }m;\quad S_1'=\{u,d\},\ S_2'=\{L,R\}.}$$</div>
 <div>The game does not reduce to a single profile.</div>
 </div></div>
 </div></div><nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">

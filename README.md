@@ -51,7 +51,7 @@ The {L,M} candidate is rejected because R gives a higher payoff; {M,R} requires 
 inadmissible mixing probability for Player 2. Only {L,R} survives, giving strategies
 (1/3, 2/3) and (1/6, 0, 5/6), with payoffs (11/3, 16/3).
 
-The mixed-dominance example is presented once, with the professor's `b` row label
+The mixed-dominance example is presented once, with row labels `u`, `m`, `d`
 and the successive deletions M, then m. The first-price auction correction,
 nonnegative Cournot best responses, continued Cournot elimination intervals, and
 the distinction between pure and mixed equilibrium sets are retained. Cross-references
