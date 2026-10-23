@@ -74,6 +74,10 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 .sidebar-sublink { display:flex; align-items:center; gap:10px; padding:9px 22px 9px 36px; color:var(--text-3); text-decoration:none; font-size:0.85rem; font-weight:600; transition:all .2s; border-left:3px solid transparent; }
 .sidebar-sublink:hover { color:var(--text); background:rgba(255,255,255,0.04); }
 .sidebar-sublink.active { color:var(--cyan-bright); border-left-color:var(--cyan); background:var(--cyan-muted); }
+.sidebar-nav { display:flex; flex-direction:column; }
+.sidebar-nav > .sidebar-group, .sidebar-exercises { flex-shrink:0; }
+.sidebar-exercises { margin-top:auto; padding-top:20px; }
+.sidebar-exercises .sidebar-group-title { border-top:1px solid var(--border); padding-top:18px; }
 .sidebar-footer { padding:14px 16px; border-top:1px solid var(--border); }
 .sidebar-user { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:var(--radius); padding:10px 12px; }
 .user-avatar { width: 44px; height: 44px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
@@ -316,12 +320,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <h1>GAMETHEORY<span>.</span></h1>
 <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
 </div>
-<nav aria-label="Course sections" class="sidebar-nav">
+<nav aria-label="Course and exercises" class="sidebar-nav">
 <div class="sidebar-group-title">📂 Static Games</div>
 <div class="sidebar-group"><a aria-current="page" class="sidebar-sublink active" href="chapter1.html">01 — Normal Form Games &amp; Dominance</a></div>
 <div class="sidebar-group"><a class="sidebar-sublink" href="nash-equilibrium.html">02 — Nash Equilibrium in Pure Strategies</a></div>
 <div class="sidebar-group"><a class="sidebar-sublink" href="mixed-strategies.html">03 — Mixed Strategies &amp; Dominance</a></div>
 <div class="sidebar-group"><a class="sidebar-sublink" href="mixed-nash-equilibrium.html">04 — Nash Equilibrium in Mixed Strategies</a></div>
+<div class="sidebar-exercises">
+<div class="sidebar-group-title">✎ Exercises</div>
+<div class="sidebar-group"><a class="sidebar-sublink" href="exercise-session-1.html">Session 1 — Pure Strategies</a></div>
+</div>
 </nav>
 <div class="sidebar-footer">
 <div class="sidebar-user">

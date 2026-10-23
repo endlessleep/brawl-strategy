@@ -15,6 +15,20 @@ Section 5 of the combined third lesson, preserving bookmarked section fragments.
 The former standalone dominance example links to the consolidated IESDS correction.
 Links to collapsed solutions open the relevant correction automatically.
 
+## Exercise sessions
+
+**Session 1 — Pure Strategies** is at `exercise-session-1.html`, in a separate
+Exercises group below the course links in every sidebar. The five exercises cover
+Nash equilibrium and dominance, Bertrand competition, free riding, majority
+judgment, and war of attrition. Each of the 13 questions has an independent,
+keyboard-accessible correction button and a direct link to its solution.
+
+Corrections retain the question order and develop every comparison and proof.
+Bertrand profits use the correct price-order cases. The median proof treats a
+truthful median equal to the preferred score separately. War-of-attrition costs
+stop at the first concession, and the equilibrium thresholds are `v_i / c`,
+including equality. The free-riding welfare result specifies `N >= 2`.
+
 ## Professor revision integration
 
 The supplied `gametheory_professor_revision.zip` is the content baseline. The
@@ -42,10 +56,14 @@ are unchanged; responsive containment keeps wide formulas and tables scrollable.
 
 - Exact rational support enumeration for all three 2×2 games and the 2×3 game.
 - Dominance comparisons, equilibrium payoffs and the six Cournot elimination rounds.
-- All 40 collapsible corrections, formulas, images, four-page navigation and old links.
+- All 53 collapsible corrections, formulas, images, course/exercise navigation and old links.
 - Chromium and WebKit browser checks on desktop and emulated iPad portrait/landscape
   layouts. These are browser/emulation checks, not a physical-iPad test.
 - Exercise and section anchors are preserved. The duplicated dominance example was consolidated.
+- Session 1: all 13 independent buttons, keyboard controls and correction deep links;
+  all five sidebars on desktop and emulated iPad in Chromium and WebKit.
+- Independent exact-arithmetic checks of the exercise results, including the
+  median proof cases and war-of-attrition boundary conditions.
 
 Course text uses direct explanations, with concise introductions. The opinion
 discussion and editorial comments about source documents have been removed.
