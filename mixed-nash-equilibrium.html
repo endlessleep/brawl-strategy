@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMETHEORY — 05 — Nash Equilibrium in Mixed Strategies</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GAMETHEORY — 04 — Nash Equilibrium in Mixed Strategies</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script>
   MathJax = {
     tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
     options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
   };
 </script>
-<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<script async="" id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
 <style>
 :root {
   --sidebar-bg: #070d18;
@@ -314,101 +315,98 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
   .math-display { padding:12px 8px; }
   .notation-table td { padding:8px 6px; }
 }
-</style>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+/* Preserve the layout when long formulas and tables are opened on tablets. */
++.step-body { min-width:0; }
++.collapsible { scroll-margin-top:80px; min-width:0; }
++.topbar-breadcrumb { min-width:0; flex-shrink:1; }
++.chapter-progress-bar { min-width:60px; }
++mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
++.notation-table { table-layout:fixed; }
++.notation-table td:first-child { white-space:normal; }
++.notation-table td { overflow-wrap:anywhere; }
++@media(max-width:900px) {
++  .main-content { min-width:0; }
++  .concept-card, .prop-box, .example-box { min-width:0; }
++}
++</style>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 </head>
 <body>
-
 <!-- ═══ SIDEBAR ═══ -->
 <aside class="sidebar open" id="sidebar">
-  <div class="sidebar-brand">
-    <h1>GAMETHEORY<span>.</span></h1>
-    <button class="sidebar-close" aria-label="Close course menu" onclick="toggleSidebar()">✕</button>
-  </div>
-  <nav class="sidebar-nav" aria-label="Course sections">
+<div class="sidebar-brand">
+<h1>GAMETHEORY<span>.</span></h1>
+<button aria-label="Close course menu" class="sidebar-close" onclick="toggleSidebar()">✕</button>
+</div>
+<nav aria-label="Course sections" class="sidebar-nav">
 <div class="sidebar-group-title">📂 Static Games</div>
-<div class="sidebar-group"><a href="chapter1.html" class="sidebar-sublink">01 — Normal Form Games &amp; Dominance</a></div>
-<div class="sidebar-group"><a href="nash-equilibrium.html" class="sidebar-sublink">02 — Nash Equilibrium in Pure Strategies</a></div>
-<div class="sidebar-group"><a href="mixed-strategies.html" class="sidebar-sublink">03 — Mixed Strategies</a></div>
-<div class="sidebar-group"><a href="mixed-dominance.html" class="sidebar-sublink">04 — Dominance in Mixed Strategies</a></div>
-<div class="sidebar-group"><a href="mixed-nash-equilibrium.html" class="sidebar-sublink active" aria-current="page">05 — Nash Equilibrium in Mixed Strategies</a></div>
+<div class="sidebar-group"><a class="sidebar-sublink" href="chapter1.html">01 — Normal Form Games &amp; Dominance</a></div>
+<div class="sidebar-group"><a class="sidebar-sublink" href="nash-equilibrium.html">02 — Nash Equilibrium in Pure Strategies</a></div>
+<div class="sidebar-group"><a class="sidebar-sublink" href="mixed-strategies.html">03 — Mixed Strategies &amp; Dominance</a></div>
+<div class="sidebar-group"><a aria-current="page" class="sidebar-sublink active" href="mixed-nash-equilibrium.html">04 — Nash Equilibrium in Mixed Strategies</a></div>
 </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-user">
-      <div class="user-avatar" style="background:transparent;">
-        <img src="images/avatar.png" alt="STAR NOVA" style="width:100%;height:100%;border-radius:8px;object-fit:cover;">
-        <span class="user-dot"></span>
-      </div>
-      <div class="user-info">
-        <div class="user-name">STAR NOVA</div>
-        
-      </div>
-    </div>
-  </div>
+<div class="sidebar-footer">
+<div class="sidebar-user">
+<div class="user-avatar" style="background:transparent;">
+<img alt="STAR NOVA" src="images/avatar.png" style="width:100%;height:100%;border-radius:8px;object-fit:cover;"/>
+<span class="user-dot"></span>
+</div>
+<div class="user-info">
+<div class="user-name">STAR NOVA</div>
+</div>
+</div>
+</div>
 </aside>
-
 <!-- ═══ MAIN ═══ -->
 <div class="main-wrap" id="main-wrap">
 <div class="topbar">
-  <button class="topbar-toggle" aria-label="Toggle course menu" onclick="toggleSidebar()">☰</button>
-  <div class="topbar-breadcrumb">GAMETHEORY <span class="sep">›</span> <strong>Chapter 1 — Static Games with Perfect Information</strong></div>
-  <div class="chapter-progress-bar" id="chapterProgressBar" role="progressbar" aria-label="Chapter progress">
-    <div class="progress-segment active" data-index="0" aria-label="Subsection 1"></div>
-    <div class="progress-segment" data-index="1" aria-label="Subsection 2"></div>
-    <div class="progress-segment" data-index="2" aria-label="Subsection 3"></div>
-    <div class="progress-segment" data-index="3" aria-label="Subsection 4"></div>
-    <div class="progress-segment" data-index="4" aria-label="Subsection 5"></div>
-    <div class="progress-segment" data-index="5" aria-label="Subsection 6"></div>
-    <div class="progress-segment" data-index="6" aria-label="Subsection 7"></div>
-    <div class="progress-segment" data-index="7" aria-label="Subsection 8"></div>
-  </div>
+<button aria-label="Toggle course menu" class="topbar-toggle" onclick="toggleSidebar()">☰</button>
+<div class="topbar-breadcrumb">GAMETHEORY <span class="sep">›</span> <strong>Chapter 1 — Static Games with Perfect Information</strong></div>
+<div aria-label="Chapter progress" class="chapter-progress-bar" id="chapterProgressBar" role="progressbar">
+<div aria-label="Subsection 1" class="progress-segment active" data-index="0"></div>
+<div aria-label="Subsection 2" class="progress-segment" data-index="1"></div>
+<div aria-label="Subsection 3" class="progress-segment" data-index="2"></div>
+<div aria-label="Subsection 4" class="progress-segment" data-index="3"></div>
+<div aria-label="Subsection 5" class="progress-segment" data-index="4"></div>
+<div aria-label="Subsection 6" class="progress-segment" data-index="5"></div>
+<div aria-label="Subsection 7" class="progress-segment" data-index="6"></div>
+<div aria-label="Subsection 8" class="progress-segment" data-index="7"></div>
 </div>
-
+</div>
 <div class="main-content">
-
 <!-- PAGE TITLE -->
 <div class="page-title-block">
-  <div class="page-label">Chapter 1</div>
-  <h1>Static Games with Perfect Information</h1>
-  <p>Modelling simultaneous strategic interactions — and finding rational predictions for play.</p>
+<div class="page-label">Chapter 1</div>
+<h1>Static Games with Perfect Information</h1>
+<p>Modelling simultaneous strategic interactions — and finding rational predictions for play.</p>
 </div>
-
-<div class="page-label">05 — Nash Equilibrium in Mixed Strategies</div>
-<div class="section-header" id="sec-6" data-subsection="Section 6"><span class="section-label blue">Section 6</span><h2>Nash Equilibrium in Mixed Strategies</h2></div>
-
+<div class="page-label">04 — Nash Equilibrium in Mixed Strategies</div>
+<div class="section-header" data-subsection="Section 6" id="sec-6"><span class="section-label blue">Section 6</span><h2>Nash Equilibrium in Mixed Strategies</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">A. Motivation</div>
 <div class="body-text"><p>The mixed extension lets us analyze random behavior using the same equilibrium idea as before. Each player chooses a distribution, and we ask whether anyone can obtain a higher expected payoff by changing her own distribution while the others keep theirs fixed.</p></div>
-
 </div>
-
-<div class="section-header subsection-target" id="sec-6-1" data-subsection="§ 6.1"><span class="section-label blue">§ 6.1</span><h2>Definitions and the Indifference Principle</h2></div>
-
+<div class="section-header subsection-target" data-subsection="§ 6.1" id="sec-6-1"><span class="section-label blue">§ 6.1</span><h2>Definitions and the Indifference Principle</h2></div>
 <div class="concept-card blue-top">
 <div class="card-title blue">Definition — No Profitable Unilateral Deviation</div>
 <div class="body-text"><p>A mixed profile $\sigma\in\Sigma$ is a <strong>Nash equilibrium</strong> if, for every player $i$, her chosen distribution performs at least as well as every alternative distribution against $\sigma_{-i}$:</p></div>
 <div class="math-display boxed-blue">$$\forall i\in\{1,\ldots,N\},\quad\forall\tau_i\in\Sigma_i,\qquad g_i(\sigma_i,\sigma_{-i})\geq g_i(\tau_i,\sigma_{-i})$$</div>
 <div class="body-text"><p>On the left, player $i$ keeps her proposed strategy $\sigma_i$. On the right, she changes it to $\tau_i$. The opponents’ profile is the same on both sides. Equilibrium requires that this unilateral change never raises her expected payoff.</p><p>The comparison is made <strong>ex ante</strong>: after the mixed strategy has been specified, but before the random action is drawn. The player evaluates the expected payoff of her distribution.</p></div>
-
 </div>
-
 <div class="prop-box">
 <div class="prop-title">Proposition — Checking Pure Deviations Is Sufficient</div>
 <div class="body-text"><p>It is enough to check deviations to pure actions:</p></div>
 <div class="math-display boxed-blue">$$\forall i,\quad\forall t_i\in S_i,\qquad g_i(\sigma_i,\sigma_{-i})\geq g_i(t_i,\sigma_{-i})$$</div>
 <div class="body-text"><p>This is equivalent to the definition with all mixed deviations. The reason is multi-linearity: the payoff from a mixed deviation is a weighted average of the payoffs from its pure actions. If none of those actions improves on the proposed payoff, their weighted average cannot improve on it either.</p></div>
-
 </div>
-
 <div class="prop-box">
 <div class="prop-title">Best Responses — The Same Equilibrium Condition</div>
 <div class="body-text"><p>The best-response set $BR_i(\sigma_{-i})$ contains all mixed strategies that maximize player $i$’s expected payoff against the opponents’ given profile.</p></div>
 <div class="math-display boxed-blue">$$BR_i(\sigma_{-i})=\operatorname*{arg\,max}_{\tau_i\in\Sigma_i}g_i(\tau_i,\sigma_{-i})$$</div>
 <div class="math-display boxed-blue">$$\sigma\text{ is a Nash equilibrium}\quad\Longleftrightarrow\quad\sigma_i\in BR_i(\sigma_{-i})\ \text{for every }i$$</div>
 <div class="body-text"><p>As in pure strategies, an equilibrium is a profile of mutual best responses. Here a best response may itself be a distribution.</p></div>
-
 </div>
-
 <div class="prop-box">
 <div class="prop-title">Proposition — The Strong Indifference Principle</div>
 <div class="body-text"><p>A profile $\sigma$ is a Nash equilibrium if and only if both conditions below hold for every player.</p></div>
@@ -416,16 +414,14 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
 The equality is evaluated against the opponents’ equilibrium distributions. If the player uses several actions, each must give the same expected payoff.</div></div></div>
 <div class="demo-step"><div class="step-num">ii</div><div class="step-body"><strong>An unused action cannot give a higher payoff.</strong><div><div class="math-display boxed-blue">$$\begin{gathered}\forall s_i\in\operatorname{supp}(\sigma_i),\quad\forall t_i\notin\operatorname{supp}(\sigma_i),\\g_i(t_i,\sigma_{-i})\leq g_i(s_i,\sigma_{-i}).\end{gathered}$$</div>
 An action outside the support may tie with the actions in the support, but it must not do better. Equality among the used actions alone is therefore not a complete equilibrium check.</div></div></div>
-
 </div>
-
 <div class="example-box">
 <div class="example-badge">Proof Exercise · Strong Indifference Principle</div>
 <div class="example-context"><p>The support explicitly asks you to prove the strong indifference principle.</p></div>
 <div class="example-task"><strong>Task:</strong> Prove both directions: an equilibrium satisfies conditions (i)–(ii), and those conditions rule out every profitable deviation.</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-indifference-proof" data-label="Proof Solution" onclick="toggle(this,'mixed-indifference-proof')"><span class="toggle-label">Show Proof Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<button aria-controls="mixed-indifference-proof" aria-expanded="false" class="toggle-btn example-toggle" data-label="Proof Solution" onclick="toggle(this,'mixed-indifference-proof')" type="button"><span class="toggle-label">Show Proof Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 <div class="collapsible" id="mixed-indifference-proof"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Necessity: a used action cannot be worse than another action.</strong><div>Assume that $\sigma$ is an equilibrium. Suppose a player uses $s_i$ with $\sigma_i(s_i)&gt;0$, but some action $t_i$ gives a strictly higher payoff against $\sigma_{-i}$. Move the probability on $s_i$ to $t_i$, leaving all other probabilities unchanged. The expected-payoff increase is
-$$\sigma_i(s_i)\bigl[g_i(t_i,\sigma_{-i})-g_i(s_i,\sigma_{-i})\bigr]>0.$$
+$$\sigma_i(s_i)\bigl[g_i(t_i,\sigma_{-i})-g_i(s_i,\sigma_{-i})\bigr]&gt;0.$$
 This would be a profitable unilateral deviation, contradicting equilibrium. Hence each used action must give a maximal payoff. All used actions therefore tie, and no unused action can give more. These are conditions (i) and (ii).</div></div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Sufficiency: any deviation is an average of payoffs no larger than the common payoff.</strong><div>Now assume (i) and (ii). For player $i$, denote the common payoff of the supported actions by $v_i$. Because all probability is assigned to these actions,
 $$g_i(\sigma_i,\sigma_{-i})=\sum_{s_i\in\operatorname{supp}(\sigma_i)}\sigma_i(s_i)v_i=v_i.$$
@@ -434,119 +430,203 @@ $$g_i(\tau_i,\sigma_{-i})=\sum_{t_i\in S_i}\tau_i(t_i)g_i(t_i,\sigma_{-i})\leq\s
 Thus no player can profitably deviate. Since this argument holds for every player, $\sigma$ is a Nash equilibrium.</div></div></div>
 </div>
 </div>
-
 <div class="concept-card cyan-top">
-<div class="card-title cyan">Method — Search over Supports</div>
+<div class="card-title cyan">Method — Search over Supports (Professor's Order)</div>
 <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Choose a possible support for each player.</strong><div>Specify which actions receive positive probability. Include singleton supports: one or more players may play pure strategies at equilibrium.</div></div></div>
 <div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Impose indifference within each support.</strong><div>Equate each player’s expected payoffs from the actions she uses. Add the probability restrictions: probabilities in the proposed support must be positive and must sum to $1$.</div></div></div>
 <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>Check all unused actions.</strong><div>Against the candidate opponents’ distributions, each action outside the support must give no more than the common supported payoff. Reject a candidate that fails this comparison.</div></div></div>
 <div class="body-text"><p>Repeat for the other possible supports. The number of possibilities grows with the number of actions, which is why the professor describes the full search as potentially tedious.</p></div>
 <div class="key-note blue"><strong>Reading the indifference equations:</strong> player 1’s pure-action payoffs depend on player 2’s probabilities, and conversely. In a two-player game, making player 1 indifferent determines player 2’s mixing probability.</div>
-
-</div>
-
-<div class="section-header subsection-target" id="mixed-ne-examples" data-subsection="Examples"><span class="section-label purple">Examples</span><h2>Equilibria, Payoffs and Best-Response Graphs</h2></div>
-
-<div class="body-text"><p>In each example, let $p$ be the probability that player 1 chooses the first row and $q$ the probability that player 2 chooses the first column. The graphs use $p$ on the horizontal axis and $q$ on the vertical axis. A best-response set can contain an entire interval at an indifference point.</p></div>
+<div class="key-note amber"><strong>How to read the equations:</strong> $p$ is Player 1's probability; $q$ is Player 2's probability. A <em>positive-probability</em> support forces its owner to be indifferent among those actions. Therefore, the equations making Player 2 indifferent determine $p$; those making Player 1 indifferent determine $q$. After solving, compare against every action not in the support.</div></div>
+<div class="section-header subsection-target" data-subsection="Examples" id="mixed-ne-examples"><span class="section-label purple">Examples</span><h2>Equilibria, Payoffs and Best-Response Graphs</h2></div>
+<div class="body-text"><p>In the three $2\times2$ examples below, let $p$ be the probability that player 1 chooses the first row and $q$ the probability that player 2 chooses the first column. The graphs use $p$ on the horizontal axis and $q$ on the vertical axis. A best-response set can contain an entire interval at an indifference point.</p></div>
 <div class="example-box">
 <div class="example-badge">Example 6.1.A · Coordination</div>
-<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$L$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$L$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$L$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria, calculate their payoffs, and plot both best-response correspondences.</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-coordination" data-label="Solution" onclick="toggle(this,'mixed-ne-coordination')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="mixed-ne-coordination"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Compute payoffs from each pure action.</strong><div>Write $p=\sigma_1(L)$ and $q=\sigma_2(L)$. For player 1,
-$$g_1(L,q)=q\cdot1+(1-q)\cdot0=q,$$
-$$g_1(C,q)=q\cdot0+(1-q)\cdot1=1-q.$$
-For player 2, the same calculation gives $g_2(p,L)=p$ and $g_2(p,C)=1-p$.</div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Write the best-response correspondences.</strong><div>Player 1 prefers $L$ when $q&gt;1/2$, prefers $C$ when $q&lt;1/2$, and is indifferent when $q=1/2$. In probability notation,
-$$BR_1(q)=\begin{cases}\{0\}&q<1/2,\\{[0,1]}&q=1/2,\\\{1\}&q>1/2.\end{cases}$$
-Similarly,
-$$BR_2(p)=\begin{cases}\{0\}&p<1/2,\\{[0,1]}&p=1/2,\\\{1\}&p>1/2.\end{cases}$$
-Here $BR_1$ returns the admissible values of $p$, and $BR_2$ returns those of $q$.</div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find every intersection.</strong><div>The two pure intersections are $(p,q)=(1,1)$ and $(0,0)$, corresponding to $(L,L)$ and $(C,C)$. For both players to randomize, both must be indifferent:
-$$q=1-q\Longrightarrow q=\frac12,\qquad p=1-p\Longrightarrow p=\frac12.$$
-If one player is pure, the other has a unique pure best response, so there are no additional equilibria with only one player randomizing. Hence
-$$NE=\left\{(L,L),(C,C),\left(\tfrac12L+\tfrac12C,\tfrac12L+\tfrac12C\right)\right\}.$$</div></div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Compute equilibrium payoffs.</strong><div>The pure equilibria give $(1,1)$. At the mixed equilibrium, the two matching profiles each occur with probability $1/4$, and the mismatching profiles give zero:
-$$g_1=g_2=\frac14\cdot1+\frac14\cdot1=\frac12.$$
-The mixed equilibrium therefore gives $(1/2,1/2)$.</div></div></div>
-<figure class="br-figure"><img src="images/mixed-br-coordination.svg" alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<button aria-controls="mixed-ne-coordination" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-coordination')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
+<div class="collapsible" id="mixed-ne-coordination"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Define the probabilities and test pure supports of Player 2.</strong>
+<div>$\sigma_1=pL+(1-p)C$; $\sigma_2=qL+(1-q)C$. Here $p=P_1(L)$, $q=P_2(L)$.
+<br/><br/>$\operatorname{supp}(\sigma_2)=\{L\}$: $BR_1(L)=\{L\}$ and $BR_2(L)=\{L\}$, giving $(L,L)$ or $(p,q)=(1,1)$.
+<br/>$\operatorname{supp}(\sigma_2)=\{C\}$: $BR_1(C)=\{C\}$ and $BR_2(C)=\{C\}$, giving $(C,C)$ or $(p,q)=(0,0)$.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{L,C\}$.</strong>
+<div>Since $0&lt;q&lt;1$, Player 2 must be indifferent between L and C. Using the <em>second</em> payoffs:
+$$g_2(\sigma_1,L)=g_2(\sigma_1,C)\iff p(1)+(1-p)(0)=p(0)+(1-p)(1)$$
+$$p=1-p\iff\boxed{p=\tfrac12\in(0,1).}$$
+Because Player 1 then plays both actions, we also need Player 1 indifferent. Using the <em>first</em> payoffs:
+$$g_1(L,\sigma_2)=g_1(C,\sigma_2)\iff q(1)+(1-q)(0)=q(0)+(1-q)(1)$$
+$$q=1-q\iff\boxed{q=\tfrac12\in(0,1).}$$
+Both proposed supports contain both available actions. There are no unused actions to check for this candidate.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>All Nash equilibria (probabilities).</strong>
+<div>There are two pure equilibria and one completely mixed equilibrium. At the pure profiles, deviating gives $0$ instead of $1$. At the completely mixed profile, all actions are in the support. Thus no unused action yields a profitable deviation:
+$$\boxed{NE=\{(1,1),(0,0),(\tfrac12,\tfrac12)\}.}$$
+The first two pairs correspond to $(L,L)$ and $(C,C)$, while $(\tfrac12,\tfrac12)$ represents $\sigma_1=\sigma_2=\tfrac12L+\tfrac12C$.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>NE payoffs — separate from the probabilities.</strong>
+<div>For pure equilibria, both payoff pairs are $(1,1)$. At the mixed NE, either supported pure action gives the same expected payoff:
+$$g_1(L,\sigma_2)=\tfrac12(1)+\tfrac12(0)=\tfrac12,$$
+$$g_2(\sigma_1,L)=\tfrac12(1)+\tfrac12(0)=\tfrac12.$$
+$$\boxed{\text{NE payoffs: }(1,1),\ (1,1),\ (\tfrac12,\tfrac12).}$$</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best-response functions and plot.</strong>
+<div>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{1\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+The graph's intersections are precisely the three NE probability pairs.</div>
+</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." src="images/mixed-br-coordination.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>The cyan set shows $p\in BR_1(q)$; the dashed coral set shows $q\in BR_2(p)$. Their three intersections are the two pure equilibria and the completely mixed equilibrium. The horizontal and vertical middle segments represent indifference, not additional equilibria by themselves.</figcaption></figure></div>
 </div>
-
 <div class="example-box">
 <div class="example-badge">Example 6.1.B · Different Preferences over Coordination</div>
-<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$F$</th><th scope="col">$O$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$F$</th><td>$(2,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$O$</th><td>$(0,0)$</td><td>$(1,2)$</td></tr></tbody></table></div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$F$</th><th scope="col">$O$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$F$</th><td>$(2,1)$</td><td>$(0,0)$</td></tr><tr><th class="row-label" scope="row">$O$</th><td>$(0,0)$</td><td>$(1,2)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria and their payoffs, then plot the best responses.</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-battle" data-label="Solution" onclick="toggle(this,'mixed-ne-battle')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="mixed-ne-battle"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Calculate the two players’ pure-action payoffs.</strong><div>Let $p=\sigma_1(F)$ and $q=\sigma_2(F)$. Player 1’s payoffs are
-$$g_1(F,q)=2q,\qquad g_1(O,q)=1-q.$$
-Player 2’s payoffs are
-$$g_2(p,F)=p,\qquad g_2(p,O)=2(1-p).$$
-Both players benefit from choosing the same action, but player 1 prefers $(F,F)$ and player 2 prefers $(O,O)$.</div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Find the indifference thresholds and best responses.</strong><div>Player 1 is indifferent when $2q=1-q$, so $3q=1$ and $q=1/3$. Player 2 is indifferent when $p=2(1-p)$, so $3p=2$ and $p=2/3$.
-$$BR_1(q)=\begin{cases}\{0\}&q<1/3,\\{[0,1]}&q=1/3,\\\{1\}&q>1/3,\end{cases}$$
-$$BR_2(p)=\begin{cases}\{0\}&p<2/3,\\{[0,1]}&p=2/3,\\\{1\}&p>2/3.\end{cases}$$</div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>List all equilibria.</strong><div>The pure mutual best responses are $(F,F)$ and $(O,O)$. The completely mixed equilibrium is $(p,q)=(2/3,1/3)$. Against a pure opponent, each player has a unique pure best response, so a profile with just one mixing player adds no equilibrium. Thus
-$$NE=\left\{(F,F),(O,O),\left(\tfrac23F+\tfrac13O,\tfrac13F+\tfrac23O\right)\right\}.$$</div></div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate the equilibrium payoffs.</strong><div>At $(F,F)$ the payoffs are $(2,1)$; at $(O,O)$ they are $(1,2)$. At the mixed equilibrium,
-$$g_1=2q=2\cdot\frac13=\frac23,\qquad g_2=p=\frac23.$$
-Equivalently, each matching cell occurs with probability $2/9$:
-$$g_1=\frac29\cdot2+\frac29\cdot1=\frac23,\qquad g_2=\frac29\cdot1+\frac29\cdot2=\frac23.$$
-The mixed equilibrium payoffs are therefore $(2/3,2/3)$.</div></div></div>
-<figure class="br-figure"><img src="images/mixed-br-battle.svg" alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<button aria-controls="mixed-ne-battle" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-battle')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
+<div class="collapsible" id="mixed-ne-battle"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports of Player 2.</strong>
+<div>Set $\sigma_1=pF+(1-p)O$ and $\sigma_2=qF+(1-q)O$. If Player 2 chooses only F, both choose F: $(F,F)$, so $(p,q)=(1,1)$. If Player 2 chooses only O, both choose O: $(O,O)$, so $(p,q)=(0,0)$.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{F,O\}$.</strong>
+<div>Since $0&lt;q&lt;1$, make <em>Player 2</em> indifferent using the second payoffs:
+$$g_2(\sigma_1,F)=g_2(\sigma_1,O)\iff p\cdot1+(1-p)\cdot0=p\cdot0+(1-p)\cdot2$$
+$$p=2(1-p)\iff\boxed{p=\tfrac23\in(0,1).}$$
+Now Player 1 must also be indifferent. Use the <em>first</em> payoffs:
+$$g_1(F,\sigma_2)=g_1(O,\sigma_2)\iff2q+0(1-q)=0q+1(1-q)$$
+$$2q=1-q\iff\boxed{q=\tfrac13\in(0,1).}$$
+Both players put positive probability on every action, so there is no unused action to check.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write all Nash equilibria (probabilities).</strong>
+<div>$$\boxed{NE=\{(1,1),(0,0),(\tfrac23,\tfrac13)\}.}$$
+The mixed profile is $\sigma_1=\tfrac23F+\tfrac13O$ and $\sigma_2=\tfrac13F+\tfrac23O$. At each pure equilibrium, changing action gives $0$ instead of a strictly positive payoff, so the unused actions are not profitable. The support enumeration has exhausted all possibilities for Player 2; the indifference condition in the mixed-support case also rules out a pure strategy for Player 1.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>NE payoffs — the professor's next step.</strong>
+<div>Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed NE, choose either supported action for each player:
+$$g_1(F,\sigma_2)=2\cdot\tfrac13+0\cdot\tfrac23=\tfrac23,$$
+$$g_2(\sigma_1,F)=1\cdot\tfrac23+0\cdot\tfrac13=\tfrac23.$$
+$$\boxed{\text{NE payoffs: }(2,1),\ (1,2),\ (\tfrac23,\tfrac23).}$$
+The professor also shows the <em>joint probabilities</em> (multiply Player 1's row probability by Player 2's column probability):
+<table class="notation-table"><thead><tr><th></th><th>Player 2: F ($1/3$)</th><th>Player 2: O ($2/3$)</th></tr></thead><tbody>
+<tr><td>Player 1: F ($2/3$)</td><td>$2/9$</td><td>$4/9$</td></tr>
+<tr><td>Player 1: O ($1/3$)</td><td>$1/9$</td><td>$2/9$</td></tr>
+</tbody></table>
+These probabilities sum to $1$ and can also be used to calculate both expected payoffs directly.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best-response functions and plot.</strong>
+<div>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac13,\\\left[0,1\right]&amp;q=\tfrac13,\\\{1\}&amp;q&gt;\tfrac13,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac23,\\\left[0,1\right]&amp;p=\tfrac23,\\\{1\}&amp;p&gt;\tfrac23.\end{cases}$$
+The three graph intersections correspond to the three equilibrium probability pairs.</div>
+</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." src="images/mixed-br-battle.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>Player 1’s indifference creates the horizontal segment at $q=1/3$. Player 2’s indifference creates the vertical segment at $p=2/3$. Their intersection gives the mixed equilibrium; the other intersections are $(0,0)$ and $(1,1)$.</figcaption></figure></div>
 </div>
-
 <div class="example-box">
 <div class="example-badge">Example 6.1.C · A Game with No Pure Equilibrium</div>
-<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$T$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$W$</th><td>$(1,3)$</td><td>$(1,2)$</td></tr><tr><th scope="row" class="row-label">$S$</th><td>$(2,-2)$</td><td>$(0,-1)$</td></tr></tbody></table></div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$T$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$W$</th><td>$(1,3)$</td><td>$(1,2)$</td></tr><tr><th class="row-label" scope="row">$S$</th><td>$(2,-2)$</td><td>$(0,-1)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria, their payoffs, and the best-response graphs.</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-conflict" data-label="Solution" onclick="toggle(this,'mixed-ne-conflict')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="mixed-ne-conflict"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Check the pure profiles.</strong><div>Player 1 prefers $S$ against $T$ ($2&gt;1$) and $W$ against $C$ ($1&gt;0$). Player 2 prefers $T$ against $W$ ($3&gt;2$) and $C$ against $S$ ($-1&gt;-2$).
-<br><br>Thus $(W,T)$ invites player 1 to switch to $S$; $(S,T)$ invites player 2 to switch to $C$; $(S,C)$ invites player 1 to switch to $W$; and $(W,C)$ invites player 2 to switch to $T$. There is no pure-strategy equilibrium.</div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Compute expected payoffs and indifference conditions.</strong><div>Let $p=\sigma_1(W)$ and $q=\sigma_2(T)$. Player 1 receives
-$$g_1(W,q)=q+(1-q)=1,\qquad g_1(S,q)=2q.$$
-Her indifference condition is $1=2q$, hence $q=1/2$. Player 2 receives
-$$g_2(p,T)=3p-2(1-p)=5p-2,$$
-$$g_2(p,C)=2p-(1-p)=3p-1.$$
-Her indifference condition is $5p-2=3p-1$, hence $2p=1$ and $p=1/2$.</div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write the best responses and identify the equilibrium.</strong><div>Player 1 prefers $W$ for small $q$ and $S$ for large $q$:
-$$BR_1(q)=\begin{cases}\{1\}&q<1/2,\\{[0,1]}&q=1/2,\\\{0\}&q>1/2.\end{cases}$$
-For player 2, the payoff difference between $T$ and $C$ is $(5p-2)-(3p-1)=2p-1$, so
-$$BR_2(p)=\begin{cases}\{0\}&p<1/2,\\{[0,1]}&p=1/2,\\\{1\}&p>1/2.\end{cases}$$
-These correspondences have only one intersection. Pure opponent actions induce unique pure best responses, so there is no equilibrium with exactly one player mixing. Therefore
-$$NE=\left\{\left(\tfrac12W+\tfrac12S,\tfrac12T+\tfrac12C\right)\right\}.$$</div></div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate the equilibrium payoffs.</strong><div>Player 1 receives $1$ from either pure action against $q=1/2$, so her equilibrium payoff is $1$. Player 2 receives
-$$5\cdot\frac12-2=\frac12\qquad\text{and}\qquad3\cdot\frac12-1=\frac12.$$
-The equilibrium payoff pair is $(1,1/2)$.</div></div></div>
-<figure class="br-figure"><img src="images/mixed-br-conflict.svg" alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." style="display:block;width:100%;max-width:480px;height:auto;margin:auto;">
+<button aria-controls="mixed-ne-conflict" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-conflict')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
+<div class="collapsible" id="mixed-ne-conflict"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Check pure supports: none gives a Nash equilibrium.</strong>
+<div>Player 1: $BR_1(T)=\{S\}$ and $BR_1(C)=\{W\}$. Player 2: $BR_2(W)=\{T\}$ and $BR_2(S)=\{C\}$. No profile is a pair of mutual best responses, so $NE_{\mathrm{pure}}=\varnothing$.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{T,C\}$.</strong>
+<div>Let $\sigma_1=pW+(1-p)S$ and $\sigma_2=qT+(1-q)C$, with $0&lt;q&lt;1$. First make Player 2 indifferent using her <em>second</em> payoffs:
+$$g_2(\sigma_1,T)=g_2(\sigma_1,C)$$
+$$3p-2(1-p)=2p-(1-p)$$
+$$5p-2=3p-1\iff2p=1\iff\boxed{p=\tfrac12\in(0,1).}$$
+Because Player 1 also mixes, she must be indifferent using the <em>first</em> payoffs:
+$$g_1(W,\sigma_2)=g_1(S,\sigma_2)$$
+$$q\cdot1+(1-q)\cdot1=2q+0(1-q)$$
+$$1=2q\iff\boxed{q=\tfrac12\in(0,1).}$$
+Both probabilities are admissible and both supports are complete. There are no unused actions to check.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write the unique equilibrium and its payoffs.</strong>
+<div>$$\boxed{NE=\{(p,q)=(\tfrac12,\tfrac12)\}.}$$
+The equilibrium strategies are $\sigma_1=\tfrac12W+\tfrac12S$, $\sigma_2=\tfrac12T+\tfrac12C$. For Player 1, $g_1(W,\sigma_2)=1$; for Player 2, $g_2(\sigma_1,T)=3/2-1=1/2$. Therefore:
+$$\boxed{\text{NE payoffs: }(1,\tfrac12).}$$</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best-response functions and plot.</strong>
+<div>$$BR_1(q)=\begin{cases}\{1\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{0\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+The sole intersection is at $(p,q)=(1/2,1/2)$.</div>
+</div></div><figure class="br-figure"><img alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." src="images/mixed-br-conflict.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>The cyan correspondence switches from $p=1$ below $q=1/2$ to $p=0$ above it. The coral correspondence switches from $q=0$ to $q=1$ at $p=1/2$. Only the middle intersection satisfies both best-response conditions.</figcaption></figure></div>
 </div>
-
-<div class="section-header subsection-target" id="sec-6-2" data-subsection="§ 6.2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
-
+<div class="section-header subsection-target" data-subsection="2×3 Exercise" id="mixed-ne-2x3"><span class="section-label example">Exercise</span><h2>Professor's Exercise — Nash with Three Actions</h2></div>
+<div class="example-box">
+<div class="example-badge">Exercise 1 · Find the Set of NE — Two Rows, Three Columns</div>
+<div class="example-context"><p>This is the $T/B$ versus $L/M/R$ game from the professor's whiteboard. Work by the support of Player 2, then check any unused column.</p><p>Throughout this exercise, $p=\sigma_1(T)$ and $\sigma_1=pT+(1-p)B$. For each two-column support, $q$ is the probability of the <em>first named column in that support</em>; the other receives $1-q$, and the unused column receives zero. Thus $q$ refers to $L$ in $\{L,M\}$ and $\{L,R\}$, but to $M$ in $\{M,R\}$.</p>
+<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption><thead><tr><th></th><th>$L$</th><th>$M$</th><th>$R$</th></tr></thead><tbody>
+<tr><th class="row-label">$T$</th><td>$(7,2)$</td><td>$(2,7)$</td><td>$(3,6)$</td></tr>
+<tr><th class="row-label">$B$</th><td>$(2,7)$</td><td>$(7,2)$</td><td>$(4,5)$</td></tr>
+</tbody></table></div></div>
+<div class="example-task"><strong>Task:</strong> Find the complete set of Nash equilibria and their payoffs, including every possible support of Player 2.</div>
+<button aria-controls="mixed-ne-2x3-solution" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-2x3-solution')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
+<div class="collapsible" id="mixed-ne-2x3-solution">
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>First: why we cannot simply eliminate a column.</strong>
+<div>Player 1's best responses: $BR_1(L)=\{T\}$, $BR_1(M)=\{B\}$, $BR_1(R)=\{B\}$. Player 2's: $BR_2(T)=\{M\}$ and $BR_2(B)=\{L\}$. Although $R$ is never Player 2's best response against a <em>pure</em> row, it may be optimal against a <em>mixed</em> row. Indeed no mixture of L and M strictly dominates R: for $\tau_2=aL+(1-a)M$, strict improvement over R would require $7-5a&gt;6$ against T (so $a&lt;1/5$), and $2+5a&gt;5$ against B (so $a&gt;3/5$). Impossible. We therefore check every support.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Singleton supports for Player 2: $\{L\},\{M\},\{R\}$.</strong>
+<div>$\operatorname{supp}(\sigma_2)=\{L\}$: $BR_1(L)=\{T\}$, but $L\notin BR_2(T)=\{M\}$. <strong>Reject.</strong><br/>
+$\operatorname{supp}(\sigma_2)=\{M\}$: $BR_1(M)=\{B\}$, but $M\notin BR_2(B)=\{L\}$. <strong>Reject.</strong><br/>
+$\operatorname{supp}(\sigma_2)=\{R\}$: $BR_1(R)=\{B\}$, but $R\notin BR_2(B)=\{L\}$. <strong>Reject.</strong><br/>
+Therefore there are no pure NE and no equilibrium with Player 2 pure. Player 1 cannot be pure either: if she plays $T$, Player 2 uniquely prefers $M$, against which she prefers $B$; if she plays $B$, Player 2 uniquely prefers $L$, against which she prefers $T$. Thus Player 1 must mix for any surviving support. The remaining possibilities for Player 2 are the three two-column supports and the full three-column support.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M\}$ — professor's board calculation.</strong>
+<div>Write $\sigma_1=pT+(1-p)B$ and $\sigma_2=qL+(1-q)M$, with $q\in(0,1)$. Since Player 2 mixes:
+$$g_2(\sigma_1,L)=g_2(\sigma_1,M)$$
+$$2p+7(1-p)=7p+2(1-p)\iff\boxed{p=\tfrac12\in(0,1).}$$
+Since Player 1 also mixes, impose:
+$$g_1(T,\sigma_2)=g_1(B,\sigma_2)$$
+$$7q+2(1-q)=2q+7(1-q)\iff\boxed{q=\tfrac12\in(0,1).}$$
+This gives a <em>candidate</em> $(\sigma_1,\sigma_2)=(\tfrac12T+\tfrac12B,\tfrac12L+\tfrac12M)$, but <strong>check the unused column R</strong>:
+$$g_2(\sigma_1,L)=g_2(\sigma_1,M)=\tfrac92\quad&lt;\quad g_2(\sigma_1,R)=\tfrac{11}{2}.$$
+Player 2 would deviate to R. <strong>Reject $\{L,M\}$.</strong></div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,R\}$ — valid equilibrium.</strong>
+<div>Let $\sigma_2=qL+(1-q)R$, $q\in(0,1)$. Player 2 is indifferent when:
+$$g_2(\sigma_1,L)=g_2(\sigma_1,R)$$
+$$2p+7(1-p)=6p+5(1-p)\iff7-5p=5+p\iff\boxed{p=\tfrac13.}$$
+Check unused M: $g_2(\sigma_1,M)=\tfrac{11}{3}&lt;\tfrac{16}{3}=g_2(\sigma_1,L)=g_2(\sigma_1,R)$, so M is <em>not</em> a profitable deviation.
+<br/><br/>Player 1 must also be indifferent:
+$$g_1(T,\sigma_2)=g_1(B,\sigma_2)$$
+$$7q+3(1-q)=2q+4(1-q)\iff\boxed{q=\tfrac16.}$$
+Both probabilities are strictly between 0 and 1. This support gives a Nash equilibrium.</div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{M,R\}$ — reject.</strong>
+<div>Set $\sigma_2=qM+(1-q)R$, with $0&lt;q&lt;1$. Indifference for Player 2 requires
+$$g_2(\sigma_1,M)=g_2(\sigma_1,R)$$
+$$7p+2(1-p)=6p+5(1-p)$$
+$$2+5p=5+p\iff\boxed{p=\tfrac34\in(0,1).}$$
+Player 1 would therefore have to mix. But her payoffs against this support are
+$$g_1(T,\sigma_2)=2q+3(1-q)=3-q,$$
+$$g_1(B,\sigma_2)=7q+4(1-q)=4+3q.$$
+For every $q\in(0,1)$, $g_1(B,\sigma_2)-g_1(T,\sigma_2)=1+4q&gt;0$. Equating the two payoffs would give $q=-1/4$, which is not an admissible probability. Player 1 cannot mix as required by $p=3/4$. <strong>Reject.</strong></div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">6</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M,R\}$ — reject.</strong>
+<div>All three columns would have to give Player 2 the same payoff. Equality between L and M forces $p=1/2$, but at that probability $g_2(L)=g_2(M)=9/2&lt;11/2=g_2(R)$. <strong>Reject.</strong></div>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Complete answer and NE payoffs.</strong>
+<div>Exactly one support works: $\{L,R\}$, with
+$$\boxed{\sigma_1=\tfrac13T+\tfrac23B,\qquad\sigma_2=\tfrac16L+0M+\tfrac56R.}$$
+Since Player 1 is indifferent, calculate from T; since Player 2 is indifferent, calculate from L:
+$$g_1=7\cdot\tfrac16+3\cdot\tfrac56=\boxed{\tfrac{11}{3}},$$
+$$g_2=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}}.$$
+<div class="math-display boxed-blue">$$\boxed{NE=\left\{\left(\tfrac13T+\tfrac23B,\,\tfrac16L+\tfrac56R\right)\right\},\quad\text{NE payoffs}=\left(\tfrac{11}{3},\tfrac{16}{3}\right).}$$</div>
+<div class="key-note blue"><strong>Exam method:</strong> list possible supports → make every supported action indifferent → ensure probabilities are positive → reject if an unused action pays more → state NE <em>and</em> NE payoffs. Here the professor explicitly rejects the $\{L,M\}$ candidate because R pays more.</div>
+</div></div>
+</div>
+</div></div><div class="section-header subsection-target" data-subsection="§ 6.2" id="sec-6-2"><span class="section-label blue">§ 6.2</span><h2>Existence</h2></div>
 <div class="prop-box">
 <div class="prop-title">Theorem — Nash (1950)</div>
 <div class="body-text"><p>Every normal-form game with a finite number of players and a finite, nonempty action set for each player has at least one Nash equilibrium <strong>in its mixed extension</strong>.</p></div>
 <div class="math-display boxed-blue">$$NE_{\mathrm{mix}}(\Gamma)\neq\varnothing$$</div>
 <div class="body-text"><p>The existence statement allows pure equilibria as well as equilibria involving randomization. It does not require a pure equilibrium to exist, and it does not say the equilibrium is unique. Once mixed strategies are allowed, the finite games considered here always have at least one equilibrium prediction.</p><p>The support states this theorem without a proof.</p></div>
-
 </div>
-
-<div class="section-header subsection-target" id="sec-7" data-subsection="Section 7"><span class="section-label green">Section 7</span><h2>Nash Equilibrium and Dominance</h2></div>
-
+<div class="section-header subsection-target" data-subsection="Section 7" id="sec-7"><span class="section-label green">Section 7</span><h2>Nash Equilibrium and Dominance</h2></div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">B. Motivation — Can We Simplify Before Solving?</div>
 <div class="body-text"><p>The connection between dominance and equilibrium remains the same as in pure strategies. We can first remove dominated pure actions, allowing a mixed strategy to establish the domination, and then search for equilibria in the smaller game. The distinction between strict and weak elimination determines whether all original equilibria are preserved.</p></div>
-
 </div>
-
 <div class="prop-box">
 <div class="prop-title">Proposition — Strict Dominance Preserves Every Equilibrium</div>
 <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>A strictly dominant-strategy equilibrium is the unique Nash equilibrium.</strong><div>If every player has a strictly dominant strategy, the profile formed by these strategies is the game’s only Nash equilibrium, even when all mixed strategies are allowed.</div></div></div>
@@ -554,9 +634,7 @@ The equilibrium payoff pair is $(1,1/2)$.</div></div></div>
 $$NE_{\mathrm{mix}}(\Gamma^k)=NE_{\mathrm{mix}}(\Gamma^1)\qquad\text{for every }k\geq1.$$
 An equilibrium of the reduced game is viewed as a profile in the original game by assigning probability zero to deleted actions. With this identification, the equilibrium sets are equal: no pure or mixed equilibrium is lost.</div></div></div>
 <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>If strict elimination leaves a single profile, it solves the game.</strong><div>When the game is dominance solvable by IESDS, the surviving profile is its unique Nash equilibrium in mixed strategies. No further support search is needed.</div></div></div>
-
 </div>
-
 <div class="prop-box">
 <div class="prop-title">Proposition — Weak Dominance May Remove Equilibria</div>
 <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>A dominant-strategy equilibrium is a Nash equilibrium.</strong><div>If every player chooses a weakly dominant strategy, each is choosing a best response to the others. The resulting profile is a Nash equilibrium; the statement does not assert uniqueness.</div></div></div>
@@ -564,43 +642,39 @@ An equilibrium of the reduced game is viewed as a profile in the original game b
 $$NE_{\mathrm{mix}}(\Gamma^k)\subseteq NE_{\mathrm{mix}}(\Gamma^1).$$
 Again, extend the surviving strategies by zero on deleted actions. Every equilibrium found in the reduced game is an original equilibrium, but the elimination may have removed other original equilibria.</div></div></div>
 <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>A unique surviving profile is an equilibrium of the original game.</strong><div>If IEWDS leaves only one profile, that profile is a Nash equilibrium. The original game may still have other equilibria that were deleted along the way.</div></div></div>
-
 </div>
-
 <div class="concept-card cyan-top">
 <div class="card-title cyan">Method — Dominance First, Indifference Second</div>
 <div class="demo-step"><div class="step-num">1</div><div class="step-body"><strong>Look for strictly dominant strategies.</strong><div>If every player has one, stop: their profile is the unique Nash equilibrium.</div></div></div>
 <div class="demo-step"><div class="step-num">2</div><div class="step-body"><strong>Otherwise, run IESDS.</strong><div>Search for pure actions strictly dominated by either pure strategies or mixtures. Continue in each reduced game. If one profile remains, stop: the game is dominance solvable.</div></div></div>
 <div class="demo-step"><div class="step-num">3</div><div class="step-body"><strong>If several actions survive, search their possible supports.</strong><div>Apply the strong indifference principle in the reduced game: impose equality within each support, check the probability restrictions, and verify that unused actions do not give higher payoffs. Include singleton supports.</div></div></div>
 <div class="demo-step"><div class="step-num">4</div><div class="step-body"><strong>Return to the original game.</strong><div>Assign zero probability to the deleted actions. Because the eliminations were strict, the equilibria of the reduced game give exactly the original game’s full equilibrium set.</div></div></div>
-
 </div>
-
 <div class="example-box">
 <div class="example-badge">Example · The Full Step-by-Step Method</div>
-<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th scope="row" class="row-label">$B$</th><td>$(-1,4)$</td><td>$(0,4)$</td><td>$(4,5)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
+<div class="example-context"><div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th class="row-label" scope="row">$B$</th><td>$(-1,4)$</td><td>$(0,4)$</td><td>$(4,5)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
 </div>
 <div class="example-task"><strong>Task:</strong> Find every Nash equilibrium using dominance first and the strong indifference principle in the reduced game.</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-ne-full-method" data-label="Solution" onclick="toggle(this,'mixed-ne-full-method')"><span class="toggle-label">Show Solution</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<button aria-controls="mixed-ne-full-method" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-full-method')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 <div class="collapsible" id="mixed-ne-full-method"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete player 1’s strictly dominated row B.</strong><div>Compare the first payoffs of rows $C$ and $B$ across columns $(A,B,C)$:
 $$C:(0,1,5),\qquad B:(-1,0,4).$$
-Every comparison is strict: $0&gt;-1$, $1&gt;0$, and $5&gt;4$. Thus $C$ strictly dominates $B$ for player 1. Delete row $B$.<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
+Every comparison is strict: $0&gt;-1$, $1&gt;0$, and $5&gt;4$. Thus $C$ strictly dominates $B$ for player 1. Delete row $B$.<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete player 2’s strictly dominated column C in the reduced game.</strong><div>Using the second payoffs and row order $(A,C)$:
 $$B:(0,1),\qquad C:(-1,0).$$
-Column $B$ strictly dominates column $C$, since $0&gt;-1$ and $1&gt;0$. This comparison uses the reduced game; in the original game, row $B$ gave player 2 a payoff of $5$ in column $C$ and $4$ in column $B$. After the deletion we obtain:<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th></tr></thead><tbody><tr><th scope="row" class="row-label">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th scope="row" class="row-label">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
+Column $B$ strictly dominates column $C$, since $0&gt;-1$ and $1&gt;0$. This comparison uses the reduced game; in the original game, row $B$ gave player 2 a payoff of $5$ in column $C$ and $4$ in column $B$. After the deletion we obtain:<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find the pure equilibria of the surviving game.</strong><div>At $(A,A)$, each player obtains $1$ and would obtain $0$ by switching. The same is true at $(C,B)$. The two off-diagonal profiles give $(0,0)$, so they are not equilibria.
-<br><br>No further strict deletion is possible: each remaining action is a strict best response to one of the opponent’s actions.</div></div></div>
+<br/><br/>No further strict deletion is possible: each remaining action is a strict best response to one of the opponent’s actions.</div></div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Find the completely mixed equilibrium.</strong><div>Let $p$ be player 1’s probability of $A$ (with $1-p$ on $C$), and let $q$ be player 2’s probability of $A$ (with $1-q$ on $B$). Player 1 is indifferent when
 $$g_1(A,q)=q=1-q=g_1(C,q)\quad\Longrightarrow\quad q=\frac12.$$
 Player 2 is indifferent when
 $$g_2(p,A)=p=1-p=g_2(p,B)\quad\Longrightarrow\quad p=\frac12.$$
 Against a pure opponent, the best response is unique, so no equilibrium has exactly one mixing player. These three profiles exhaust the reduced game’s equilibria.</div></div></div>
 <div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Restore the original action sets and check the unused actions.</strong><div>At the mixed candidate, the supported actions give $1/2$ to each player. The deleted row $B$ gives player 1
-$$g_1\left(B,\tfrac12A+\tfrac12B\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12<\frac12.$$
+$$g_1\left(B,\tfrac12A+\tfrac12B\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\frac12.$$
 The deleted column $C$ gives player 2
-$$g_2\left(\tfrac12A+\tfrac12C,C\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12<\frac12.$$
+$$g_2\left(\tfrac12A+\tfrac12C,C\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\frac12.$$
 Thus the outside-support condition is satisfied. Strict elimination also ensures that both pure equilibria of the reduced game remain equilibria of the original game.</div></div></div>
 <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>State the complete answer.</strong><div>The original game’s equilibria are
 $$NE=\left\{(A,A),(C,B),\left(\tfrac12A+\tfrac12C,\tfrac12A+\tfrac12B\right)\right\}.$$
@@ -608,48 +682,99 @@ The pure equilibria yield $(1,1)$ and the mixed equilibrium yields $(1/2,1/2)$. 
 $$\sigma_1=\left(\frac12,0,\frac12\right),\qquad\sigma_2=\left(\frac12,\frac12,0\right).$$</div></div></div>
 </div>
 </div>
-
 <div class="concept-card purple-top">
 <div class="card-title purple">Exercise Session 2 — Mixed Strategies</div>
-<div class="body-text"><p>The support refers to <em>Exercise session 2: Static games with perfect information — Mixed strategies</em>. Its exercise statements are not included in the supplied pages. This reference is retained here; the missing exercise sheet has not been reconstructed.</p></div>
-
+<div class="body-text"><p>The support refers to <em>Exercise session 2: Static games with perfect information — Mixed strategies</em>. The classroom $2\times3$ exercise supplied with this revision is developed above. The full exercise-session sheet is not included, so no additional exercise statements have been reconstructed.</p></div>
 </div>
-
 <div class="example-box">
 <div class="example-badge">Debate · Interpreting Mixed Strategies</div>
 <div class="example-context"><p>Return to the four interpretations in § 4.2: randomization, random beliefs, population, and unknown preferences.</p></div>
 <div class="example-task"><strong>Task:</strong> What is your preferred interpretation of mixed strategies?</div>
-<button type="button" class="toggle-btn example-toggle" aria-expanded="false" aria-controls="mixed-interpretation-debate" data-label="Discussion Guide" onclick="toggle(this,'mixed-interpretation-debate')"><span class="toggle-label">Show Discussion Guide</span> <span class="arrow" aria-hidden="true">▼</span></button>
+<button aria-controls="mixed-interpretation-debate" aria-expanded="false" class="toggle-btn example-toggle" data-label="Discussion Guide" onclick="toggle(this,'mixed-interpretation-debate')" type="button"><span class="toggle-label">Show Discussion Guide</span> <span aria-hidden="true" class="arrow">▼</span></button>
 <div class="collapsible" id="mixed-interpretation-debate"><p>There is no single numerical correction to this discussion question. State the interpretation you prefer, explain what the probabilities represent in it, and explain why that reading seems convincing to you.</p><p>You can refer to the distinction already made in the course: an actual random draw, beliefs about someone’s action, proportions in a population, or uncertainty about small private preferences. The choice of interpretation is yours.</p></div>
 </div>
 
-<nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
-<a class="sidebar-sublink" href="mixed-dominance.html">← Dominance in Mixed Strategies</a>
-</nav>
-</div><!-- end main-content -->
+<nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;"><a class="sidebar-sublink" href="mixed-strategies.html">← Mixed Strategies &amp; Dominance</a></nav></div><!-- end main-content -->
 </div><!-- end main-wrap -->
-
 <script>
-function toggleSidebar(){
-  document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('main-wrap').classList.toggle('expanded');
+let pendingTypeset = Promise.resolve();
+function typesetSolution(box) {
+  if (!window.MathJax || !MathJax.startup || !MathJax.startup.promise) return;
+  pendingTypeset = pendingTypeset
+    .then(() => MathJax.startup.promise)
+    .then(() => MathJax.typesetPromise([box]))
+    .catch(console.error);
 }
-function toggle(btn,id){
-  const box=document.getElementById(id);
-  if(!box) return;
-  const open=!box.classList.contains('open');
-  box.classList.toggle('open',open);
-  btn.classList.toggle('open',open);
-  btn.setAttribute('aria-expanded',String(open));
-  const label=btn.querySelector('.toggle-label');
-  if(label) label.textContent=(open?'Hide ':'Show ')+(btn.dataset.label||'Solution');
-  if(open && window.MathJax && MathJax.startup && MathJax.startup.promise){
-    MathJax.startup.promise.then(() => MathJax.typesetPromise([box])).catch(console.error);
+function toggleSidebar() {
+  const open = document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('main-wrap').classList.toggle('expanded', !open);
+  document.querySelector('.topbar-toggle').setAttribute('aria-expanded', String(open));
+}
+function toggle(btn, id) {
+  const box = document.getElementById(id);
+  if (!box) return;
+  const open = !box.classList.contains('open');
+  box.classList.toggle('open', open);
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', String(open));
+  btn.querySelector('.toggle-label').textContent = (open ? 'Hide ' : 'Show ') + btn.dataset.label;
+  if (open) typesetSolution(box);
+}
+function revealCourseAnchor() {
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+  if (id === 'mixed-dom-example') id = 'mixed-iesds-example';
+  const target = document.getElementById(id);
+  if (!target) return;
+  let box = target;
+  while (box) {
+    if (box.classList.contains('collapsible') && !box.classList.contains('open')) {
+      const button = Array.from(document.querySelectorAll('.toggle-btn')).find(btn => btn.getAttribute('aria-controls') === box.id);
+      if (button) toggle(button, box.id);
+    }
+    box = box.parentElement;
   }
+  target.scrollIntoView({ block: 'start' });
 }
-if(window.matchMedia('(max-width:900px)').matches){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('main-wrap').classList.add('expanded');
+function initCourseUi() {
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    const match = (btn.getAttribute('onclick') || '').match(/toggle\(this,\s*['"]([^'"]+)['"]\)/);
+    if (!match) return;
+    btn.type = 'button';
+    btn.setAttribute('aria-controls', match[1]);
+    btn.setAttribute('aria-expanded', 'false');
+    if (!btn.querySelector('.toggle-label')) {
+      const label = btn.textContent.replace(/[▶►▼]/g, '').trim().replace(/^Show\s+/, '');
+      btn.dataset.label = label;
+      btn.textContent = '';
+      const text = document.createElement('span');
+      text.className = 'toggle-label';
+      text.textContent = 'Show ' + label;
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      arrow.textContent = '▼';
+      arrow.setAttribute('aria-hidden', 'true');
+      btn.append(text, ' ', arrow);
+    }
+  });
+  if (window.matchMedia('(max-width:900px)').matches) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('main-wrap').classList.add('expanded');
+  }
+  const menu = document.querySelector('.topbar-toggle');
+  menu.setAttribute('aria-controls', 'sidebar');
+  menu.setAttribute('aria-expanded', String(document.getElementById('sidebar').classList.contains('open')));
+  menu.setAttribute('aria-label', 'Toggle course menu');
+  document.querySelector('.sidebar-close').setAttribute('aria-label', 'Close course menu');
+  revealCourseAnchor();
+  window.addEventListener('hashchange', revealCourseAnchor);
+  window.addEventListener('load', () => {
+    if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+      MathJax.startup.promise.then(() => pendingTypeset).then(revealCourseAnchor).catch(console.error);
+    } else {
+      revealCourseAnchor();
+    }
+  }, { once: true });
 }
 
 /* ── CHAPTER PROGRESS BAR LOGIC ── */
@@ -717,8 +842,9 @@ function initChapterProgress(){
 }
 
 if(document.readyState === 'loading'){
-  document.addEventListener('DOMContentLoaded', initChapterProgress);
+  document.addEventListener('DOMContentLoaded', () => { initCourseUi(); initChapterProgress(); });
 } else {
+  initCourseUi();
   initChapterProgress();
 }
 </script>
