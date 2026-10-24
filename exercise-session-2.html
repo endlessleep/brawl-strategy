@@ -502,7 +502,10 @@ $$g_2(\sigma)=g_2(\sigma_1,L)=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}
 NE_{(p,q)}=\{ &amp; (\tfrac13,\tfrac16) &amp; \}\\[2pt]
  &amp; \downarrow &amp; \\[2pt]
 \text{Payoffs:} &amp; (\tfrac{11}{3},\tfrac{16}{3}) &amp;
-\end{array}$$</div><p>Full vectors in the original orders $(T,B)$ and $(L,M,R)$:</p>
+\end{array}$$</div><div class="ne-actions"><p>Corresponding strategies $(\sigma_1,\sigma_2)$:</p>
+$$\begin{aligned}
+\left(\tfrac13,\ \tfrac16\right)&amp;\longleftrightarrow \left(\tfrac13T+\tfrac23B,\ \tfrac16L+\tfrac56R\right)
+\end{aligned}$$</div><p>Full vectors in the original orders $(T,B)$ and $(L,M,R)$:</p>
 $$\sigma_1=(\tfrac13,\tfrac23),\qquad\sigma_2=(\tfrac16,0,\tfrac56).$$
 <div class="key-note blue"><strong>Checks:</strong> all supports covered; indifference, probabilities and unused actions checked. NE and payoffs are stated separately.</div>
 </div></div>
@@ -576,7 +579,10 @@ $$g_2(\sigma_1,\sigma_2)=g_2(\sigma_1,W)=w-g.$$
 NE_{(p,q)}=\{ &amp; (\tfrac gw,1-\tfrac hw) &amp; \}\\[2pt]
  &amp; \downarrow &amp; \\[2pt]
 \text{Payoffs:} &amp; \left(v(1-\tfrac hw)-w,\ w-g\right) &amp;
-\end{array}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Parameter changes.</strong><div class="body-text">
+\end{array}$$</div><div class="ne-actions"><p>Corresponding strategies $(\sigma_1,\sigma_2)$:</p>
+$$\begin{aligned}
+\left(\tfrac gw,\ 1-\tfrac hw\right)&amp;\longleftrightarrow \left(\tfrac gw I+\left(1-\tfrac gw\right)D,\ \left(1-\tfrac hw\right)W+\tfrac hw S\right)
+\end{aligned}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Parameter changes.</strong><div class="body-text">
 <p>Other parameters fixed, with $0&lt;h&lt;g&lt;w$:</p>
 <div class="matrix-wrap"><table class="comparison-table">
 <thead><tr><th>Parameter increases</th><th>Inspection $p^*=g/w$</th><th>Work $q^*=1-h/w$</th></tr></thead>
@@ -666,7 +672,11 @@ $$\boxed{NE=\{\sigma^{(k)}:k=1,\ldots,N\}\ \cup\ \{\sigma^M:M\subseteq\{1,\ldots
 \text{NE families:} &amp; \sigma^{(k)} &amp; \sigma^M\ (|M|=m\geq2) &amp; \\[2pt]
  &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
 \text{Payoffs:} &amp; \begin{cases}g_k=1-c,\\g_i=1\ (i\neq k)\end{cases} &amp; g_i=\begin{cases}1-c,&amp;i\in M,\\1-c^{m/(m-1)},&amp;i\notin M\end{cases} &amp;
-\end{array}$$</div></div></div></div></div>
+\end{array}$$</div><div class="ne-actions"><p>Corresponding strategies for each player:</p>
+$$\begin{aligned}
+\sigma^{(k)}:\quad &amp;\sigma_k=A,\quad\sigma_i=I\ (i\neq k),\\[4pt]
+\sigma^M:\quad &amp;\sigma_i=\begin{cases}(1-c^{1/(m-1)})A+c^{1/(m-1)}I,&amp;i\in M,\\I,&amp;i\notin M.\end{cases}
+\end{aligned}$$</div></div></div></div></div>
 </div>
 <div class="example-box" id="ex3-q3">
 <div class="example-badge">Exercise 3 · Question 3</div>
@@ -732,7 +742,10 @@ g_i(P,\sigma_j)-g_i(E,\sigma_j)&amp;=c-\frac12&gt;0.
 NE_{(p,q)}=\{ &amp; (0,0) &amp; \}\\[2pt]
  &amp; \downarrow &amp; \\[2pt]
 \text{Payoffs:} &amp; (0,0) &amp;
-\end{array}$$</div></div></div></div></div>
+\end{array}$$</div><div class="ne-actions"><p>Corresponding strategies $(\sigma_1,\sigma_2)$:</p>
+$$\begin{aligned}
+(0,0)&amp;\longleftrightarrow (P,P)
+\end{aligned}$$</div></div></div></div></div>
 </div>
 <div class="example-box" id="ex4-q2">
 <div class="example-badge">Exercise 4 · Question 2</div>
@@ -773,7 +786,10 @@ $$g_2(\sigma_1,E)=c(1-c)+(1-c)(-c)=0.$$
 NE_{(p,q)}=\{ &amp; (0,0), &amp; (1,1), &amp; (c,c) &amp; \}\\[2pt]
  &amp; \downarrow &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
 \text{Payoffs:} &amp; (0,0) &amp; (1-c,1-c) &amp; (0,0) &amp;
-\end{array}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Effect of cost on mixed equilibrium.</strong><div class="body-text">
+\end{array}$$</div><div class="ne-actions"><p>Corresponding strategies $(\sigma_1,\sigma_2)$:</p>
+$$\begin{aligned}
+(0,0)&amp;\longleftrightarrow (P,P)\\[4pt](1,1)&amp;\longleftrightarrow (E,E)\\[4pt](c,c)&amp;\longleftrightarrow \left(cE+(1-c)P,\ cE+(1-c)P\right)
+\end{aligned}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Effect of cost on mixed equilibrium.</strong><div class="body-text">
 $$\boxed{\Pr_1(E)=\Pr_2(E)=c\quad\text{in the completely mixed equilibrium}.}$$
 <p>For a fixed opponent strategy, higher cost makes effort less attractive. At a mixed NE, indifference requires $q-c=0$: the opponent’s effort probability $q$ rises with $c$. Likewise, $p=c$.</p>
 <p>The pure equilibria remain $(P,P)$ and $(E,E)$ throughout the interval $c\in(1/2,1)$.</p></div></div></div></div>

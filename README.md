@@ -72,6 +72,8 @@ Support calculations use actions and candidate profiles use weighted actions.
 Final NE summaries use `(p,q)` when two probabilities are defined, with each payoff
 directly underneath its NE and a downward arrow. Larger games explicitly define
 the reduced coordinates and give vectors in the original action order.
+Each final result is followed by the action correspondence for every equilibrium,
+pure and mixed alike; full vectors are supplementary information.
 
 `assets/ne-payoffs.css` supplies the compact, responsive mathematical NE/Payoffs
 display with aligned downward arrows, without table frames.
