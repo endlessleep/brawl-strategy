@@ -62,6 +62,26 @@ steps remain visible. Existing colors, typography, cards, matrices, sidebar and
 chapter progress bar are preserved. The original `images/` and `assets/` files
 are unchanged; responsive containment keeps wide formulas and tables scrollable.
 
+## Mixed-strategy conventions
+
+Worked examples use `alpha_i` for mixed strategies and define each probability's
+associated action. General definitions and their proof retain `sigma_i`.
+Supports are enumerated with best responses for singleton supports, indifference
+for mixed supports, and explicit candidate checks before declaring an NE.
+Final NE sets use actions and weighted actions; `(p,q)` coordinates are labelled
+separately for graphs. Probability vectors retain the original action order.
+
+`assets/ne-payoffs.css` supplies the shared, responsive two-row NE/Payoffs display.
+It is used for the anti-coordination example, the two coordination examples, the
+reduced 3×3 game, volunteer equilibrium families and teamwork coordination.
+Single-equilibrium results use compact labelled formulas. Existing graphs retain
+horizontal `p`, vertical `q`, and their verified thresholds and intersections.
+
+The audit covers both games in the mixed-extension example, expected payoffs,
+mixed dominance/IESDS, the indifference proof, three 2×2 Nash examples, the 3×3
+reduction, and all four Session 2 exercises (eight correction buttons). Other
+course pages and Session 1 contain no additional mixed-strategy calculation.
+
 ## Validation
 
 - Exact rational support enumeration for all three 2×2 games and the 2×3 game.
