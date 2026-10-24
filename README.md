@@ -68,14 +68,18 @@ Worked examples use `alpha_i` for mixed strategies and define each probability's
 associated action. General definitions and their proof retain `sigma_i`.
 Supports are enumerated with best responses for singleton supports, indifference
 for mixed supports, and explicit candidate checks before declaring an NE.
-Final NE sets use actions and weighted actions; `(p,q)` coordinates are labelled
-separately for graphs. Probability vectors retain the original action order.
+Support calculations use actions and candidate profiles use weighted actions.
+Final NE summaries use `(p,q)` when two probabilities are defined, with each payoff
+directly underneath its NE and a downward arrow. Larger games explicitly define
+the reduced coordinates and give vectors in the original action order.
 
-`assets/ne-payoffs.css` supplies the shared, responsive two-row NE/Payoffs display.
+`assets/ne-payoffs.css` supplies the compact, responsive mathematical NE/Payoffs
+display with aligned downward arrows, without table frames.
 It is used for the anti-coordination example, the two coordination examples, the
 reduced 3×3 game, volunteer equilibrium families and teamwork coordination.
-Single-equilibrium results use compact labelled formulas. Existing graphs retain
-horizontal `p`, vertical `q`, and their verified thresholds and intersections.
+Single-equilibrium results use the same compact arrow layout. The three graphs
+are capped at 320px wide and retain horizontal `p`, vertical `q`, and their
+verified thresholds and intersections.
 
 The audit covers both games in the mixed-extension example, expected payoffs,
 mixed dominance/IESDS, the indifference proof, three 2×2 Nash examples, the 3×3

@@ -498,8 +498,13 @@ $$\boxed{\alpha_1=\tfrac13T+\tfrac23B,\qquad\alpha_2=\tfrac16L+0M+\tfrac56R.}$$
 By indifference, use T for Player 1 and L for Player 2:
 $$g_1(\alpha)=g_1(T,\alpha_2)=7\cdot\tfrac16+3\cdot\tfrac56=\boxed{\tfrac{11}{3}},$$
 $$g_2(\alpha)=g_2(\alpha_1,L)=2\cdot\tfrac13+7\cdot\tfrac23=\boxed{\tfrac{16}{3}}.$$
-<div class="math-display boxed-blue">$$\boxed{NE=\left\{\left(\tfrac13T+\tfrac23B,\,\tfrac16L+\tfrac56R\right)\right\}.}$$</div>
-<p><strong>Payoffs:</strong> $(\frac{11}{3},\frac{16}{3})$.</p><div class="key-note blue"><strong>Checks:</strong> all supports covered; indifference, probabilities and unused actions checked. NE and payoffs are stated separately.</div>
+<p>On the surviving support $\{L,R\}$, $p=\Pr_1(T)$, $q=\Pr_2(L)$ and $\Pr_2(M)=0$:</p><div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcl}
+NE_{(p,q)}=\{ &amp; (\tfrac13,\tfrac16) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (\tfrac{11}{3},\tfrac{16}{3}) &amp;
+\end{array}$$</div><p>Full vectors in the original orders $(T,B)$ and $(L,M,R)$:</p>
+$$\alpha_1=(\tfrac13,\tfrac23),\qquad\alpha_2=(\tfrac16,0,\tfrac56).$$
+<div class="key-note blue"><strong>Checks:</strong> all supports covered; indifference, probabilities and unused actions checked. NE and payoffs are stated separately.</div>
 </div></div>
 </div>
 </div>
@@ -562,12 +567,16 @@ $$\begin{aligned}g_1(D,\alpha_2)&amp;=q(v-w)+(1-q)(-w)\\&amp;=qv-qw-w+qw\\&amp;=
 <p>Hence:</p>
 $$qv-qw-h=qv-w\iff qw=w-h\iff\boxed{q^*=1-\frac hw.}$$
 <p><strong>Candidate:</strong></p>$$\alpha=(\alpha_1,\alpha_2)=\left(\frac gw I+\left(1-\frac gw\right)D,\ \left(1-\frac hw\right)W+\frac hw S\right).$$<p>Since $0&lt;h&lt;g&lt;w$, both probabilities are in $(0,1)$. The weights sum to $1$ for each player. No unused action. ✓ This is the unique NE.</p></div></div></div><div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium and payoffs.</strong><div class="body-text">
-$$NE=\left\{\left(\frac gw I+\left(1-\frac gw\right)D,\ \left(1-\frac hw\right)W+\frac hw S\right)\right\}.$$
+
 <p>By indifference, the equilibrium payoffs are:</p>
 $$g_1(\alpha_1,\alpha_2)=g_1(D,\alpha_2)=q^*v-w
 =v\left(1-\frac hw\right)-w,$$
 $$g_2(\alpha_1,\alpha_2)=g_2(\alpha_1,W)=w-g.$$
-$$\boxed{\text{NE payoffs}=\left(v\left(1-\frac hw\right)-w,\ w-g\right).}$$</div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Parameter changes.</strong><div class="body-text">
+<div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcl}
+NE_{(p,q)}=\{ &amp; (\tfrac gw,1-\tfrac hw) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; \left(v(1-\tfrac hw)-w,\ w-g\right) &amp;
+\end{array}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Parameter changes.</strong><div class="body-text">
 <p>Other parameters fixed, with $0&lt;h&lt;g&lt;w$:</p>
 <div class="matrix-wrap"><table class="comparison-table">
 <thead><tr><th>Parameter increases</th><th>Inspection $p^*=g/w$</th><th>Work $q^*=1-h/w$</th></tr></thead>
@@ -653,7 +662,11 @@ $$\boxed{p_i=\begin{cases}
 $$\boxed{p_1=\cdots=p_N=1-c^{1/(N-1)}.}$$
 <p>Write $\alpha^{(k)}$ for the pure profile with player $k$ choosing $A$ and all others choosing $I$. Then:</p>
 $$\boxed{NE=\{\alpha^{(k)}:k=1,\ldots,N\}\ \cup\ \{\alpha^M:M\subseteq\{1,\ldots,N\},\ |M|\geq2\}.}$$
-<div class="ne-payoffs-wrap" role="region" aria-label="Equilibrium families and individual expected payoffs" tabindex="0"><table class="ne-payoffs"><caption>Equilibria and individual payoffs</caption><tbody><tr><th scope="row">NE</th><td>$\alpha^{(k)}$</td><td>$\alpha^M\quad(|M|=m\geq2)$</td></tr><tr><th scope="row">Payoffs</th><td>$\begin{cases}g_k=1-c,\\g_i=1\ (i\neq k)\end{cases}$</td><td>$g_i=\begin{cases}1-c,&amp;i\in M,\\1-c^{m/(m-1)},&amp;i\notin M\end{cases}$</td></tr></tbody></table></div></div></div></div></div>
+<div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rccl}
+\text{NE families:} &amp; \alpha^{(k)} &amp; \alpha^M\ (|M|=m\geq2) &amp; \\[2pt]
+ &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; \begin{cases}g_k=1-c,\\g_i=1\ (i\neq k)\end{cases} &amp; g_i=\begin{cases}1-c,&amp;i\in M,\\1-c^{m/(m-1)},&amp;i\notin M\end{cases} &amp;
+\end{array}$$</div></div></div></div></div>
 </div>
 <div class="example-box" id="ex3-q3">
 <div class="example-badge">Exercise 3 · Question 3</div>
@@ -714,8 +727,12 @@ g_i(E,\alpha_j)&amp;=(1-q)\left(\frac12-c\right)+q(1-c)
 g_i(P,\alpha_j)-g_i(E,\alpha_j)&amp;=c-\frac12&gt;0.
 \end{aligned}$$</div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Game and equilibrium.</strong><div class="body-text">
 <p>This is a <strong>prisoner’s dilemma</strong>. Each player strictly prefers no effort, yet both would be better off at $(E,E)$ because $1-c&gt;0$.</p>
-$$\boxed{NE=\{(P,P)\},\qquad (g_1,g_2)=(0,0).}$$
-<p>Since $E$ is strictly dominated, every support containing $E$ is excluded. The only possible supports are $\operatorname{supp}(\alpha_1)=\operatorname{supp}(\alpha_2)=\{P\}$. ✓ $(P,P)$ is the unique NE, also allowing mixed strategies.</p></div></div></div></div>
+
+<p>Since $E$ is strictly dominated, every support containing $E$ is excluded. The only possible supports are $\operatorname{supp}(\alpha_1)=\operatorname{supp}(\alpha_2)=\{P\}$. ✓ $(P,P)$ is the unique NE, also allowing mixed strategies.</p><p>Let $p=\Pr_1(E)$ and $q=\Pr_2(E)$, so $\alpha_1=pE+(1-p)P$ and $\alpha_2=qE+(1-q)P$.</p><div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcl}
+NE_{(p,q)}=\{ &amp; (0,0) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (0,0) &amp;
+\end{array}$$</div></div></div></div></div>
 </div>
 <div class="example-box" id="ex4-q2">
 <div class="example-badge">Exercise 4 · Question 2</div>
@@ -748,12 +765,15 @@ $$g_1(E,\alpha_2)=q(1-c)+(1-q)(-c)=q-qc-c+qc=q-c,$$
 $$g_1(P,\alpha_2)=q(0)+(1-q)(0)=0.$$
 $$q-c=0\iff\boxed{q^*=c.}$$
 <p><strong>Candidate:</strong></p>$$\alpha=(\alpha_1,\alpha_2)=\left(cE+(1-c)P,\ cE+(1-c)P\right).$$<p>Since $c\in(1/2,1)$, both probabilities lie in $(0,1)$ and the weights sum to $1$. No unused action. ✓ This is an NE.</p></div></div></div><div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibria and payoffs.</strong><div class="body-text">
-$$\boxed{NE=\left\{(P,P),(E,E),
-\left(cE+(1-c)P,\ cE+(1-c)P\right)\right\}.}$$
+
 <p>Payoffs are $(0,0)$ at $(P,P)$ and $(1-c,1-c)$ at $(E,E)$. At the mixed NE, by indifference:</p>
 $$g_1(E,\alpha_2)=c(1-c)+(1-c)(-c)=0,$$
 $$g_2(\alpha_1,E)=c(1-c)+(1-c)(-c)=0.$$
-<div class="ne-payoffs-wrap" role="region" aria-label="Nash equilibria and expected payoffs" tabindex="0"><table class="ne-payoffs"><caption>Equilibria and payoffs</caption><tbody><tr><th scope="row">NE</th><td>$(P,P)$</td><td>$(E,E)$</td><td>$\left(cE+(1-c)P,\ cE+(1-c)P\right)$</td></tr><tr><th scope="row">Payoffs</th><td>$(0,0)$</td><td>$(1-c,1-c)$</td><td>$(0,0)$</td></tr></tbody></table></div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Effect of cost on mixed equilibrium.</strong><div class="body-text">
+<div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcccl}
+NE_{(p,q)}=\{ &amp; (0,0), &amp; (1,1), &amp; (c,c) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (0,0) &amp; (1-c,1-c) &amp; (0,0) &amp;
+\end{array}$$</div></div></div></div><div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Effect of cost on mixed equilibrium.</strong><div class="body-text">
 $$\boxed{\Pr_1(E)=\Pr_2(E)=c\quad\text{in the completely mixed equilibrium}.}$$
 <p>For a fixed opponent strategy, higher cost makes effort less attractive. At a mixed NE, indifference requires $q-c=0$: the opponent’s effort probability $q$ rises with $c$. Likewise, $p=c$.</p>
 <p>The pure equilibria remain $(P,P)$ and $(E,E)$ throughout the interval $c\in(1/2,1)$.</p></div></div></div></div>

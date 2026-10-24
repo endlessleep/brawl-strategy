@@ -310,7 +310,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 .notation-table td:first-child { white-space:normal; width:38%; }
 .notation-table td { overflow-wrap:anywhere; }
 mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
-.br-figure { margin:18px 0 8px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; }
+.br-figure { max-width:420px; margin:18px auto 8px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:12px; }
 .br-figure svg { display:block; width:100%; max-width:430px; height:auto; margin:auto; }
 .br-figure figcaption { color:var(--text-3); font-size:.83rem; line-height:1.6; margin-top:10px; }
 .br-legend { display:flex; gap:18px; flex-wrap:wrap; justify-content:center; font-size:.8rem; margin-top:8px; }
@@ -478,19 +478,21 @@ $$g_1(C,\alpha_2)=q(0)+(1-q)(1)=1-q.$$
 $$g_1(L,\alpha_2)=g_1(C,\alpha_2)\iff q=1-q\iff2q=1\iff\boxed{q=\frac12\in(0,1).}$$
 <p><strong>Candidate:</strong></p>$$\alpha=(\alpha_1,\alpha_2)=\left(\frac12L+\frac12C,\ \frac12L+\frac12C\right).$$<p>Both probabilities lie in $(0,1)$, and each player's weights sum to $1$. No action is outside the supports. ✓ The candidate is an NE.</p></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria.</strong>
-<div class="body-text"><p>All supports have been checked:</p>$$\boxed{NE=\left\{(L,L),\ (C,C),\ \left(\frac12L+\frac12C,\ \frac12L+\frac12C\right)\right\}.}$$</div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium payoffs.</strong>
-<div>Pure equilibria: $(1,1)$. At the mixed equilibrium, indifference gives:
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria and payoffs.</strong>
+<div class="body-text">Each pure equilibrium gives payoffs $(1,1)$. At the mixed equilibrium, indifference gives:
 $$g_1(L,\alpha_2)=\tfrac12(1)+\tfrac12(0)=\tfrac12,$$
 $$g_2(\alpha_1,L)=\tfrac12(1)+\tfrac12(0)=\tfrac12.$$
-<div class="ne-payoffs-wrap" role="region" aria-label="Nash equilibria and expected payoffs" tabindex="0"><table class="ne-payoffs"><caption>Equilibria and payoffs</caption><tbody><tr><th scope="row">NE</th><td>$(L,L)$</td><td>$(C,C)$</td><td>$\left(\frac12L+\frac12C,\ \frac12L+\frac12C\right)$</td></tr><tr><th scope="row">Payoffs</th><td>$(1,1)$</td><td>$(1,1)$</td><td>$(\frac12,\frac12)$</td></tr></tbody></table></div></div>
+<p>All supports have been checked. In the defined coordinates $(p,q)$:</p><div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcccl}
+NE_{(p,q)}=\{ &amp; (1,1), &amp; (0,0), &amp; (\tfrac12,\tfrac12) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (1,1) &amp; (1,1) &amp; (\tfrac12,\tfrac12) &amp;
+\end{array}$$</div></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best responses.</strong>
-<div><p>Equilibrium coordinates $(p,q)$:</p>$$\left\{(1,1),\ (0,0),\ (\frac12,\frac12)\right\}.$$<p>Payoff differences:</p>$$g_1(L,\alpha_2)-g_1(C,\alpha_2)=2q-1,\qquad g_2(\alpha_1,L)-g_2(\alpha_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{1\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best responses.</strong>
+<div><p>Payoff differences:</p>$$g_1(L,\alpha_2)-g_1(C,\alpha_2)=2q-1,\qquad g_2(\alpha_1,L)-g_2(\alpha_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{1\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
 The three intersections give the three equilibria.</div>
-</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." src="images/mixed-br-coordination.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
+</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." src="images/mixed-br-coordination.svg" style="display:block;width:100%;max-width:320px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>Cyan: $p\in BR_1(q)$. Coral: $q\in BR_2(p)$. Only their intersections are equilibria. The middle segments represent indifference.</figcaption></figure></div>
 </div>
@@ -518,14 +520,11 @@ $$g_1(O,\alpha_2)=q(0)+(1-q)(1)=1-q.$$
 $$g_1(F,\alpha_2)=g_1(O,\alpha_2)\iff 2q=1-q\iff3q=1\iff\boxed{q=\frac13\in(0,1).}$$
 <p><strong>Candidate:</strong></p>$$\alpha=(\alpha_1,\alpha_2)=\left(\frac23F+\frac13O,\ \frac13F+\frac23O\right).$$<p>Both probabilities lie in $(0,1)$, and each player's weights sum to $1$. No action is outside the supports. ✓ The candidate is an NE.</p></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria.</strong>
-<div class="body-text"><p>All supports have been checked:</p>$$\boxed{NE=\left\{(F,F),\ (O,O),\ \left(\frac23F+\frac13O,\ \frac13F+\frac23O\right)\right\}.}$$</div>
-</div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium payoffs.</strong>
-<div>Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed equilibrium, by indifference:
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria and payoffs.</strong>
+<div class="body-text">Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed equilibrium, by indifference:
 $$g_1(F,\alpha_2)=2\cdot\tfrac13+0\cdot\tfrac23=\tfrac23,$$
 $$g_2(\alpha_1,F)=1\cdot\tfrac23+0\cdot\tfrac13=\tfrac23.$$
-<div class="ne-payoffs-wrap" role="region" aria-label="Nash equilibria and expected payoffs" tabindex="0"><table class="ne-payoffs"><caption>Equilibria and payoffs</caption><tbody><tr><th scope="row">NE</th><td>$(F,F)$</td><td>$(O,O)$</td><td>$\left(\frac23F+\frac13O,\ \frac13F+\frac23O\right)$</td></tr><tr><th scope="row">Payoffs</th><td>$(2,1)$</td><td>$(1,2)$</td><td>$(\frac23,\frac23)$</td></tr></tbody></table></div>
+
 By independence, each joint probability is the row probability times the column probability:
 <table class="notation-table"><thead><tr><th></th><th>Player 2: F ($1/3$)</th><th>Player 2: O ($2/3$)</th></tr></thead><tbody>
 <tr><td>Player 1: F ($2/3$)</td><td>$2/9$</td><td>$4/9$</td></tr>
@@ -533,12 +532,17 @@ By independence, each joint probability is the row probability times the column 
 </tbody></table>
 Their sum is $1$. From the original matrix:
 $$g_1(\alpha)=\frac29(2)+\frac49(0)+\frac19(0)+\frac29(1)=\frac23,$$
-$$g_2(\alpha)=\frac29(1)+\frac49(0)+\frac19(0)+\frac29(2)=\frac23.$$</div>
+$$g_2(\alpha)=\frac29(1)+\frac49(0)+\frac19(0)+\frac29(2)=\frac23.$$<p>All supports have been checked. In the defined coordinates $(p,q)$:</p><div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcccl}
+NE_{(p,q)}=\{ &amp; (1,1), &amp; (0,0), &amp; (\tfrac23,\tfrac13) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (2,1) &amp; (1,2) &amp; (\tfrac23,\tfrac23) &amp;
+\end{array}$$</div></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best responses.</strong>
-<div><p>Equilibrium coordinates $(p,q)$:</p>$$\left\{(1,1),\ (0,0),\ (\frac23,\frac13)\right\}.$$<p>Payoff differences:</p>$$g_1(F,\alpha_2)-g_1(O,\alpha_2)=3q-1,\qquad g_2(\alpha_1,F)-g_2(\alpha_1,O)=3p-2.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac13,\\\left[0,1\right]&amp;q=\tfrac13,\\\{1\}&amp;q&gt;\tfrac13,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac23,\\\left[0,1\right]&amp;p=\tfrac23,\\\{1\}&amp;p&gt;\tfrac23.\end{cases}$$
+
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best responses.</strong>
+<div><p>Payoff differences:</p>$$g_1(F,\alpha_2)-g_1(O,\alpha_2)=3q-1,\qquad g_2(\alpha_1,F)-g_2(\alpha_1,O)=3p-2.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac13,\\\left[0,1\right]&amp;q=\tfrac13,\\\{1\}&amp;q&gt;\tfrac13,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac23,\\\left[0,1\right]&amp;p=\tfrac23,\\\{1\}&amp;p&gt;\tfrac23.\end{cases}$$
 The three graph intersections correspond to the three equilibrium probability pairs.</div>
-</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." src="images/mixed-br-battle.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
+</div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." src="images/mixed-br-battle.svg" style="display:block;width:100%;max-width:320px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>Player 1’s indifference creates the horizontal segment at $q=1/3$. Player 2’s indifference creates the vertical segment at $p=2/3$. Their intersection gives the mixed equilibrium; the other intersections are $(0,0)$ and $(1,1)$.</figcaption></figure></div>
 </div>
@@ -568,15 +572,19 @@ $$g_1(W,\alpha_2)=g_1(S,\alpha_2)\iff 1=2q\iff\boxed{q=\frac12\in(0,1).}$$
 <p><strong>Candidate:</strong></p>$$\alpha=(\alpha_1,\alpha_2)=\left(\frac12W+\frac12S,\ \frac12T+\frac12C\right).$$<p>Both probabilities lie in $(0,1)$, and each player's weights sum to $1$. No action is outside the supports. ✓ The candidate is an NE.</p></div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Equilibrium and payoffs.</strong>
-<div class="body-text">$$\boxed{NE=\left\{\left(\frac12W+\frac12S,\ \frac12T+\frac12C\right)\right\}.}$$<p>By indifference, the equilibrium payoffs are:</p>
+<div class="body-text"><p>By indifference, the equilibrium payoffs are:</p>
 $$g_1(\alpha)=g_1(W,\alpha_2)=\frac12(1)+\frac12(1)=1,$$
 $$g_2(\alpha)=g_2(\alpha_1,T)=\frac12(3)+\frac12(-2)=\frac12.$$
-<p><strong>Payoffs:</strong> $(1,\frac12)$.</p></div>
+<div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcl}
+NE_{(p,q)}=\{ &amp; (\tfrac12,\tfrac12) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (1,\tfrac12) &amp;
+\end{array}$$</div></div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best responses.</strong>
-<div><p>Equilibrium coordinates $(p,q)$:</p>$$\left\{(\frac12,\frac12)\right\}.$$<p>Payoff differences:</p>$$g_1(W,\alpha_2)-g_1(S,\alpha_2)=1-2q,\qquad g_2(\alpha_1,T)-g_2(\alpha_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{1\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{0\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+<div><p>Payoff differences:</p>$$g_1(W,\alpha_2)-g_1(S,\alpha_2)=1-2q,\qquad g_2(\alpha_1,T)-g_2(\alpha_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{1\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{0\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
 The sole intersection is at $(p,q)=(1/2,1/2)$.</div>
-</div></div><figure class="br-figure"><img alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." src="images/mixed-br-conflict.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
+</div></div><figure class="br-figure"><img alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." src="images/mixed-br-conflict.svg" style="display:block;width:100%;max-width:320px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
 <figcaption>The cyan correspondence switches from $p=1$ below $q=1/2$ to $p=0$ above it. The coral correspondence switches from $q=0$ to $q=1$ at $p=1/2$. Only the middle intersection satisfies both best-response conditions.</figcaption></figure></div>
 </div>
@@ -660,12 +668,16 @@ $$g_1\left(B,\tfrac12A+\tfrac12B\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\fr
 Player 2, unused column $C$:
 $$g_2\left(\tfrac12A+\tfrac12C,C\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\frac12.$$
 Neither deviation is profitable. ✓ The mixed candidate is an NE. Strict elimination preserves NE, so the two pure equilibria also remain valid in the original game.</div></div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion.</strong><div>The complete set is:
-$$NE=\left\{(A,A),(C,B),\left(\tfrac12A+\tfrac12C,\tfrac12A+\tfrac12B\right)\right\}.$$
-At the mixed NE:
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion.</strong><div>At the mixed NE:
 $$g_1(\alpha)=g_1(A,\alpha_2)=\frac12(1)+\frac12(0)=\frac12,$$
 $$g_2(\alpha)=g_2(\alpha_1,A)=\frac12(1)+\frac12(0)=\frac12.$$
-<div class="ne-payoffs-wrap" role="region" aria-label="Nash equilibria and expected payoffs" tabindex="0"><table class="ne-payoffs"><caption>Equilibria and payoffs</caption><tbody><tr><th scope="row">NE</th><td>$(A,A)$</td><td>$(C,B)$</td><td>$\left(\frac12A+\frac12C,\ \frac12A+\frac12B\right)$</td></tr><tr><th scope="row">Payoffs</th><td>$(1,1)$</td><td>$(1,1)$</td><td>$(\frac12,\frac12)$</td></tr></tbody></table></div><p>Original order $(A,B,C)$ for each player: the deleted row B and column C receive probability zero.</p>
+<p>Reduced-game coordinates: $p=\Pr_1(A)$ and $q=\Pr_2(A)$.</p><div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcccl}
+NE_{(p,q)}=\{ &amp; (1,1), &amp; (0,0), &amp; (\tfrac12,\tfrac12) &amp; \}\\[2pt]
+ &amp; \downarrow &amp; \downarrow &amp; \downarrow &amp; \\[2pt]
+\text{Payoffs:} &amp; (1,1) &amp; (1,1) &amp; (\tfrac12,\tfrac12) &amp;
+\end{array}$$</div><p>In the original action order $(A,B,C)$, these coordinates mean:</p>
+$$\alpha_1=(p,0,1-p),\qquad\alpha_2=(q,1-q,0).$$
+<p>Thus the pure NE are $(A,A)$ and $(C,B)$. At the mixed NE:</p>
 $$\alpha_1=\left(\frac12,0,\frac12\right),\qquad\alpha_2=\left(\frac12,\frac12,0\right).$$</div></div></div>
 </div>
 </div>

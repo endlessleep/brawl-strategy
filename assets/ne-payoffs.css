@@ -1,11 +1,4 @@
-/* Aligned equilibrium/payoff results, using the existing course palette. */
-.ne-payoffs-wrap { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; border:1px solid var(--border); border-radius:10px; }
-.ne-payoffs-wrap:focus-visible { outline:2px solid var(--cyan-bright); outline-offset:3px; }
-.ne-payoffs { width:100%; border-collapse:collapse; color:var(--text); font-size:0.92rem; }
-.ne-payoffs caption { text-align:left; padding:10px 14px; color:var(--text-3); font-size:0.8rem; }
-.ne-payoffs th, .ne-payoffs td { padding:12px 14px; text-align:center; border-top:1px solid var(--border); vertical-align:middle; }
-.ne-payoffs th { position:sticky; left:0; z-index:1; background:var(--bg-card); text-align:left; color:var(--cyan-bright); font-weight:700; }
-.ne-payoffs td + td { border-left:1px solid var(--border); }
-.ne-payoffs td { min-width:100px; }
-.ne-payoffs mjx-container { margin:0 !important; }
-@media (max-width:600px) { .ne-payoffs th, .ne-payoffs td { padding:10px; } }
+/* Compact mathematical NE → payoff summaries, in the existing course palette. */
+.ne-summary { max-width:100%; margin:14px 0; padding:4px 0; color:var(--text); font-size:0.95rem; }
+.ne-summary mjx-container[display="true"] { margin:6px 0 !important; overflow-x:auto; overflow-y:hidden; max-width:100%; padding:4px 0; }
+@media (max-width:600px) { .ne-summary { font-size:0.85rem; } }
