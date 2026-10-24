@@ -64,8 +64,8 @@ are unchanged; responsive containment keeps wide formulas and tables scrollable.
 
 ## Mixed-strategy conventions
 
-Worked examples use `alpha_i` for mixed strategies and define each probability's
-associated action. General definitions and their proof retain `sigma_i`.
+Worked examples and general definitions use `sigma_i` for mixed strategies,
+following the course handout, and define each probability's associated action.
 Supports are enumerated with best responses for singleton supports, indifference
 for mixed supports, and explicit candidate checks before declaring an NE.
 Support calculations use actions and candidate profiles use weighted actions.
