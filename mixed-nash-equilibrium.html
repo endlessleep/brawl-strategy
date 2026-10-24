@@ -433,14 +433,14 @@ For example, if the used actions $L$ and $M$ each pay $2$, but unused $R$ pays $
 <div class="example-badge">Proof Exercise · Strong Indifference Principle</div>
 <div class="example-task"><strong>Task:</strong> Prove both directions: an equilibrium satisfies conditions (i)–(ii), and those conditions rule out every profitable deviation.</div>
 <button aria-controls="mixed-indifference-proof" aria-expanded="false" class="toggle-btn example-toggle" data-label="Proof Solution" onclick="toggle(this,'mixed-indifference-proof')" type="button"><span class="toggle-label">Show Proof Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-indifference-proof"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Necessity: a used action cannot be worse than another action.</strong><div>Assume that $\sigma$ is an equilibrium. Suppose a player uses $s_i$ with $\sigma_i(s_i)&gt;0$, but some action $t_i$ gives a strictly higher payoff against $\sigma_{-i}$. Move the probability on $s_i$ to $t_i$, leaving all other probabilities unchanged. The expected-payoff increase is
+<div class="collapsible" id="mixed-indifference-proof"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Necessity.</strong><div>Assume that $\sigma$ is an equilibrium. Suppose a player uses $s_i$ with $\sigma_i(s_i)&gt;0$, but some action $t_i$ gives a strictly higher payoff against $\sigma_{-i}$. Move the probability on $s_i$ to $t_i$, leaving all other probabilities unchanged. The expected-payoff increase is
 $$\sigma_i(s_i)\bigl[g_i(t_i,\sigma_{-i})-g_i(s_i,\sigma_{-i})\bigr]&gt;0.$$
-This would be a profitable unilateral deviation, contradicting equilibrium. Hence each used action must give a maximal payoff. All used actions therefore tie, and no unused action can give more. These are conditions (i) and (ii).</div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Sufficiency: any deviation is an average of payoffs no larger than the common payoff.</strong><div>Now assume (i) and (ii). For player $i$, denote the common payoff of the supported actions by $v_i$. Because all probability is assigned to these actions,
+This profitable deviation contradicts equilibrium. All used actions must therefore maximize the payoff: they give the same payoff, and no unused action gives more. This proves (i) and (ii).</div></div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Sufficiency.</strong><div>Now assume (i) and (ii). For player $i$, denote the common payoff of the supported actions by $v_i$. Because all probability is assigned to these actions,
 $$g_i(\sigma_i,\sigma_{-i})=\sum_{s_i\in\operatorname{supp}(\sigma_i)}\sigma_i(s_i)v_i=v_i.$$
 Every pure action gives at most $v_i$: the supported ones give exactly $v_i$, and (ii) bounds the others. For any mixed deviation $\tau_i$,
 $$g_i(\tau_i,\sigma_{-i})=\sum_{t_i\in S_i}\tau_i(t_i)g_i(t_i,\sigma_{-i})\leq\sum_{t_i\in S_i}\tau_i(t_i)v_i=v_i.$$
-Thus no player can profitably deviate. Since this argument holds for every player, $\sigma$ is a Nash equilibrium.</div></div></div>
+No player has a profitable deviation. Hence $\sigma$ is a Nash equilibrium.</div></div></div>
 </div>
 </div>
 <div class="concept-card cyan-top">
@@ -458,45 +458,45 @@ Thus no player can profitably deviate. Since this argument holds for every playe
 </div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria, calculate their payoffs, and plot both best-response correspondences.</div>
 <button aria-controls="mixed-ne-coordination" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-coordination')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-ne-coordination"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Define the probabilities and test pure supports of Player 2.</strong>
+<div class="collapsible" id="mixed-ne-coordination"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports.</strong>
 <div>$\sigma_1=pL+(1-p)C$; $\sigma_2=qL+(1-q)C$. Here $p=P_1(L)$, $q=P_2(L)$.
 <br/><br/>$\operatorname{supp}(\sigma_2)=\{L\}$: $BR_1(L)=\{L\}$ and $BR_2(L)=\{L\}$, giving $(L,L)$ or $(p,q)=(1,1)$.
 <br/>$\operatorname{supp}(\sigma_2)=\{C\}$: $BR_1(C)=\{C\}$ and $BR_2(C)=\{C\}$, giving $(C,C)$ or $(p,q)=(0,0)$.</div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{L,C\}$.</strong>
 <div class="body-text">
-<p>Let $\sigma_1=pL+(1-p)C$ and $\sigma_2=qL+(1-q)C$, with $q\in(0,1)$. Both columns are used, so we require:</p>
+<p>Let $\sigma_1=pL+(1-p)C$ and $\sigma_2=qL+(1-q)C$, with $q\in(0,1)$. Player 2 mixes, so:</p>
 $$\boxed{g_2(\sigma_1,L)=g_2(\sigma_1,C).}$$
 <p><strong>If Player 2 plays $L$:</strong></p>
 $$g_2(\sigma_1,L)=p(1)+(1-p)(0)=p.$$
 <p><strong>If Player 2 plays $C$:</strong></p>
 $$g_2(\sigma_1,C)=p(0)+(1-p)(1)=1-p.$$
-<p>Hence $p=1-p\iff2p=1\iff\boxed{p=1/2}$. This belongs to $(0,1)$, so Player 1 also uses both actions. We therefore require:</p>
+<p>Hence $p=1-p\iff2p=1\iff\boxed{p=1/2}$. Since this is in $(0,1)$, Player 1 also mixes:</p>
 $$\boxed{g_1(L,\sigma_2)=g_1(C,\sigma_2).}$$
 <p><strong>If Player 1 plays $L$:</strong></p>
 $$g_1(L,\sigma_2)=q(1)+(1-q)(0)=q.$$
 <p><strong>If Player 1 plays $C$:</strong></p>
 $$g_1(C,\sigma_2)=q(0)+(1-q)(1)=1-q.$$
 <p>Hence $q=1-q\iff2q=1\iff\boxed{q=1/2}$.</p>
-<p>Both probabilities are in $(0,1)$. Every action is in its player's support, so there is no unused action to check. This candidate is an equilibrium.</p></div>
+<p>Both probabilities are in $(0,1)$. No unused action. Hence this is an equilibrium.</p></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>All Nash equilibria (probabilities).</strong>
-<div>There are two pure equilibria and one completely mixed equilibrium. At the pure profiles, deviating gives $0$ instead of $1$. At the completely mixed profile, all actions are in the support. Thus no unused action yields a profitable deviation:
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria (probabilities).</strong>
+<div>At the pure candidates, a deviation gives $0$ instead of $1$. At the mixed candidate, both players are indifferent and use every action. Thus:
 $$\boxed{NE=\{(1,1),(0,0),(\tfrac12,\tfrac12)\}.}$$
 The first two pairs correspond to $(L,L)$ and $(C,C)$, while $(\tfrac12,\tfrac12)$ represents $\sigma_1=\sigma_2=\tfrac12L+\tfrac12C$.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>NE payoffs — separate from the probabilities.</strong>
-<div>For pure equilibria, both payoff pairs are $(1,1)$. At the mixed NE, either supported pure action gives the same expected payoff:
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium payoffs.</strong>
+<div>Pure equilibria: $(1,1)$. At the mixed equilibrium, indifference gives:
 $$g_1(L,\sigma_2)=\tfrac12(1)+\tfrac12(0)=\tfrac12,$$
 $$g_2(\sigma_1,L)=\tfrac12(1)+\tfrac12(0)=\tfrac12.$$
 $$\boxed{\text{NE payoffs: }(1,1),\ (1,1),\ (\tfrac12,\tfrac12).}$$</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best-response functions and plot.</strong>
-<div><p>Subtract the payoff of the second action from that of the first:</p>$$g_1(L,\sigma_2)-g_1(C,\sigma_2)=2q-1,\qquad g_2(\sigma_1,L)-g_2(\sigma_1,C)=2p-1.$$<p>A positive difference means choosing the first action with probability $1$; a negative difference means probability $0$. At zero, every mixture is a best response. Thus:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{1\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
-The graph's intersections are precisely the three NE probability pairs.</div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best responses.</strong>
+<div><p>Payoff differences:</p>$$g_1(L,\sigma_2)-g_1(C,\sigma_2)=2q-1,\qquad g_2(\sigma_1,L)-g_2(\sigma_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{1\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+The three intersections give the three equilibria.</div>
 </div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (1/2,1/2), and (1,1)." src="images/mixed-br-coordination.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
-<figcaption>The cyan set shows $p\in BR_1(q)$; the dashed coral set shows $q\in BR_2(p)$. Their three intersections are the two pure equilibria and the completely mixed equilibrium. The horizontal and vertical middle segments represent indifference, not additional equilibria by themselves.</figcaption></figure></div>
+<figcaption>Cyan: $p\in BR_1(q)$. Coral: $q\in BR_2(p)$. Only their intersections are equilibria. The middle segments represent indifference.</figcaption></figure></div>
 </div>
 <div class="example-box">
 <div class="example-badge">Example 6.1.B · Different Preferences over Coordination</div>
@@ -505,44 +505,44 @@ The graph's intersections are precisely the three NE probability pairs.</div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria and their payoffs, then plot the best responses.</div>
 <button aria-controls="mixed-ne-battle" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-battle')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 <div class="collapsible" id="mixed-ne-battle"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports of Player 2.</strong>
-<div>Set $\sigma_1=pF+(1-p)O$ and $\sigma_2=qF+(1-q)O$. If Player 2 chooses only F, both choose F: $(F,F)$, so $(p,q)=(1,1)$. If Player 2 chooses only O, both choose O: $(O,O)$, so $(p,q)=(0,0)$.</div>
+<div>Set $\sigma_1=pF+(1-p)O$ and $\sigma_2=qF+(1-q)O$. <br/>Player 2 plays F: mutual best responses at $(F,F)$, hence $(p,q)=(1,1)$.<br/>Player 2 plays O: mutual best responses at $(O,O)$, hence $(p,q)=(0,0)$.</div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{F,O\}$.</strong>
 <div class="body-text">
-<p>Let $\sigma_1=pF+(1-p)O$ and $\sigma_2=qF+(1-q)O$, where $p$ and $q$ are the respective probabilities of $F$. For this support, $0&lt;q&lt;1$. We require:</p>
+<p>Let $\sigma_1=pF+(1-p)O$ and $\sigma_2=qF+(1-q)O$, where $p$ and $q$ are the respective probabilities of $F$. Since $0&lt;q&lt;1$, Player 2 is indifferent:</p>
 $$\boxed{g_2(\sigma_1,F)=g_2(\sigma_1,O).}$$
 <p><strong>If Player 2 plays $F$:</strong></p>
 $$g_2(\sigma_1,F)=p(1)+(1-p)(0)=p.$$
 <p><strong>If Player 2 plays $O$:</strong></p>
 $$g_2(\sigma_1,O)=p(0)+(1-p)(2)=2-2p.$$
 $$p=2-2p\iff3p=2\iff\boxed{p=\frac23\in(0,1).}$$
-<p>Thus Player 1 uses both actions. We must also check:</p>
+<p>Player 1 also mixes, so:</p>
 $$\boxed{g_1(F,\sigma_2)=g_1(O,\sigma_2).}$$
 <p><strong>If Player 1 plays $F$:</strong></p>
 $$g_1(F,\sigma_2)=q(2)+(1-q)(0)=2q.$$
 <p><strong>If Player 1 plays $O$:</strong></p>
 $$g_1(O,\sigma_2)=q(0)+(1-q)(1)=1-q.$$
 $$2q=1-q\iff3q=1\iff\boxed{q=\frac13\in(0,1).}$$
-<p>Both probabilities are admissible. Both supports contain all available actions, so there is no unused action to check. The candidate is a Nash equilibrium.</p></div>
+<p>Both probabilities are valid. No unused action. Hence this is a Nash equilibrium.</p></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write all Nash equilibria (probabilities).</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibria (probabilities).</strong>
 <div>$$\boxed{NE=\{(1,1),(0,0),(\tfrac23,\tfrac13)\}.}$$
-The mixed profile is $\sigma_1=\tfrac23F+\tfrac13O$ and $\sigma_2=\tfrac13F+\tfrac23O$. At each pure equilibrium, changing action gives $0$ instead of a strictly positive payoff, so the unused actions are not profitable. The support enumeration has exhausted all possibilities for Player 2; the indifference condition in the mixed-support case also rules out a pure strategy for Player 1.</div>
+The mixed profile is $\sigma_1=\tfrac23F+\tfrac13O$ and $\sigma_2=\tfrac13F+\tfrac23O$. At each pure equilibrium, a deviation gives $0$ instead of a positive payoff. All supports of Player 2 have been checked. If Player 2 mixes, indifference forces Player 1 to mix as well. There are no other equilibria.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Calculate equilibrium payoffs.</strong>
-<div>Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed NE, choose either supported action for each player:
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium payoffs.</strong>
+<div>Pure payoff pairs: $(F,F)\mapsto(2,1)$ and $(O,O)\mapsto(1,2)$. At the mixed equilibrium, by indifference:
 $$g_1(F,\sigma_2)=2\cdot\tfrac13+0\cdot\tfrac23=\tfrac23,$$
 $$g_2(\sigma_1,F)=1\cdot\tfrac23+0\cdot\tfrac13=\tfrac23.$$
 $$\boxed{\text{NE payoffs: }(2,1),\ (1,2),\ (\tfrac23,\tfrac23).}$$
-The <em>joint probabilities</em> are the products of Player 1's row probabilities and Player 2's column probabilities:
+By independence, each joint probability is the row probability times the column probability:
 <table class="notation-table"><thead><tr><th></th><th>Player 2: F ($1/3$)</th><th>Player 2: O ($2/3$)</th></tr></thead><tbody>
 <tr><td>Player 1: F ($2/3$)</td><td>$2/9$</td><td>$4/9$</td></tr>
 <tr><td>Player 1: O ($1/3$)</td><td>$1/9$</td><td>$2/9$</td></tr>
 </tbody></table>
-These probabilities sum to $1$ and can also be used to calculate both expected payoffs directly.</div>
+Their sum is $1$. Weighting the matrix payoffs by these probabilities gives the same expected payoffs.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best-response functions and plot.</strong>
-<div><p>Subtract the payoff of the second action from that of the first:</p>$$g_1(F,\sigma_2)-g_1(O,\sigma_2)=3q-1,\qquad g_2(\sigma_1,F)-g_2(\sigma_1,O)=3p-2.$$<p>A positive difference means choosing the first action with probability $1$; a negative difference means probability $0$. At zero, every mixture is a best response. Thus:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac13,\\\left[0,1\right]&amp;q=\tfrac13,\\\{1\}&amp;q&gt;\tfrac13,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac23,\\\left[0,1\right]&amp;p=\tfrac23,\\\{1\}&amp;p&gt;\tfrac23.\end{cases}$$
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Best responses.</strong>
+<div><p>Payoff differences:</p>$$g_1(F,\sigma_2)-g_1(O,\sigma_2)=3q-1,\qquad g_2(\sigma_1,F)-g_2(\sigma_1,O)=3p-2.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{0\}&amp;q&lt;\tfrac13,\\\left[0,1\right]&amp;q=\tfrac13,\\\{1\}&amp;q&gt;\tfrac13,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac23,\\\left[0,1\right]&amp;p=\tfrac23,\\\{1\}&amp;p&gt;\tfrac23.\end{cases}$$
 The three graph intersections correspond to the three equilibrium probability pairs.</div>
 </div></div><figure class="br-figure"><img alt="Best responses intersect at (p,q) = (0,0), (2/3,1/3), and (1,1)." src="images/mixed-br-battle.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
@@ -554,34 +554,34 @@ The three graph intersections correspond to the three equilibrium probability pa
 </div>
 <div class="example-task"><strong>Task:</strong> Find all Nash equilibria, their payoffs, and the best-response graphs.</div>
 <button aria-controls="mixed-ne-conflict" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-conflict')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-ne-conflict"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Check pure supports: none gives a Nash equilibrium.</strong>
-<div>Player 1: $BR_1(T)=\{S\}$ and $BR_1(C)=\{W\}$. Player 2: $BR_2(W)=\{T\}$ and $BR_2(S)=\{C\}$. No profile is a pair of mutual best responses, so $NE_{\mathrm{pure}}=\varnothing$.</div>
+<div class="collapsible" id="mixed-ne-conflict"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports.</strong>
+<div>Player 1: $BR_1(T)=\{S\}$ and $BR_1(C)=\{W\}$. Player 2: $BR_2(W)=\{T\}$ and $BR_2(S)=\{C\}$. No mutual best responses. Hence $NE_{\mathrm{pure}}=\varnothing$.</div>
 </div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{T,C\}$.</strong>
 <div class="body-text">
-<p>Let $\sigma_1=pW+(1-p)S$ and $\sigma_2=qT+(1-q)C$. Thus $p$ is the probability of $W$, and $q$ the probability of $T$. Since $0&lt;q&lt;1$, we require:</p>
+<p>Let $\sigma_1=pW+(1-p)S$ and $\sigma_2=qT+(1-q)C$. Thus $p$ is the probability of $W$, and $q$ the probability of $T$. Since $0&lt;q&lt;1$, Player 2 is indifferent:</p>
 $$\boxed{g_2(\sigma_1,T)=g_2(\sigma_1,C).}$$
 <p><strong>If Player 2 plays $T$:</strong></p>
 $$g_2(\sigma_1,T)=p(3)+(1-p)(-2)=5p-2.$$
 <p><strong>If Player 2 plays $C$:</strong></p>
 $$g_2(\sigma_1,C)=p(2)+(1-p)(-1)=3p-1.$$
 $$5p-2=3p-1\iff2p=1\iff\boxed{p=\frac12\in(0,1).}$$
-<p>Player 1 must therefore use both $W$ and $S$. We require:</p>
+<p>Player 1 uses $W$ and $S$, so:</p>
 $$\boxed{g_1(W,\sigma_2)=g_1(S,\sigma_2).}$$
 <p><strong>If Player 1 plays $W$:</strong></p>
 $$g_1(W,\sigma_2)=q(1)+(1-q)(1)=1.$$
 <p><strong>If Player 1 plays $S$:</strong></p>
 $$g_1(S,\sigma_2)=q(2)+(1-q)(0)=2q.$$
 $$1=2q\iff\boxed{q=\frac12\in(0,1).}$$
-<p>Both probabilities are admissible, and there are no unused actions. This is a Nash equilibrium.</p></div>
+<p>The probabilities are valid. No action is outside the supports. Hence this is a Nash equilibrium.</p></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Write the unique equilibrium and its payoffs.</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Equilibrium and payoffs.</strong>
 <div>$$\boxed{NE=\{(p,q)=(\tfrac12,\tfrac12)\}.}$$
 The equilibrium strategies are $\sigma_1=\tfrac12W+\tfrac12S$, $\sigma_2=\tfrac12T+\tfrac12C$. For Player 1, $g_1(W,\sigma_2)=1$; for Player 2, $g_2(\sigma_1,T)=3/2-1=1/2$. Therefore:
 $$\boxed{\text{NE payoffs: }(1,\tfrac12).}$$</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best-response functions and plot.</strong>
-<div><p>Subtract the payoff of the second action from that of the first:</p>$$g_1(W,\sigma_2)-g_1(S,\sigma_2)=1-2q,\qquad g_2(\sigma_1,T)-g_2(\sigma_1,C)=2p-1.$$<p>A positive difference means choosing the first action with probability $1$; a negative difference means probability $0$. At zero, every mixture is a best response. Thus:</p>$$BR_1(q)=\begin{cases}\{1\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{0\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Best responses.</strong>
+<div><p>Payoff differences:</p>$$g_1(W,\sigma_2)-g_1(S,\sigma_2)=1-2q,\qquad g_2(\sigma_1,T)-g_2(\sigma_1,C)=2p-1.$$<p>Positive difference: first action with probability $1$. Negative: probability $0$. Zero: any mixture. Hence:</p>$$BR_1(q)=\begin{cases}\{1\}&amp;q&lt;\tfrac12,\\\left[0,1\right]&amp;q=\tfrac12,\\\{0\}&amp;q&gt;\tfrac12,\end{cases}\qquad BR_2(p)=\begin{cases}\{0\}&amp;p&lt;\tfrac12,\\\left[0,1\right]&amp;p=\tfrac12,\\\{1\}&amp;p&gt;\tfrac12.\end{cases}$$
 The sole intersection is at $(p,q)=(1/2,1/2)$.</div>
 </div></div><figure class="br-figure"><img alt="Best responses have a single intersection at (p,q) = (1/2,1/2); there are no pure intersections." src="images/mixed-br-conflict.svg" style="display:block;width:100%;max-width:480px;height:auto;margin:auto;"/>
 <div class="br-legend"><span class="br-one">━ Player 1 best responses</span><span class="br-two">┄ Player 2 best responses</span><span class="br-ne">● Nash equilibria</span></div>
@@ -628,44 +628,44 @@ Again, extend the surviving strategies by zero on deleted actions. Every equilib
 </div>
 <div class="example-task"><strong>Task:</strong> Find every Nash equilibrium using dominance first and the strong indifference principle in the reduced game.</div>
 <button aria-controls="mixed-ne-full-method" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-ne-full-method')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mixed-ne-full-method"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete player 1’s strictly dominated row B.</strong><div>We must check $\boxed{g_1(C,s_2)&gt;g_1(B,s_2)}$ for every $s_2\in\{A,B,C\}$.
+<div class="collapsible" id="mixed-ne-full-method"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: eliminate B.</strong><div>Compare rows C and B. For every $s_2\in\{A,B,C\}$, we have $\boxed{g_1(C,s_2)&gt;g_1(B,s_2)}$:
 $$s_2=A:\quad g_1(C,A)=0&gt;-1=g_1(B,A),$$
 $$s_2=B:\quad g_1(C,B)=1&gt;0=g_1(B,B),$$
 $$s_2=C:\quad g_1(C,C)=5&gt;4=g_1(B,C).$$
-The payoff vectors are:
+Equivalently:
 $$C:(0,1,5),\qquad B:(-1,0,4).$$
-Every comparison is strict: $0&gt;-1$, $1&gt;0$, and $5&gt;4$. Thus $C$ strictly dominates $B$ for player 1. Delete row $B$.<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
+Since $0&gt;-1$, $1&gt;0$ and $5&gt;4$, $C$ strictly dominates $B$. We eliminate row $B$.<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th><th scope="col">$C$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr></tbody></table></div>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete player 2’s strictly dominated column C in the reduced game.</strong><div>We must check $\boxed{g_2(s_1,B)&gt;g_2(s_1,C)}$ for each remaining row $s_1\in\{A,C\}$.
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: eliminate C.</strong><div>In the reduced game, compare columns B and C. For $s_1\in\{A,C\}$, we have $\boxed{g_2(s_1,B)&gt;g_2(s_1,C)}$:
 $$s_1=A:\quad g_2(A,B)=0&gt;-1=g_2(A,C),$$
 $$s_1=C:\quad g_2(C,B)=1&gt;0=g_2(C,C).$$
-Using row order $(A,C)$, the payoff vectors are:
+In row order $(A,C)$:
 $$B:(0,1),\qquad C:(-1,0).$$
-Column $B$ strictly dominates column $C$, since $0&gt;-1$ and $1&gt;0$. This comparison uses the reduced game; in the original game, row $B$ gave player 2 a payoff of $5$ in column $C$ and $4$ in column $B$. After the deletion we obtain:<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
+Since $0&gt;-1$ and $1&gt;0$, column $B$ strictly dominates column $C$. This holds after removing row $B$: that row previously gave $5$ in column $C$ and $4$ in column $B$. We eliminate C:<div class="matrix-wrap"><table class="payoff-matrix"><caption>Player 1: rows · Player 2: columns · Payoffs: (player 1, player 2)</caption><thead><tr><th scope="col"></th><th scope="col">$A$</th><th scope="col">$B$</th></tr></thead><tbody><tr><th class="row-label" scope="row">$A$</th><td>$(1,1)$</td><td>$(0,0)$</td></tr><tr><th class="row-label" scope="row">$C$</th><td>$(0,0)$</td><td>$(1,1)$</td></tr></tbody></table></div>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find the pure equilibria of the surviving game.</strong><div>At $(A,A)$, each player obtains $1$ and would obtain $0$ by switching. The same is true at $(C,B)$. The two off-diagonal profiles give $(0,0)$, so they are not equilibria.
-<br/><br/>No further strict deletion is possible: each remaining action is a strict best response to one of the opponent’s actions.</div></div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Find the completely mixed equilibrium.</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Reduced game: pure equilibria.</strong><div>At $(A,A)$, each player gets $1$; deviating gives $0$. It is an NE. The same holds at $(C,B)$. At either off-diagonal profile, payoffs are $(0,0)$ and a player gains by switching: no NE.
+<br/><br/>Each remaining action is a strict BR somewhere. No further elimination.</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Reduced game: mixed equilibrium.</strong>
 <div class="body-text">
-<p>The remaining non-singleton supports are $\{A,C\}$ for Player 1 and $\{A,B\}$ for Player 2. Let:</p>
+<p>Supports: $\{A,C\}$ for Player 1, $\{A,B\}$ for Player 2. Let:</p>
 $$\sigma_1=pA+(1-p)C,\qquad\sigma_2=qA+(1-q)B,\qquad p,q\in(0,1).$$
-<p>Player 2 uses both columns, so we require $g_2(\sigma_1,A)=g_2(\sigma_1,B)$.</p>
+<p>Player 2 is indifferent: $g_2(\sigma_1,A)=g_2(\sigma_1,B)$.</p>
 $$g_2(\sigma_1,A)=p(1)+(1-p)(0)=p,$$
 $$g_2(\sigma_1,B)=p(0)+(1-p)(1)=1-p.$$
 $$p=1-p\iff2p=1\iff\boxed{p=\frac12.}$$
-<p>Player 1 uses both rows, so we also require $g_1(A,\sigma_2)=g_1(C,\sigma_2)$.</p>
+<p>Player 1 is indifferent: $g_1(A,\sigma_2)=g_1(C,\sigma_2)$.</p>
 $$g_1(A,\sigma_2)=q(1)+(1-q)(0)=q,$$
 $$g_1(C,\sigma_2)=q(0)+(1-q)(1)=1-q.$$
 $$q=1-q\iff2q=1\iff\boxed{q=\frac12.}$$
-<p>Both probabilities belong to $(0,1)$. Against a pure opponent the best response is unique, so no equilibrium has exactly one mixing player. Together with the two pure profiles, this exhausts the reduced game's supports. We still check the deleted actions in the original game below.</p></div></div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Restore the original action sets and check the unused actions.</strong><div>At the mixed candidate, the supported actions give $1/2$ to each player. The deleted row $B$ gives player 1
+<p>Both probabilities are in $(0,1)$. Against a pure strategy, the BR is unique. Hence an equilibrium cannot have exactly one mixing player. All supports of the reduced game are covered. It remains to check the deleted actions.</p></div></div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Unused actions in the original game.</strong><div>The actions in the support give each player $1/2$.<br/><br/>Player 1, unused row $B$:
 $$g_1\left(B,\tfrac12A+\tfrac12B\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\frac12.$$
-The deleted column $C$ gives player 2
+Player 2, unused column $C$:
 $$g_2\left(\tfrac12A+\tfrac12C,C\right)=\tfrac12(-1)+\tfrac12(0)=-\frac12&lt;\frac12.$$
-Thus the outside-support condition is satisfied. Strict elimination also ensures that both pure equilibria of the reduced game remain equilibria of the original game.</div></div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>State the complete answer.</strong><div>The original game’s equilibria are
+Neither deviation is profitable. The mixed candidate is an NE. Strict elimination preserves NE, so the two pure equilibria also remain valid in the original game.</div></div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion.</strong><div>The complete set is:
 $$NE=\left\{(A,A),(C,B),\left(\tfrac12A+\tfrac12C,\tfrac12A+\tfrac12B\right)\right\}.$$
-The pure equilibria yield $(1,1)$ and the mixed equilibrium yields $(1/2,1/2)$. In vector form, using the original order $(A,B,C)$ for both players, the mixed equilibrium is
+Payoffs: $(1,1)$ at each pure NE; $(1/2,1/2)$ at the mixed NE.<br/><br/>Mixed strategies in the original order $(A,B,C)$:
 $$\sigma_1=\left(\frac12,0,\frac12\right),\qquad\sigma_2=\left(\frac12,\frac12,0\right).$$</div></div></div>
 </div>
 </div>

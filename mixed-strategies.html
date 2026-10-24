@@ -404,25 +404,25 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible { outline:2
 </div>
 <div class="example-task"><strong>Task:</strong> Find the pure-strategy Nash equilibria of both games. Intuitively, how would you expect players to play?</div>
 <button aria-controls="mix-motiv-sol" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mix-motiv-sol')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
-<div class="collapsible" id="mix-motiv-sol"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Rock–paper–scissors: read each player’s own payoff.</strong><div>For player 1, compare the first payoffs down each column:
+<div class="collapsible" id="mix-motiv-sol"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Rock–paper–scissors: best responses.</strong><div>Player 1 (first payoffs):
 $$BR_1(R)=\{P\},\qquad BR_1(P)=\{S\},\qquad BR_1(S)=\{R\}.$$
-For player 2, compare the second payoffs across each row:
+Player 2 (second payoffs):
 $$BR_2(R)=\{P\},\qquad BR_2(P)=\{S\},\qquad BR_2(S)=\{R\}.$$
 For instance, when player 1 chooses $R$, player 2 obtains $0$ from $R$, $1$ from $P$, and $-1$ from $S$. Her best response is therefore $P$.</div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>No cell is a pair of mutual best responses.</strong><div>On the diagonal, both players receive $0$ and can obtain $1$ by switching to the action that wins. Off the diagonal, the losing player receives $-1$ and can switch to an action that wins. Thus every pure profile admits a profitable unilateral deviation:
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Pure and mixed equilibria.</strong><div>On the diagonal, both players receive $0$ and can obtain $1$ by switching to the action that wins. Off the diagonal, the losing player receives $-1$ and can switch to an action that wins. Every pure profile admits a profitable deviation. Hence:
 $$NE_{\mathrm{pure}}=\varnothing.$$
 Choosing each action with probability $1/3$ removes this advantage: against that mixture, rock, paper and scissors each win with probability $1/3$, lose with probability $1/3$, and tie with probability $1/3$. For example, against $\sigma_2=\frac13R+\frac13P+\frac13S$:
 $$g_1(R,\sigma_2)=\frac13(0)+\frac13(-1)+\frac13(1)=0,$$
 $$g_1(P,\sigma_2)=\frac13(1)+\frac13(0)+\frac13(-1)=0,$$
 $$g_1(S,\sigma_2)=\frac13(-1)+\frac13(1)+\frac13(0)=0.$$
-The same calculation holds for Player 2. Every action is in the support and gives the same payoff, so uniform mixing by both players is a Nash equilibrium.</div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>The second game rewards different actions.</strong><div>For either player, the best response to $F$ is $O$, and the best response to $O$ is $F$. At $(F,F)$ or $(O,O)$, changing action raises the deviating player’s payoff from $0$ to $1$. At $(F,O)$ or $(O,F)$, changing action lowers it from $1$ to $0$. Therefore:
+Likewise for Player 2. All supported actions give the same payoff, and there are no unused actions. Hence uniform mixing by both players is an NE.</div></div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Second game.</strong><div>For either player, the best response to $F$ is $O$, and the best response to $O$ is $F$. At $(F,F)$ or $(O,O)$, changing action raises the deviating player’s payoff from $0$ to $1$. At $(F,O)$ or $(O,F)$, changing action lowers it from $1$ to $0$. Therefore:
 $$NE_{\mathrm{pure}}=\{(F,O),(O,F)\}.$$
-Both equilibria give payoffs $(1,1)$, but they require different choices: one player chooses $F$, the other $O$. Nothing in this symmetric game tells the players who should choose which action.<br/><br/>
-Both players could instead use the <strong>same rule</strong>: choose $F$ or $O$ with probability $1/2$. Their independent draws may produce different actions. Against $\sigma_2=\frac12F+\frac12O$:
+Payoffs: $(1,1)$ at both NE. One player chooses $F$, the other $O$; the game does not assign these roles.<br/><br/>
+For a symmetric mixed NE, let both players choose $F$ or $O$ with probability $1/2$, independently. Against $\sigma_2=\frac12F+\frac12O$:
 $$g_1(F,\sigma_2)=\frac12(0)+\frac12(1)=\frac12,$$
 $$g_1(O,\sigma_2)=\frac12(1)+\frac12(0)=\frac12.$$
-Player 2 faces the same comparison. Each player is indifferent between all actions in her support, so neither can improve by changing her probabilities. This is a <strong>symmetric mixed equilibrium</strong>: the distributions are identical, although the realized actions need not be.</div></div></div>
+Likewise for Player 2. Both players are indifferent, with no unused action. Hence this is a <strong>symmetric mixed NE</strong>: same distributions, possibly different realized actions.</div></div></div>
 </div>
 </div>
 <div class="section-header subsection-target" data-subsection="§ 4.1" id="sec-4-1"><span class="section-label purple">§ 4.1</span><h2>Mixed Strategies and Expected Payoff</h2></div>
@@ -515,7 +515,7 @@ Player 2 faces the same comparison. Each player is indifferent between all actio
       $$\Sigma_2 = \Delta(S_2) = \left\{(q, 1-q) : q \in [0,1]\right\}$$
       where $p = \sigma_1(R)$ is the probability P1 plays $R$, and $q = \sigma_2(R)$ is the probability P2 plays $R$.
     </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Identify the probabilities from the given profile:</strong><br/>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Given probabilities:</strong><br/>
       Player 1: $\sigma_1 = \frac{1}{4}L + \frac{3}{4}R$, so $\sigma_1(R) = \frac{3}{4}$, $\sigma_1(L) = \frac{1}{4}$.<br/>
       Player 2: $\sigma_2 = \frac{1}{3}L + \frac{2}{3}R$, so $\sigma_2(R) = \frac{2}{3}$, $\sigma_2(L) = \frac{1}{3}$.
     </div></div>
@@ -527,7 +527,7 @@ Player 2 faces the same comparison. Each player is indifferent between all actio
       Check: $\frac{1}{2}+\frac{1}{4}+\frac{1}{6}+\frac{1}{12} = \frac{6+3+2+1}{12} = 1$ ✓
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Expected payoff for Player 1:</strong>
-<p>Weight the payoff of each pure profile by its probability. We use:</p>
+<p>Expected payoff formula:</p>
 $$\bar g_i(\sigma_1,\sigma_2)=\sum_{s_1\in S_1}\sum_{s_2\in S_2}\sigma_1(s_1)\sigma_2(s_2)g_i(s_1,s_2).$$
       $$\bar{g}_1(\sigma) = P(R,R)\cdot g_1(R,R) + P(R,L)\cdot g_1(R,L) + P(L,R)\cdot g_1(L,R) + P(L,L)\cdot g_1(L,L)$$
       $$= \frac{1}{2}\cdot(-1) + \frac{1}{4}\cdot(1) + \frac{1}{6}\cdot(1) + \frac{1}{12}\cdot(-1)$$
@@ -543,7 +543,7 @@ $$\bar g_i(\sigma_1,\sigma_2)=\sum_{s_1\in S_1}\sum_{s_2\in S_2}\sigma_1(s_1)\si
 <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong>
       $$\bar{g}_1\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = -\frac{1}{6}$$
       $$\bar{g}_2\!\left(\tfrac{1}{4}L+\tfrac{3}{4}R,\; \tfrac{1}{3}L+\tfrac{2}{3}R\right) = +\frac{1}{6}$$
-      Note: $\bar{g}_1 + \bar{g}_2 = 0$ — consistent with the fact that this is a zero-sum game.
+      Check: $\bar{g}_1 + \bar{g}_2 = 0$ (zero-sum game).
     </div></div>
 </div>
 </div>
@@ -594,13 +594,13 @@ Keep the same payoff numbers on the remaining profiles. Then repeat the comparis
 <button aria-controls="mixed-iesds-example" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'mixed-iesds-example')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
 
 <div class="collapsible" id="mixed-iesds-example">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Start with best responses and find a candidate to eliminate.</strong>
-<div>Player 1 has a pure best response in every column: $BR_1(L)=\{u\}$, $BR_1(M)=\{m\}$ and $BR_1(R)=\{d\}$. For Player 2: $BR_2(u)=\{R\}$, $BR_2(m)=\{R\}$ and $BR_2(d)=\{L\}$. Thus $M$ is never a best response to a <em>pure</em> row, suggesting that we test whether it is strictly dominated. <strong>This observation alone is not a proof of dominance.</strong></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Best responses.</strong>
+<div>Player 1: $BR_1(L)=\{u\}$, $BR_1(M)=\{m\}$ and $BR_1(R)=\{d\}$. For Player 2: $BR_2(u)=\{R\}$, $BR_2(m)=\{R\}$ and $BR_2(d)=\{L\}$. Thus $M$ is never a BR to a <em>pure</em> row. This does not prove dominance; we test a mixture.</div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Show that a mixed strategy strictly dominates column M.</strong>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: eliminate M.</strong>
 <div class="body-text"><p>Let $q$ be the probability of $L$ and $1-q$ the probability of $R$:</p>
 $$\sigma_2=qL+(1-q)R,\qquad q\in[0,1].$$
-<p>To show that $\sigma_2$ strictly dominates $M$, we must check:</p>
+<p>For $\sigma_2$ to strictly dominate $M$:</p>
 $$\boxed{g_2(s_1,\sigma_2)&gt;g_2(s_1,M)\quad\text{for every }s_1\in\{u,m,d\}.}$$
 <p><strong>If Player 1 plays $u$:</strong></p>
 $$g_2(u,\sigma_2)=q(1)+(1-q)(4)=4-3q,$$
@@ -615,7 +615,7 @@ $$6-4q&gt;0\iff q&lt;\frac32.$$
 $$g_2(d,\sigma_2)=q(2)+(1-q)(1)=1+q,$$
 $$g_2(d,M)=1.$$
 $$1+q&gt;1\iff q&gt;0.$$
-<p><strong>Combine the three conditions:</strong></p>
+<p><strong>Hence:</strong></p>
 $$q\in[0,1],\quad q&lt;\frac23,\quad q&lt;\frac32,\quad q&gt;0
 \iff\boxed{0&lt;q&lt;\frac23.}$$
 <p>For example, choose $q=1/2$. The strategy $\sigma_2=\frac12L+\frac12R$ gives:</p>
@@ -629,7 +629,7 @@ $$g_2(u,\sigma_2)=\frac52&gt;2,\qquad
 <tr><th class="row-label">$d$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
 </tbody></table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Recheck Player 1: row m is now strictly dominated by a mixture.</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Player 1: eliminate m.</strong>
 <div class="body-text"><p>In the reduced game, Player 2 has only $L$ and $R$. Let $p$ be the probability of $u$:</p>
 $$\sigma_1=pu+(1-p)d,\qquad p\in[0,1].$$
 <p>We must check:</p>
@@ -640,7 +640,7 @@ $$g_1(\sigma_1,L)&gt;g_1(m,L)\iff p&gt;0.$$
 <p><strong>If Player 2 plays $R$:</strong></p>
 $$g_1(\sigma_1,R)=p(0)+(1-p)(2)=2-2p,\qquad g_1(m,R)=1.$$
 $$2-2p&gt;1\iff -2p&gt;-1\iff p&lt;\frac12.$$
-<p><strong>Combine the conditions:</strong></p>
+<p><strong>Hence:</strong></p>
 $$\boxed{0&lt;p&lt;\frac12.}$$
 <p>For example, $\sigma_1=\frac14u+\frac34d$ gives $1/4&gt;0$ against $L$ and $3/2&gt;1$ against $R$. <strong>Delete row $m$.</strong></p></div>
 <div class="matrix-wrap"><table class="payoff-matrix"><caption>After deleting M, then m</caption><thead><tr><th></th><th>$L$</th><th>$R$</th></tr></thead><tbody>
@@ -648,7 +648,7 @@ $$\boxed{0&lt;p&lt;\frac12.}$$
 <tr><th class="row-label">$d$</th><td>$(0,2)$</td><td>$(2,1)$</td></tr>
 </tbody></table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Check that elimination stops.</strong>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>End of IESDS.</strong>
 <div>$u$ is the unique best response to $L$, and $d$ is the unique best response to $R$. For Player 2, $R$ is optimal against $u$ and $L$ is optimal against $d$.</div>
 <div class="math-display boxed-blue">$$\boxed{\text{IESDS deletes }M\text{, then }m;\quad S_1'=\{u,d\},\ S_2'=\{L,R\}.}$$</div>
 <div>The game does not reduce to a single profile.</div>
