@@ -298,19 +298,19 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 }
 
 /* Preserve the layout when long formulas and tables are opened on tablets. */
-+.step-body { min-width:0; }
-+.collapsible { scroll-margin-top:80px; min-width:0; }
-+.topbar-breadcrumb { min-width:0; flex-shrink:1; }
-+.chapter-progress-bar { min-width:60px; }
-+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
-+.notation-table { table-layout:fixed; }
-+.notation-table td:first-child { white-space:normal; }
-+.notation-table td { overflow-wrap:anywhere; }
-+@media(max-width:900px) {
-+  .main-content { min-width:0; }
-+  .concept-card, .prop-box, .example-box { min-width:0; }
-+}
-+</style>
+.step-body { min-width:0; }
+.collapsible { scroll-margin-top:80px; min-width:0; }
+.topbar-breadcrumb { min-width:0; flex-shrink:1; }
+.chapter-progress-bar { min-width:60px; }
+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
+.notation-table { table-layout:fixed; }
+.notation-table td:first-child { white-space:normal; }
+.notation-table td { overflow-wrap:anywhere; }
+@media(max-width:900px) {
+  .main-content { min-width:0; }
+  .concept-card, .prop-box, .example-box { min-width:0; }
+}
+</style>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 </head>
 <body>
@@ -460,8 +460,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(C,L) = 0, &amp;\quad g_2(C,L) = 0 \\
       g_1(C,C) = 1, &amp;\quad g_2(C,C) = 1
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(L,L) = (1,1), \quad g(L,C) = (0,0), \quad g(C,L) = (0,0), \quad g(C,C) = (1,1)$$
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
 <div class="matrix-wrap"><table class="payoff-matrix">
@@ -471,9 +469,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$C$</td><td>$(0,0)$</td><td>$(1,1)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      Player 1's best choice depends entirely on Player 2: if P2 goes to $L$, P1's best choice is $L$; if P2 goes to $C$, P1's best choice is $C$. Since $g_1 = g_2$ everywhere, interests are perfectly aligned: this is a <span class="game-tag cyan">🤝 Pure Coordination</span> game.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>Against $L$, choose $L$; against $C$, choose $C$. The same holds for both players. Their payoffs coincide in every cell: this is a <span class="game-tag cyan">🤝 Pure Coordination</span> game.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 2: PENALTY -->
@@ -497,8 +495,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(R,L) = 1, &amp;\quad g_2(R,L) = 0 \\
       g_1(R,R) = 0, &amp;\quad g_2(R,R) = 1
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(L,L) = (0,1), \quad g(L,R) = (1,0), \quad g(R,L) = (1,0), \quad g(R,R) = (0,1)$$
       Note that $g_1(s) + g_2(s) = 1$ for all profiles: what one player gains, the other loses.
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
@@ -509,9 +505,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$R$</td><td>$(1,0)$</td><td>$(0,1)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      The goalkeeper wants to match sides; the shooter wants to mismatch sides. Interests are strictly opposed: this is a <span class="game-tag red">⚔️ Zero-Sum / Constant-Sum</span> game. No pure strategy is stable.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>The goalkeeper prefers the same side; the taker prefers the opposite side. Since $g_1+g_2=1$ in every cell, this is a <span class="game-tag red">⚔️ Constant-Sum</span> game, equivalent to a zero-sum game after shifting payoffs. Every pure profile gives one player a profitable deviation.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 3: PRISONER'S DILEMMA -->
@@ -541,8 +537,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(D,C) = 0, &amp;\quad g_2(D,C) = -10 \\
       g_1(D,D) = -5, &amp;\quad g_2(D,D) = -5
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(C,C) = (-3,-3), \quad g(C,D) = (-10,0), \quad g(D,C) = (0,-10), \quad g(D,D) = (-5,-5)$$
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
 <div class="matrix-wrap"><table class="payoff-matrix">
@@ -552,9 +546,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$D$</td><td>$(0,-10)$</td><td>$(-5,-5)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      Defection ($D$) yields a strictly higher payoff than cooperation ($C$) against both opponent choices. Yet mutual defection $(-5,-5)$ is Pareto-dominated by mutual cooperation $(-3,-3)$. Individual rationality creates collective inefficiency: this is a <span class="game-tag purple">😬 Social Dilemma</span>.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>Against $C$, defecting gives $0&gt;-3$. Against $D$, it gives $-5&gt;-10$. Thus $D$ strictly dominates $C$ for both players. However, both prefer $(-3,-3)$ at $(C,C)$ to $(-5,-5)$ at $(D,D)$: a <span class="game-tag purple">😬 Social Dilemma</span>.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 4: BATTLE OF THE SEXES -->
@@ -583,8 +577,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(F,O) = 0, &amp;\quad g_2(F,O) = 0 \\
       g_1(F,F) = 1, &amp;\quad g_2(F,F) = 2
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(O,O) = (2,1), \quad g(O,F) = (0,0), \quad g(F,O) = (0,0), \quad g(F,F) = (1,2)$$
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
 <div class="matrix-wrap"><table class="payoff-matrix">
@@ -594,9 +586,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$F$</td><td>$(0,0)$</td><td>$(1,2)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      Players agree that coordination is better than mismatching, but have conflicting preferences over which coordinated outcome to choose. Combines <span class="game-tag cyan">🤝 Coordination</span> and <span class="game-tag red">⚔️ Conflict</span>.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>Both players prefer being together to being apart. Player 1 prefers $(O,O)$, while Player 2 prefers $(F,F)$. The game combines <span class="game-tag cyan">🤝 Coordination</span> with <span class="game-tag red">⚔️ Conflict</span> over where to meet.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 5: HAWK-DOVE -->
@@ -625,8 +617,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(D,H) = 0, &amp;\quad g_2(D,H) = 2 \\
       g_1(D,D) = 1, &amp;\quad g_2(D,D) = 1
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(H,H) = (-1,-1), \quad g(H,D) = (2,0), \quad g(D,H) = (0,2), \quad g(D,D) = (1,1)$$
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
 <div class="matrix-wrap"><table class="payoff-matrix">
@@ -636,9 +626,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$D$</td><td>$(0,2)$</td><td>$(1,1)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      The best response to $H$ is $D$ (retreat rather than fight to the death). The best response to $D$ is $H$ (exploit a yielding rival). Players want to choose opposite actions: this is an <span class="game-tag blue">🔄 Anti-Coordination</span> game.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>Against $H$, choose $D$ because $0&gt;-1$. Against $D$, choose $H$ because $2&gt;1$. Both players prefer the opposite action to their opponent: <span class="game-tag blue">🔄 Anti-Coordination</span>.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 6: STAG HUNT -->
@@ -667,8 +657,6 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
       g_1(D,S) = 0, &amp;\quad g_2(D,S) = 1 \\
       g_1(D,D) = 2, &amp;\quad g_2(D,D) = 2
       \end{aligned}$$
-      In compact vector notation $g(s_1, s_2) = (g_1(s_1,s_2),\, g_2(s_1,s_2))$:
-      $$g(S,S) = (1,1), \quad g(S,D) = (1,0), \quad g(D,S) = (0,1), \quad g(D,D) = (2,2)$$
     </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff matrix:</strong>
 <div class="matrix-wrap"><table class="payoff-matrix">
@@ -678,9 +666,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <tr><td class="row-label">$D$</td><td>$(0,1)$</td><td>$(2,2)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Economic intuition &amp; game type:</strong><br/>
-      Coordinating on Deer $(D,D)$ yields the highest payoff $(2,2)$ for both players, but choosing Deer ($D$) is risky because if the other player chooses Stag ($S$), the Deer player gets 0. Choosing Stag ($S$) guarantees a payoff of 1 regardless of what the other player chooses. This illustrates the tension between payoff efficiency and strategic uncertainty: <span class="game-tag cyan">🤝 Coordination</span>.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Game type.</strong>
+<p>$S$ gives $1$ against either action. $D$ gives $0$ against $S$, but $2$ against $D$. Thus $(D,D)$ gives both players more than $(S,S)$, while $S$ guarantees a payoff of $1$: <span class="game-tag cyan">🤝 Coordination</span> with a safe action.</p>
+</div></div>
 </div>
 </div>
 <!-- EXAMPLE 7: COURNOT -->
@@ -696,21 +684,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'cou-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="cou-sol">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players:</strong> $N = \{1, 2\}$ (Firm 1 and Firm 2).</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strategy sets:</strong> $S_1 = \mathbb{R}_+$ and $S_2 = \mathbb{R}_+$. Each firm $i$ chooses a continuous quantity $q_i \in [0, +\infty)$. Continuous strategy space: cannot be drawn as a discrete matrix.</div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Payoff functions:</strong><br/>
-      Let $q_j$ denote the quantity chosen by the rival firm. Firm $i$'s profit is total revenue minus total cost:
-      $$\begin{aligned}
-      g_i(q_i,\, q_j) &amp;= P(Q) \cdot q_i - c \cdot q_i \\
-      &amp;= q_i \bigl[ P(q_i + q_j) - c \bigr] \\
-      &amp;= q_i \bigl[ \max(13 - q_i - q_j,\; 0) - c \bigr]
-      \end{aligned}$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Decoding the strategic interdependence:</strong><br/>
-      Why does $q_j$ enter firm $i$'s payoff?
-      $$q_j \uparrow \implies Q = q_i + q_j \uparrow \implies P \downarrow \implies g_i(q_i, q_j) \text{ drops}$$
-      Even if firm $i$ keeps $q_i$ unchanged, a production increase by firm $j$ depresses the market price, reducing firm $i$'s revenue. This strategic externality is solved for equilibrium in Section 3.2.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players and strategies.</strong>
+$$N=\{1,2\},\qquad S_1=S_2=\mathbb R_+.$$<p>Each firm chooses a nonnegative quantity $q_i$. The strategy sets are continuous, so a finite payoff matrix cannot represent the whole game.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Profit = revenue − cost.</strong>
+<p>Write $q_j$ for the other firm’s quantity. Total output is $Q=q_i+q_j$:</p>$$\begin{aligned}g_i(q_i,q_j)&amp;=P(q_i+q_j)q_i-cq_i,\\[3pt]&amp;=q_i\left[\max\{13-q_i-q_j,0\}-c\right].\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Why the rival’s quantity matters.</strong>
+<p>Hold $q_i$ fixed. While the price is positive, an increase in $q_j$ lowers the price and therefore firm $i$’s revenue. Once the price reaches zero, further output cannot lower it. This is why $g_i$ depends on both quantities.</p>
+</div></div>
+
 </div>
 </div>
 <!-- COMPLEMENT: FIRST-PRICE SEALED-BID AUCTION -->
@@ -727,18 +710,18 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <button class="toggle-btn example-toggle" onclick="toggle(this,'fpa-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="fpa-sol">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players:</strong> $N = \{1, 2, \ldots, N\}$.</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strategy sets:</strong> $S_i = \mathbb{R}_+$ for every $i \in N$ (bid $b_i \geq 0$). Continuous space.</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strategy sets:</strong> $S_i = \mathbb{R}_+$ for every $i \in N$ (the chosen bid is $b_i\geq0$).</div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Notation:</strong>
 <ul>
 <li>$v_i$: private valuation of bidder $i$.</li>
 <li>$b_i$: bid submitted by bidder $i$.</li>
-<li>$m_i(b) = \max_{j \neq i} b_j$: highest bid submitted by all competitors of $i$.</li>
+<li>$m_i(b) = \max_{j \neq i} b_j$: highest competing bid.</li>
 <li>$M(b) = |\{j \in N : b_j = \max_k b_k\}|$: number of bidders tied for the highest bid.</li>
 </ul>
 </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Payoff cases:</strong>
 <ul>
-<li><strong>Case 1 ($b_i &gt; m_i(b)$):</strong> Bidder $i$ is the sole highest bidder. She wins and pays <em>her own bid</em> $b_i$. Net surplus: $g_i = v_i - b_i$.</li>
+<li><strong>Case 1 ($b_i &gt; m_i(b)$):</strong> Bidder $i$ is the sole highest bidder. She wins and pays <em>her own bid</em> $b_i$. Payoff: $g_i = v_i - b_i$.</li>
 <li><strong>Case 2 ($b_i &lt; m_i(b)$):</strong> Bidder $i$ loses. She receives nothing and pays nothing: $g_i = 0$.</li>
 <li><strong>Case 3 ($b_i = m_i(b)$):</strong> Tie at the top. Bidder $i$ wins with probability $\frac{1}{M(b)}$ and pays $b_i$. Expected payoff: $\frac{v_i - b_i}{M(b)}$.</li>
 </ul>
@@ -769,18 +752,18 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <button class="toggle-btn example-toggle" onclick="toggle(this,'spa-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="spa-sol">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players:</strong> $N = \{1, 2, \ldots, N\}$.</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strategy sets:</strong> $S_i = \mathbb{R}_+$ for every $i \in N$ (bid $b_i \geq 0$). Continuous space.</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strategy sets:</strong> $S_i = \mathbb{R}_+$ for every $i \in N$ (the chosen bid is $b_i\geq0$).</div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Notation:</strong>
 <ul>
 <li>$v_i$: private valuation of bidder $i$.</li>
 <li>$b_i$: bid submitted by bidder $i$.</li>
-<li>$m_i(b) = \max_{j \neq i} b_j$: highest bid submitted by all competitors of $i$.</li>
+<li>$m_i(b) = \max_{j \neq i} b_j$: highest competing bid.</li>
 <li>$M(b) = |\{j \in N : b_j = \max_{k} b_k\}|$: number of bidders tied for the highest bid.</li>
 </ul>
 </div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Three payoff cases:</strong>
 <ul>
-<li><strong>Case 1 ($b_i &gt; m_i(b)$):</strong> Bidder $i$ is the sole highest bidder. She wins the object and pays the second-highest bid $m_i(b)$. Her net surplus is valuation minus price paid: $g_i = v_i - m_i(b)$.</li>
+<li><strong>Case 1 ($b_i &gt; m_i(b)$):</strong> Bidder $i$ is the sole highest bidder. She wins the object and pays the second-highest bid $m_i(b)$. Her payoff is valuation minus payment: $g_i = v_i - m_i(b)$.</li>
 <li><strong>Case 2 ($b_i &lt; m_i(b)$):</strong> Bidder $i$ loses. She receives nothing and pays nothing: $g_i = 0$.</li>
 <li><strong>Case 3 ($b_i = m_i(b)$):</strong> Tie at the top. Bidder $i$ wins with probability $\frac{1}{M(b)}$. The winner pays $m_i(b) = b_i$. Expected payoff is $\frac{v_i - m_i(b)}{M(b)}$.</li>
 </ul>
@@ -930,46 +913,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'dom-ex-all')">► Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="dom-ex-all">
-<div style="font-weight:800; color:var(--text); border-bottom:1px solid var(--border); padding-bottom:6px; margin-bottom:12px; margin-top:4px; font-size:0.95rem;">Game 1</div>
-<div class="demo-step"><div class="step-num coral">A</div><div class="step-body"><strong>Strictly dominated strategies:</strong><br/>
-<em>Player 1:</em> Against $L$ (P2): $g_1(L,L)=1 &gt; g_1(C,L)=0 \implies L$ is better. Against $C$ (P2): $g_1(C,C)=1 &gt; g_1(L,C)=0 \implies C$ is better. The preferred row switches depending on P2's action: <strong>no strictly dominated strategy for P1.</strong><br/>
-<em>Player 2:</em> By symmetry, the same reasoning applies: <strong>no strictly dominated strategy for P2.</strong>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Game 1.</strong>
+<p>Player 1 compares the two rows:</p>$$\begin{aligned}g_1(L,L)=1&amp;&gt;0=g_1(C,L),\\[3pt]g_1(C,C)=1&amp;&gt;0=g_1(L,C).\end{aligned}$$<p>The better action changes with the opponent’s action. By symmetry, the same holds for Player 2. Neither player has a strictly dominated or strictly dominant strategy. There is no equilibrium in strictly dominant strategies.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">B</div><div class="step-body"><strong>Strictly dominant strategies:</strong><br/>
-      A strategy is strictly dominant if it is strictly best against <em>every</em> opponent action. Here, $L$ is only best when P2 plays $L$, and $C$ is only best when P2 plays $C$. <strong>No strictly dominant strategy for either player.</strong>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Game 2.</strong>
+<p>For Player 1:</p>$$\begin{aligned}g_1(R,L)=1&amp;&gt;-1=g_1(L,L),\\[3pt]g_1(L,R)=1&amp;&gt;-1=g_1(R,R).\end{aligned}$$<p>For Player 2:</p>$$\begin{aligned}g_2(L,L)=1&amp;&gt;-1=g_2(L,R),\\[3pt]g_2(R,R)=1&amp;&gt;-1=g_2(R,L).\end{aligned}$$<p>For each player, the preferred action changes. There is no strictly dominated strategy, no strictly dominant strategy, and no equilibrium in strictly dominant strategies.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">C</div><div class="step-body"><strong>Equilibrium in strictly dominant strategies:</strong><br/>
-      Since no player has a strictly dominant strategy, <strong>no equilibrium in strictly dominant strategies exists.</strong>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Game 3.</strong>
+<p>For Player 1:</p>$$\begin{aligned}g_1(D,C)=0&amp;&gt;-3=g_1(C,C),\\[3pt]g_1(D,D)=-5&amp;&gt;-10=g_1(C,D).\end{aligned}$$<p>For Player 2:</p>$$\begin{aligned}g_2(C,D)=0&amp;&gt;-3=g_2(C,C),\\[3pt]g_2(D,D)=-5&amp;&gt;-10=g_2(D,C).\end{aligned}$$<p>$C$ is strictly dominated by $D$ for both players. Since these are the only two actions, $D$ is strictly dominant for each player.</p>$$\boxed{\text{Strictly dominant strategy equilibrium: }(D,D).}$$$$g(D,D)=(-5,-5).$$
 </div></div>
-<div style="font-weight:800; color:var(--text); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:8px 0 6px; margin:16px 0 12px; font-size:0.95rem;">Game 2</div>
-<div class="demo-step"><div class="step-num coral">A</div><div class="step-body"><strong>Strictly dominated strategies:</strong><br/>
-<em>Player 1:</em> Against $L$ (P2): $g_1(R,L)=1 &gt; g_1(L,L)=-1 \implies R$ is better. Against $R$ (P2): $g_1(L,R)=1 &gt; g_1(R,R)=-1 \implies L$ is better. The preferred row switches: <strong>no strictly dominated strategy for P1.</strong><br/>
-<em>Player 2:</em> Against $L$ (P1): $g_2(L,L)=1 &gt; g_2(L,R)=-1 \implies L$ is better. Against $R$ (P1): $g_2(R,R)=1 &gt; g_2(R,L)=-1 \implies R$ is better. The preferred column switches: <strong>no strictly dominated strategy for P2.</strong>
-</div></div>
-<div class="demo-step"><div class="step-num coral">B</div><div class="step-body"><strong>Strictly dominant strategies:</strong><br/>
-      No strategy is always strictly best for either player. <strong>No strictly dominant strategy for either player.</strong>
-</div></div>
-<div class="demo-step"><div class="step-num coral">C</div><div class="step-body"><strong>Equilibrium in strictly dominant strategies:</strong><br/>
-      Since no player has a strictly dominant strategy, <strong>no equilibrium in strictly dominant strategies exists.</strong>
-</div></div>
-<div style="font-weight:800; color:var(--text); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:8px 0 6px; margin:16px 0 12px; font-size:0.95rem;">Game 3</div>
-<div class="demo-step"><div class="step-num coral">A</div><div class="step-body"><strong>Strictly dominated strategies:</strong><br/>
-<em>Player 1:</em> Does $D$ strictly dominate $C$?<br/>
-        Against $C$ (P2): $g_1(D,C) = 0 &gt; g_1(C,C) = -3$ ✓<br/>
-        Against $D$ (P2): $g_1(D,D) = -5 &gt; g_1(C,D) = -10$ ✓<br/>
-      Yes: <strong>$C$ is strictly dominated by $D$ for P1.</strong><br/><br/>
-<em>Player 2:</em> Does $D$ strictly dominate $C$?<br/>
-        Against $C$ (P1): $g_2(C,D) = 0 &gt; g_2(C,C) = -3$ ✓<br/>
-        Against $D$ (P1): $g_2(D,D) = -5 &gt; g_2(D,C) = -10$ ✓<br/>
-      Yes: <strong>$C$ is strictly dominated by $D$ for P2.</strong>
-</div></div>
-<div class="demo-step"><div class="step-num coral">B</div><div class="step-body"><strong>Strictly dominant strategies:</strong><br/>
-<em>Player 1:</em> Strategy $D$ is strictly better than $C$ against every strategy of P2 (shown above). <strong>$D$ is strictly dominant for P1.</strong><br/>
-<em>Player 2:</em> Strategy $D$ is strictly better than $C$ against every strategy of P1 (shown above). <strong>$D$ is strictly dominant for P2.</strong>
-</div></div>
-<div class="demo-step"><div class="step-num coral">C</div><div class="step-body"><strong>Equilibrium in strictly dominant strategies:</strong><br/>
-      Every player has a strictly dominant strategy ($D$ for each), so the profile $(D,D)$ is a strictly dominant strategy equilibrium. <strong>The equilibrium in strictly dominant strategies is $(D, D)$</strong> with payoffs $g(D,D) = (-5, -5)$.
-    </div></div>
+
 </div>
 </div>
 <!-- §2.2 IESDS -->
@@ -1029,18 +982,13 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'iesds-ex-1')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="iesds-ex-1">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 2 is rational → she will never play a strictly dominated strategy.</strong><br/>
-      Is $S$ strictly dominated for P2? Compare column $T$ to column $S$ across all rows:<br/>
-        Row $S$: $g_2(S,T) = -1 &gt; g_2(S,S) = -2$ ✓<br/>
-        Row $T$: $g_2(T,T) = -5 &gt; g_2(T,S) = -10$ ✓<br/>
-      Yes — $S$ is strictly dominated by $T$ for P2. A rational P2 will never play $S$: <strong>P2 plays $T$.</strong>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Use Player 2’s rationality.</strong>
+$$\begin{aligned}g_2(S,T)=-1&amp;&gt;-2=g_2(S,S),\\[3pt]g_2(T,T)=-5&amp;&gt;-10=g_2(T,S).\end{aligned}$$<p>$T$ strictly dominates $S$ for Player 2. A rational Player 2 therefore chooses $T$.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Knowing P2 plays $T$, what should P1 play?</strong><br/>
-      P1 compares her payoffs in column $T$:<br/>
-        $g_1(T,T) = -5 &gt; g_1(S,T) = -10$<br/>
-      $T$ is strictly better for P1 when P2 plays $T$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Answer:</strong> Player 1 should play <strong>$T$</strong>. (The unique IESDS solution is $(T,T)$ with payoff $g(T,T)=(-5,-5)$.)</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Choose Player 1’s best response to $T$.</strong>
+$$g_1(T,T)=-5&gt;-10=g_1(S,T).$$$$\boxed{\text{Player 1 chooses }T.}$$<p>The unique profile surviving IESDS is $(T,T)$, with payoffs $(-5,-5)$.</p>
+</div></div>
+
 </div>
 </div>
 <div class="example-box">
@@ -1059,27 +1007,20 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'iesds-ex-2')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="iesds-ex-2">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Round 1 — Initial game $\Gamma^1 = \{H, B\} \times \{G, M, D\}$:</strong><br/>
-      • <em>Player 1:</em> Against $G$, $H$ gives $2 &gt; 1$; against $M$, $B$ gives $4 &gt; 1$. Neither row dominates.<br/>
-      • <em>Player 2:</em> Compare column $M$ with column $G$ across all rows:<br/>
-        Row $H$: $g_2(H,G) = 2 &gt; g_2(H,M) = 1$ ✓<br/>
-        Row $B$: $g_2(B,G) = 2 &gt; g_2(B,M) = 1$ ✓<br/>
-      Column $M$ is strictly dominated by column $G$ for Player 2. <strong>Eliminate column $M$.</strong><br/>
-      Residual game: $\Gamma^2 = \{H, B\} \times \{G, D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Round 2 — Residual game $\Gamma^2 = \{H, B\} \times \{G, D\}$:</strong><br/>
-      Compare row $B$ to row $H$ for Player 1 across remaining columns $\{G, D\}$:<br/>
-        Col $G$: $g_1(H,G) = 2 &gt; g_1(B,G) = 1$ ✓<br/>
-        Col $D$: $g_1(H,D) = 4 &gt; g_1(B,D) = 3$ ✓<br/>
-      Row $B$ is strictly dominated by row $H$ for Player 1. <strong>Eliminate row $B$.</strong><br/>
-      Residual game: $\Gamma^3 = \{H\} \times \{G, D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Round 3 — Residual game $\Gamma^3 = \{H\} \times \{G, D\}$:</strong><br/>
-      Only row $H$ remains for Player 1. Compare columns $D$ and $G$ in row $H$ for Player 2:<br/>
-        $g_2(H,G) = 2 &gt; g_2(H,D) = 0$ ✓<br/>
-      Column $D$ is strictly dominated by column $G$ for Player 2. <strong>Eliminate column $D$.</strong>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete column $M$.</strong>
+<p>Initially, neither row dominates: $H$ is better against $G$ ($2&gt;1$), while $B$ is better against $M$ ($4&gt;1$). For Player 2:</p>$$\begin{aligned}g_2(H,G)=2&amp;&gt;1=g_2(H,M),\\[3pt]g_2(B,G)=2&amp;&gt;1=g_2(B,M).\end{aligned}$$<p>$G$ strictly dominates $M$. Remaining actions: $\{H,B\}\times\{G,D\}$.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong> Game A is solvable by IESDS. The unique surviving profile is <strong>$(H, G)$</strong> with payoff vector $g(H,G) = (2,2)$.</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete row $B$.</strong>
+$$\begin{aligned}g_1(H,G)=2&amp;&gt;1=g_1(B,G),\\[3pt]g_1(H,D)=4&amp;&gt;3=g_1(B,D).\end{aligned}$$<p>$H$ strictly dominates $B$ on the remaining columns. Remaining actions: $\{H\}\times\{G,D\}$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Delete column $D$.</strong>
+$$g_2(H,G)=2&gt;0=g_2(H,D).$$<p>Only row $H$ remains, so $G$ strictly dominates $D$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Result.</strong>
+$$\boxed{\text{IESDS solution: }(H,G).}$$
+$$g(H,G)=(2,2).$$
+</div></div>
+
 </div>
 </div>
 <div class="example-box">
@@ -1100,48 +1041,26 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'iesds-ex-3')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="iesds-ex-3">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Round 1 — Player 2 column $A$ vs column $D$:</strong><br/>
-      Compare $g_2(\cdot, A)$ with $g_2(\cdot, D)$ across all 4 rows in $\Gamma^1$:<br/>
-      Row $A$: $g_2(A,D) = 4 &gt; g_2(A,A) = 2$ ✓<br/>
-      Row $B$: $g_2(B,D) = 1 &gt; g_2(B,A) = 0$ ✓<br/>
-      Row $C$: $g_2(C,D) = 1 &gt; g_2(C,A) = 0$ ✓<br/>
-      Row $D$: $g_2(D,D) = 8 &gt; g_2(D,A) = 5$ ✓<br/>
-      Column $A$ is strictly dominated by column $D$ for Player 2. <strong>Eliminate column $A$.</strong><br/>
-      Residual game: $\Gamma^2 = \{A,B,C,D\} \times \{B,C,D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Round 2 — Player 1 in $\{A,B,C,D\} \times \{B,C,D\}$:</strong><br/>
-      • Compare row $A$ to row $B$ across remaining columns $\{B,C,D\}$:<br/>
-        Col $B$: $g_1(B,B) = 3 &gt; g_1(A,B) = 2$ ✓<br/>
-        Col $C$: $g_1(B,C) = 2 &gt; g_1(A,C) = 1$ ✓<br/>
-        Col $D$: $g_1(B,D) = 1 &gt; g_1(A,D) = 0$ ✓<br/>
-      Row $A$ is strictly dominated by row $B$. <strong>Eliminate row $A$.</strong><br/><br/>
-      • Compare row $D$ to row $C$ across remaining columns $\{B,C,D\}$:<br/>
-        Col $B$: $g_1(C,B) = 2 &gt; g_1(D,B) = 1$ ✓<br/>
-        Col $C$: $g_1(C,C) = 1 &gt; g_1(D,C) = 0$ ✓<br/>
-        Col $D$: $g_1(C,D) = 5 &gt; g_1(D,D) = 4$ ✓<br/>
-      Row $D$ is strictly dominated by row $C$. <strong>Eliminate row $D$.</strong><br/>
-      Residual game: $\Gamma^3 = \{B,C\} \times \{B,C,D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Round 3 — Player 2 in $\{B,C\} \times \{B,C,D\}$:</strong><br/>
-      Compare column $D$ to column $B$ across remaining rows $\{B,C\}$:<br/>
-        Row $B$: $g_2(B,B) = 2 &gt; g_2(B,D) = 1$ ✓<br/>
-        Row $C$: $g_2(C,B) = 2 &gt; g_2(C,D) = 1$ ✓<br/>
-      Column $D$ is strictly dominated by column $B$. <strong>Eliminate column $D$.</strong><br/>
-      Residual game: $\Gamma^4 = \{B,C\} \times \{B,C\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Round 4 — Player 1 in $\{B,C\} \times \{B,C\}$:</strong><br/>
-      Compare row $C$ to row $B$ across remaining columns $\{B,C\}$:<br/>
-        Col $B$: $g_1(B,B) = 3 &gt; g_1(C,B) = 2$ ✓<br/>
-        Col $C$: $g_1(B,C) = 2 &gt; g_1(C,C) = 1$ ✓<br/>
-      Row $C$ is strictly dominated by row $B$. <strong>Eliminate row $C$.</strong><br/>
-      Residual game: $\Gamma^5 = \{B\} \times \{B,C\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Round 5 — Player 2 in $\{B\} \times \{B,C\}$:</strong><br/>
-      Only row $B$ remains for Player 1. Compare columns $B$ and $C$ in row $B$:<br/>
-        $g_2(B,B) = 2 &gt; g_2(B,C) = 1$ ✓<br/>
-      Column $C$ is strictly dominated by column $B$. <strong>Eliminate column $C$.</strong>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete column $A$.</strong>
+<p>Compare Player 2’s payoffs from $D$ and $A$ in every row:</p>$$\begin{aligned}g_2(A,D)=4&amp;&gt;2=g_2(A,A),\\[3pt]g_2(B,D)=1&amp;&gt;0=g_2(B,A),\\[3pt]g_2(C,D)=1&amp;&gt;0=g_2(C,A),\\[3pt]g_2(D,D)=8&amp;&gt;5=g_2(D,A).\end{aligned}$$<p>$D$ strictly dominates $A$. Remaining actions: $\{A,B,C,D\}\times\{B,C,D\}$.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong> Game B is fully solvable by IESDS. The unique solution is <strong>$(B, B)$</strong> with payoff vector $g(B,B) = (3,2)$.</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete rows $A$ and $D$.</strong>
+<p>On columns $B,C,D$, row $B$ strictly dominates row $A$:</p>$$\begin{aligned}g_1(B,B)=3&amp;&gt;2=g_1(A,B),\\[3pt]g_1(B,C)=2&amp;&gt;1=g_1(A,C),\\[3pt]g_1(B,D)=1&amp;&gt;0=g_1(A,D).\end{aligned}$$<p>On the same columns, row $C$ strictly dominates row $D$:</p>$$\begin{aligned}g_1(C,B)=2&amp;&gt;1=g_1(D,B),\\[3pt]g_1(C,C)=1&amp;&gt;0=g_1(D,C),\\[3pt]g_1(C,D)=5&amp;&gt;4=g_1(D,D).\end{aligned}$$<p>Remaining actions: $\{B,C\}\times\{B,C,D\}$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Delete column $D$.</strong>
+$$\begin{aligned}g_2(B,B)=2&amp;&gt;1=g_2(B,D),\\[3pt]g_2(C,B)=2&amp;&gt;1=g_2(C,D).\end{aligned}$$<p>$B$ strictly dominates $D$. Remaining actions: $\{B,C\}\times\{B,C\}$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Delete row $C$.</strong>
+$$\begin{aligned}g_1(B,B)=3&amp;&gt;2=g_1(C,B),\\[3pt]g_1(B,C)=2&amp;&gt;1=g_1(C,C).\end{aligned}$$<p>$B$ strictly dominates $C$. Remaining actions: $\{B\}\times\{B,C\}$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Delete column $C$.</strong>
+$$g_2(B,B)=2&gt;1=g_2(B,C).$$<p>Only row $B$ remains, so column $B$ strictly dominates $C$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Result.</strong>
+$$\boxed{\text{IESDS solution: }(B,B).}$$
+$$g(B,B)=(3,2).$$
+</div></div>
+
 </div>
 </div>
 <!-- §2.3 WEAK DOMINANCE -->
@@ -1157,7 +1076,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 </div>
 <div class="concept-card blue-top">
 <div class="card-title blue">B. Formal Definitions</div>
-<table class="comparison-table">
+<div class="matrix-wrap"><table class="comparison-table">
 <tr><th>Concept</th><th>Mathematical Condition</th><th>Interpretation</th></tr>
 <tr>
 <td>Strict Dominance</td>
@@ -1169,7 +1088,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <td>$g_i(t_i, s_{-i}) \geq g_i(s_i, s_{-i}) \quad \forall\, s_{-i}$<br/>with strict inequality for at least one $s_{-i}$</td>
 <td>$t_i$ is <strong>never worse</strong> than $s_i$, and strictly better against at least one profile.</td>
 </tr>
-</table>
+</table></div>
 <div class="body-text" style="margin-top:10px;">
 <p>A strategy $s_i$ is <strong>weakly dominant</strong> if for all $t_i \in S_i$: $g_i(s_i, s_{-i}) \geq g_i(t_i, s_{-i})$ for all $s_{-i}$.</p>
 <p>A profile $s^*$ is a <strong>weakly dominant strategy equilibrium</strong> if every $s_i^*$ is weakly dominant.</p>
@@ -1195,19 +1114,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'weak-ex-1')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="weak-ex-1">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Are there strictly dominant strategies?</strong><br/>
-      Does $D$ strictly dominate $U$ for P1? Check against every column:<br/>
-        Against $L$: $g_1(D,L) = 3 &gt; g_1(U,L) = 2$ ✓<br/>
-        Against $R$: $g_1(D,R) = 4 = g_1(U,R) = 4$ — <em>equality, not strict inequality.</em><br/>
-      $D$ is <strong>not</strong> strictly better in every case: <strong>no strictly dominant strategy exists for P1.</strong><br/>
-      By symmetry of the column player's position, P2 has no strictly dominant strategy either.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>In your opinion, what would be a smart choice?</strong><br/>
-      Although $D$ does not <em>strictly</em> dominate $U$, it does <em>weakly</em> dominate it:<br/>
-        Against $L$: $g_1(D,L) = 3 \geq g_1(U,L) = 2$ ✓ (strictly better)<br/>
-        Against $R$: $g_1(D,R) = 4 \geq g_1(U,R) = 4$ ✓ (equally good)<br/>
-      $D$ is <em>never worse</em> than $U$ and <em>sometimes strictly better</em>. A smart player should play $D$ — there is no reason to ever prefer $U$. <strong>$D$ weakly dominates $U$; playing $D$ is the smart choice.</strong>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare $D$ with $U$.</strong>
+$$\begin{aligned}g_1(D,L)=3&amp;&gt;2=g_1(U,L),\\[3pt]g_1(D,R)=4&amp;=4=g_1(U,R).\end{aligned}$$<p>$D$ weakly dominates $U$, but not strictly: the payoffs are equal against $R$. Thus Player 1 has no strictly dominant strategy.</p>
 </div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare $R$ with $L$.</strong>
+$$\begin{aligned}g_2(U,R)=4&amp;&gt;2=g_2(U,L),\\[3pt]g_2(D,R)=1&amp;=1=g_2(D,L).\end{aligned}$$<p>$R$ weakly dominates $L$, but not strictly. Player 2 also has no strictly dominant strategy.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Choice justified by dominance.</strong>
+<p>$D$ for Player 1 and $R$ for Player 2 are never worse than their alternatives and are sometimes better. These are weakly dominant choices. The equalities matter: $U$ is still a best response to $R$, and $L$ is still a best response to $D$.</p>
+</div></div>
+
 </div>
 </div>
 <div class="example-box">
@@ -1227,17 +1143,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'iewds-ex')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="iewds-ex">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Order 1 (Eliminate $U$ first):</strong><br/>
-      $M$ weakly dominates $U$ for P1 ($g_1(M,L)=1 \geq 1$ and $g_1(M,R)=2 &gt; 0$). Eliminate row $U$.<br/>
-      In residual $\{M,D\}\times\{L,R\}$, for P2: $g_2(M,R)=1 \geq 1$ and $g_2(D,R)=1 &gt; 0$. Column $R$ weakly dominates column $L$. Eliminate column $L$.<br/>
-      Residual $\{M,D\}\times\{R\}$: in column $R$, $g_1(M,R)=2=g_1(D,R)=2$. Neither dominates. Surviving set: <strong>$\{(M,R), (D,R)\}$</strong>.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Order 2 (Eliminate $D$ first):</strong><br/>
-      Notice $M$ also weakly dominates $D$ for P1 ($g_1(M,L)=1 &gt; 0$ and $g_1(M,R)=2 \geq 2$). Eliminate row $D$ first.<br/>
-      In residual $\{U,M\}\times\{L,R\}$, for P2: $g_2(U,L)=1 &gt; 0$ and $g_2(M,L)=1 \geq 1$. Column $L$ weakly dominates column $R$. Eliminate column $R$.<br/>
-      Residual $\{U,M\}\times\{L\}$: surviving set is <strong>$\{(U,L), (M,L)\}$</strong>.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">⚠️</div><div class="step-body"><strong>Key takeaway:</strong> Order 1 yields outcomes where P2 plays $R$; Order 2 yields outcomes where P2 plays $L$. Elimination of weakly dominated strategies is <strong>order-dependent</strong> and can eliminate valid Nash equilibria.</div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>First order: delete $U$, then $L$.</strong>
+<p>For Player 1:</p>$$\begin{aligned}g_1(M,L)=1&amp;=1=g_1(U,L),\\[3pt]g_1(M,R)=2&amp;&gt;0=g_1(U,R).\end{aligned}$$<p>Delete $U$, weakly dominated by $M$. In $\{M,D\}\times\{L,R\}$, compare Player 2’s columns:</p>$$\begin{aligned}g_2(M,R)=1&amp;=1=g_2(M,L),\\[3pt]g_2(D,R)=1&amp;&gt;0=g_2(D,L).\end{aligned}$$<p>Delete $L$, weakly dominated by $R$. In the remaining column, $g_1(M,R)=g_1(D,R)=2$, so neither row weakly dominates the other with a strict improvement.</p>$$\boxed{\text{Surviving profiles: }\{(M,R),(D,R)\}.}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Second order: delete $D$, then $R$.</strong>
+<p>For Player 1:</p>$$\begin{aligned}g_1(M,L)=1&amp;&gt;0=g_1(D,L),\\[3pt]g_1(M,R)=2&amp;=2=g_1(D,R).\end{aligned}$$<p>Delete $D$, weakly dominated by $M$. In $\{U,M\}\times\{L,R\}$:</p>$$\begin{aligned}g_2(U,L)=1&amp;&gt;0=g_2(U,R),\\[3pt]g_2(M,L)=1&amp;=1=g_2(M,R).\end{aligned}$$<p>Delete $R$, weakly dominated by $L$. The two remaining rows both give Player 1 payoff $1$, so the procedure stops.</p>$$\boxed{\text{Surviving profiles: }\{(U,L),(M,L)\}.}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Compare the results.</strong>
+<p>The surviving profiles differ, so IEWDS depends on the elimination order. All four profiles above are Nash equilibria of the original game; each order removes some of them.</p>
+</div></div>
+
 </div>
 </div>
 <div class="example-box">
@@ -1250,27 +1165,22 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'spa-proof-box')">▶ Show Proof <span class="arrow">▼</span></button>
 <div class="collapsible" id="spa-proof-box">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Setup:</strong> Fix bidder $i$ with valuation $v_i$. Fix any arbitrary bid profile of the rivals $b_{-i}$, and let $m \equiv m_i(b_{-i}) = \max_{j \neq i} b_j$ be the highest competing bid. Compare truthful bidding $b_i = v_i$ to any alternative bid $b_i' \neq v_i$.</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Case 1 ($v_i &gt; m$):</strong> Truthful bid wins.<br/>
-      With $b_i = v_i$: bidder $i$ wins (since $b_i &gt; m$) and pays price $m$. Payoff: $g_i(v_i, b_{-i}) = v_i - m &gt; 0$.<br/>
-      Alternative bid $b_i'$:<br/>
-      • If $b_i' &gt; m$: she still wins and still pays $m \implies g_i(b_i', b_{-i}) = v_i - m$ (identical payoff).<br/>
-      • If $b_i' &lt; m$: she loses $\implies g_i(b_i', b_{-i}) = 0 &lt; v_i - m$ (strictly worse).<br/>
-      • If $b_i' = m$: she ties and earns $\frac{v_i - m}{M} \leq v_i - m$ (worse).<br/>
-      Hence: $g_i(v_i, b_{-i}) \geq g_i(b_i', b_{-i})$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Case 2 ($v_i &lt; m$):</strong> Truthful bid loses.<br/>
-      With $b_i = v_i$: bidder $i$ loses (since $b_i &lt; m$). Payoff: $g_i(v_i, b_{-i}) = 0$.<br/>
-      Alternative bid $b_i'$:<br/>
-      • If $b_i' &lt; m$: she still loses $\implies g_i(b_i', b_{-i}) = 0$ (identical payoff).<br/>
-      • If $b_i' &gt; m$: she wins, but pays the second-highest bid $m &gt; v_i$. Payoff is $v_i - m &lt; 0$ (strictly worse!).<br/>
-      • If $b_i' = m$: she ties, expected payoff is $\frac{v_i - m}{M} \leq 0$ (worse).<br/>
-      Hence: $g_i(v_i, b_{-i}) \geq g_i(b_i', b_{-i})$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Case 3 ($v_i = m$):</strong> Truthful bid ties.<br/>
-      With $b_i = v_i$: $g_i = \frac{v_i - m}{M} = 0$. Any alternative $b_i'$ either gives 0 (if losing) or gives $v_i - m = 0$ (if winning). Payoff is 0 in all subcases.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong> For all possible opponent bids $b_{-i}$ and all deviations $b_i'$, $g_i(v_i, b_{-i}) \geq g_i(b_i', b_{-i})$. Furthermore, strict inequality holds whenever $m$ falls between $v_i$ and $b_i'$. Therefore, bidding one's true valuation $b_i = v_i$ is a <strong>weakly dominant strategy</strong>. $\blacksquare$</div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Fix the other bids.</strong>
+<p>Fix bidder $i$ and the rival bids $b_{-i}$. Write $m=\max_{j\neq i}b_j$. Compare the truthful bid $v_i$ with any other bid $b_i\neq v_i$. If $b_i=m$, let $M\geq2$ be the number of tied highest bidders.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Case $v_i&gt;m$.</strong>
+<p>Truthful bidding wins and gives $g_i(v_i,b_{-i})=v_i-m&gt;0$. For another bid:</p>$$g_i(b_i,b_{-i})=\begin{cases}v_i-m,&amp;b_i&gt;m,\\(v_i-m)/M,&amp;b_i=m,\\0,&amp;b_i&lt;m.\end{cases}$$<p>Each value is at most $v_i-m$. Truthful bidding is at least as good.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Case $v_i&lt;m$.</strong>
+<p>Truthful bidding loses and gives $g_i(v_i,b_{-i})=0$. A bid below $m$ also gives zero. A bid above $m$ gives $v_i-m&lt;0$; a tie gives $(v_i-m)/M&lt;0$. No alternative gives more than zero.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Case $v_i=m$.</strong>
+<p>Winning, losing or tying all give payoff zero. Thus every bid gives the same payoff as truthful bidding.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclude weak dominance.</strong>
+$$g_i(v_i,b_{-i})\geq g_i(b_i,b_{-i})\qquad\forall b_i,\ \forall b_{-i}.$$<p>For each $b_i\neq v_i$, choose the highest rival bid $m$ strictly between $b_i$ and $v_i$. The truthful bid then gives strictly more: it either wins with positive surplus when the other bid loses, or loses when the other bid wins with negative surplus. Therefore $b_i=v_i$ is weakly dominant.</p>
+</div></div>
+
 </div>
 </div>
 <!-- ADDITIONAL COURSE CONCLUSION — DOMINANT-STRATEGY EQUILIBRIUM AT PROFILE LEVEL -->

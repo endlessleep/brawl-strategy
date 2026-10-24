@@ -298,19 +298,19 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 }
 
 /* Preserve the layout when long formulas and tables are opened on tablets. */
-+.step-body { min-width:0; }
-+.collapsible { scroll-margin-top:80px; min-width:0; }
-+.topbar-breadcrumb { min-width:0; flex-shrink:1; }
-+.chapter-progress-bar { min-width:60px; }
-+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
-+.notation-table { table-layout:fixed; }
-+.notation-table td:first-child { white-space:normal; }
-+.notation-table td { overflow-wrap:anywhere; }
-+@media(max-width:900px) {
-+  .main-content { min-width:0; }
-+  .concept-card, .prop-box, .example-box { min-width:0; }
-+}
-+</style>
+.step-body { min-width:0; }
+.collapsible { scroll-margin-top:80px; min-width:0; }
+.topbar-breadcrumb { min-width:0; flex-shrink:1; }
+.chapter-progress-bar { min-width:60px; }
+mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:3px 0; }
+.notation-table { table-layout:fixed; }
+.notation-table td:first-child { white-space:normal; }
+.notation-table td { overflow-wrap:anywhere; }
+@media(max-width:900px) {
+  .main-content { min-width:0; }
+  .concept-card, .prop-box, .example-box { min-width:0; }
+}
+</style>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 </head>
 <body>
@@ -468,30 +468,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'br-exercise-umblr')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="br-exercise-umblr">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 Best Responses</strong> (compare first payoffs column by column):<br/><br/>
-      Against $L$: $U$ gives $1$, $M$ gives $1$, $B$ gives $0$. Maximum = $1$.<br/>
-      $$BR_1(L) = \{U, M\}$$
-      Against $R$: $U$ gives $0$, $M$ gives $2$, $B$ gives $2$. Maximum = $2$.<br/>
-      $$BR_1(R) = \{M, B\}$$
-      <div class="key-note" style="margin-top:8px;">Notice: $BR_1$ contains <strong>more than one strategy</strong> in both cases — ties create multiple best responses.</div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong>
+$$\begin{aligned}\text{Against }L:\quad &amp;\max\{1,1,0\}=1\Rightarrow BR_1(L)=\{U,M\},\\[3pt]\text{Against }R:\quad &amp;\max\{0,2,2\}=2\Rightarrow BR_1(R)=\{M,B\}.\end{aligned}$$
 </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 Best Responses</strong> (compare second payoffs row by row):<br/><br/>
-      Against $U$: $L$ gives $1$, $R$ gives $0$. Maximum = $1$.
-      $$BR_2(U) = \{L\}$$
-      Against $M$: $L$ gives $1$, $R$ gives $1$. Maximum = $1$ (tie).
-      $$BR_2(M) = \{L, R\}$$
-      Against $B$: $L$ gives $0$, $R$ gives $1$. Maximum = $1$.
-      $$BR_2(B) = \{R\}$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual Best Responses and Nash Equilibria:</strong><br/><br/>
-      A profile $(s_1, s_2)$ is a NE iff $s_1 \in BR_1(s_2)$ and $s_2 \in BR_2(s_1)$. Checking all cells:<br/>
-      • $(U, L)$: $U \in BR_1(L)$ ✓ and $L \in BR_2(U)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(M, L)$: $M \in BR_1(L)$ ✓ and $L \in BR_2(M)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(M, R)$: $M \in BR_1(R)$ ✓ and $R \in BR_2(M)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(B, R)$: $B \in BR_1(R)$ ✓ and $R \in BR_2(B)$ ✓ $\implies$ <strong>NE</strong>.<br/><br/>
-      $$NE(\Gamma) = \{(U,L),\, (M,L),\, (M,R),\, (B,R)\}$$
-      <div class="key-note" style="margin-top:8px;"><strong>Key point:</strong> A best-response correspondence can contain <strong>more than one strategy</strong> when there is a payoff tie. This produces multiple Nash equilibria.</div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong>
+$$\begin{aligned}\text{Against }U:\quad &amp;1&gt;0\Rightarrow BR_2(U)=\{L\},\\[3pt]\text{Against }M:\quad &amp;1=1\Rightarrow BR_2(M)=\{L,R\},\\[3pt]\text{Against }B:\quad &amp;1&gt;0\Rightarrow BR_2(B)=\{R\}.\end{aligned}$$
 </div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual best responses.</strong>
+<p>Keep every action tied for the highest payoff. An equilibrium must satisfy both best-response conditions:</p>$$\begin{aligned}U\in BR_1(L),\ L\in BR_2(U)&amp;\Rightarrow(U,L)\text{ is an NE},\\[3pt]M\in BR_1(L),\ L\in BR_2(M)&amp;\Rightarrow(M,L)\text{ is an NE},\\[3pt]M\in BR_1(R),\ R\in BR_2(M)&amp;\Rightarrow(M,R)\text{ is an NE},\\[3pt]B\in BR_1(R),\ R\in BR_2(B)&amp;\Rightarrow(B,R)\text{ is an NE}.\end{aligned}$$$$\boxed{NE_{\mathrm{pure}}=\{(U,L),(M,L),(M,R),(B,R)\}.}$$
+</div></div>
+
 </div>
 </div>
 <div class="section-header subsection-target" data-subsection="§ 3.2" id="sec-3-2">
@@ -514,19 +500,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'ne-ex-1')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="ne-ex-1">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 Best Responses:</strong><br/>
-      Against column $E$: $\max\{g_1(E,E), g_1(C,E)\} = \max\{1, 0\} = 1 \implies BR_1(E) = \{E\}$.<br/>
-      Against column $C$: $\max\{g_1(E,C), g_1(C,C)\} = \max\{0, 1\} = 1 \implies BR_1(C) = \{C\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 Best Responses:</strong><br/>
-      Against row $E$: $\max\{g_2(E,E), g_2(E,C)\} = \max\{1, 0\} = 1 \implies BR_2(E) = \{E\}$.<br/>
-      Against row $C$: $\max\{g_2(C,E), g_2(C,C)\} = \max\{0, 1\} = 1 \implies BR_2(C) = \{C\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual Best Responses &amp; Conclusion:</strong><br/>
-      • $(E,E)$: $E \in BR_1(E)$ and $E \in BR_2(E)$ ✓<br/>
-      • $(C,C)$: $C \in BR_1(C)$ and $C \in BR_2(C)$ ✓<br/>
-<strong>$NE(\Gamma) = \{(E,E),\, (C,C)\}$</strong>. Two pure strategy equilibria exist.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong>
+$$\begin{aligned}g_1(E,E)=1&gt;0=g_1(C,E)&amp;\Rightarrow BR_1(E)=\{E\},\\[3pt]g_1(C,C)=1&gt;0=g_1(E,C)&amp;\Rightarrow BR_1(C)=\{C\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong>
+$$\begin{aligned}g_2(E,E)=1&gt;0=g_2(E,C)&amp;\Rightarrow BR_2(E)=\{E\},\\[3pt]g_2(C,C)=1&gt;0=g_2(C,E)&amp;\Rightarrow BR_2(C)=\{C\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual best responses.</strong>
+<p>Both players are best responding at $(E,E)$ and $(C,C)$. At either off-diagonal profile, a player gains by matching the other action.</p>$$\boxed{NE_{\mathrm{pure}}=\{(E,E),(C,C)\}.}$$
+</div></div>
+
 </div>
 </div>
 <!-- GAME 2 -->
@@ -545,18 +528,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'ne-ex-2')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="ne-ex-2">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 Best Responses:</strong><br/>
-      Against column $G$: $\max\{-1, 1\} = 1 \implies BR_1(G) = \{D\}$.<br/>
-      Against column $D$: $\max\{1, -1\} = 1 \implies BR_1(D) = \{G\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 Best Responses:</strong><br/>
-      Against row $G$: $\max\{1, -1\} = 1 \implies BR_2(G) = \{G\}$.<br/>
-      Against row $D$: $\max\{-1, 1\} = 1 \implies BR_2(D) = \{D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong> Check all four cells:<br/>
-      • $(G,G)$: P1 deviates to $D$. • $(D,D)$: P1 deviates to $G$. • $(G,D)$: P2 deviates to $G$. • $(D,G)$: P2 deviates to $D$.<br/>
-<strong>$NE(\Gamma) = \emptyset$ in pure strategies.</strong> (Requires mixed strategies — studied in later chapters).
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong>
+$$\begin{aligned}g_1(D,G)=1&gt;-1=g_1(G,G)&amp;\Rightarrow BR_1(G)=\{D\},\\[3pt]g_1(G,D)=1&gt;-1=g_1(D,D)&amp;\Rightarrow BR_1(D)=\{G\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong>
+$$\begin{aligned}g_2(G,G)=1&gt;-1=g_2(G,D)&amp;\Rightarrow BR_2(G)=\{G\},\\[3pt]g_2(D,D)=1&gt;-1=g_2(D,G)&amp;\Rightarrow BR_2(D)=\{D\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual best responses.</strong>
+<p>Player 1 wants different actions; Player 2 wants the same action. Each profile admits a profitable deviation:</p>$$\begin{aligned}(G,G)&amp;:\ 1\text{ switches to }D,\\[3pt](D,D)&amp;:\ 1\text{ switches to }G,\\[3pt](G,D)&amp;:\ 2\text{ switches to }G,\\[3pt](D,G)&amp;:\ 2\text{ switches to }D.\end{aligned}$$$$\boxed{NE_{\mathrm{pure}}=\varnothing.}$$<p>This conclusion concerns pure strategies only.</p>
+</div></div>
+
 </div>
 </div>
 <!-- GAME 3 -->
@@ -575,9 +556,13 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'ne-ex-3')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="ne-ex-3">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1:</strong> Against $C$: $BR_1(C) = \{D\}$ ($0 &gt; -3$). Against $D$: $BR_1(D) = \{D\}$ ($-5 &gt; -10$). $D$ is strictly dominant.</div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2:</strong> By symmetry, $BR_2(C) = \{D\}$ and $BR_2(D) = \{D\}$. $D$ is strictly dominant.</div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conclusion:</strong> <strong>Unique Nash equilibrium: $NE(\Gamma) = \{(D,D)\}$</strong> with payoff vector $g(D,D) = (-5,-5)$. Note: since $D$ is strictly dominant for both players, this equilibrium was already found in §2.1.</div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Strict dominance.</strong>
+$$\begin{aligned}g_1(D,C)=0&gt;-3=g_1(C,C),\\[3pt]g_1(D,D)=-5&gt;-10=g_1(C,D).\end{aligned}$$<p>$D$ strictly dominates $C$ for Player 1. The same comparisons hold for Player 2. Thus $BR_i(C)=BR_i(D)=\{D\}$ for both players.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Equilibrium.</strong>
+$$\boxed{NE=\{(D,D)\},\qquad g(D,D)=(-5,-5).}$$<p>Both players have a strictly dominant strategy, so this is the unique NE.</p>
+</div></div>
+
 </div>
 </div>
 <!-- GAME 4 -->
@@ -597,22 +582,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'ne-ex-4')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="ne-ex-4">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 Best Responses:</strong><br/>
-      Column $G$: $\max\{1, 1, 0\} = 1 \implies BR_1(G) = \{H, M\}$ (tie!).<br/>
-      Column $D$: $\max\{0, 2, 2\} = 2 \implies BR_1(D) = \{M, B\}$ (tie!).
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 Best Responses:</strong><br/>
-      Row $H$: $\max\{1, 0\} = 1 \implies BR_2(H) = \{G\}$.<br/>
-      Row $M$: $\max\{1, 1\} = 1 \implies BR_2(M) = \{G, D\}$ (tie!).<br/>
-      Row $B$: $\max\{0, 1\} = 1 \implies BR_2(B) = \{D\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual Best Responses:</strong><br/>
-      • $(H,G)$: $H \in BR_1(G)$ ✓ and $G \in BR_2(H)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(M,G)$: $M \in BR_1(G)$ ✓ and $G \in BR_2(M)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(M,D)$: $M \in BR_1(D)$ ✓ and $D \in BR_2(M)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(B,D)$: $B \in BR_1(D)$ ✓ and $D \in BR_2(B)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-<strong>$NE(\Gamma) = \{(H,G),\, (M,G),\, (M,D),\, (B,D)\}$</strong>. Four pure equilibria exist.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong>
+$$\begin{aligned}\text{Against }G:\quad &amp;\max\{1,1,0\}=1\Rightarrow BR_1(G)=\{H,M\},\\[3pt]\text{Against }D:\quad &amp;\max\{0,2,2\}=2\Rightarrow BR_1(D)=\{M,B\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong>
+$$\begin{aligned}\text{Against }H:\quad &amp;1&gt;0\Rightarrow BR_2(H)=\{G\},\\[3pt]\text{Against }M:\quad &amp;1=1\Rightarrow BR_2(M)=\{G,D\},\\[3pt]\text{Against }B:\quad &amp;1&gt;0\Rightarrow BR_2(B)=\{D\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual best responses.</strong>
+<p>Against $G$, rows $H$ and $M$ are best responses, and $G$ is optimal in both rows. Against $D$, rows $M$ and $B$ are best responses, and $D$ is optimal in both rows. Hence:</p>$$\boxed{NE_{\mathrm{pure}}=\{(H,G),(M,G),(M,D),(B,D)\}.}$$
+</div></div>
+
 </div>
 </div>
 <!-- GAME 5 -->
@@ -632,20 +611,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'ne-ex-5')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="ne-ex-5">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1 Best Responses:</strong><br/>
-      Column $G$: $\max\{5, 4, 3\} = 5 \implies BR_1(G) = \{h\}$.<br/>
-      Column $M$: $\max\{0, 5, 0\} = 5 \implies BR_1(M) = \{m\}$.<br/>
-      Column $D$: $\max\{3, 4, 5\} = 5 \implies BR_1(D) = \{b\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2 Best Responses:</strong><br/>
-      Row $h$: $\max\{3, 4, 5\} = 5 \implies BR_2(h) = \{D\}$.<br/>
-      Row $m$: $\max\{0, 5, 0\} = 5 \implies BR_2(m) = \{M\}$.<br/>
-      Row $b$: $\max\{5, 4, 3\} = 5 \implies BR_2(b) = \{G\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual Best Responses:</strong><br/>
-      Only $(m,M)$ satisfies $m \in BR_1(M)$ and $M \in BR_2(m)$.<br/>
-<strong>Unique Nash equilibrium: $NE(\Gamma) = \{(m,M)\}$</strong> with payoff vector $g(m,M) = (5,5)$.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong>
+$$\begin{aligned}\text{Against }G:\quad &amp;\max\{5,4,3\}=5\Rightarrow BR_1(G)=\{h\},\\[3pt]\text{Against }M:\quad &amp;\max\{0,5,0\}=5\Rightarrow BR_1(M)=\{m\},\\[3pt]\text{Against }D:\quad &amp;\max\{3,4,5\}=5\Rightarrow BR_1(D)=\{b\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong>
+$$\begin{aligned}\text{Against }h:\quad &amp;\max\{3,4,5\}=5\Rightarrow BR_2(h)=\{D\},\\[3pt]\text{Against }m:\quad &amp;\max\{0,5,0\}=5\Rightarrow BR_2(m)=\{M\},\\[3pt]\text{Against }b:\quad &amp;\max\{5,4,3\}=5\Rightarrow BR_2(b)=\{G\}.\end{aligned}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Mutual best responses.</strong>
+$$\begin{aligned}(h,G):&amp;\quad G\notin BR_2(h)\Rightarrow\text{rejected},\\[3pt](m,M):&amp;\quad m\in BR_1(M),\ M\in BR_2(m)\Rightarrow\text{NE},\\[3pt](b,D):&amp;\quad D\notin BR_2(b)\Rightarrow\text{rejected}.\end{aligned}$$$$\boxed{NE_{\mathrm{pure}}=\{(m,M)\},\qquad g(m,M)=(5,5).}$$
+</div></div>
+
 </div>
 </div>
 <!-- COURNOT NE -->
@@ -659,29 +634,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'cournot-sol-box')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="cournot-sol-box">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Firm 1's Optimisation problem:</strong><br/>
-      Firm 1 chooses $q_1 \geq 0$ to maximise $g_1(q_1, q_2) = 13q_1 - q_1^2 - q_1 q_2$, taking $q_2$ as given.<br/>
-      First-Order Condition (FOC):
-      $$\frac{\partial g_1}{\partial q_1} = 13 - 2q_1 - q_2 = 0 \implies 2q_1 = 13 - q_2 \implies BR_1(q_2) = \frac{13 - q_2}{2}$$
-      Second-Order Condition: $\frac{\partial^2 g_1}{\partial q_1^2} = -2 &lt; 0$ (strict concavity, global maximum).
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Firm 2's Optimisation problem:</strong><br/>
-      By exact symmetry:
-      $$BR_2(q_1) = \frac{13 - q_1}{2}$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Equilibrium System:</strong><br/>
-      At Nash equilibrium, each firm must be best-responding to the other:
-      $$q_1^* = \frac{13 - q_2^*}{2} \quad \text{and} \quad q_2^* = \frac{13 - q_1^*}{2}$$
-      Substituting $q_2^*$ into $q_1^*$:
-      $$q_1^* = \frac{13 - \frac{13 - q_1^*}{2}}{2} = \frac{26 - 13 + q_1^*}{4} = \frac{13 + q_1^*}{4} \implies 4q_1^* - q_1^* = 13 \implies 3q_1^* = 13 \implies q_1^* = \frac{13}{3}$$
-      By symmetry: $q_2^* = \frac{13}{3}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Equilibrium Values:</strong><br/>
-      • Total output: $Q^* = q_1^* + q_2^* = \frac{26}{3}$.<br/>
-      • Market price: $P^* = 13 - \frac{26}{3} = \frac{13}{3}$.<br/>
-      • Equilibrium profits: $g_1^* = g_2^* = P^* \cdot q_i^* = \left(\frac{13}{3}\right)\left(\frac{13}{3}\right) = \frac{169}{9} \approx 18.78$.<br/>
-<strong>Graphic interpretation:</strong> The Nash equilibrium is the intersection point of the two downward-sloping reaction curves in the $(q_1, q_2)$ plane.
-    </div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Write the profit and maximise it.</strong>
+<p>Fix the rival quantity $q_j$. Firm $i$ chooses $q_i\geq0$:</p>$$g_i(q_i,q_j)=q_i(13-q_i-q_j)=13q_i-q_i^2-q_iq_j.$$$$\begin{aligned}\frac{\partial g_i}{\partial q_i}&amp;=13-2q_i-q_j,\\[3pt]\frac{\partial^2 g_i}{\partial q_i^2}&amp;=-2&lt;0.\end{aligned}$$<p>The profit is strictly concave. If $q_j&lt;13$, set the first derivative equal to zero; otherwise the maximum is at $q_i=0$:</p>$$13-2q_i-q_j=0\iff q_i=\frac{13-q_j}{2}.$$$$\boxed{\begin{aligned}BR_1(q_2)&amp;=\max\{0,\tfrac{13-q_2}{2}\},\\BR_2(q_1)&amp;=\max\{0,\tfrac{13-q_1}{2}\}.\end{aligned}}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Solve the two best-response equations.</strong>
+<p>Neither firm produces zero at equilibrium: if $q_1=0$, then $q_2=13/2$, but $BR_1(13/2)=13/4&gt;0$. The same argument applies to firm 2. Therefore:</p>$$\begin{cases}2q_1+q_2=13,\\q_1+2q_2=13.\end{cases}$$<p>Subtract the second equation from the first:</p>$$q_1-q_2=0\Rightarrow q_1=q_2=q.$$<p>Substitute into either equation:</p>$$3q=13\iff q=\frac{13}{3}.$$$$\boxed{NE=\{(\tfrac{13}{3},\tfrac{13}{3})\}.}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Compute the price and profits.</strong>
+$$\begin{aligned}Q^*&amp;=\frac{13}{3}+\frac{13}{3}=\frac{26}{3},\\[3pt]P^*&amp;=13-\frac{26}{3}=\frac{39-26}{3}=\frac{13}{3},\\[3pt]g_i^*&amp;=(P^*-0)q_i^*=\frac{13}{3}\cdot\frac{13}{3}=\frac{169}{9}.\end{aligned}$$<p>The equilibrium is the intersection of the two best-response curves. The exact fractions are the final answers.</p>
+</div></div>
+
 </div>
 </div>
 <!-- COURSE COMPLEMENT: GENERIC COURNOT BEST RESPONSES -->
@@ -695,24 +657,14 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'cournot-generic-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="cournot-generic-sol">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Setup:</strong><br/>
-      Demand: $Q = a - P$, so inverse demand $P = a - Q = a - q_1 - q_2$.<br/>
-      Firm $i$'s profit:
-      $$g_i(q_i, q_j) = q_i(P - c) = q_i(a - q_i - q_j - c)$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>FOC for firm $i$ (taking $q_j$ as given):</strong>
-      $$\frac{\partial g_i}{\partial q_i} = a - c - 2q_i - q_j = 0 \implies q_i = \frac{a - c - q_j}{2}$$
-      Since quantities cannot be negative, the full best-response function is:
-      $$\boxed{BR_i(q_j) = \max\!\left\{\frac{a-c-q_j}{2},\; 0\right\}}$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Both reaction curves:</strong>
-      $$BR_1(q_2) = \max\!\left\{\frac{a-c-q_2}{2},\; 0\right\}$$
-      $$BR_2(q_1) = \max\!\left\{\frac{a-c-q_1}{2},\; 0\right\}$$
-    </div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Graph of reaction curves (assuming $a &gt; c$):</strong><br/>
-      The Nash equilibrium is the intersection of $BR_1$ and $BR_2$.
-      <div style="display:flex;justify-content:center;margin:16px 0 8px;">
-<svg height="290" style="background:rgba(9,14,23,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:8px;" viewBox="0 0 320 290" width="320">
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Profit and best response.</strong>
+<p>Fix $q_j$. The firm chooses $q_i\geq0$:</p>$$\begin{aligned}g_i(q_i,q_j)&amp;=q_i(a-c-q_i-q_j),\\[3pt]\frac{\partial g_i}{\partial q_i}&amp;=a-c-2q_i-q_j,\qquad\frac{\partial^2 g_i}{\partial q_i^2}=-2&lt;0.\end{aligned}$$$$a-c-2q_i-q_j=0\iff q_i=\frac{a-c-q_j}{2}.$$<p>If this quantity is negative, the constrained maximum is zero. Hence:</p>$$\boxed{\begin{aligned}BR_1(q_2)&amp;=\max\{0,\tfrac{a-c-q_2}{2}\},\\BR_2(q_1)&amp;=\max\{0,\tfrac{a-c-q_1}{2}\}.\end{aligned}}$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Equilibrium when $a&gt;c$.</strong>
+<p>A zero quantity cannot be an equilibrium response: if $q_1=0$, firm 2 chooses $(a-c)/2$, which gives firm 1 the positive best response $(a-c)/4$. Thus both equilibrium quantities are positive:</p>$$\begin{cases}2q_1+q_2=a-c,\\q_1+2q_2=a-c.\end{cases}$$<p>Subtracting the equations gives $q_1=q_2=q$. Then:</p>$$3q=a-c\iff\boxed{q_1^*=q_2^*=\frac{a-c}{3}.}$$<p>If $a\leq c$, $BR_i(q_j)=0$ for every $q_j\geq0$, so the equilibrium is $(0,0)$.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Draw the best-response curves for $a&gt;c$.</strong>
+<p>Use $q_1$ horizontally and $q_2$ vertically. In the positive-output region:</p>$$\begin{aligned}BR_1:\quad &amp;q_2=a-c-2q_1,\\[3pt]BR_2:\quad &amp;q_2=\frac{a-c-q_1}{2}.\end{aligned}$$<p>The first line joins $(0,a-c)$ to $((a-c)/2,0)$. The second joins $(0,(a-c)/2)$ to $(a-c,0)$. Their intersection is the equilibrium.</p><div style="display:flex;justify-content:center;margin:16px 0 8px;"><svg height="290" style="background:rgba(9,14,23,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:8px;" viewBox="0 0 320 290" width="320">
 <!-- Coordinate system:
                q1 in [0, a-c]  →  x in [40, 260]  (220px = a-c units)
                q2 in [0, a-c]  →  y in [250, 20]   (230px = a-c units, y-inverted)
@@ -761,17 +713,9 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
 <line stroke="#475569" stroke-width="1.5" x1="38" x2="42" y1="173" y2="173"></line>
 <line stroke="#475569" stroke-width="1.5" x1="38" x2="42" y1="135" y2="135"></line>
 <line stroke="#475569" stroke-width="1.5" x1="38" x2="42" y1="20" y2="20"></line>
-</svg>
-</div>
-<div style="font-size:0.82rem;color:var(--text-3);text-align:center;margin-top:4px;">Reaction curves in the $(q_1, q_2)$ plane. Nash equilibrium = intersection (purple dot).</div>
+</svg></div><p>Beyond these intercepts, the zero-output best responses follow the corresponding axes.</p>
 </div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Symmetric Nash equilibrium (provided $a &gt; c$):</strong><br/>
-      At the Nash equilibrium both firms use their reaction functions simultaneously:
-      $$q_1^* = \frac{a-c-q_2^*}{2} \quad \text{and} \quad q_2^* = \frac{a-c-q_1^*}{2}$$
-      By symmetry $q_1^* = q_2^* \equiv q^*$. Substituting:
-      $$q^* = \frac{a-c-q^*}{2} \implies 2q^* = a-c-q^* \implies 3q^* = a-c$$
-      $$\boxed{q_1^* = q_2^* = \frac{a-c}{3}}$$
-    </div></div>
+
 </div>
 </div>
 <div class="section-header subsection-target" data-subsection="§ 3.3" id="sec-3-3">
@@ -936,14 +880,16 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'conn-ex')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="conn-ex">
-<div class="demo-step"><div class="step-num coral">1</div><div class="demo-step-body"><strong>Dominance:</strong><br/>
-      For P1: $g_1(A,A) = 2 = g_1(B,A)$ and $g_1(A,B) = 1 = g_1(B,B)$. Row $A$ and Row $B$ yield identical payoffs against all columns. Neither strictly dominates the other.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="demo-step-body"><strong>Best Responses:</strong><br/>
-      P1: against $A$, $\max\{2,2\}=2 \implies BR_1(A)=\{A,B\}$; against $B$, $\max\{1,1\}=1 \implies BR_1(B)=\{A,B\}$.<br/>
-      P2: against row $A$, $\max\{2,2\}=2 \implies BR_2(A)=\{A,B\}$; against row $B$, $\max\{1,1\}=1 \implies BR_2(B)=\{A,B\}$.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="demo-step-body"><strong>Conclusion:</strong> Every cell is a mutual best response: <strong>$NE(\Gamma) = \{(A,A),\, (A,B),\, (B,A),\, (B,B)\}$</strong>. All 4 profiles are Nash equilibria due to indifference.</div></div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Compare each player’s own actions.</strong>
+$$\begin{aligned}g_1(A,A)=g_1(B,A)&amp;=2,\qquad g_1(A,B)=g_1(B,B)=1,\\[3pt]g_2(A,A)=g_2(A,B)&amp;=2,\qquad g_2(B,A)=g_2(B,B)=1.\end{aligned}$$<p>Each player gets the same payoff from either of her own actions, for every fixed opponent action. No strategy is strictly dominated; none is weakly dominated with a strict improvement somewhere.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Best responses.</strong>
+$$BR_1(A)=BR_1(B)=\{A,B\},\qquad BR_2(A)=BR_2(B)=\{A,B\}.$$
+</div></div>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Pure equilibria.</strong>
+<p>Both best-response conditions hold in every cell:</p>$$\boxed{NE_{\mathrm{pure}}=\{(A,A),(A,B),(B,A),(B,B)\}.}$$
+</div></div>
+
 </div>
 </div>
 <!-- ═══════════════════════════════════════ -->
@@ -967,50 +913,26 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'updated-method-3x3-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="updated-method-3x3-sol">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Step 1 — Strictly Dominant Strategies:</strong><br/>
-      No player has a strategy that is strictly better than all others against every opponent strategy. There is no strictly dominant strategy profile.<br/><br/>
-      However, we can identify strictly dominated strategies for IESDS.<br/><br/>
-<strong>Player 1 — Compare rows $C$ and $B$:</strong><br/>
-        Against col $A$: $g_1(C,A) = 0 &gt; -1 = g_1(B,A)$ ✓<br/>
-        Against col $B$: $g_1(C,B) = 1 &gt; 0 = g_1(B,B)$ ✓<br/>
-        Against col $C$: $g_1(C,C) = 5 &gt; 4 = g_1(B,C)$ ✓<br/>
-      Row $C$ strictly dominates row $B$ for Player 1. <strong>Eliminate row $B$.</strong><br/><br/>
-      Residual game $\Gamma^2$:
-      <div class="matrix-wrap" style="margin-top:8px;"><table class="payoff-matrix">
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Eliminate row $B$.</strong>
+<p>No strategy is strictly dominant: Player 1 prefers $A$ against column $A$, but $C$ against column $B$; Player 2 prefers $A$ against row $A$, but $C$ against row $B$. Compare rows $C$ and $B$:</p>$$\begin{aligned}g_1(C,A)=0&amp;&gt;-1=g_1(B,A),\\[3pt]g_1(C,B)=1&amp;&gt;0=g_1(B,B),\\[3pt]g_1(C,C)=5&amp;&gt;4=g_1(B,C).\end{aligned}$$<p>$C$ strictly dominates $B$. Delete row $B$:</p><div class="matrix-wrap"><table class="payoff-matrix">
 <tr><th></th><th></th><th colspan="3">Player 2</th></tr>
 <tr><th></th><th></th><th>$A$</th><th>$B$</th><th>$C$</th></tr>
 <tr><td class="row-label" rowspan="2" style="color:var(--example)">Player 1</td><td class="row-label">$A$</td><td>$(1,1)$</td><td>$(0,0)$</td><td>$(5,-1)$</td></tr>
 <tr><td class="row-label">$C$</td><td>$(0,0)$</td><td>$(1,1)$</td><td>$(5,0)$</td></tr>
 </table></div>
 </div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Step 2 — Continue IESDS in $\Gamma^2$:</strong><br/>
-<strong>Player 2 — Compare columns $B$ and $C$ in $\Gamma^2$:</strong><br/>
-        Against row $A$: $g_2(A,B) = 0 &gt; -1 = g_2(A,C)$ ✓<br/>
-        Against row $C$: $g_2(C,B) = 1 &gt; 0 = g_2(C,C)$ ✓<br/>
-      Column $B$ strictly dominates column $C$ for Player 2. <strong>Eliminate column $C$.</strong><br/><br/>
-      Residual game $\Gamma^3$:
-      <div class="matrix-wrap" style="margin-top:8px;"><table class="payoff-matrix">
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Eliminate column $C$ in the reduced game.</strong>
+$$\begin{aligned}g_2(A,B)=0&amp;&gt;-1=g_2(A,C),\\[3pt]g_2(C,B)=1&amp;&gt;0=g_2(C,C).\end{aligned}$$<p>$B$ strictly dominates $C$ for Player 2. Delete column $C$:</p><div class="matrix-wrap"><table class="payoff-matrix">
 <tr><th></th><th></th><th colspan="2">Player 2</th></tr>
 <tr><th></th><th></th><th>$A$</th><th>$B$</th></tr>
 <tr><td class="row-label" rowspan="2" style="color:var(--example)">Player 1</td><td class="row-label">$A$</td><td>$(1,1)$</td><td>$(0,0)$</td></tr>
 <tr><td class="row-label">$C$</td><td>$(0,0)$</td><td>$(1,1)$</td></tr>
-</table></div>
-      No further strictly dominated strategies exist in $\Gamma^3$. IESDS stops. The game is <strong>not fully solved</strong> — two strategies remain for each player.
-    </div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Step 3 — Best Responses in $\Gamma^3$:</strong><br/><br/>
-<strong>Player 1:</strong><br/>
-      Against $A$: $A$ gives $1$, $C$ gives $0$ $\implies BR_1(A) = \{A\}$.<br/>
-      Against $B$: $A$ gives $0$, $C$ gives $1$ $\implies BR_1(B) = \{C\}$.<br/><br/>
-<strong>Player 2:</strong><br/>
-      Against row $A$: $A$ gives $1$, $B$ gives $0$ $\implies BR_2(A) = \{A\}$.<br/>
-      Against row $C$: $A$ gives $0$, $B$ gives $1$ $\implies BR_2(C) = \{B\}$.<br/><br/>
-<strong>Mutual best responses:</strong><br/>
-      • $(A,A)$: $A \in BR_1(A)$ ✓ and $A \in BR_2(A)$ ✓ $\implies$ <strong>NE</strong>.<br/>
-      • $(C,B)$: $C \in BR_1(B)$ ✓ and $B \in BR_2(C)$ ✓ $\implies$ <strong>NE</strong>.<br/><br/>
-      $$NE_{\mathrm{pure}}(\Gamma) = \{(A,A),\; (C,B)\}$$
-      Both <em>pure</em> equilibria yield payoff vector $(1,1)$. A third, mixed equilibrium is studied in <a href="mixed-nash-equilibrium.html#mixed-ne-full-method" style="color:var(--cyan-bright);">Section 7 on the mixed-Nash page</a>.
-      <div class="key-note" style="margin-top:10px;"><strong>Key takeaway:</strong> IESDS does not necessarily leave one unique profile. When it stops early, continue by finding Nash equilibria in the reduced game.</div>
+</table></div><p>Each remaining action is a best response to an opponent action. No further strict elimination is possible.</p>
 </div></div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Find mutual best responses.</strong>
+$$\begin{aligned}BR_1(A)&amp;=\{A\}\quad(1&gt;0),&amp; BR_1(B)&amp;=\{C\}\quad(1&gt;0),\\[3pt]BR_2(A)&amp;=\{A\}\quad(1&gt;0),&amp; BR_2(C)&amp;=\{B\}\quad(1&gt;0).\end{aligned}$$<p>The mutual best responses are $(A,A)$ and $(C,B)$. Strict elimination preserves equilibria, so these are also the pure equilibria of the original game:</p>$$\boxed{NE_{\mathrm{pure}}=\{(A,A),(C,B)\}.}$$<p>Both give payoffs $(1,1)$. The mixed equilibrium is derived in <a href="mixed-nash-equilibrium.html#mixed-ne-full-method" style="color:var(--cyan-bright);">Section 7 on the mixed-Nash page</a>.</p>
+</div></div>
+
 </div>
 </div>
 <!-- NEW LECTURER EXERCISE: COURNOT WITH c = 1 -->
@@ -1024,120 +946,25 @@ body { font-family:var(--font); background:var(--bg); color:var(--text); display
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'cournot-c1-sol')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="cournot-c1-sol">
-<!-- STEP 1: Profit function -->
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body">
-<strong>Profit function of firm $i$:</strong><br/>
-      The price is $P = 13 - q_1 - q_2$ and the marginal cost is $c = 1$. Firm $i$ maximises its profit:
-      $$g_i(q_i, q_j) = (P - c)\,q_i = (13 - q_i - q_j - 1)\,q_i = (12 - q_i - q_j)\,q_i$$
-      <div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;">
-        Here $q_j$ is the quantity produced by the rival firm. Firm $i$ only controls $q_i$.
-      </div>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Write the profit.</strong>
+<p>Firm $i$ chooses its quantity $q_i\geq0$. The other firm’s quantity $q_j$ is fixed when firm $i$ decides. Here $P=13-q_i-q_j$ and $c=1$:</p>$$\begin{aligned}g_i(q_i,q_j)&amp;=(P-c)q_i,\\[3pt]&amp;=(13-q_i-q_j-1)q_i,\\[3pt]&amp;=12q_i-q_i^2-q_iq_j.\end{aligned}$$
 </div></div>
-<!-- STEP 2: BR via FOC, with monopoly intuition -->
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body">
-<strong>Best-response function $BR_i(q_j)$:</strong><br/><br/>
-<strong>Intuition — start with the monopoly case $q_j = 0$:</strong><br/>
-      Suppose producer $i$ is a monopolist (the rival produces nothing: $q_j = 0$). Then firm $i$ solves:
-      $$\max_{q_i}\; q_i(12 - q_i)$$
-      Taking the first-order condition: $12 - 2q_i = 0 \implies q_i = 6$.<br/>
-      So $BR_i(q_j = 0) = 6$: if the rival produces nothing, the best response is $q_i = 6$.<br/><br/>
-<strong>General case — FOC for any $q_j \geq 0$:</strong><br/>
-      Firm $i$ maximises $g_i = q_i(12 - q_i - q_j)$ with respect to $q_i$:
-      $$\frac{\partial g_i}{\partial q_i} = 12 - 2q_i - q_j = 0 \implies q_i = \frac{12 - q_j}{2}$$
-      Accounting for the nonnegativity constraint $q_i\geq0$, the best-response function is:
-      <div class="math-display boxed-blue">$$BR_i(q_j) = \max\left\{0,\frac{12-q_j}{2}\right\}$$</div>
-<div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;line-height:1.7;">
-        Reading this formula: firm $i$'s optimal quantity <em>decreases</em> by $\tfrac{1}{2}$ for each unit the rival produces while the interior best response is positive; it stays at zero beyond that range. When $q_j = 0$: $BR_i = 6$. When $q_j \geq 12$: $BR_i = 0$ (firm $i$ produces nothing).<br/>
-        The reaction curves are symmetric: $BR_1(q_2)=\max\{0,6-q_2/2\}$ and $BR_2(q_1)=\max\{0,6-q_1/2\}$.
-      </div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Find the best response.</strong>
+<p>Differentiate with respect to $q_i$ only:</p>$$\begin{aligned}\frac{\partial g_i}{\partial q_i}&amp;=12-2q_i-q_j,\\[3pt]\frac{\partial^2 g_i}{\partial q_i^2}&amp;=-2&lt;0.\end{aligned}$$<p>Profit is strictly concave, so the first-order condition gives the maximum whenever the quantity is positive:</p>$$12-2q_i-q_j=0\iff 2q_i=12-q_j\iff q_i=6-\frac{q_j}{2}.$$<p>If $q_j\geq12$, producing zero is optimal. Therefore:</p>$$\boxed{BR_i(q_j)=\max\{0,6-\tfrac{q_j}{2}\}.}$$<p>For example, $BR_i(0)=6$ and $BR_i(6)=3$: more output from the rival reduces the firm’s best response.</p>
 </div></div>
-<!-- STEP 3: IESDS - Round 1 -->
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body">
-<strong>Step-by-step method — IESDS Round 1:</strong><br/><br/>
-<em>Question: which quantities can we rule out immediately?</em><br/><br/>
-
-      The maximum possible best response is $BR_i(q_j = 0) = 6$, achieved when the rival produces nothing. For any $q_j \geq 0$, the best response satisfies $BR_i(q_j) \leq 6$.<br/><br/>
-
-      Therefore, <strong>any quantity $q_i &gt; 6$ is strictly dominated by $q_i = 6$</strong>:<br/>
-      for every $q_j \geq 0$, producing more than 6 is always worse than producing exactly 6 (the profit function is concave and peaks at $BR_i(q_j) \leq 6$).<br/><br/>
-<div class="key-note blue" style="margin-top:0;">
-<strong>Round 1 of IESDS:</strong><br/>
-        $S^1 = \mathbb{R}_+$ → after eliminating all $q_i &gt; 6$: $\;\mathbf{S^2 = [0,\, 6]}$<br/>
-        The interval $]6, +\infty[$ is <strong>strictly dominated</strong> by $q_i = 6$.
-      </div>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Solve for the Nash equilibrium.</strong>
+<p>At equilibrium, each firm chooses a best response to the other. Neither quantity can be zero: $q_1=0$ would imply $q_2=6$, but then $BR_1(6)=3\neq0$. The same argument applies to firm 2. Hence:</p>$$\begin{cases}q_1=6-\frac{q_2}{2},\\q_2=6-\frac{q_1}{2}.\end{cases}$$<p>Multiply each equation by $2$ and collect the quantities:</p>$$\begin{cases}2q_1+q_2=12,\\q_1+2q_2=12.\end{cases}$$<p>Subtract the second equation from the first:</p>$$q_1-q_2=0\Rightarrow q_1=q_2=q.$$<p>Substitute into $2q_1+q_2=12$:</p>$$3q=12\iff q=4.$$<p>Check for each firm:</p>$$BR_i(4)=6-2=4.$$<p>Thus:</p>$$\boxed{NE=\{(4,4)\}.}$$
 </div></div>
-<!-- STEP 4: IESDS - Round 2 -->
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body">
-<strong>IESDS Round 2 — restricting to $q_j \in [0, 6]$:</strong><br/><br/>
-
-      After Round 1, we know that the rival will never produce more than 6: $q_j \in [0, 6]$.<br/><br/>
-
-      What is the <em>minimum</em> best response when $q_j \in [0, 6]$?
-      $$BR_i(q_j) = 6 - \frac{q_j}{2} \geq 6 - \frac{6}{2} = 6 - 3 = 3$$
-      So if the rival plays at most 6, firm $i$ will always want to produce <em>at least</em> 3.<br/><br/>
-
-      Therefore, <strong>any quantity $q_i &lt; 3$ is strictly dominated by $q_i = 3$</strong>:<br/>
-      whatever $q_j \in [0, 6]$, producing less than 3 is always worse than producing 3 (since the best response is always $\geq 3$, and the profit function is concave).<br/><br/>
-
-      More formally, for all $q_j \in [0, 6]$ and all $q_i \in [0, 3)$:
-      $$g_i(q_i,\, q_j) &lt; g_i(3,\, q_j)$$
-      So $[0, 3)$ is strictly dominated by $3$.
-
-      <div class="key-note blue" style="margin-top:8px;">
-<strong>Round 2 of IESDS:</strong><br/>
-        $S^2 = [0, 6]$ → after eliminating all $q_i &lt; 3$: $\;\mathbf{S^3 = [3,\, 6]}$
-      </div>
-<div style="font-size:0.88rem;color:var(--text-2);margin-top:8px;line-height:1.7;">
-<strong>After just two rounds:</strong> the strategies surviving for each firm are $[3,6]$. <strong>This is not the final IESDS result:</strong> further rounds can eliminate more actions.
-      </div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Compute the price and profits.</strong>
+$$\begin{aligned}Q^*&amp;=q_1^*+q_2^*=4+4=8,\\[3pt]P^*&amp;=13-Q^*=13-8=5,\\[3pt]g_i^*&amp;=(P^*-c)q_i^*=(5-1)\cdot4=16.\end{aligned}$$$$\boxed{\begin{aligned}(q_1^*,q_2^*)&amp;=(4,4),\\P^*&amp;=5,\\(g_1^*,g_2^*)&amp;=(16,16).\end{aligned}}$$
 </div></div>
-<!-- IESDS LIMIT: EXACT CALCULATION -->
-<div class="demo-step"><div class="step-num coral">4+</div><div class="step-body">
-<strong>Continue IESDS without calculating every round.</strong>
-<p>After two rounds, both firms' quantities lie in $[3,6]$. Since $BR_i(q_j)=6-q_j/2$ is decreasing:</p>
-$$BR_i(6)=3,\qquad BR_i(3)=6-\frac32=\frac92.$$
-<p>Thus the next surviving interval is $[3,\frac92]$. To find the limit, use the same rule with endpoints $a$ and $b$:</p>
-$$[a,b]\ \longrightarrow\ \left[6-\frac b2,\,6-\frac a2\right].$$
-<p>Quantities below the new lower endpoint are strictly dominated by that endpoint; quantities above the new upper endpoint are strictly dominated by that endpoint. The interval's length is halved:</p>
-$$\left(6-\frac a2\right)-\left(6-\frac b2\right)=\frac{b-a}{2}.$$
-<p>The intervals are nested and their lengths tend to zero, so both endpoints converge to the same number $\ell$. Passing to the limit in the endpoint rule:</p>
-$$\ell=6-\frac{\ell}{2}
-\iff 2\ell=12-\ell
-\iff 3\ell=12
-\iff \boxed{\ell=4}.$$
-<p>Therefore, continued IESDS leaves $\boxed{\{4\}}$ in the limit. The first two rounds only give $[3,6]$.</p>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>IESDS: the first two rounds.</strong>
+<p><strong>Round 1.</strong> For every $q_j\geq0$, $BR_i(q_j)\leq6$. Profit decreases beyond its maximum, so $q_i=6$ gives a strictly higher payoff than any $q_i&gt;6$. Delete quantities above $6$:</p>$$\mathbb R_+\longrightarrow[0,6].$$<p><strong>Round 2.</strong> Now $q_j\in[0,6]$, so:</p>$$BR_i(q_j)=6-\frac{q_j}{2}\geq6-\frac62=3.$$<p>Profit increases up to its maximum. Thus $q_i=3$ gives a strictly higher payoff than any $q_i&lt;3$. Delete quantities below $3$:</p>$$[0,6]\longrightarrow[3,6].$$<p>These two rounds do not finish IESDS.</p>
 </div></div>
-<!-- STEP 5: Nash equilibrium -->
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body">
-<strong>Nash equilibrium — symmetric fixed point:</strong><br><br>
+<div class="demo-step"><div class="step-num coral">6</div><div class="step-body"><strong>IESDS: find the limit.</strong>
+<p>On the current interval $[a,b]$, the smallest best response is to $b$ and the largest is to $a$:</p>$$[a,b]\longrightarrow\left[6-\frac b2,\,6-\frac a2\right].$$<p>For example, $[3,6]\longrightarrow[3,\frac92]$. Quantities outside the new interval are strictly dominated by its nearest endpoint. Its length is:</p>$$\left(6-\frac a2\right)-\left(6-\frac b2\right)=\frac{b-a}{2}.$$<p>The intervals are nested and their lengths are halved each time. Both endpoints therefore converge to the same limit $\ell$:</p>$$\ell=6-\frac\ell2\iff2\ell=12-\ell\iff3\ell=12\iff\boxed{\ell=4}.$$<p>Continued IESDS leaves $\{4\}$ for each firm in the limit, consistent with the NE $(4,4)$.</p>
+</div></div>
 
-      A Nash equilibrium requires each firm to be on its best-response curve simultaneously:
-      $$q_1^* = BR_1(q_2^*) = 6 - \frac{q_2^*}{2}$$
-      $$q_2^* = BR_2(q_1^*) = 6 - \frac{q_1^*}{2}$$
-      Subtracting the two best-response equations gives $q_1^*-q_2^*=(q_1^*-q_2^*)/2$, so $q_1^*=q_2^*\equiv q^*$. Substitute into the first equation:
-      $$q^* = 6 - \frac{q^*}{2} \implies q^* + \frac{q^*}{2} = 6 \implies \frac{3q^*}{2} = 6 \implies q^* = 4$$
-      <div class="math-display boxed">$$\boxed{q_1^* = q_2^* = 4}$$</div>
-<div style="font-size:0.88rem;color:var(--text-2);margin-top:6px;">
-        Check: $4 \in [3, 6]$ ✓ — consistent with the IESDS result.
-      </div>
-</div></div>
-<!-- STEP 6: Equilibrium price and profits -->
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body">
-<strong>Equilibrium price and profits:</strong><br/><br/>
-<strong>Total quantity:</strong> $Q^* = q_1^* + q_2^* = 4 + 4 = 8$.<br/><br/>
-<strong>Equilibrium price:</strong> $P^* = 13 - Q^* = 13 - 8 = 5$.<br/><br/>
-<strong>Profit of each firm:</strong>
-      $$g_i^* = (P^* - c)\,q_i^* = (5 - 1) \times 4 = 4 \times 4 = 16$$
-
-      <div class="math-display boxed-blue">$$\boxed{(q_1^*, q_2^*) = (4,4), \quad P^* = 5, \quad g_1^* = g_2^* = 16}$$</div>
-<div class="key-note blue" style="margin-top:8px;">
-<strong>Summary of the logic:</strong><br/>
-        1. Best-response: $BR_i(q_j)=\max\{0,6-q_j/2\}$ (quantity cannot be negative).<br/>
-        2. IESDS eliminates $q_i &gt; 6$ (Round 1), then $q_i &lt; 3$ (Round 2). Further rounds shrink the surviving intervals to $\{4\}$ in the limit.<br/>
-        3. Nash equilibrium = fixed point of mutual best responses: $q^* = 4$.<br/>
-        4. Equilibrium: $P^* = 5$, profits $= 16$ per firm.
-      </div>
-</div></div>
 </div>
 </div>
 <!-- ═══════════════════════════════════════ -->
@@ -1173,7 +1000,7 @@ $$\ell=6-\frac{\ell}{2}
 </div>
 <div class="concept-card cyan-top">
 <div class="card-title cyan">Master Summary Table — All 7 Solution Concepts</div>
-<table class="comparison-table">
+<div class="matrix-wrap"><table class="comparison-table">
 <tr><th>Concept</th><th>Mathematical Condition</th><th>Key Consequence &amp; Usage</th></tr>
 <tr>
 <td>Strictly Dominated</td>
@@ -1210,7 +1037,7 @@ $$\ell=6-\frac{\ell}{2}
 <td>Unique profile surviving strict elimination</td>
 <td>Unique Nash equilibrium. Completely independent of elimination order.</td>
 </tr>
-</table>
+</table></div>
 </div>
 <nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;">
 <a class="sidebar-sublink" href="chapter1.html">← Normal Form Games &amp; Dominance</a>
