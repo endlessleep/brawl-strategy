@@ -551,6 +551,20 @@ mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:10
 </div></div>
 </div>
 </div>
+<!-- PRISONER'S DILEMMA: APPLICATION -->
+<div class="example-box" id="pd-real-life">
+<div class="example-badge">Application · Prisoner's Dilemma</div>
+<div class="example-task"><strong>Task:</strong> Propose other real-life situations that the prisoner's dilemma could well represent.</div>
+<button aria-controls="pd-real-life-sol" aria-expanded="false" class="toggle-btn example-toggle" data-label="Solution" onclick="toggle(this,'pd-real-life-sol')" type="button"><span class="toggle-label">Show Solution</span> <span aria-hidden="true" class="arrow">▼</span></button>
+<div class="collapsible" id="pd-real-life-sol">
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Two housemates cleaning a shared kitchen.</strong>
+<p>Each chooses to clean ($C$) or skip the work ($D$). Suppose each person's cleaning gives each housemate a benefit of $2$ and costs the cleaner $3$. Whatever the other does, cleaning changes one's own payoff by $2-3=-1$, so each prefers $D$. Yet both cleaning gives each $4-3=1$, compared with $0$ if both skip: mutual cooperation is better.</p>
+</div></div>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Two rival shops in a one-off advertising contest.</strong>
+<p>Each chooses to advertise ($D$) or stay quiet ($C$). Suppose advertising is profitable when the rival stays quiet, and matching the rival's advertising is better than losing customers to it. Each therefore prefers $D$ in either case. When both advertise, their market shares stay unchanged but both pay for ads; both would earn more if neither advertised.</p>
+</div></div>
+</div>
+</div>
 <!-- EXAMPLE 4: BATTLE OF THE SEXES -->
 <div class="example-box">
 <div class="example-badge">Example 4 · Battle of the Sexes</div>
@@ -1003,18 +1017,22 @@ $$g_1(T,T)=-5&gt;-10=g_1(S,T).$$$$\boxed{\text{Player 1 chooses }T.}$$<p>The uni
 </table></div>
 </div>
 <div class="example-task">
-<strong>Task:</strong> Apply the iterative elimination procedure of strictly dominated strategies to the following game.
+<strong>Task:</strong> Apply IESDS and answer:
+<ol style="margin-left:20px; margin-top:6px;">
+<li>What should Player 1 play if she knew that Player 2 is rational?</li>
+<li>What should Player 2 play if she knew that Player 1 knows she is rational?</li>
+</ol>
   </div>
 <button class="toggle-btn example-toggle" onclick="toggle(this,'iesds-ex-2')">▶ Show Solution <span class="arrow">▼</span></button>
 <div class="collapsible" id="iesds-ex-2">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Delete column $M$.</strong>
-<p>Initially, neither row dominates: $H$ is better against $G$ ($2&gt;1$), while $B$ is better against $M$ ($4&gt;1$). For Player 2:</p>$$\begin{aligned}g_2(H,G)=2&amp;&gt;1=g_2(H,M),\\[3pt]g_2(B,G)=2&amp;&gt;1=g_2(B,M).\end{aligned}$$<p>$G$ strictly dominates $M$. Remaining actions: $\{H,B\}\times\{G,D\}$.</p>
+<p>Initially, neither row dominates: $H$ is better against $G$ ($2&gt;1$), while $B$ is better against $M$ ($4&gt;1$). For Player 2:</p>$$\begin{aligned}g_2(H,G)=2&amp;&gt;1=g_2(H,M),\\[3pt]g_2(B,G)=2&amp;&gt;1=g_2(B,M).\end{aligned}$$<p>$G$ strictly dominates $M$. A rational Player 2 never chooses $M$. Knowing this, Player 1 rules out that column. Remaining actions: $\{H,B\}\times\{G,D\}$.</p>
 </div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Delete row $B$.</strong>
-$$\begin{aligned}g_1(H,G)=2&amp;&gt;1=g_1(B,G),\\[3pt]g_1(H,D)=4&amp;&gt;3=g_1(B,D).\end{aligned}$$<p>$H$ strictly dominates $B$ on the remaining columns. Remaining actions: $\{H\}\times\{G,D\}$.</p>
+$$\begin{aligned}g_1(H,G)=2&amp;&gt;1=g_1(B,G),\\[3pt]g_1(H,D)=4&amp;&gt;3=g_1(B,D).\end{aligned}$$<p>$H$ strictly dominates $B$ on the remaining columns. <strong>Answer to Question 1:</strong> knowing that Player 2 is rational, Player 1 chooses $H$, whether Player 2 chooses $G$ or $D$. Remaining actions: $\{H\}\times\{G,D\}$.</p>
 </div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Delete column $D$.</strong>
-$$g_2(H,G)=2&gt;0=g_2(H,D).$$<p>Only row $H$ remains, so $G$ strictly dominates $D$.</p>
+$$g_2(H,G)=2&gt;0=g_2(H,D).$$<p>Player 2 knows that Player 1 makes the previous deduction, so she expects rational Player 1 to choose $H$. Only that row remains, and $G$ strictly dominates $D$; $M$ was already eliminated. <strong>Answer to Question 2:</strong> Player 2 chooses $G$.</p>
 </div></div>
 <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Result.</strong>
 $$\boxed{\text{IESDS solution: }(H,G).}$$
