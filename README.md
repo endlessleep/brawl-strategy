@@ -31,8 +31,12 @@ including equality. The free-riding welfare result specifies `N >= 2`.
 
 **Session 2 — Mixed Strategies** is at `exercise-session-2.html`. Its four
 exercises have eight independently expandable corrections: the 2×3 Nash game,
-inspection, the volunteer’s dilemma, and two teamwork technologies. The volunteer
-correction includes every mixing subset, not only the symmetric equilibrium.
+the volunteer’s dilemma, inspection, and two teamwork technologies, in the order
+of the official problem set. The volunteer correction follows the product of the
+indifference equations, checks every mixing subset, and counts all `2^N - 1`
+equilibria. Inspection uses employee as Player 1 and boss as Player 2, with
+`p = Pr(work)` and `q = Pr(inspect)`. Existing numeric topic/question anchors are
+retained for bookmarks, even where displayed exercise numbers have changed.
 
 The 2×3 exercise and its complete support enumeration have moved out of the course
 into Session 2. Old course bookmarks ending in `#mixed-ne-2x3` or
@@ -47,8 +51,9 @@ checking unused actions, and distinguishing equilibrium probabilities from payof
 Their three existing best-response graphs are retained.
 
 The T/B versus L/M/R exercise, now in Session 2, checks all seven nonempty supports of Player 2.
-The {L,M} candidate is rejected because R gives a higher payoff; {M,R} requires an
-inadmissible mixing probability for Player 2. Only {L,R} survives, giving strategies
+The {L,M} candidate is rejected because R gives a higher payoff. For {M,R},
+B strictly dominates T in the restricted game; R then beats M against B, but
+(B,R) admits a deviation to L in the original game. Only {L,R} survives, giving strategies
 (1/3, 2/3) and (1/6, 0, 5/6), with payoffs (11/3, 16/3).
 
 The mixed-dominance example is presented once, with row labels `u`, `m`, `d`
@@ -88,6 +93,22 @@ mixed dominance/IESDS, the indifference proof, three 2×2 Nash examples, the 3×
 reduction, and all four Session 2 exercises (eight correction buttons). Other
 course pages and Session 1 contain no additional mixed-strategy calculation.
 
+## Official Session 2 solution alignment
+
+All four corrections follow the supplied official solution, while retaining
+explicit calculations, support/candidate checks, and aligned NE-to-payoff results.
+Teamwork includes the social optimum and the mixed equilibrium limit as `c -> 1`.
+The following printed slips are corrected rather than reproduced:
+
+- In the 2×3 equilibrium, Player 2 receives `16/3`, strictly more than the `11/3`
+  from unused M. Full support requires strictly positive weights, and its
+  indifference conditions demand both `p = 1/2` and `p = 1/3`, hence a contradiction.
+- Each mixing volunteer responds with probability `1 - c^(1/(m-1))`; the exponent
+  `m/(m-1)` instead appears in the probability that all mixing witnesses ignore.
+  At a pure equilibrium, rescue is certain (probability 1); `1-c` is the
+  responding witness's payoff, not the rescue probability.
+- For inspection, a higher wage raises `p = 1-h/w` and lowers `q = g/w`.
+
 ## Validation
 
 - Exact rational support enumeration for all three 2×2 games and the 2×3 game.
@@ -102,6 +123,9 @@ course pages and Session 1 contain no additional mixed-strategy calculation.
   median proof cases and war-of-attrition boundary conditions.
 - Session 2: all eight corrections and the moved exercise redirects, six-page
   navigation, desktop and emulated iPad layouts in Chromium and WebKit.
+- Official Session 2 rewrite: all eight buttons and formulas checked on Chromium
+  desktop/mobile and WebKit iPad portrait/landscape; old topic anchors and the
+  course redirect still open the corresponding correction.
 - Inspection and teamwork probabilities/payoffs checked independently; volunteer
   best responses and rescue probabilities checked for every active subset for
   two through seven witnesses at several costs.
