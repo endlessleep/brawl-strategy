@@ -401,26 +401,26 @@ mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:10
 <div class="example-task">Find the complete set of Nash equilibria and their payoffs.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="mixed-ne-2x3-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'mixed-ne-2x3-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="mixed-ne-2x3-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Singleton supports.</strong><div class="body-text">
-<p>Let $\sigma_1=pT+(1-p)B$, where $p=\Pr_1(T)$. We consider all seven nonempty supports of $\sigma_2$.</p>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 2 chooses one action.</strong><div class="body-text">
+<p>Let $p=\Pr_1(T)$ and $\sigma_1=pT+(1-p)B$. <strong>Support = actions used with positive probability.</strong> Try Player 2’s seven supports.</p>
 <p><strong>$\operatorname{supp}(\sigma_2)=\{L\}$:</strong></p>
 $$BR_1(L)=\{T\},\qquad L\notin BR_2(T)=\{M\}.\quad\times$$
 <p><strong>$\operatorname{supp}(\sigma_2)=\{M\}$:</strong></p>
 $$BR_1(M)=\{B\},\qquad M\notin BR_2(B)=\{L\}.\quad\times$$
 <p><strong>$\operatorname{supp}(\sigma_2)=\{R\}$:</strong></p>
 $$BR_1(R)=\{B\},\qquad R\notin BR_2(B)=\{L\}.\quad\times$$
-<p>So there is no pure NE. Player 1 cannot be pure while Player 2 mixes either: $BR_2(T)=\{M\}$ and $BR_2(B)=\{L\}$ are singletons. In any remaining equilibrium, $p\in(0,1)$.</p>
+<p>Each case fails: Player 2 wants to switch. A pure Player 1 also forces a pure response. Player 1 must mix: $p\in(0,1)$.</p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M\}$.</strong><div class="body-text">
 $$\sigma_2=qL+(1-q)M,\qquad q\in(0,1).$$
-<p><strong>Player 2 must be indifferent between $L$ and $M$:</strong></p>
+<p><strong>Using both columns requires equal payoffs:</strong></p>
 $$\begin{aligned}
 q\in(0,1)&amp;\Rightarrow g_2(\sigma_1,L)=g_2(\sigma_1,M)\\
 &amp;\iff 2p+7(1-p)=7p+2(1-p)\\
 &amp;\iff 7-5p=2+5p\\
 &amp;\iff p=\frac12\in(0,1).
 \end{aligned}$$
-<p><strong>Player 1 must then be indifferent between $T$ and $B$:</strong></p>
+<p><strong>Using both rows also requires equal payoffs:</strong></p>
 $$\begin{aligned}
 p\in(0,1)&amp;\Rightarrow g_1(T,\sigma_2)=g_1(B,\sigma_2)\\
 &amp;\iff 7q+2(1-q)=2q+7(1-q)\\
@@ -429,7 +429,7 @@ p\in(0,1)&amp;\Rightarrow g_1(T,\sigma_2)=g_1(B,\sigma_2)\\
 \end{aligned}$$
 <p><strong>Candidate:</strong></p>
 $$\sigma=\left(\frac12T+\frac12B,\ \frac12L+\frac12M\right).$$
-<p><strong>Check the unused action $R$:</strong></p>
+<p><strong>Does unused $R$ give more?</strong></p>
 $$g_2(\sigma)=g_2(\sigma_1,L)=\frac12(2)+\frac12(7)=\frac92,$$
 $$g_2(\sigma_1,R)=\frac12(6)+\frac12(5)=\frac{11}{2}.$$
 $$\frac92&lt;\frac{11}{2}\quad\Rightarrow\quad\text{profitable deviation to }R.$$
@@ -437,14 +437,14 @@ $$\frac92&lt;\frac{11}{2}\quad\Rightarrow\quad\text{profitable deviation to }R.$
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,R\}$.</strong><div class="body-text">
 $$\sigma_2=qL+(1-q)R,\qquad q\in(0,1).$$
-<p><strong>Player 2:</strong></p>
+<p><strong>Equal column payoffs give $p$:</strong></p>
 $$\begin{aligned}
 q\in(0,1)&amp;\Rightarrow g_2(\sigma_1,L)=g_2(\sigma_1,R)\\
 &amp;\iff 2p+7(1-p)=6p+5(1-p)\\
 &amp;\iff 7-5p=5+p\\
 &amp;\iff p=\frac13\in(0,1).
 \end{aligned}$$
-<p><strong>Player 1:</strong></p>
+<p><strong>Equal row payoffs give $q$:</strong></p>
 $$\begin{aligned}
 p\in(0,1)&amp;\Rightarrow g_1(T,\sigma_2)=g_1(B,\sigma_2)\\
 &amp;\iff 7q+3(1-q)=2q+4(1-q)\\
@@ -453,26 +453,26 @@ p\in(0,1)&amp;\Rightarrow g_1(T,\sigma_2)=g_1(B,\sigma_2)\\
 \end{aligned}$$
 <p><strong>Candidate:</strong></p>
 $$\sigma=\left(\frac13T+\frac23B,\ \frac16L+\frac56R\right).$$
-<p><strong>Check the unused action $M$:</strong></p>
+<p><strong>Does unused $M$ give more?</strong></p>
 $$g_2(\sigma)=g_2(\sigma_1,L)=\frac13(2)+\frac23(7)=\frac{16}{3},$$
 $$g_2(\sigma_1,M)=\frac13(7)+\frac23(2)=\frac{11}{3}.$$
 $$\boxed{g_2(\sigma)=\frac{16}{3}&gt;\frac{11}{3}=g_2(\sigma_1,M).}$$
-<p>Both probabilities are valid, the actions in each support give equal payoffs, and $M$ gives less. Player 1 has no unused action. <strong>✓ This candidate is an NE.</strong></p>
+<p>Used actions tie; unused $M$ pays less. <strong>✓ Nobody gains by switching: this is an NE.</strong></p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{M,R\}$.</strong><div class="body-text">
-<p>Restrict Player 2 to $M$ and $R$. For Player 1:</p>
+<p>Suppose Player 2 uses only $M$ and $R$. In both columns, Player 1 prefers $B$:</p>
 $$g_1(B,M)=7&gt;2=g_1(T,M),$$
 $$g_1(B,R)=4&gt;3=g_1(T,R).$$
-<p>Thus $B$ strictly dominates $T$ in this restricted game. Player 1 must play $B$. Then:</p>
+<p>So Player 1 chooses $B$. Against $B$, Player 2 prefers $R$:</p>
 $$g_2(B,R)=5&gt;2=g_2(B,M).$$
-<p>Player 2 prefers $R$, so a mixture using both $M$ and $R$ is impossible. Even the remaining profile $(B,R)$ fails in the original game:</p>
+<p>Player 2 therefore cannot use both $M$ and $R$. Even $(B,R)$ fails: choosing $L$ instead gives more:</p>
 $$g_2(B,R)=5&lt;7=g_2(B,L).$$
 <p><strong>Reject this support.</strong></p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{L,M,R\}$.</strong><div class="body-text">
 $$\sigma_2=qL+rM+(1-q-r)R,$$
 $$q&gt;0,\qquad r&gt;0,\qquad q+r&lt;1.$$
-<p>All three actions are used, so:</p>
+<p>To use all three actions, Player 2 must get the same payoff from each:</p>
 $$g_2(\sigma_1,L)=g_2(\sigma_1,M)=g_2(\sigma_1,R)$$
 $$\iff 2p+7(1-p)=7p+2(1-p)=6p+5(1-p).$$
 <p>But:</p>
@@ -480,10 +480,10 @@ $$\begin{aligned}
 g_2(\sigma_1,L)=g_2(\sigma_1,M)&amp;\iff p=\frac12,\\
 g_2(\sigma_1,L)=g_2(\sigma_1,R)&amp;\iff p=\frac13.
 \end{aligned}$$
-<p>These conditions cannot both hold. <strong>Reject this support.</strong></p>
+<p>$p$ cannot equal both values. <strong>Reject this support.</strong></p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Equilibrium and payoffs.</strong><div class="body-text">
-<p>Only the support $\{L,R\}$ survives. By indifference:</p>
+<p>Only $\{L,R\}$ works. Used actions tie, so take one action per player:</p>
 $$g_1(\sigma)=g_1(T,\sigma_2)=7\cdot\frac16+3\cdot\frac56=\frac{11}{3},$$
 $$g_2(\sigma)=g_2(\sigma_1,L)=2\cdot\frac13+7\cdot\frac23=\frac{16}{3}.$$
 <p>Here $p=\Pr_1(T)$, $q=\Pr_2(L)$ and $\Pr_2(M)=0$:</p>
@@ -509,25 +509,25 @@ $$\sigma_1=(\tfrac13,\tfrac23),\qquad\sigma_2=(\tfrac16,0,\tfrac56).$$
 <div class="example-task">Write the game in normal form.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex3-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex3-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex3-q1-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Normal form.</strong><div class="body-text">
-<p>Players: the $N$ witnesses. Each chooses $R$ (respond) or $I$ (ignore):</p>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Actions and payoffs.</strong><div class="body-text">
+<p>Players: $N$ witnesses. Actions: $R$ (help), $I$ (ignore):</p>
 $$S_i=\{R,I\},\qquad i=1,\ldots,N.$$
-<p>Responding always gives $1-c$. Ignoring gives $1$ if another witness responds, and $0$ otherwise:</p>
+<p>Helping costs $c$. Ignoring costs nothing, but pays only if someone else helps:</p>
 $$g_i(R,s_{-i})=1-c,$$
 $$g_i(I,s_{-i})=\begin{cases}
 1,&amp;\text{if some }j\neq i\text{ chooses }R,\\
 0,&amp;\text{otherwise}.
 \end{cases}$$
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Probabilities and expected payoffs.</strong><div class="body-text">
-<p>Let $x_i$ be witness $i$’s probability of responding:</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Read the probabilities.</strong><div class="body-text">
+<p>$x_i$: chance of helping; $1-x_i$: chance of ignoring:</p>
 $$\sigma_i=x_iR+(1-x_i)I,\qquad x_i\in[0,1].$$
-<p>Write $x=(x_1,\ldots,x_N)$ for the probability profile and $x_{-i}$ for the other witnesses’ probabilities. Independence gives:</p>
+<p>$x=(x_1,\ldots,x_N)$ lists everyone’s chances; $x_{-i}$ excludes $i$. Independent choices let us multiply:</p>
 $$\Pr(\text{all other witnesses ignore})=\prod_{j\neq i}(1-x_j).$$
-<p>Therefore:</p>
+<p>$\prod$ means “multiply”. Ignoring pays $1$ unless <em>all others ignore</em>:</p>
 $$g_i(R,x_{-i})=1-c,$$
 $$g_i(I,x_{-i})=1-\prod_{j\neq i}(1-x_j).$$
-<p>A witness mixes only if these two payoffs are equal.</p>
+<p>Mixing at an NE requires equal payoffs.</p>
 </div></div></div>
 </div>
 </div>
@@ -536,42 +536,46 @@ $$g_i(I,x_{-i})=1-\prod_{j\neq i}(1-x_j).$$
 <div class="example-task">Determine the complete set of Nash equilibria as a function of $c$ and $N$.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex3-q2-solution" aria-expanded="false" data-label="Correction — Q2" onclick="toggle(this,'ex3-q2-solution')"><span class="toggle-label">Show Correction — Q2</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex3-q2-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure equilibria.</strong><div class="body-text">
-<p><strong>Everyone ignores:</strong> any witness gains by responding:</p>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>First: nobody randomizes.</strong><div class="body-text">
+<p><strong>Nobody helps:</strong> anyone would gain by helping:</p>
 $$0&lt;1-c.$$
-<p><strong>At least two respond:</strong> a respondent can ignore instead. Someone else still helps, so their payoff rises:</p>
+<p><strong>Two or more help:</strong> a helper can stop, save the cost, and rely on another:</p>
 $$1-c&lt;1.$$
-<p><strong>Exactly one responds:</strong> that witness would fall from $1-c$ to $0$ by ignoring. Every other witness already receives $1$ and would fall to $1-c$ by responding.</p>
-<p>Thus there are <strong>$N$ pure NE</strong>: exactly one witness plays $R$.</p>
+<p><strong>Exactly one helps:</strong> stopping would reduce her payoff from $1-c$ to $0$. Others already get $1$; helping would cost them $c$. Nobody gains by switching.</p>
+<p>So there are <strong>$N$ pure NE</strong>: one for each possible sole helper.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Possible mixed supports.</strong><div class="body-text">
-<p>Let $m\geq1$ be the number of players who mix strictly. Relabel them as players $1,\ldots,m$:</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Who randomizes?</strong><div class="body-text">
+<p><strong>$N$: all witnesses. $m$: those who randomize.</strong> Number these mixers $1,\ldots,m$:</p>
 $$x_i\in(0,1)\quad(i\leq m),\qquad x_i\in\{0,1\}\quad(i&gt;m).$$
-<p><strong>Players outside this group must ignore.</strong> If some $j&gt;m$ responded for sure, every mixing player would strictly prefer $I$: help is already certain and $1&gt;1-c$. Hence:</p>
+<p><strong>The others always ignore.</strong> A sure helper would make everyone else prefer ignoring ($1&gt;1-c$), so nobody would mix. Thus:</p>
 $$x_i=0\qquad(i&gt;m).$$
-<p><strong>$m=1$ is impossible.</strong> With everyone else ignoring, player 1 has $BR_1(I,\ldots,I)=\{R\}$ and cannot mix.</p>
-<p>We therefore consider $m\in\{2,\ldots,N\}$, with supports:</p>
+<p><strong>One mixer is impossible:</strong> alone, she would help for sure: $BR_1(I,\ldots,I)=\{R\}$.</p>
+<p>So $m\geq2$. The actions used are:</p>
 $$\operatorname{supp}(\sigma_i)=\begin{cases}
 \{R,I\},&amp;i\leq m,\\
 \{I\},&amp;i&gt;m.
 \end{cases}$$
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Indifference for each mixing player.</strong><div class="body-text">
-<p>For every $i\leq m$, $x_i\in(0,1)$ implies:</p>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Make helping and ignoring equally good.</strong><div class="body-text">
+<p>Each mixer $i\leq m$ uses both actions, so their payoffs must tie:</p>
 $$g_i(R,x_{-i})=g_i(I,x_{-i})$$
 $$\iff 1-c=1-\prod_{j\neq i}(1-x_j).$$
-<p>Players $j&gt;m$ have $x_j=0$, so their factors are $1$. Thus:</p>
+<p>Always-ignoring witnesses add factors of $1$. Each mixer must face chance $c$ that <em>all other mixers ignore</em>:</p>
 $$\boxed{c=\prod_{\substack{j\leq m\\j\neq i}}(1-x_j)\qquad(i=1,\ldots,m).}$$
-<p>Multiply these $m$ equations:</p>
+</div></div></div>
+<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Multiply the equations.</strong><div class="body-text">
+<p>Multiply the $m$ indifference equations:</p>
 $$\begin{aligned}
 c^m
 &amp;=\prod_{i'=1}^{m}\left[\prod_{\substack{j\leq m\\j\neq i'}}(1-x_j)\right]\\
 &amp;=\prod_{j=1}^{m}(1-x_j)^{m-1}\\
 &amp;=\left[\prod_{j=1}^{m}(1-x_j)\right]^{m-1}.
 \end{aligned}$$
-<p>Each factor $1-x_j$ appears in every equation except player $j$’s: it occurs $m-1$ times. Taking the power $1/(m-1)$ gives:</p>
+<p>Each factor appears $m-1$ times, missing only from its own witness’s equation. Take the $(m-1)$th root:</p>
 $$\prod_{j=1}^{m}(1-x_j)=c^{m/(m-1)}.$$
-<p>Divide by player $i$’s indifference equation:</p>
+</div></div></div>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Find one witness’s probability.</strong><div class="body-text">
+<p>Divide by witness $i$’s equation ($=c$). All other factors cancel; $1-x_i$ remains:</p>
 $$\begin{aligned}
 1-x_i
 &amp;=\frac{\prod_{j=1}^{m}(1-x_j)}{\prod_{\substack{j\leq m\\j\neq i}}(1-x_j)}\\
@@ -585,18 +589,18 @@ $$\sigma_i=\begin{cases}
 I,&amp;i&gt;m.
 \end{cases}$$
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Check the players who ignore.</strong><div class="body-text">
-<p>For $i&gt;m$, the unused action is $R$. We must check:</p>
+<div class="demo-step"><div class="step-num coral">6</div><div class="step-body"><strong>Would an always-ignoring witness rather help?</strong><div class="body-text">
+<p>For $i&gt;m$, ignoring must give at least as much as helping:</p>
 $$g_i(I,x_{-i})\geq g_i(R,x_{-i}).$$
-<p>All $m$ mixing players must ignore for rescue to fail:</p>
+<p>This witness relies on all $m$ mixers. She receives $1$ unless every mixer ignores:</p>
 $$g_i(I,x_{-i})=1-\prod_{j=1}^{m}(1-x_j)=1-c^{m/(m-1)},$$
 $$g_i(R,x_{-i})=1-c.$$
 <p>Since $0&lt;c&lt;1$ and $m/(m-1)&gt;1$:</p>
 $$c^{m/(m-1)}&lt;c\quad\Rightarrow\quad 1-c^{m/(m-1)}&gt;1-c.$$
-<p>Ignoring is a strict best response. Mixing players are indifferent between their two actions, and all probabilities are valid. <strong>✓ The candidate is an NE.</strong> If $m=N$, there is no outside player to check.</p>
+<p>So she prefers to keep ignoring. Mixers get equal payoffs from both actions. <strong>✓ Nobody gains by switching: this is an NE.</strong> If $m=N$, everyone mixes; this last check is unnecessary.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>All equilibria and payoffs.</strong><div class="body-text">
-<p>Any group of $m$ witnesses can be the mixing group. Let $e_k$ be the probability vector with $x_k=1$ and all other coordinates $0$. For a subset $M\subseteq\{1,\ldots,N\}$ of size $m\geq2$, define:</p>
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>All equilibria.</strong><div class="body-text">
+<p><strong>$e_k$:</strong> only witness $k$ helps, with probability $1$. <strong>$x^M$:</strong> a group $M$ of $m\geq2$ witnesses mixes; everyone else ignores. Their helping probabilities are:</p>
 $$x_i^M=\begin{cases}
 1-c^{1/(m-1)},&amp;i\in M,\\
 0,&amp;i\notin M.
@@ -609,7 +613,7 @@ $$\boxed{NE_x=\{e_k:k=1,\ldots,N\}\ \cup\ \{x^M:|M|\geq2\}.}$$
 \begin{cases}1-c,&amp;i=k,\\1,&amp;i\neq k\end{cases}&amp;
 \begin{cases}1-c,&amp;i\in M,\\1-c^{m/(m-1)},&amp;i\notin M\end{cases}
 \end{array}$$</div>
-<div class="ne-actions"><p>Corresponding actions for every player:</p>
+<div class="ne-actions"><p>In actions:</p>
 $$\begin{aligned}
 e_k:&amp;\quad\sigma_k=R,\quad\sigma_i=I\ (i\neq k),\\[4pt]
 x^M:&amp;\quad\sigma_i=\begin{cases}
@@ -617,9 +621,9 @@ x^M:&amp;\quad\sigma_i=\begin{cases}
 I,&amp;i\notin M.
 \end{cases}
 \end{aligned}$$</div>
-<p>There are $N$ pure equilibria and $\binom Nm$ choices of a mixing group of size $m$. In total:</p>
+<p>Each nonempty group gives one NE; $\binom Nm$ counts groups of size $m$:</p>
 $$\boxed{|NE|=N+\sum_{m=2}^{N}\binom Nm=\sum_{m=1}^{N}\binom Nm=2^N-1.}$$
-<p>The completely mixed equilibrium has $m=N$:</p>
+<p>When everyone mixes, $m=N$:</p>
 $$x_1=\cdots=x_N=1-c^{1/(N-1)}.$$
 </div></div></div>
 </div>
@@ -629,32 +633,32 @@ $$x_1=\cdots=x_N=1-c^{1/(N-1)}.$$
 <div class="example-task">Compute the probability that the victim is saved at equilibrium. Comment on the effects of cost and group size.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex3-q3-solution" aria-expanded="false" data-label="Correction — Q3" onclick="toggle(this,'ex3-q3-solution')"><span class="toggle-label">Show Correction — Q3</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex3-q3-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Probability of rescue.</strong><div class="body-text">
-<p>The victim is saved unless every witness ignores:</p>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Chance that someone helps.</strong><div class="body-text">
+<p><strong>At least one helps = not everyone ignores.</strong> Thus:</p>
 $$\Pr(\text{saved})=1-\prod_{i=1}^{N}(1-x_i).$$
-<p><strong>Pure NE:</strong> exactly one witness responds for sure, so:</p>
+<p><strong>One sure helper:</strong> rescue is certain:</p>
 $$\boxed{\Pr(\text{saved}\mid e_k)=1.}$$
-<p><strong>Mixed NE with $m\geq2$ mixing witnesses:</strong></p>
+<p><strong>$m\geq2$ mixers:</strong> each ignores with chance $c^{1/(m-1)}$. All $m$ must ignore for rescue to fail:</p>
 $$\begin{aligned}
 \Pr(\text{saved}\mid x^M)
 &amp;=1-\left(c^{1/(m-1)}\right)^m\\
 &amp;=\boxed{1-c^{m/(m-1)}}.
 \end{aligned}$$
-<p>The possible equilibrium rescue probabilities are therefore:</p>
+<p>Across all NE, the possible rescue probabilities are:</p>
 $$\{1\}\ \cup\ \left\{1-c^{m/(m-1)}:m=2,\ldots,N\right\}.$$
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Which equilibria give more reliable help?</strong><div class="body-text">
-<p>Pure NE guarantee rescue. Among mixed NE, fewer mixing witnesses give a higher rescue probability. Indeed:</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Why can more mixers mean less help?</strong><div class="body-text">
+<p>A sure helper guarantees rescue. With randomization, each relies on the others. As $m$ increases, the exponent</p>
 $$\frac{m}{m-1}=1+\frac1{m-1}$$
-<p>decreases as $m$ increases. Since $0&lt;c&lt;1$, $c^{m/(m-1)}$ then increases, so $1-c^{m/(m-1)}$ decreases.</p>
-<p>For fixed $m$, a higher cost $c$ also lowers both the individual response probability $1-c^{1/(m-1)}$ and the rescue probability.</p>
+<p>decreases. Since $0&lt;c&lt;1$, a smaller exponent gives a larger $c^{m/(m-1)}$: everyone ignoring becomes more likely.</p>
+<p>For fixed $m$, raising cost $c$ also reduces each person’s helping probability and the chance of rescue.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>More witnesses: the least effective equilibrium.</strong><div class="body-text">
-<p>The lowest rescue probability occurs when all $N$ witnesses mix:</p>
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Lowest chance of rescue.</strong><div class="body-text">
+<p>This occurs when everyone mixes, so $m=N$:</p>
 $$\boxed{\min_{x\in NE_x}\Pr(\text{saved}\mid x)=1-c^{N/(N-1)}.}$$
-<p>Adding witnesses keeps the old equilibria available if the newcomers ignore. It also allows larger mixing groups, with lower rescue probabilities. In the completely mixed equilibrium:</p>
+<p>New witnesses can ignore, leaving an old NE unchanged. But they can also join the mixing group, reducing the chance of rescue. When all $N$ mix:</p>
 $$\lim_{N\to\infty}\left(1-c^{N/(N-1)}\right)=1-c&lt;1.$$
-<p>Thus more witnesses do not guarantee more reliable help: in this equilibrium, each relies more on the others. The pure equilibria still save the victim with probability $1$.</p>
+<p>Even with many witnesses, rescue is not certain in this equilibrium. Pure NE still guarantee rescue: one person always helps.</p>
 </div></div></div>
 </div>
 </div>
@@ -667,19 +671,19 @@ $$\lim_{N\to\infty}\left(1-c^{N/(N-1)}\right)=1-c&lt;1.$$
 <div class="example-task">Describe this situation as a normal-form game.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex2-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex2-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex2-q1-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players and actions.</strong><div class="body-text">
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Who chooses what?</strong><div class="body-text">
 <p><strong>Player 1 is the employee:</strong> work ($W$) or shirk ($S$). <strong>Player 2 is the boss:</strong> inspect ($I$) or not inspect ($N$).</p>
 $$S_1=\{W,S\},\qquad S_2=\{I,N\}.$$
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Payoff matrix.</strong><div class="body-text">
-<p>When the employee works, the employee receives $w-g$ and the boss receives $v-w$, minus $h$ if inspecting. When the employee shirks, inspection prevents payment of the wage.</p>
+<p>Working gives the employee wage minus effort cost, $w-g$. The boss gets value minus wage, $v-w$, and pays $h$ if inspecting. A shirker caught by inspection gets no wage.</p>
 <div class="matrix-wrap"><table class="payoff-matrix">
 <caption>Employee: rows · Boss: columns · Payoffs: (employee, boss)</caption>
 <thead><tr><th scope="col"></th><th scope="col">$I$</th><th scope="col">$N$</th></tr></thead>
 <tbody><tr><th scope="row" class="row-label">$W$</th><td>$(w-g,\ v-w-h)$</td><td>$(w-g,\ v-w)$</td></tr>
 <tr><th scope="row" class="row-label">$S$</th><td>$(0,-h)$</td><td>$(w,-w)$</td></tr></tbody>
 </table></div>
-<p>For example, at $(S,I)$ there is no output and no wage: the employee gets $0$, while the boss still pays the inspection cost $h$.</p>
+<p>At $(S,I)$, no work is done and no wage is paid: the employee gets $0$; inspection costs the boss $h$.</p>
 </div></div></div>
 </div>
 </div>
@@ -688,8 +692,8 @@ $$S_1=\{W,S\},\qquad S_2=\{I,N\}.$$
 <div class="example-task">Find all Nash equilibria. Explain how equilibrium behavior changes with the parameters.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex2-q2-solution" aria-expanded="false" data-label="Correction — Q2" onclick="toggle(this,'ex2-q2-solution')"><span class="toggle-label">Show Correction — Q2</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex2-q2-solution">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports.</strong><div class="body-text">
-<p>Each pure profile admits a profitable deviation:</p>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Can anyone play a pure strategy?</strong><div class="body-text">
+<p>Each pure outcome lets someone gain:</p>
 <ul>
 <li>$(W,I)$: the boss switches to $N$, since $v-w&gt;v-w-h$.</li>
 <li>$(W,N)$: the employee switches to $S$, since $w&gt;w-g$.</li>
@@ -699,12 +703,12 @@ $$S_1=\{W,S\},\qquad S_2=\{I,N\}.$$
 <p>Equivalently:</p>
 $$BR_1(I)=\{W\},\qquad BR_1(N)=\{S\},$$
 $$BR_2(W)=\{N\},\qquad BR_2(S)=\{I\}.$$
-<p>No pure NE. Against a pure action, the best response is unique, so exactly one player cannot mix at equilibrium. Both must mix.</p>
+<p>No pure NE. A pure action forces a pure best response. So <strong>both players must mix</strong>.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Employee: indifference.</strong><div class="body-text">
-<p>Let $p$ be the probability that the employee works, and $q$ the probability that the boss inspects:</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Employee: work or shirk?</strong><div class="body-text">
+<p>$p$ is the employee’s chance of working; $q$ is the boss’s chance of inspecting:</p>
 $$\sigma_1=pW+(1-p)S,\qquad\sigma_2=qI+(1-q)N.$$
-<p>The supports are $\{W,S\}$ and $\{I,N\}$, with $p,q\in(0,1)$.</p>
+<p>Both mix: $p,q\in(0,1)$. Working and shirking must pay the same:</p>
 $$p\in(0,1)\Rightarrow g_1(W,\sigma_2)=g_1(S,\sigma_2).$$
 <p><strong>Work:</strong></p>
 $$g_1(W,\sigma_2)=q(w-g)+(1-q)(w-g)=w-g.$$
@@ -713,7 +717,7 @@ $$g_1(S,\sigma_2)=q(0)+(1-q)w.$$
 <p>Therefore:</p>
 $$w-g=(1-q)w\iff qw=g\iff\boxed{q=\frac gw\in(0,1).}$$
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Boss: indifference.</strong><div class="body-text">
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Boss: inspect or not?</strong><div class="body-text">
 $$q\in(0,1)\Rightarrow g_2(\sigma_1,I)=g_2(\sigma_1,N).$$
 <p><strong>Inspect:</strong></p>
 $$\begin{aligned}
@@ -733,10 +737,10 @@ p(v-w)-h=pv-w
 \end{aligned}$$
 <p><strong>Candidate:</strong></p>
 $$\sigma=\left(\left(1-\frac hw\right)W+\frac hw S,\ \frac gw I+\left(1-\frac gw\right)N\right).$$
-<p>Since $0&lt;h&lt;g&lt;w$, both probabilities lie in $(0,1)$. Each player is indifferent between the actions in their support, and there are no unused actions. <strong>✓ This is the unique NE.</strong></p>
+<p>Since $0&lt;h&lt;g&lt;w$, both probabilities are valid. Both actions tie for each player. <strong>✓ This is the unique NE.</strong></p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibrium and payoffs.</strong><div class="body-text">
-<p>Using work for the employee and no inspection for the boss:</p>
+<p>Either action gives the same payoff. Use $W$ for the employee, $N$ for the boss:</p>
 $$g_1(\sigma)=g_1(W,\sigma_2)=w-g,$$
 $$g_2(\sigma)=g_2(\sigma_1,N)=pv-w=v\left(1-\frac hw\right)-w.$$
 <div class="ne-summary" role="group" aria-label="Equilibrium with employee and boss payoffs below">$$\begin{array}{rcl}
@@ -748,14 +752,14 @@ NE_{(p,q)}=\{&amp;(1-\tfrac hw,\tfrac gw)&amp;\}\\[2pt]
 $$\left(1-\frac hw,\frac gw\right)\longleftrightarrow
 \left(\left(1-\frac hw\right)W+\frac hw S,\ \frac gw I+\left(1-\frac gw\right)N\right).$$</div>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Parameter changes.</strong><div class="body-text">
-<p>Keep the other parameters fixed, within $0&lt;h&lt;g&lt;w$:</p>
+<div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>Higher costs or wage.</strong><div class="body-text">
+<p>Change one parameter at a time, keeping $0&lt;h&lt;g&lt;w$:</p>
 <ul>
 <li><strong>Inspection becomes more costly:</strong> $h\uparrow\Rightarrow p=1-h/w\downarrow$. The employee works less; $q$ is unchanged.</li>
 <li><strong>Work becomes more costly:</strong> $g\uparrow\Rightarrow q=g/w\uparrow$. The boss inspects more; $p$ is unchanged.</li>
 <li><strong>The wage increases:</strong> $w\uparrow\Rightarrow p\uparrow,\ q\downarrow$. The employee works more and the boss inspects less.</li>
 </ul>
-<p>The value $v$ cancels from the boss’s indifference equation, so it does not affect $p$ or $q$.</p>
+<p>Both boss payoffs contain $pv$: it cancels, so $v$ changes neither probability.</p>
 </div></div></div>
 </div>
 </div>
@@ -769,7 +773,7 @@ $$\left(1-\frac hw,\frac gw\right)\longleftrightarrow
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex4-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex4-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex4-q1-solution">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Payoff matrix.</strong><div class="body-text">
-<p>Output is shared equally. If only one person works, each receives $1/2$, but only that person pays $c$.</p>
+<p>Split the output equally, then subtract $c$ from each worker’s payoff.</p>
 <div class="matrix-wrap"><table class="payoff-matrix">
 <caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption>
 <thead><tr><th scope="col"></th><th scope="col">$P$</th><th scope="col">$E$</th></tr></thead>
@@ -777,21 +781,21 @@ $$\left(1-\frac hw,\frac gw\right)\longleftrightarrow
 <tr><th scope="row" class="row-label">$E$</th><td>$(\tfrac12-c,\ \tfrac12)$</td><td>$(1-c,\ 1-c)$</td></tr></tbody>
 </table></div>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strict dominance.</strong><div class="body-text">
-<p>For Player 1, compare $P$ with $E$ against each action of Player 2:</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Does working ever give more?</strong><div class="body-text">
+<p>Compare no effort ($P$) with effort ($E$) in each column:</p>
 $$g_1(P,P)=0&gt;\frac12-c=g_1(E,P),$$
 $$g_1(P,E)=\frac12&gt;1-c=g_1(E,E).$$
-<p>Both inequalities hold because $c&gt;1/2$. By symmetry, the same comparisons hold for Player 2. Thus <strong>$P$ is strictly dominant for both players</strong>.</p>
-<p>This also holds against a mixture. If $\sigma_2=qE+(1-q)P$, then:</p>
+<p>Since $c&gt;1/2$, not working always pays more. The same holds for Player 2: <strong>$P$ is strictly dominant for both</strong>.</p>
+<p>If Player 2 works with probability $q$, write $\sigma_2=qE+(1-q)P$. Then:</p>
 $$g_1(P,\sigma_2)=\frac q2,$$
 $$\begin{aligned}
 g_1(E,\sigma_2)&amp;=q(1-c)+(1-q)\left(\frac12-c\right)\\
 &amp;=\frac12+\frac q2-c.
 \end{aligned}$$
 $$g_1(P,\sigma_2)-g_1(E,\sigma_2)=c-\frac12&gt;0.$$
-<p>So no equilibrium support can contain $E$. The only possible profile is $(P,P)$.</p>
+<p>Even against a mixture, effort gives less. Neither player works at an NE: only $(P,P)$ remains.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Equilibrium and social optimum.</strong><div class="body-text">
+<div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>What happens, and what would be better?</strong><div class="body-text">
 <p>Let $p=\Pr_1(E)$ and $q=\Pr_2(E)$:</p>
 $$\sigma_1=pE+(1-p)P,\qquad\sigma_2=qE+(1-q)P.$$
 <div class="ne-summary" role="group" aria-label="Equilibrium with its payoffs below">$$\begin{array}{rcl}
@@ -800,8 +804,8 @@ NE_{(p,q)}=\{&amp;(0,0)&amp;\}\\[2pt]
 \text{Payoffs:}&amp;(0,0)&amp;
 \end{array}$$</div>
 <div class="ne-actions"><p>Corresponding strategies:</p>$$ (0,0)\longleftrightarrow(P,P). $$</div>
-<p>This is a <strong>prisoner’s dilemma</strong>: each chooses no effort, although both would get $1-c&gt;0$ at $(E,E)$.</p>
-<p>The <strong>social optimum is $(E,E)$</strong>. Total payoffs satisfy:</p>
+<p>Each prefers not to work, but both would gain $1-c&gt;0$ by working together: a <strong>prisoner’s dilemma</strong>.</p>
+<p><strong>Working together maximizes total payoff</strong>:</p>
 $$\underbrace{2(1-c)}_{(E,E)}&gt;\underbrace{1-c}_{(E,P)\text{ or }(P,E)}&gt;\underbrace{0}_{(P,P)}.$$
 </div></div></div>
 </div>
@@ -812,7 +816,7 @@ $$\underbrace{2(1-c)}_{(E,E)}&gt;\underbrace{1-c}_{(E,P)\text{ or }(P,E)}&gt;\un
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex4-q2-solution" aria-expanded="false" data-label="Correction — Q2" onclick="toggle(this,'ex4-q2-solution')"><span class="toggle-label">Show Correction — Q2</span> <span class="arrow" aria-hidden="true">▼</span></button>
 <div class="collapsible" id="ex4-q2-solution">
 <div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Payoff matrix.</strong><div class="body-text">
-<p>Output is positive only if both work. Working alone costs $c$ and produces nothing.</p>
+<p>Both must work to produce anything. A lone worker pays $c$ for no output.</p>
 <div class="matrix-wrap"><table class="payoff-matrix">
 <caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption>
 <thead><tr><th scope="col"></th><th scope="col">$P$</th><th scope="col">$E$</th></tr></thead>
@@ -821,18 +825,18 @@ $$\underbrace{2(1-c)}_{(E,E)}&gt;\underbrace{1-c}_{(E,P)\text{ or }(P,E)}&gt;\un
 </table></div>
 <p>This is a <strong>coordination game</strong>.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Pure supports.</strong><div class="body-text">
-<p>Against $P$, the unique best response is $P$, since $0&gt;-c$. Against $E$, it is $E$, since $1-c&gt;0$.</p>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Pure choices.</strong><div class="body-text">
+<p>If the other does not work, do not work: $0&gt;-c$. If the other works, work too: $1-c&gt;0$.</p>
 $$\operatorname{supp}(\sigma_2)=\{P\}\Rightarrow BR_1(P)=\{P\},\quad BR_2(P)=\{P\}.$$
 <p>✓ $(P,P)$ is an NE.</p>
 $$\operatorname{supp}(\sigma_2)=\{E\}\Rightarrow BR_1(E)=\{E\},\quad BR_2(E)=\{E\}.$$
 <p>✓ $(E,E)$ is an NE.</p>
-<p>The off-diagonal profiles fail. Since the best response to a pure action is unique, no NE has exactly one mixing player.</p>
+<p>With one worker, someone switches. A pure opponent forces a pure best response: exactly one player cannot mix.</p>
 </div></div></div>
-<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Full supports: indifference.</strong><div class="body-text">
+<div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Both players mix.</strong><div class="body-text">
 <p>Let $p=\Pr_1(E)$ and $q=\Pr_2(E)$:</p>
 $$\sigma_1=pE+(1-p)P,\qquad\sigma_2=qE+(1-q)P.$$
-<p>For both players to use $E$ and $P$, we need $p,q\in(0,1)$.</p>
+<p>With $p,q\in(0,1)$, $E$ and $P$ must give each player equal payoffs:</p>
 <p><strong>Player 1:</strong></p>
 $$p\in(0,1)\Rightarrow g_1(E,\sigma_2)=g_1(P,\sigma_2).$$
 $$g_1(E,\sigma_2)=q(1-c)+(1-q)(-c)=q-c,$$
@@ -845,10 +849,10 @@ $$g_2(\sigma_1,P)=p(0)+(1-p)(0)=0.$$
 $$p-c=0\iff p=c.$$
 <p><strong>Candidate:</strong></p>
 $$\sigma=\left(cE+(1-c)P,\ cE+(1-c)P\right).$$
-<p>Since $c\in(1/2,1)$, both probabilities are in $(0,1)$. Each player is indifferent, and there is no unused action. <strong>✓ This is an NE.</strong></p>
+<p>Since $c\in(1/2,1)$, probabilities are valid. Both actions tie. <strong>✓ Nobody gains by switching: this is an NE.</strong></p>
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">4</div><div class="step-body"><strong>Equilibria and payoffs.</strong><div class="body-text">
-<p>At the mixed NE, each player receives the same payoff as from $P$, namely $0$. Directly:</p>
+<p>At the mixed NE, not working gives $0$. Working must therefore also give $0$:</p>
 $$c(1-c)+(1-c)(-c)=0.$$
 <div class="ne-summary" role="group" aria-label="Equilibria with their corresponding payoffs below">$$\begin{array}{rcccl}
 NE_{(p,q)}=\{&amp;(0,0),&amp;(1,1),&amp;(c,c)&amp;\}\\[2pt]
@@ -864,12 +868,12 @@ $$\begin{aligned}
 </div></div></div>
 <div class="demo-step"><div class="step-num coral">5</div><div class="step-body"><strong>When the cost increases.</strong><div class="body-text">
 $$\boxed{p=q=c\quad\text{at the completely mixed NE}.}$$
-<p>If $c$ increases, every payoff from $E$ falls. To keep Player 1 indifferent, Player 2 must choose $E$ more often:</p>
+<p>Higher cost lowers the payoff from working. To keep it equal to not working, the opponent must work more often:</p>
 $$g_1(E,\sigma_2)=q-c=0\iff q=c.$$
-<p>The same reasoning gives $p=c$. Thus <strong>both effort probabilities increase with $c$</strong> in the mixed equilibrium.</p>
+<p>Likewise, $p=c$. So <strong>both work probabilities rise with $c$</strong> at the mixed NE.</p>
 <p>As $c\to1^{-}$:</p>
 $$(p,q)=(c,c)\longrightarrow(1,1)\quad\longleftrightarrow\quad(E,E).$$
-<p>The mixed equilibrium approaches the pure effort equilibrium. For every $c\in(1/2,1)$, the three equilibria remain distinct.</p>
+<p>The mixed NE approaches “both always work”. For $c\in(1/2,1)$, the three NE are still distinct.</p>
 </div></div></div>
 </div>
 </div>
