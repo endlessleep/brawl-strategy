@@ -403,13 +403,13 @@ mjx-container[display="true"] { overflow-x:auto; overflow-y:hidden; max-width:10
 <div class="example-badge">Exercise 1 · Question 1</div>
 <div class="example-task">When is $(A_1,C_2)$ a Nash equilibrium?</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex1-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex1-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex1-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Can Player 1 gain by switching?</strong><div class="body-text">
-<p>Player 2 stays at $C_2$. Player 1 gets $e$ by staying at $A_1$, or $k$ by switching to $B_1$. Staying must give at least as much:</p>
-$$e\geq k.$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Can Player 2 gain by switching?</strong><div class="body-text">
-<p>Player 1 stays at $A_1$. Player 2 gets $f$ by staying at $C_2$, or $b$ or $d$ by switching columns. We need:</p>
+<div class="collapsible" id="ex1-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1’s deviations.</strong><div class="body-text">
+<p>Fix Player 2’s strategy at $C_2$. Player 1 receives $e$ from $A_1$ and $k$ from $B_1$. No profitable deviation requires:</p>
+$$e\geq k.$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2’s deviations.</strong><div class="body-text">
+<p>Fix Player 1’s strategy at $A_1$. Player 2 receives $f$ from $C_2$, $b$ from $A_2$, and $d$ from $B_2$. No profitable deviation requires:</p>
 $$f\geq b,\qquad f\geq d.$$</div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>All conditions.</strong><div class="body-text">
 $$\boxed{(A_1,C_2)\in NE_{\mathrm{pure}}\iff e\geq k,\quad f\geq b,\quad f\geq d.}$$
-<p>Equality is allowed: the same payoff is no improvement.</p></div></div></div></div>
+<p>Equality is allowed: indifference does not imply a profitable deviation.</p></div></div></div></div>
 </div>
 <div class="example-box" id="ex1-q2">
 <div class="example-badge">Exercise 1 · Question 2</div>
@@ -421,7 +421,7 @@ $$\boxed{(A_1,C_2)\in NE_{\mathrm{pure}}\iff e\geq k,\quad f\geq b,\quad f\geq d
 <thead><tr><th>Player 2 chooses</th><th>Payoff from $A_1$</th><th>Payoff from $B_1$</th><th>Required</th></tr></thead>
 <tbody><tr><td>$A_2$</td><td>$a$</td><td>$g$</td><td>$a&gt;g$</td></tr>
 <tr><td>$B_2$</td><td>$c$</td><td>$i$</td><td>$c&gt;i$</td></tr>
-<tr><td>$C_2$</td><td>$e$</td><td>$k$</td><td>$e&gt;k$</td></tr></tbody></table></div></div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>All three comparisons must hold.</strong><div class="body-text">
+<tr><td>$C_2$</td><td>$e$</td><td>$k$</td><td>$e&gt;k$</td></tr></tbody></table></div></div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Conditions for strict dominance.</strong><div class="body-text">
 $$\boxed{A_1\text{ is strictly dominant}\iff a&gt;g,\quad c&gt;i,\quad e&gt;k.}$$
 <p>Here we check <strong>every column</strong>. In Question 1, Player 2’s column stayed fixed at $C_2$.</p></div></div></div></div>
 </div>
@@ -434,7 +434,7 @@ $$\boxed{A_1\text{ is strictly dominant}\iff a&gt;g,\quad c&gt;i,\quad e&gt;k.}$
 <ul><li>In row $A_1$: compare $d$ with $b$ and $f$. We need $d\geq b$ and $d\geq f$.</li>
 <li>In row $B_1$: compare $j$ with $h$ and $l$. We need $j\geq h$ and $j\geq l$.</li></ul></div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>State the four conditions.</strong><div class="body-text">
 $$\boxed{B_2\text{ is dominant}\iff d\geq b,\quad d\geq f,\quad j\geq h,\quad j\geq l.}$$
-<p>Ties are allowed. For <em>strict</em> dominance, replace every $\geq$ with $&gt;$.</p></div></div></div></div>
+<p>Equality is allowed. Strict dominance requires $&gt;$ in all four comparisons.</p></div></div></div></div>
 </div>
 <div class="section-header subsection-target" data-subsection="Exercise 2" id="exercise-2"><span class="section-label example">Exercise 2</span><h2>Bertrand Competition</h2></div>
 <div class="concept-card cyan-top"><div class="card-title cyan">The Game</div><div class="body-text">
@@ -444,11 +444,11 @@ $$\boxed{B_2\text{ is dominant}\iff d\geq b,\quad d\geq f,\quad j\geq h,\quad j\
 <div class="example-badge">Exercise 2 · Question 1</div>
 <div class="example-task">Formulate this situation as a strategic game.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex2-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex2-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex2-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Who plays, and what do they choose?</strong><div class="body-text">
+<div class="collapsible" id="ex2-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players and strategy sets.</strong><div class="body-text">
 <p>Players: firms $1$ and $2$. Each chooses a price $s_i$:</p>
 $$S_1=S_2=\mathbb R_+=[0,\infty).$$
-<p>Any non-negative price is allowed; there is no smallest positive price cut.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Who makes the sale?</strong><div class="body-text">
-<p>Firm $j$ is the rival. Firm $i$ sells if cheaper, sells nothing if dearer, and has a $1/2$ chance of selling at equal prices:</p>
+<p>Any non-negative price is allowed; there is no smallest positive price cut.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Payoff function.</strong><div class="body-text">
+<p>Firm $i$ sells if $s_i&lt;s_j$, sells nothing if $s_i&gt;s_j$, and sells with probability $1/2$ if $s_i=s_j$:</p>
 $$g_i(s_i,s_j)=
 \begin{cases}
 s_i,&amp; s_i&lt;s_j,\\
@@ -461,21 +461,21 @@ s_i,&amp; s_i&lt;s_j,\\
 <div class="example-badge">Exercise 2 · Question 2</div>
 <div class="example-task">Find all Nash equilibria in pure strategies.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex2-q2-solution" aria-expanded="false" data-label="Correction — Q2" onclick="toggle(this,'ex2-q2-solution')"><span class="toggle-label">Show Correction — Q2</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex2-q2-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>If the rival charges zero.</strong><div class="body-text">
-<p>If $s_j=0$, charging zero earns $0$. Charging more loses the sale and also earns $0$. Every price therefore gives the same payoff:</p>
-$$BR_i(0)=\mathbb R_+.$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>If the rival charges a positive price.</strong><div class="body-text">
-<p>Let the rival charge $q&gt;0$. Whatever price $r\geq0$ we choose, we can do better:</p>
+<div class="collapsible" id="ex2-q2-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Best responses to a zero price.</strong><div class="body-text">
+<p>If $s_j=0$, every price gives profit $0$: a zero price yields no revenue, and a positive price loses the sale. Every price is a best response:</p>
+$$BR_i(0)=\mathbb R_+.$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Best responses to a positive price.</strong><div class="body-text">
+<p>Fix the rival’s price $q&gt;0$. For every price $r\geq0$, there is a profitable deviation:</p>
 <ul>
-<li><strong>If $r&lt;q$:</strong> we sell, but can raise our price to $r'=(r+q)/2$. Since $r&lt;r'&lt;q$, we still sell and earn more.</li>
-<li><strong>If $r=q$:</strong> we earn $q/2$ on average. Charging $r'=3q/4$ wins for sure and gives $3q/4&gt;q/2$.</li>
-<li><strong>If $r&gt;q$:</strong> we earn $0$. Charging $r'=q/2$ wins and gives a positive profit.</li>
+<li><strong>If $r&lt;q$:</strong> firm $i$ sells. Raising its price to $r'=(r+q)/2$ preserves the sale because $r&lt;r'&lt;q$, and increases profit.</li>
+<li><strong>If $r=q$:</strong> expected profit is $q/2$. Charging $r'=3q/4$ secures the sale and gives $3q/4&gt;q/2$.</li>
+<li><strong>If $r&gt;q$:</strong> profit is $0$. Charging $r'=q/2$ secures the sale and gives positive profit.</li>
 </ul>
-<p>We can earn almost $q$, but never $q$. No price is best: there is always a better one.</p>
+<p>Profit can approach $q$ but cannot reach it. Every price admits a profitable deviation: no best response exists.</p>
 $$BR_i(s_j)=\begin{cases}
 \mathbb R_+,&amp;s_j=0,\\
 \varnothing,&amp;s_j&gt;0.
-\end{cases}$$</div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Can either firm gain by changing its price?</strong><div class="body-text">
-<p>If either price is positive, the other firm can improve its choice, as shown above. At $(0,0)$, neither firm can earn more by changing its price.</p>
+\end{cases}$$</div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Nash equilibrium.</strong><div class="body-text">
+<p>If either price is positive, the other firm has a profitable deviation. At $(0,0)$, neither firm can increase its profit by changing its price.</p>
 $$\boxed{NE_{\mathrm{pure}}=\{(0,0)\},\qquad (g_1,g_2)=(0,0).}$$
 <p>Both firms must be best responding at the same time. This happens only when <strong>both prices are zero</strong>.</p></div></div></div></div>
 </div>
@@ -487,15 +487,15 @@ $$g_i(s_1,\ldots,s_N)=\frac{13}{10}(50-s_i)+\sum_{j=1}^{N}s_j.$$</div></div>
 <div class="example-badge">Exercise 3 · Question 1</div>
 <div class="example-task">Interpret the payoff function.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex3-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex3-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex3-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>What does each term mean?</strong><div class="body-text">
-<p>Player $i$ has $50$ units: she contributes $s_i$ and keeps $50-s_i$. Each unit kept gives her $13/10$. Each unit contributed gives <strong>every player</strong> a benefit of $1$.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Does contributing more help the contributor?</strong><div class="body-text">
+<div class="collapsible" id="ex3-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Interpretation of the payoff function.</strong><div class="body-text">
+<p>Player $i$ has $50$ units: she contributes $s_i$ and keeps $50-s_i$. Each unit kept gives her $13/10$. Each unit contributed gives <strong>every player</strong> a benefit of $1$.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Effect of an individual contribution.</strong><div class="body-text">
 $$\begin{aligned}
 g_i(s_i,s_{-i})
 &amp;=\frac{13}{10}(50-s_i)+s_i+\sum_{j\neq i}s_j\\
 &amp;=65-\frac{3}{10}s_i+\sum_{j\neq i}s_j.
 \end{aligned}$$
-<p>Giving one extra unit means losing $13/10$ and gaining $1$: a net loss of $3/10$. If someone else gives that unit, she gains $1$ without paying the cost.</p>
-<p><strong>Free riding</strong> means keeping your own units while benefiting from what others give.</p></div></div></div></div>
+<p>An additional contribution costs the player $13/10$ and returns $1$: a net loss of $3/10$. Another player’s contribution raises her payoff by $1$.</p>
+<p><strong>Free riding:</strong> benefiting from others’ contributions without contributing oneself.</p></div></div></div></div>
 </div>
 <div class="example-box" id="ex3-q2">
 <div class="example-badge">Exercise 3 · Question 2</div>
@@ -512,19 +512,19 @@ g_i(s_i,s_{-i})
 <caption>Player 1: rows · Player 2: columns · Payoffs: (Player 1, Player 2)</caption>
 <thead><tr><th scope="col"></th><th scope="col">$0$</th><th scope="col">$50$</th></tr></thead>
 <tbody><tr><th class="row-label" scope="row">$0$</th><td>$(65,65)$</td><td>$(115,50)$</td></tr>
-<tr><th class="row-label" scope="row">$50$</th><td>$(50,115)$</td><td>$(100,100)$</td></tr></tbody></table></div></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Why is this a prisoner’s dilemma?</strong><div class="body-text">
+<tr><th class="row-label" scope="row">$50$</th><td>$(50,115)$</td><td>$(100,100)$</td></tr></tbody></table></div></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Strict dominance and the prisoner’s dilemma.</strong><div class="body-text">
 <p>Each player gains by choosing $0$: $65&gt;50$ if the other gives $0$, and $115&gt;100$ if the other gives $50$. So $0$ is strictly dominant and $(0,0)$ is the unique NE.</p>
-<p>At $(50,50)$, both would get $100$ instead of $65$. Each wants to give nothing, although both would gain from contributing together: a <strong>prisoner’s dilemma</strong>.</p></div></div></div></div>
+<p>Both prefer $(50,50)$, which gives each $100$ instead of $65$. Zero contribution is individually optimal, but full contribution benefits both: a <strong>prisoner’s dilemma</strong>.</p></div></div></div></div>
 </div>
 <div class="example-box" id="ex3-q3">
 <div class="example-badge">Exercise 3 · Question 3</div>
 <div class="example-task">In the general game, determine all Nash equilibria in pure strategies. Comment on the outcome.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex3-q3-solution" aria-expanded="false" data-label="Correction — Q3" onclick="toggle(this,'ex3-q3-solution')"><span class="toggle-label">Show Correction — Q3</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex3-q3-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Why does everyone choose zero?</strong><div class="body-text">
+<div class="collapsible" id="ex3-q3-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Zero contribution is strictly dominant.</strong><div class="body-text">
 <p>Keep everyone else’s contributions fixed. Compare giving nothing with giving any $s_i&gt;0$:</p>
 $$g_i(0,s_{-i})-g_i(s_i,s_{-i})=\frac{3}{10}s_i&gt;0.$$
-<p>The difference is positive: giving nothing always pays more.</p>
-$$\boxed{NE_{\mathrm{pure}}=\{(0,\ldots,0)\},\qquad g_i=65\text{ for every }i.}$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>What would be best for the group?</strong><div class="body-text">
+<p>The difference is positive: zero contribution always gives a higher payoff.</p>
+$$\boxed{NE_{\mathrm{pure}}=\{(0,\ldots,0)\},\qquad g_i=65\text{ for every }i.}$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Social optimum.</strong><div class="body-text">
 <p>$W$ is the sum of everyone’s payoffs. Each unit given benefits all $N$ players:</p>
 $$\begin{aligned}
 W(s)&amp;=\sum_{i=1}^{N}g_i(s)\\
@@ -549,9 +549,9 @@ $$g_i(s_1,\ldots,s_N)=-\left|a_i-x(s_1,\ldots,s_N)\right|.$$
 $$N=2,\qquad a_1=a_2=5,\qquad x(s_1,s_2)=\frac{s_1+s_2}{2}.$$
 <p>Each judge wants the average to equal $5$. If the other reports $s_j$, she must report:</p>
 $$\frac{s_i+s_j}{2}=5\iff s_i=10-s_j.$$
-<p>This is an allowed integer and gives payoff $0$. Every other report puts the average away from $5$.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Does one report work against every choice?</strong><div class="body-text">
+<p>This is an allowed integer and gives payoff $0$. Every other report puts the average away from $5$.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>No dominant strategy.</strong><div class="body-text">
 $$BR_i(0)=\{10\},\qquad BR_i(10)=\{0\}.$$
-<p>Against $0$, the judge must report $10$; against $10$, she must report $0$. No single report is best in both cases. Neither judge has a dominant strategy.</p>
+<p>Against $0$, the judge must report $10$; against $10$, she must report $0$. No report is a best response in both cases. Neither judge has a dominant strategy.</p>
 <p><strong>Conclusion:</strong> neither player has a dominant strategy, even though their preferred scores are identical.</p></div></div></div></div>
 </div>
 <div class="example-box" id="ex4-q2">
@@ -586,10 +586,10 @@ g_i(a_i,s_{-i})
 &amp;=-|a_i-m|=a_i-m\\
 &amp;\geq a_i-M(r)\\
 &amp;=-|a_i-M(r)|=g_i(r,s_{-i}).
-\end{aligned}$$</div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Reporting your own opinion is always best.</strong><div class="body-text">
+\end{aligned}$$</div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Truthful reporting is weakly dominant.</strong><div class="body-text">
 <p>In every case, reporting $a_i$ gives at least as much as any other report, whatever the others choose. Thus $s_i=a_i$ is <strong>weakly dominant</strong>.</p>
 $$\boxed{s^*=(a_1,\ldots,a_N)\text{ is an equilibrium in dominant strategies.}}$$
-<p>This is an NE with final score $\operatorname{med}(a_1,\ldots,a_N)$. “Weakly” means other reports may tie: changing a report need not change the median.</p></div></div></div></div>
+<p>This is an NE with final score $\operatorname{med}(a_1,\ldots,a_N)$. Dominance is weak: other reports may leave the median and payoff unchanged.</p></div></div></div></div>
 </div>
 <div class="section-header subsection-target" data-subsection="Exercise 5" id="exercise-5"><span class="section-label example">Exercise 5</span><h2>War of Attrition</h2></div>
 <div class="concept-card cyan-top"><div class="card-title cyan">The Game</div><div class="body-text">
@@ -599,37 +599,37 @@ $$\boxed{s^*=(a_1,\ldots,a_N)\text{ is an equilibrium in dominant strategies.}}$
 <div class="example-badge">Exercise 5 · Question 1</div>
 <div class="example-task">Formulate this situation as a strategic game.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex5-q1-solution" aria-expanded="false" data-label="Correction — Q1" onclick="toggle(this,'ex5-q1-solution')"><span class="toggle-label">Show Correction — Q1</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex5-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Choose when to give up.</strong><div class="body-text">
-<p>Each player chooses a finite time $t_i\geq0$ to give up:</p>
+<div class="collapsible" id="ex5-q1-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Players and concession times.</strong><div class="body-text">
+<p>Each player chooses a finite concession time $t_i\geq0$:</p>
 $$S_1=S_2=[0,\infty).$$
-<p>The first concession ends the dispute at $\min\{t_i,t_j\}$. From then on, <strong>neither player pays any waiting cost</strong>.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Win, lose or tie?</strong><div class="body-text">
+<p>The first concession ends the dispute at $\min\{t_i,t_j\}$. From then on, <strong>neither player pays any waiting cost</strong>.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Payoff function.</strong><div class="body-text">
 $$g_i(t_i,t_j)=
 \begin{cases}
 v_i-ct_j,&amp;t_i&gt;t_j\quad\text{(wins)},\\
 -ct_i,&amp;t_i&lt;t_j\quad\text{(concedes first)},\\
 \dfrac{v_i}{2}-ct_i,&amp;t_i=t_j\quad\text{(tie)}.
 \end{cases}$$
-<p>If $t_i&gt;t_j$, Player $i$ wins when the other gives up at $t_j$. She pays $ct_j$, not $ct_i$.</p></div></div></div></div>
+<p>If $t_i&gt;t_j$, Player $i$ obtains the object when Player $j$ concedes at $t_j$. Her waiting cost is $ct_j$.</p></div></div></div></div>
 </div>
 <div class="example-box" id="ex5-q2">
 <div class="example-badge">Exercise 5 · Question 2</div>
 <div class="example-task">Show that in every pure-strategy Nash equilibrium, one player concedes immediately.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex5-q2-solution" aria-expanded="false" data-label="Correction — Q2" onclick="toggle(this,'ex5-q2-solution')"><span class="toggle-label">Show Correction — Q2</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex5-q2-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>If one gives up first, why wait to lose?</strong><div class="body-text">
-<p>If $0&lt;t_1&lt;t_2$, Player 1 loses and pays $ct_1$. Giving up at $t_1'=0$ instead gives $0&gt;-ct_1$.</p>
-<p>If $0&lt;t_2&lt;t_1$, Player 2 can do the same. Neither case is an NE.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>If both wait until the same time.</strong><div class="body-text">
-<p>If $t_1=t_2=t&gt;0$, each gets half the object. Choosing $t_i^{\prime}=t+\varepsilon$, with $\varepsilon&gt;0$, lets the other give up first at $t$:</p>
+<div class="collapsible" id="ex5-q2-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Different positive concession times.</strong><div class="body-text">
+<p>If $0&lt;t_1&lt;t_2$, Player 1 concedes first and receives $-ct_1$. Deviating to $t_1'=0$ gives $0&gt;-ct_1$.</p>
+<p>If $0&lt;t_2&lt;t_1$, Player 2 can do the same. Neither case is an NE.</p></div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Equal positive concession times.</strong><div class="body-text">
+<p>If $t_1=t_2=t&gt;0$, each receives half the object. Deviating to $t_i^{\prime}=t+\varepsilon$, with $\varepsilon&gt;0$, makes the opponent concede first at $t$:</p>
 $$g_i(t+\varepsilon,t)=v_i-ct&gt;\frac{v_i}{2}-ct=g_i(t,t).$$
-<p>Player $i$ gets the whole object for the same waiting cost. The dispute still ends at $t$.</p></div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>If both give up at time zero.</strong><div class="body-text">
-<p>At $(0,0)$, each gets $v_i/2$. Choosing any positive time instead wins immediately: the other still gives up at $0$. This gives $v_i&gt;v_i/2$.</p>
-<p>So at a pure NE, <strong>exactly one player gives up immediately</strong>:</p>
+<p>Player $i$ gets the whole object for the same waiting cost. The dispute still ends at $t$.</p></div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Simultaneous concession at time zero.</strong><div class="body-text">
+<p>At $(0,0)$, each receives $v_i/2$. Deviating to a positive time wins the object immediately: the opponent concedes at $0$. The payoff is $v_i&gt;v_i/2$.</p>
+<p>Thus, at every pure NE, <strong>exactly one player concedes immediately</strong>:</p>
 $$\boxed{(t_1,t_2)=(0,t_2),\ t_2&gt;0,\quad\text{or}\quad(t_1,0),\ t_1&gt;0.}$$</div></div></div></div>
 </div>
 <div class="example-box" id="ex5-q3">
 <div class="example-badge">Exercise 5 · Question 3</div>
 <div class="example-task">Find all Nash equilibria in pure strategies.</div>
 <button class="toggle-btn example-toggle" type="button" aria-controls="ex5-q3-solution" aria-expanded="false" data-label="Correction — Q3" onclick="toggle(this,'ex5-q3-solution')"><span class="toggle-label">Show Correction — Q3</span> <span class="arrow" aria-hidden="true">▼</span></button>
-<div class="collapsible" id="ex5-q3-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>When will Player 1 accept giving up at once?</strong><div class="body-text">
+<div class="collapsible" id="ex5-q3-solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Condition for immediate concession.</strong><div class="body-text">
 <p>Consider $(0,t_2)$ with $t_2&gt;0$. Player 1 gets $0$; Player 2 wins and gets $v_2$.</p>
 <p>Player 1 could choose $t_1'&gt;t_2$ and win for $v_1-ct_2$. To prevent this gain, we need $v_1-ct_2\leq0$, or:</p>
 $$t_2\geq\frac{v_1}{c}.$$</div></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Check all Player 1’s other choices.</strong><div class="body-text">
@@ -642,7 +642,7 @@ $$t_2\geq\frac{v_1}{c}.$$</div></div></div><div class="demo-step"><div class="st
 <tr><td>$t_1'=t_2$</td><td>$v_1/2-ct_2$</td><td>$\leq-v_1/2&lt;0$</td></tr>
 <tr><td>$t_1'&gt;t_2$</td><td>$v_1-ct_2$</td><td>$\leq0$</td></tr>
 </tbody></table></div>
-<p>None gives more than $0$. Equality $t_2=v_1/c$ is allowed: winning would give $0$ too.</p></div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Can the winner gain by switching?</strong><div class="body-text">
+<p>None gives more than $0$. Equality $t_2=v_1/c$ is allowed: winning would give $0$ too.</p></div></div></div><div class="demo-step"><div class="step-num coral">3</div><div class="step-body"><strong>Player 2’s deviations.</strong><div class="body-text">
 <p>Player 2 already gets $v_2$, the whole value, without waiting. Any positive $t_2'$ gives the same; $t_2'=0$ gives only $v_2/2$. She cannot gain.</p>
 <p>Thus $(0,t_2)$ is an NE exactly when $t_2\geq v_1/c$. Switching the players’ roles gives $(t_1,0)$ with $t_1\geq v_2/c$.</p></div></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>All equilibria and their payoffs.</strong><div class="body-text">
 $$\boxed{\begin{aligned}
@@ -653,7 +653,7 @@ $$\begin{aligned}
 (0,t_2)&amp;\longmapsto(0,v_2),\\
 (t_1,0)&amp;\longmapsto(v_1,0).
 \end{aligned}$$
-<p>The winner must be willing to wait long enough that winning would cost the loser too much. But the loser gives up at once, so <strong>neither actually pays a waiting cost</strong>.</p></div></div></div></div>
+<p>The winner’s concession time must make waiting unprofitable for the loser. In equilibrium, the loser concedes immediately, so <strong>both waiting costs are zero</strong>.</p></div></div></div></div>
 </div>
 <nav aria-label="Page navigation" style="display:flex;justify-content:space-between;gap:16px;margin:40px 0;flex-wrap:wrap;"><a class="sidebar-sublink" href="nash-equilibrium.html">← Course: Nash Equilibrium in Pure Strategies</a><a class="sidebar-sublink" href="exercise-session-2.html">Session 2 — Mixed Strategies →</a></nav>
 </div><!-- end main-content -->
