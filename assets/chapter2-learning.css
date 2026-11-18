@@ -46,3 +46,5 @@
 @media print{.learning-lab,.learning-tree{background:white}.learning-actions text,.learning-payoffs text,.chart-labels text{fill:#222}.learning-nodes rect{fill:white}.learning-nodes text{fill:#111}.learning-tree svg{min-width:0}.lab-controls{display:none}}
 
 .learning-tree[id],.learning-lab[id],.concept-card[id]{scroll-margin-top:88px}
+
+.example-directory{display:grid;grid-template-columns:1fr 1fr;gap:18px}.example-directory>div{border:1px solid var(--border);border-top:2px solid var(--example);border-radius:10px;background:var(--bg-card);padding:20px}.example-directory h2{font-size:1rem;margin-bottom:12px}.example-directory p{font-size:.85rem;line-height:1.8;color:var(--text-3);margin-top:15px}.correction-links{margin-bottom:18px}.course-section>span[id],main>span[id]{scroll-margin-top:88px}@media(max-width:700px){.example-directory{grid-template-columns:1fr}}
