@@ -17,10 +17,15 @@ Links to collapsed solutions open the relevant correction automatically.
 
 ## Chapter 2 — Dynamic Games with Perfect Information
 
-`chapter2.html` contains extensive-form games, pure/mixed/behavioral strategies,
-normal-form reduction, subgame perfection and backward induction. Entry, kidnapping
-and sequential Cournot examples include worked solutions and equilibrium paths.
-The chapter has its own sidebar group on every course and exercise page.
+1. **01 — Extensive Form & Strategies** — `chapter2.html`, Sections 1–2.
+2. **02 — Nash & Subgame Perfection** — `dynamic-equilibria.html`, Sections 3–4.
+3. **03 — Worked Examples** — `dynamic-examples.html`: entry, kidnapping,
+   sequential Cournot, and the revision questions.
+
+All nine course and exercise pages share the same three Chapter 2 links.
+The sidebar has no nested section list. The progress bar navigates within the
+current page. Old `chapter2.html#...` links redirect to the corresponding page,
+including links that open a correction. All eight correction/proof panels are retained.
 
 ## Exercise sessions
 
