@@ -128,7 +128,7 @@
   function typeset(box){if(window.MathJax && MathJax.startup && MathJax.startup.promise)queue=queue.then(()=>MathJax.startup.promise).then(()=>MathJax.typesetPromise([box])).catch(console.error);}
   document.querySelectorAll('details').forEach(details=>{
     const summary=details.querySelector('summary');const label=summary.querySelector('.disclosure-label');const legacyLabel=label?null:summary.firstChild.textContent;
-    const refresh=()=>{if(label)label.textContent=(details.open?'Hide ':'Show ')+label.dataset.label;else if(legacyLabel)summary.firstChild.textContent=legacyLabel.replace('Show ',details.open?'Hide ':'Show ');if(details.open)typeset(details.querySelector('.solution')||details);};
+    const refresh=()=>{if(label)label.textContent=(details.classList.contains('correction-question')?'':(details.open?'Hide ':'Show '))+label.dataset.label;else if(legacyLabel)summary.firstChild.textContent=legacyLabel.replace('Show ',details.open?'Hide ':'Show ');if(details.open)typeset(details.querySelector('.solution')||details);};
     details.addEventListener('toggle',refresh);refresh();
   });
   function revealStep(){
