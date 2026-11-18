@@ -15,6 +15,13 @@ Section 5 of the combined third lesson, preserving bookmarked section fragments.
 The former standalone dominance example links to the consolidated IESDS correction.
 Links to collapsed solutions open the relevant correction automatically.
 
+## Chapter 2 — Dynamic Games with Perfect Information
+
+`chapter2.html` contains extensive-form games, pure/mixed/behavioral strategies,
+normal-form reduction, subgame perfection and backward induction. Entry, kidnapping
+and sequential Cournot examples include worked solutions and equilibrium paths.
+The chapter has its own sidebar group on every course and exercise page.
+
 ## Exercise sessions
 
 **Session 1 — Pure Strategies** is at `exercise-session-1.html`, in a separate
@@ -132,3 +139,4 @@ The following printed slips are corrected rather than reproduced:
 
 Course text uses direct explanations, with concise introductions. The opinion
 discussion and editorial comments about source documents have been removed.
+
