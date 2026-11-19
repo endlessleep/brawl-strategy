@@ -69,3 +69,16 @@
 /* Written corrections use the same direct layout as the other exercises. */
 .solution .answer-part-title{font-size:1rem;line-height:1.6;color:var(--example);margin:26px 0 14px;padding-top:18px;border-top:1px solid var(--example-border)}
 .solution>.answer-part-title:first-of-type{margin-top:0;padding-top:0;border-top:0}
+
+/* One exercise frame contains its statement and all numbered questions. */
+.exercise-group{min-width:0;padding:28px;background:var(--example-muted);border:1px solid var(--example-border);border-left:4px solid var(--example);border-radius:var(--radius-lg)}
+.exercise-group>.section-header{margin:0 0 14px}.exercise-group>.example-course-location{margin:0 0 22px}
+.exercise-group>.game-statement{padding:0 0 22px;margin:0;background:none;border:0;border-radius:0;gap:12px}
+.exercise-group .question-collection{gap:0;margin:0}
+.exercise-group .question-collection>.course-question{padding:22px 0;margin:0;background:none;border:0;border-top:1px solid var(--example-border);border-radius:0;gap:10px}
+.exercise-group .question-title{display:flex;align-items:baseline;gap:12px;margin:0;font-size:1.06rem}
+.exercise-group .question-number{color:var(--example);font-size:.9rem;flex-shrink:0;min-width:20px}
+.exercise-group .course-question>.example-task{background:none;border:0;padding:0;margin:0;font-size:.88rem;line-height:1.75}
+.exercise-group .course-question>.worked-step{border:0;padding:0;margin:0}
+.exercise-group>.theory-return{border-top:1px solid var(--example-border);padding-top:18px;margin:0}
+@media(max-width:600px){.exercise-group{padding:20px 16px}.exercise-group .question-collection>.course-question{padding:20px 0}.exercise-group .question-title{font-size:1rem;gap:8px}.exercise-group>.section-header h2{font-size:1.35rem}}
