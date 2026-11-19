@@ -66,22 +66,6 @@
 .game-statement{margin-bottom:0}.additional-question>.example-badge::after{content:' · Kidnapping only';text-transform:none}
 @media(max-width:600px){.question-collection{gap:20px}.course-question .question-title{font-size:1.04rem}.course-question .analysis-heading{font-size:.92rem;gap:8px}.question-collection>.course-question{padding:20px 16px}}
 
-/* Distinguish a written answer from the explanation without nested reveals. */
-.answer-disclosure>.solution{background:none;border:0;padding:0!important;display:none}
-.answer-disclosure[open]>.solution{display:flex!important;flex-direction:column;gap:24px}
-.student-answer,.learning-explanation{scroll-margin-top:88px;min-width:0;padding:24px;border-radius:12px;line-height:1.85}
-.student-answer{background:rgba(34,197,94,.065);border:1px solid rgba(74,222,128,.3);border-left:4px solid #4ade80}
-.learning-explanation{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.28);border-left:4px solid #38bdf8}
-.answer-label{font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
-.student-answer>.answer-label{color:#86efac}.learning-explanation>.answer-label{color:#7dd3fc}
-.solution .answer-purpose{font-size:.8rem;color:var(--text-3);margin:0 0 24px;line-height:1.7}
-.student-answer .answer-part-title{color:#86efac;font-size:.98rem;margin:26px 0 12px;padding-top:18px;border-top:1px solid rgba(74,222,128,.2)}
-.student-answer .math-display{background:rgba(0,0,0,.14);margin:16px 0}
-.learning-explanation .analysis-heading,.learning-explanation .correction-part-title{color:#7dd3fc}
-.learning-explanation .analysis-heading{border-color:rgba(56,189,248,.22)}
-.learning-explanation .analysis-heading>span{color:#7dd3fc}
-.learning-explanation .step-num.coral{color:#7dd3fc;border-color:rgba(56,189,248,.3);background:rgba(56,189,248,.08)}
-.learning-explanation .learning-lab{border-color:rgba(56,189,248,.28)}
-.student-answer p,.learning-explanation p{overflow-wrap:break-word}
-@media(max-width:600px){.student-answer,.learning-explanation{padding:18px 13px}.answer-disclosure[open]>.solution{gap:20px}.student-answer .math-display{padding:14px 10px}.answer-label{font-size:.72rem}}
-@media print{.student-answer{background:white;color:#111;border-color:#15803d}.learning-explanation{background:white;color:#111;border-color:#0369a1}}
+/* Written corrections use the same direct layout as the other exercises. */
+.solution .answer-part-title{font-size:1rem;line-height:1.6;color:var(--example);margin:26px 0 14px;padding-top:18px;border-top:1px solid var(--example-border)}
+.solution>.answer-part-title:first-of-type{margin-top:0;padding-top:0;border-top:0}
