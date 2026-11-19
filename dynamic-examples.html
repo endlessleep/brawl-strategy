@@ -412,30 +412,29 @@ figcaption { text-align:center; color:var(--text-3); font-size:.8rem; line-heigh
  <p>The two $S$ cells are identical: the incumbent's action is off path.</p>
  <div class="table-scroll" tabindex="0" role="region" aria-label="Payoff matrix"><table class="payoff-matrix learning-matrix"><caption>Entrant chooses a row; Incumbent chooses a column.</caption><thead><tr><th scope="col">Entrant</th><th scope="col">F</th><th scope="col">A</th></tr></thead><tbody><tr><th scope="row" class="row-label">E</th><td data-profile="E-F">(−1, 1)</td><td data-profile="E-A">(1, 2)</td></tr><tr><th scope="row" class="row-label">S</th><td data-profile="S-F">(0, 3)</td><td data-profile="S-A">(0, 3)</td></tr></tbody></table></div></div></details><details class="course-disclosure worked-step correction-question" id="entry-dominance"><summary class="toggle-btn example-toggle"><span class="disclosure-label" data-label="Find strictly and weakly dominated or dominant strategies.">Find strictly and weakly dominated or dominant strategies.</span><span class="arrow" aria-hidden="true">▼</span></summary><div class="collapsible solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare rows using the first payoffs.</strong><div class="math-display">$$\begin{aligned}g_1(S,F)=0&>-1=g_1(E,F),\\g_1(E,A)=1&>0=g_1(S,A).\end{aligned}$$</div><p>For the entrant, $S$ is better against $F$ ($0&gt;-1$), whereas $E$ is better against $A$ ($1&gt;0$). Neither action weakly or strictly dominates the other. There is no strict dominance between the incumbent’s plans because they tie against $S$.</p></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare columns using the second payoffs.</strong><div class="math-display">$$\begin{aligned}g_2(E,A)=2&>1=g_2(E,F),\\g_2(S,A)=3&=3=g_2(S,F).\end{aligned}$$</div><p>For the incumbent, $A$ <strong>weakly dominates</strong> $F$: after $E$, $2&gt;1$; after $S$, $3=3$. It is not strict dominance. The entrant has no dominant action.</p></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Dominated, dominant and equilibrium.</strong><p>$F$ is weakly dominated by $A$. No strategy is strictly dominated. Only the incumbent has a weakly dominant strategy, so there is no equilibrium in dominant strategies.</p></div></div></div></details><details class="course-disclosure worked-step correction-question" id="entry-nash"><summary class="toggle-btn example-toggle"><span class="disclosure-label" data-label="Find all pure Nash equilibria and their payoffs.">Find all pure Nash equilibria and their payoffs.</span><span class="arrow" aria-hidden="true">▼</span></summary><div class="collapsible solution"><div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Player 1: compare the first payoffs in each column.</strong><p>A Nash equilibrium is a profile of mutual best responses: neither player gains by changing their own complete strategy while the other strategy stays fixed.</p><p>For player 1: $BR_1(F)=\{S\}$ because $0&gt;-1$;<br>$BR_1(A)=\{E\}$ because $1&gt;0$.</p></div></div><div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Player 2: compare the second payoffs in each row.</strong><p>For player 2: $BR_2(E)=\{A\}$ because $2&gt;1$;<br>$BR_2(S)=\{F,A\}$ because both give $3$.</p></div></div><div class="demo-step"><div class="step-num coral">✓</div><div class="step-body"><strong>Keep the mutual best responses.</strong><div class="math-display boxed">$$NE_{\rm pure}=\{(E,A),(S,F)\}$$</div><div class="ne-summary" role="group" aria-label="Nash equilibria and corresponding payoffs">$$\begin{array}{rcc}NE_{\mathrm{pure}}=\{&(E,A),&(S,F)\}\\&\downarrow&\downarrow\\\text{Payoffs:}&(1,2)&(0,3)\end{array}$$</div><p>At $(S,F)$, entering would give the entrant $-1$ instead of $0$. The incumbent cannot improve the realized payoff by changing the off-path response. So this is Nash, although the threat to fight is not credible.</p><div class="table-scroll"><table class="payoff-matrix"><thead><tr><th></th><th></th><th colspan="2">Incumbent (P2)</th></tr><tr><th></th><th></th><th scope="col">$F$</th><th scope="col">$A$</th></tr></thead><tbody><tr><th rowspan="2" class="row-label">Entrant (P1)</th><th scope="row" class="row-label">$E$</th><td>$(-1,1)$</td><td class="ne-cell">$(\underline{1},\underline{2})$</td></tr><tr><th scope="row" class="row-label">$S$</th><td class="ne-cell">$(\underline{0},\underline{3})$</td><td>$(0,\underline{3})$</td></tr></tbody></table><p class="matrix-legend">Underlined payoffs = best responses. Shaded cells = Nash equilibria.</p></div></div></div></div></details><div class="step-collection" id="entry-mixed"><h3 class="correction-subheading">Mixed Nash equilibria</h3><p class="body-text">Find every Nash equilibrium when both players may randomize.</p><details class="course-disclosure worked-step correction-question" id="entry-mixed-solution"><summary class="toggle-btn example-toggle"><span class="disclosure-label" data-label="Find all mixed Nash equilibria and their payoffs.">Find all mixed Nash equilibria and their payoffs.</span><span class="arrow" aria-hidden="true">▼</span></summary><div class="collapsible solution">
 <section class="correction-part" id="entry-mixed-entry">
-<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Pure supports of Player 2.</strong>
-<div class="body-text"><p>Let $p=\Pr_1(E)$ and $q=\Pr_2(A)$:</p>
-$$\sigma_1=pE+(1-p)S,\qquad\sigma_2=qA+(1-q)F,\qquad p,q\in[0,1].$$
-<p><strong>$\operatorname{supp}(\sigma_2)=\{A\}$ ($q=1$).</strong> Compare Player 1's payoffs:</p>
-$$g_1(E,A)=1>0=g_1(S,A)\quad\Rightarrow\quad BR_1(A)=\{E\}.$$
-<p>Thus $p=1$. Check Player 2's best response:</p>
-$$g_2(E,A)=2>1=g_2(E,F)\quad\Rightarrow\quad BR_2(E)=\{A\}.$$
-<p>✓ $(E,A)$ is an NE, with $(p,q)=(1,1)$.</p>
-<p><strong>$\operatorname{supp}(\sigma_2)=\{F\}$ ($q=0$).</strong> Compare Player 1's payoffs:</p>
-$$g_1(S,F)=0>-1=g_1(E,F)\quad\Rightarrow\quad BR_1(F)=\{S\}.$$
-<p>Thus $p=0$. Check Player 2's best response:</p>
-$$g_2(S,A)=3=3=g_2(S,F)\quad\Rightarrow\quad BR_2(S)=\{A,F\}.$$
-<p>Since $F\in BR_2(S)$, ✓ $(S,F)$ is an NE, with $(p,q)=(0,0)$. In both pure-support cases, Player 1 has a unique best response and therefore cannot mix. Player 2 is indifferent against $S$, so we must also check whether Player 2 can mix while Player 1 stays out.</p>
-</div></div></div></section>
+<div class="demo-step"><div class="step-num coral">1</div><div class="step-body"><strong>Singleton supports for Player 2.</strong><div class="body-text">
+<p>Let $p=\Pr_1(E)$ and $q=\Pr_2(A)$:</p>
+$$\sigma_1=pE+(1-p)S,\qquad\sigma_2=qA+(1-q)F.$$
+<p>A support contains the actions played with positive probability. Check Player 2's three possible supports: $\{A\}$, $\{F\}$ and $\{A,F\}$.</p>
+<p><strong>$\operatorname{supp}(\sigma_2)=\{A\}$ ($q=1$):</strong></p>
+$$\begin{aligned}1>0&amp;\Rightarrow BR_1(A)=\{E\},\\2>1&amp;\Rightarrow BR_2(E)=\{A\}.\end{aligned}$$
+<p>✓ $(E,A)$, hence $(p,q)=(1,1)$.</p>
+<p><strong>$\operatorname{supp}(\sigma_2)=\{F\}$ ($q=0$):</strong></p>
+$$\begin{aligned}0>-1&amp;\Rightarrow BR_1(F)=\{S\},\\3=3&amp;\Rightarrow BR_2(S)=\{A,F\}.\end{aligned}$$
+<p>Since $F\in BR_2(S)$, ✓ $(S,F)$, hence $(p,q)=(0,0)$.</p>
+<p>In either singleton-support case, Player 1 has a unique best response and cannot mix. The remaining case is $\operatorname{supp}(\sigma_2)=\{A,F\}$.</p>
+</div></div></div>
+</section>
 <section class="correction-part" id="entry-mixed-stayout">
-<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Mixed support: $\operatorname{supp}(\sigma_2)=\{A,F\}$.</strong>
+<div class="demo-step"><div class="step-num coral">2</div><div class="step-body"><strong>Support $\operatorname{supp}(\sigma_2)=\{A,F\}$.</strong>
 <div class="body-text"><p>Both columns receive positive probability, so $q\in(0,1)$. Player 2 must be indifferent between the two actions in the support:</p>
 $$q\in(0,1)\quad\Rightarrow\quad\boxed{g_2(\sigma_1,A)=g_2(\sigma_1,F).}$$
-<p>For each column, multiply Player 2's payoff by the probability of the corresponding row:</p>
+<p><strong>Player 2’s indifference condition.</strong> For each column, multiply Player 2's payoff by the probability of the corresponding row:</p>
 $$g_2(\sigma_1,A)=p(2)+(1-p)(3)=3-p,$$
 $$g_2(\sigma_1,F)=p(1)+(1-p)(3)=3-2p.$$
 $$g_2(\sigma_1,A)=g_2(\sigma_1,F)\iff3-p=3-2p\iff\boxed{p=0.}$$
 <p>Hence $\sigma_1=S$ and $\operatorname{supp}(\sigma_1)=\{S\}$. This is allowed: Player 2 mixes, but Player 1 is pure. There is no equilibrium in which both players put positive probability on both actions.</p>
-<p>Now check that Player 1 does not gain by using the action $E$ outside the support:</p>
+<p><strong>Check the unused action $E$ for Player 1.</strong> Since $\sigma_1=S$, use the best-response inequality, not an indifference equality:</p>
 $$g_1(E,\sigma_2)=q(1)+(1-q)(-1)=2q-1,$$
 $$g_1(S,\sigma_2)=q(0)+(1-q)(0)=0.$$
 $$g_1(S,\sigma_2)\ge g_1(E,\sigma_2)\iff0\ge2q-1\iff\boxed{q\le\frac12.}$$
