@@ -82,3 +82,14 @@
 .exercise-group .course-question>.worked-step{border:0;padding:0;margin:0}
 .exercise-group>.theory-return{border-top:1px solid var(--example-border);padding-top:18px;margin:0}
 @media(max-width:600px){.exercise-group{padding:20px 16px}.exercise-group .question-collection>.course-question{padding:20px 0}.exercise-group .question-title{font-size:1rem;gap:8px}.exercise-group>.section-header h2{font-size:1.35rem}}
+
+/* Continuous action spaces are drawn as sectors, not a finite set of branches. */
+.cournot-fan-tree svg{min-width:460px;max-width:620px}
+.cournot-fan-tree .continuous-fans path{fill:rgba(56,189,248,.055);stroke:#a4b8cd;stroke-width:2.2;stroke-linejoin:round}
+.cournot-fan-tree .representative-choices path{fill:none;stroke:#dce7f4;stroke-width:2}
+.cournot-fan-tree .fan-nodes circle{fill:#e2faff}
+.cournot-fan-tree .fan-player-labels text{fill:#e2faff;font:700 25px Outfit,sans-serif}
+.cournot-fan-tree .fan-action-labels text{fill:#e2faff;font:500 23px Outfit,sans-serif}
+.cournot-fan-tree .fan-history{fill:#9caec2;font:500 17px Outfit,sans-serif}
+.cournot-fan-tree .fan-terminal{fill:#f8fafc;font:500 23px Outfit,sans-serif}
+@media print{.cournot-fan-tree .continuous-fans path,.cournot-fan-tree .representative-choices path{stroke:#222;fill:none}.cournot-fan-tree .fan-nodes circle{fill:#222}.cournot-fan-tree svg text{fill:#222}}
